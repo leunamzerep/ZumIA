@@ -1,35 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AnimatePresence } from "framer-motion";
+import { useMemo, useState } from "react";
+import { RouterProvider, Outlet, createBrowserRouter } from "react-router-dom";
 
-function App() {
-  const [count, setCount] = useState(0)
+import { PrerenderReady } from "./PrerenderReady";
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React + hola Bry</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+import { Header } from "./header/Header";
+import { Footer } from "./footer/Footer";
+import { SplashScreen } from "./components/splashScreen/SplashScreen";
+import { createServerRoutes } from "./routes.ssr";
 
-export default App
+import "./assets/css/app.css";
+
+const Layout = () => (
+  <>
+    <Header />
+    <AnimatePresence mode="wait">
+      <Outlet />
+    </AnimatePresence>
+    <Footer />
+  </>
+);
+
+export const App = () => {
+  const isPrerender =
+    typeof window !== "undefined" &&
+    (window as any).__PRERENDER_INJECTED?.prerender === true;
+
+  const [canAnimate, setCanAnimate] = useState(isPrerender);
+  const [showSplash, setShowSplash] = useState(!isPrerender);
+
+  const router = useMemo(
+    () =>
+      createBrowserRouter([
+        {
+          element: (
+            <>
+              {showSplash && (
+                <SplashScreen
+                  onReady={() => setCanAnimate(true)}
+                  onFinish={() => setShowSplash(false)}
+                />
+              )}
+              <Layout />
+              <PrerenderReady />
+            </>
+          ),
+          children: createServerRoutes(canAnimate),
+        },
+      ]),
+    [canAnimate, showSplash]
+  );
+
+  return <RouterProvider router={router} />;
+};

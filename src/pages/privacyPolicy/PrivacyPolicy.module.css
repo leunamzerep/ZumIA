@@ -1,0 +1,12 @@
+.main {
+  margin: 40px;
+  padding: 30px;
+  background-color: white;
+  border-radius: 30px;
+  transition: all 1s ease;
+}
+
+.appear {
+  opacity: 1;
+  transition: all 1s ease;
+}

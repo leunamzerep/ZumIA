@@ -1,0 +1,29 @@
+{
+  "name": "JoTu Solutions LLC",
+  "short_name": "JoTu",
+  "description": "Administration and accounting services helping businesses meet U.S. requirements and tax obligations.",
+  "lang": "en",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1c7b7e",
+  "background_color": "#69b8bb7d",
+  "icons": [
+    {
+      "src": "/JoTu_color_1.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/JoTu_color_1.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/JoTu_color_1.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font);
+  font-size: 10px;
+}
+
+.lang-label {
+  font-weight: 400;
+  opacity: 0.3;
+  transition: all 0.333s ease;
+}
+
+.lang-label--active {
+  font-weight: 700;
+  opacity: 1;
+  transition: all 0.333s ease;
+}
+
+/* Switch wrapper */
+.lang-switch_control {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 21.8px;
+}
+
+/* Hide native checkbox */
+.lang-switch_control input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider background */
+.lang-switch_slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--col4);
+  border-radius: 50px;
+  transition: background-color 0.2s ease;
+}
+
+/* Knob */
+.lang-switch_slider::before {
+  content: "";
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  left: 2.9px;
+  top: 2.9px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  transition: transform 0.2s ease;
+}
+
+.lang-switch_control input:checked+.lang-switch_slider::before {
+  transform: translateX(17.6px);
+}
+
+/* At 0 while #items are defined */
+
+@media (max-width: 0px) {
+  .lang-switch {
+    gap: 2.5px;
+    font-size: 8px;
+  }
+
+  /* Switch wrapper */
+  .lang-switch_control {
+    width: 30px;
+    height: 18px;
+  }
+
+  /* Knob */
+  .lang-switch_slider::before {
+    height: 14px;
+    width: 14px;
+    left: 2.3px;
+    top: 2px;
+  }
+
+  .lang-switch_control input:checked+.lang-switch_slider::before {
+    transform: translateX(11.5px);
+  }
+}

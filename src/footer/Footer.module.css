@@ -1,0 +1,159 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  gap: 120px;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 0px;
+  background-color: white;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.legalsTitle {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 2.5px;
+}
+
+.logo {
+  height: 14vh;
+}
+
+.option {
+  font-size: medium;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--dtext);
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  text-decoration: underline;
+  color: var(--col3);
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+.socialContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.medias {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  height: 26px;
+  width: 26px;
+  padding: 6px;
+  border-radius: 15px;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.media:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.legalAdvice {
+  margin: 0;
+  text-align: center;
+}
+
+.whatsappFloat {
+  position: fixed;
+  right: 21px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 99;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.whatsappFloat:hover {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.35);
+  transform: translateY(-3px);
+  background-color: var(--col3);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: 18px 7.5px 23px 15px;
+    justify-content: space-evenly;
+    gap: 5px;
+  }
+
+  .logo {
+    height: 4.5vh;
+  }
+
+  .optionsContainer {
+    gap: 3px;
+  }
+
+  .option {
+    font-size: 10px;
+    font-weight: 500;
+  }
+
+  .socialContainer {
+    gap: 6px;
+  }
+
+  .medias {
+    gap: 6px;
+  }
+
+  .media {
+    font-size: 14px;
+    height: 22px;
+    width: 22px;
+    padding: 3px;
+    border-radius: 10px;
+  }
+
+  .legalsTitle {
+    font-size: 12px;
+  }
+
+  .legalAdvice {
+    font-size: 11px;
+  }
+
+  .whatsappFloat {
+    right: 14px;
+    font-size: 18px;
+    height: 40px;
+    width: 40px;
+    padding: 3px;
+  }
+}

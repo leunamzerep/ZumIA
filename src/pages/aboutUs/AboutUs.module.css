@@ -1,0 +1,253 @@
+.header {
+  background-color: white;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 25px 80px;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.appear {
+  opacity: 1;
+  transition: opacity 1.2s ease;
+}
+
+.mainTitle {
+  color: var(--col3);
+  margin: 0;
+  font-size: 28px;
+  text-align: center;
+  width: 25%;
+}
+
+.mainText {
+  color: var(--col2);
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  width: 70%;
+}
+
+.infoContainer {
+  padding: 30px 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  row-gap: 20px;
+  overflow-x: hidden;
+}
+
+.item {
+  display: flex;
+  border-radius: 25px;
+  height: 200px;
+  width: 550px;
+  overflow: hidden;
+  justify-content: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 900ms ease-in-out, opacity 1200ms ease-in, box-shadow 300ms ease;
+  will-change: transform, opacity;
+}
+
+.item:nth-child(odd) {
+  transform: translateX(-150px);
+}
+
+.item:nth-child(even) {
+  transform: translateX(150px);
+}
+
+.enter {
+  opacity: 1;
+  transform: translateY(0) !important;
+}
+
+.item.enter:hover {
+  transition: transform 200ms ease, box-shadow 300ms ease;
+  transform: translateX(0) translateY(-4px) !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.textContainer {
+  height: 100%;
+  width: 68%;
+  position: relative;
+  overflow: hidden;
+}
+
+.titleContainer {
+  background-color: white;
+  height: calc(100% - 60px);
+  width: 32%;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about1,
+.about2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(0.6);
+}
+
+.itemTitle {
+  color: var(--col3);
+  margin: 0;
+  text-align: center;
+}
+
+.itemText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--wtext);
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+  width: 82%;
+  z-index: 1;
+}
+
+.clients {
+  text-align: center;
+  padding-top: 8px;
+  text-decoration: none;
+  transition: all 0.5s ease;
+}
+
+.aContainer {
+  border-radius: 100px;
+  transition: all 0.5s ease;
+}
+
+.aContainer:hover {
+  text-decoration: underline;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(44, 66, 66, 0.99);
+  transition: all 0.5s ease;
+}
+
+.clientsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  gap: 10px;
+  padding: 30px 100px;
+}
+
+.clientsContainer img {
+  width: 150px;
+  border-radius: 75px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hasTooltip {
+  position: relative;
+}
+
+.hasTooltip::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.hasTooltip:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+@media (max-width:767px) {
+
+  .header {
+    flex-direction: column;
+    padding: 15px 15px 20px 15px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    gap: 8px;
+  }
+
+  .mainTitle {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .mainText {
+    width: 100%;
+    font-size: 15px;
+  }
+
+  .infoContainer {
+    grid-template-columns: 1fr;
+    padding: 20px 0px;
+  }
+
+  .item {
+    width: 90%;
+    height: 160px;
+    border-radius: 20px;
+  }
+
+  .titleContainer {
+    padding: 15px;
+    height: 130px;
+  }
+
+  .about1,
+  .about2 {
+    width: 100%;
+  }
+
+  .itemTitle {
+    font-size: 18px;
+    padding: 20px 0;
+
+  }
+
+  .itemText {
+    font-size: 14px;
+  }
+
+  .clientsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    padding: 20px 40px;
+  }
+
+  .clientsContainer img {
+    width: 90px;
+    border-radius: 45px;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+}

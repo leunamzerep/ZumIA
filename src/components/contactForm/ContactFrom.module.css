@@ -1,0 +1,119 @@
+.displayContainer {
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.formContainer {
+  background-color: white;
+  padding: 30px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.invitation {
+  color: var(--col2);
+  font-size: 22px;
+  margin-top: -4px;
+  margin: 0;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  padding: 0px;
+}
+
+label p {
+  font-size: 14px;
+  margin: 24px 0 8px 0;
+}
+
+input,
+textarea {
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: var(--back2);
+  border: none;
+  box-shadow: 0 0 5px rgba(116, 156, 157, 0.5);
+}
+
+.msgContainer {
+  height: 60px;
+  min-height: 60px;
+  max-height: 300px;
+  font-family: var(--font);
+  resize: vertical;
+}
+
+.send {
+  margin-top: 24px;
+  width: max-content;
+  font-size: 16px;
+  border: none;
+  color: white;
+  background-color: var(--col3);
+  padding: 6px 20px;
+  border-radius: 50px;
+}
+
+.labelWarn {
+  opacity: 0;
+  color: red;
+  transition: opacity 0.2s ease;
+}
+
+.appear {
+  opacity: 1;
+}
+
+.verification {
+  font-size: 14px;
+  margin-left: 10px;
+  color: var(--alt);
+  opacity: 0.8;
+}
+
+@media (max-width:767px) {
+  .displayContainer {
+    padding: 20px 0;
+    justify-content: center;
+  }
+
+  .formContainer {
+    width: 75%;
+  }
+
+  .invitation {
+    font-size: 19px;
+  }
+
+  label p {
+    font-size: 13px;
+    margin: 18px 0 6px 0;
+  }
+
+  input,
+  textarea {
+    font-size: 12px;
+  }
+
+  .msgContainer {
+    height: 48px;
+    min-height: 48px;
+    max-height: 250px;
+  }
+
+  .send {
+    margin: 20px 0 -4px 0;
+    font-size: 12px;
+    padding: 5px 15px;
+    height: 30px;
+  }
+}

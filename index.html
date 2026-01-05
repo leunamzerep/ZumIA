@@ -1,13 +1,68 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="es">
+
+<head>
+
+  <!-- Basic SEO -->
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/assets/img/JoTu_icono_color.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JoTu Solutions LLC</title>
+  <meta name="keywords"
+    content="US taxes, accounting services, administrative services, compliance, business requirements, LLC services" />
+  <meta name="author" content="JoTu Solutions LLC" />
+  <link rel="canonical" href="https://zumiasolutions.xyz/" />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="JoTu Solutions LLC" />
+  <meta property="og:description"
+    content="Administration & accounting services helping businesses meet U.S. requirements and tax obligations." />
+  <meta property="og:url" content="https://zumiasolutions.xyz/" />
+  <meta property="og:image" content="https://zumiasolutions.xyz/JoTu_color_1.png" />
+  <meta property="og:site_name" content="JoTu Solutions LLC" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JoTu Solutions LLC" />
+  <meta name="twitter:description"
+    content="Administration & accounting services helping businesses meet U.S. requirements and tax obligations." />
+  <meta name="twitter:image" content="https://zumiasolutions.xyz/JoTu_color_1.png" />
+
+  <!-- Favicon recommended standards -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/JoTu_color_1.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/JoTu_color_1.png" />
+  <link rel="apple-touch-icon" href="/JoTu_color_1.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Helpers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script>
+    (function () {
+      const redirectPath = sessionStorage.getItem("spa-fallback");
+      if (!redirectPath) return;
+      sessionStorage.removeItem("spa-fallback");
+
+      const url = new URL(redirectPath, window.location.origin);
+      const newUrl = url.pathname + url.search + url.hash;
+      const currentUrl =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+
+      if (newUrl !== currentUrl) {
+        window.history.replaceState(null, "", newUrl);
+      }
+    })();
+  </script>
+</head>
+
+<body style="margin:0">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

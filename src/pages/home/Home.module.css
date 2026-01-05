@@ -1,0 +1,139 @@
+.infoContainer {
+  padding: 50px 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  row-gap: 30px;
+  overflow-x: hidden;
+}
+
+.item {
+  display: flex;
+  border-radius: 30px;
+  height: 275px;
+  width: 440px;
+  overflow: hidden;
+  justify-content: center;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateX(0);
+  transition: transform 1200ms ease-in-out, opacity 1200ms ease-in, box-shadow 300ms ease;
+  will-change: transform, opacity;
+}
+
+.item:nth-child(odd) {
+  transform: translateX(-200px);
+}
+
+.item:nth-child(even) {
+  transform: translateX(200px);
+}
+
+.enter {
+  opacity: 1;
+  transform: translateX(0) !important;
+}
+
+.item.enter:hover {
+  transition: transform 200ms ease, box-shadow 300ms ease;
+  transform: translateX(0) translateY(-4px) !important;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.home1,
+.home2 {
+  height: 100%;
+  width: 45%;
+  object-fit: cover;
+}
+
+.home1 {
+  object-position: 35%;
+}
+
+.home2 {
+  object-position: 65% 0;
+}
+
+.textContainer1,
+.textContainer2 {
+  background-color: white;
+  height: calc(100% - 60px);
+  width: 55%;
+  padding: 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.itemTitle {
+  color: var(--col3);
+  margin: 0 0 5px 0;
+}
+
+.itemText {
+  color: var(--col2);
+  font-weight: 500;
+  margin: 0;
+}
+
+.gridPosts {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin: -10px 0 40px 0;
+  padding: 0 80px;
+}
+
+.post iframe {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+
+@media (max-width:767px) {
+  .infoContainer {
+    grid-template-columns: 1fr;
+    padding: 40px 0px;
+  }
+
+  .item {
+    width: 80%;
+    height: 160px;
+    border-radius: 20px;
+  }
+
+  .itemTitle {
+    font-size: 14px;
+  }
+
+  .itemText {
+    font-size: 12px;
+  }
+
+  .post {
+    text-align: center;
+    padding: 0 40px;
+    gap: 25px;
+  }
+
+  .post h2 {
+    font-size: 20px;
+  }
+
+  .gridPosts {
+    grid-template-columns: 1fr;
+  }
+
+  .gridPosts iframe:not(:first-of-type) {
+    display: none;
+  }
+}

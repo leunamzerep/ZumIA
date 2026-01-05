@@ -1,0 +1,35 @@
+:root {
+    /* BRAND COLORS */
+    --col1: #121f44;
+    --col2: #02174d;
+    --col3: #15466d;
+    --col4: #1c7b7e;
+    --col5: #69b8bb;
+    --back: #69b8bb7d;
+    --back2: #749c9d4b;
+    --alt: #3533cd;
+
+    /* NEUTRALS */
+    --wtext: #f8fafc;
+    --btext: #113c66;
+    --dtext: #101527;
+
+    /* TYPOGRAPHY */
+    --font: "Canva Sans", sans-serif;
+    --bigfont: "Roboto", sans-serif;
+
+    /* SIZES */
+    /* pending */
+}
+
+html {
+    font-family: var(--font);
+    color: var(--dtext);
+    background-color: var(--back);
+}
+
+button,
+Link,
+a {
+    cursor: pointer;
+}
