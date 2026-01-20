@@ -4,6 +4,12 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import en from "./en.json";
 import es from "./es.json";
+import { getLangFromPath } from "./langRouting";
+
+const initialLang =
+  typeof window !== "undefined"
+    ? getLangFromPath(window.location.pathname)
+    : "es";
 
 i18n.use(LanguageDetector).use(initReactI18next)
     .init({
@@ -11,7 +17,7 @@ i18n.use(LanguageDetector).use(initReactI18next)
             en: { translation: en },
             es: { translation: es }
         },
-        lng: "es",
+        lng: initialLang,
         fallbackLng: "es",
         interpolation: {
             escapeValue: false

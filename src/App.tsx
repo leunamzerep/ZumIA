@@ -1,6 +1,12 @@
 import { AnimatePresence } from "framer-motion";
-import { useMemo, useState } from "react";
-import { RouterProvider, Outlet, createBrowserRouter } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
+import {
+  RouterProvider,
+  Outlet,
+  createBrowserRouter,
+  useLocation,
+} from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { PrerenderReady } from "./PrerenderReady";
 
@@ -10,16 +16,29 @@ import { SplashScreen } from "./components/splashScreen/SplashScreen";
 import { createServerRoutes } from "./routes.ssr";
 
 import "./assets/css/app.css";
+import { getLangFromPath } from "./i18n/langRouting";
 
-const Layout = () => (
-  <>
-    <Header />
-    <AnimatePresence mode="wait">
-      <Outlet />
-    </AnimatePresence>
-    <Footer />
-  </>
-);
+const Layout = () => {
+  const { i18n } = useTranslation();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    const lang = getLangFromPath(pathname);
+    if (i18n.resolvedLanguage !== lang) {
+      i18n.changeLanguage(lang);
+    }
+  }, [i18n, pathname]);
+
+  return (
+    <>
+      <Header />
+      <AnimatePresence mode="wait">
+        <Outlet />
+      </AnimatePresence>
+      <Footer />
+    </>
+  );
+};
 
 export const App = () => {
   const isPrerender =
@@ -45,7 +64,10 @@ export const App = () => {
               <PrerenderReady />
             </>
           ),
-          children: createServerRoutes(canAnimate),
+          children: [
+            ...createServerRoutes(canAnimate),
+            ...createServerRoutes(canAnimate, "/en"),
+          ],
         },
       ]),
     [canAnimate, showSplash]

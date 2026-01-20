@@ -12,7 +12,10 @@ export async function render(url: string) {
   const routes = [
     {
       path: "/",
-      children: createServerRoutes(true),
+      children: [
+        ...createServerRoutes(true),
+        ...createServerRoutes(true, "/en"),
+      ],
     },
   ];
 
