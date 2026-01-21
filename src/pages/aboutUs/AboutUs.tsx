@@ -47,8 +47,8 @@ export const AboutUs = ({ canAnimate }: AboutProps) => {
         <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
         <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
       </Helmet>
-
-      <main>
+      <h1 className={styles.itemTitle}>Sitio Web en Mantenimiento</h1>
+      {/* <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div>
           <div className={`${styles.header} ${animate ? styles.appear : ""}`}>
@@ -134,7 +134,7 @@ export const AboutUs = ({ canAnimate }: AboutProps) => {
           </div>
         </div>
         <ContactCard />
-      </main>
+      </main> */}
     </>
   );
 };

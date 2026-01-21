@@ -15,15 +15,14 @@
     },
     "header": {
         "home": "Home",
-        "services": "Services",
-        "aboutUs": "About Us",
-        "contact": "Contact"
+        "aboutUs": "Pricing",
+        "contact": "FAQ"
     },
     "footer": {
         "legals": "Legals",
         "privacy": "Privacy Policy",
         "terms": "Terms and Conditions",
-        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=info@zumiasolutions.xyz&su=Consulting&body=Hi,%20I%20want%20more.%20information."
+        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Info%20de%20paquetes%20web%20(Zumia)&body=Hola%20Zumia,%0A%C2%BFMe%20compartes%20informaci%C3%B3n%20de%20sus%20paquetes%20web%20y%20precios%3F%0A%0AGracias.%0A-%20%5BNombre%5D"
     },
     "home": {
         "main": "Fiscal and Business Solutions in the United States",

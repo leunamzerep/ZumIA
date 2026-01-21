@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
-import logo from "../assets/img/JoTu_icono_color.png";
+import logo from "../assets/img/1.png";
 import styles from './Footer.module.css'
 import { useLocalizedPath } from "../i18n/useLocalizedPath";
 
@@ -60,14 +60,14 @@ export const Footer = () => {
             <a className={styles.media} style={{ backgroundColor: '#fea501' }} href="https://www.instagram.com/zumiasolutions" target="_blank">
               <i className="fa-brands fa-instagram"></i>
             </a>
-            <a className={styles.media} style={{ backgroundColor: '#1970ff' }} href="https://www.facebook.com/people/JOTU-Solutions-LLC/61576996550658" target="_blank">
+            <a className={styles.media} style={{ backgroundColor: '#1970ff' }} href="https://www.facebook.com/people/Zumia-Solutions/61586976116654" target="_blank">
               <i className="fa-brands fa-facebook"></i>
             </a>
             <a className={styles.media} style={{ backgroundColor: '#e23f33' }} href={mailLink} target="_blank">
               <i className="fa-regular fa-envelope"></i>
             </a>
           </div>
-          <p className={styles.legalAdvice}>© 2025. All rights reserved.</p>
+          <p className={styles.legalAdvice}>© 2026. All rights reserved.</p>
         </div>
       </div>
       <a href={whaLink} target="_blank" className={styles.whatsappFloat} style={{ bottom: `${buttonBottom}px` }}>

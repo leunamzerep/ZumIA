@@ -30,8 +30,8 @@ export const Contact = ({ canAnimate }: ContactProps) => {
         <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
         <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
       </Helmet>
-
-      <main>
+      <h1>Sitio Web en Mantenimiento</h1>
+      {/* <main>
         <div className={`${styles.main} ${animate ? styles.appear : ''}`}>
           <div className={styles.formContainer}>
             <ContactForm canAnimate={canAnimate} />
@@ -74,7 +74,7 @@ export const Contact = ({ canAnimate }: ContactProps) => {
           />
         </div>
         <SeoEntry imgPath={mainImg} content={h1} canAnimate={canAnimate} />
-      </main>
+      </main> */}
     </>
   );
 };

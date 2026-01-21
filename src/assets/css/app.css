@@ -1,12 +1,25 @@
 :root {
+
+    --zumia-gold: #C98A3A;
+    /* Primario marca: logo, highlights, headers */
+    --zumia-sand: #D8A75B;
+    /* Secundario cálido: badges, cards suaves, hover */
+    --zumia-cream: #F2E2C8;
+    /* Fondo claro: secciones, superficies, backgrounds */
+    --zumia-brown: #8A5A2E;
+    /* Soporte: íconos, detalles, subtítulos */
+    --zumia-dark-brown: #3B2A1E;
+    /* Texto cálido alterno / overlays sutiles */
+
+
     /* BRAND COLORS */
     --col1: #121f44;
     --col2: #02174d;
     --col3: #15466d;
-    --col4: #1c7b7e;
+    --col4: #C98A3A;
     --col5: #69b8bb;
-    --back: #69b8bb7d;
-    --back2: #749c9d4b;
+    --back: #F2E2C8;
+    --back2: #e6ded2cc;
     --alt: #3533cd;
 
     /* NEUTRALS */
@@ -14,12 +27,10 @@
     --btext: #113c66;
     --dtext: #101527;
 
-    /* TYPOGRAPHY */
+    /* TYPOGRAPHY TODO*/
     --font: "Canva Sans", sans-serif;
     --bigfont: "Roboto", sans-serif;
 
-    /* SIZES */
-    /* pending */
 }
 
 html {

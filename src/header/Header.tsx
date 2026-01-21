@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "../components/langSwitch/LangSwitch";
 import { Link } from "react-router-dom";
 
-import logo from "../assets/img/JoTu_color_1.png";
+import logo from "../assets/img/321.png";
 import styles from './Header.module.css'
 import { useLocalizedPath } from "../i18n/useLocalizedPath";
 

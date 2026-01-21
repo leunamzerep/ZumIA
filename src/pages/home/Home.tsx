@@ -70,8 +70,8 @@ export const Home = ({ canAnimate }: HomeProps) => {
         <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
         <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
       </Helmet>
-
-      <main className={styles.mainContainer}>
+      <h1>Sitio Web en Mantenimiento</h1>
+      {/* <main className={styles.mainContainer}>
         <SeoEntry imgPath={mainImg} content={h1} canAnimate={canAnimate} />
         <div className={styles.infoContainer}>
           <div className={`${styles.item} ${animate ? styles.enter : ""}`}>
@@ -137,7 +137,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
           </div>
         )}
         <ContactCard />
-      </main>
+      </main> */}
     </>
   );
 };

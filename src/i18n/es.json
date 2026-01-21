@@ -15,15 +15,14 @@
     },
     "header": {
         "home": "Inicio",
-        "services": "Servicios",
-        "aboutUs": "Nosotros",
-        "contact": "Contacto"
+        "aboutUs": "Cotizar",
+        "contact": "FAQ"
     },
     "footer": {
         "legals": "Documentos legales",
         "privacy": "Politica de Privacidad",
         "terms": "Términos y Condiciones",
-        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=info@zumiasolutions.xyz&su=Asesoria&body=Buen%20día,%20Quiero%20más%20información."
+        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Web%20packages%20info%20(Zumia)&body=Hi%20Zumia,%0ACould%20you%20share%20information%20about%20your%20web%20packages%20and%20pricing%3F%0A%0AThanks,%0A-%20%5BName%5D"
     },
     "home": {
         "main": "Soluciones Fiscales y Empresariales en Estados Unidos",

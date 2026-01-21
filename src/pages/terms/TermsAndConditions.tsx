@@ -32,8 +32,8 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
         <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
         <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
       </Helmet>
-
-      <main>
+      <h1>Sitio Web en Mantenimiento</h1>
+      {/* <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
           <h2>{t('terms.section1')}</h2>
@@ -55,7 +55,7 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
           <h2>{t('terms.section9')}</h2>
           <p>{t('terms.p9')}</p>
         </div>
-      </main>
+      </main> */}
     </>
   );
 };
