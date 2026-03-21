@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 
 import { SeoEntry } from "../../components/seoEntry/SeoEntry";
 import { ContactCard } from "../../components/contactCard/ContactCard";
+import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 
 import aboutImg from "../../assets/img/aboutImg.jpg"
@@ -40,13 +40,10 @@ export const AboutUs = ({ canAnimate }: AboutProps) => {
 
   return (
     <>
-      <Helmet defer={false}>
-        <title>{t('seo.aboutUsTitle')}</title>
-        <meta name="description" content={t('seo.aboutUsDescription')} />
-        <link rel="canonical" href="https://zumiasolutions.xyz/about-us" />
-        <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
-        <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
-      </Helmet>
+      <PageSeo
+        title={t("seo.aboutUsTitle")}
+        description={t("seo.aboutUsDescription")}
+      />
       <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div>

@@ -11,7 +11,7 @@ function helmetApplied(): boolean {
     'link[rel="canonical"]'
   )?.href;
 
-  // index.html NO tiene description/canonical, así que esto confirma que Helmet ya escribió.
+  // The base template does not include route-specific description/canonical tags.
   return Boolean(desc) && Boolean(canonical) && document.title.trim().length > 0;
 }
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet-async";
 
 import { ContactCard } from "../../components/contactCard/ContactCard";
+import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 import mainImg from "../../assets/img/mainImg.jpg";
 import home1 from "../../assets/img/home1.webp";
@@ -63,13 +63,10 @@ export const Home = ({ canAnimate }: HomeProps) => {
 
   return (
     <>
-      <Helmet defer={false}>
-        <title>{t("seo.homeTitle")}</title>
-        <meta name="description" content={t("seo.homeDescription")} />
-        <link rel="canonical" href="https://zumiasolutions.xyz" />
-        <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
-        <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
-      </Helmet>
+      <PageSeo
+        title={t("seo.homeTitle")}
+        description={t("seo.homeDescription")}
+      />
       <main className={styles.mainContainer}>
         <SeoEntry imgPath={mainImg} content={h1} canAnimate={canAnimate} />
         <div className={styles.infoContainer}>

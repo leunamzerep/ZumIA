@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
-import { Helmet } from "react-helmet-async";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 import { SeoEntry } from "../../components/seoEntry/SeoEntry";
+import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 import mainImg from "../../assets/img/contactMainImg.jpg";
 import styles from './Contact.module.css'
@@ -23,13 +23,10 @@ export const Contact = ({ canAnimate }: ContactProps) => {
 
   return (
     <>
-      <Helmet defer={false}>
-        <title>{t('seo.contactTitle')}</title>
-        <meta name="description" content={t('seo.contactDescription')} />
-        <link rel="canonical" href="https://zumiasolutions.xyz/contact" />
-        <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
-        <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
-      </Helmet>
+      <PageSeo
+        title={t("seo.contactTitle")}
+        description={t("seo.contactDescription")}
+      />
       <main>
         <div className={`${styles.main} ${animate ? styles.appear : ''}`}>
           <div className={styles.formContainer}>

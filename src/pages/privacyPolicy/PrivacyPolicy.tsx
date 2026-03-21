@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
-import { Helmet } from "react-helmet-async";
 import { useEffect, useState } from "react";
 
 import styles from './PrivacyPolicy.module.css'
 
 import { SeoEntry } from "../../components/seoEntry/SeoEntry";
 import aboutImg from "../../assets/img/aboutImg.jpg"
+import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 type TermsProps = {
   canAnimate: boolean;
@@ -26,13 +26,10 @@ export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
 
   return (
     <>
-      <Helmet defer={false}>
-        <title>{t('seo.privacyTitle')}</title>
-        <meta name="description" content={t('seo.privacyDescription')} />
-        <link rel="canonical" href="https://zumiasolutions.xyz/privacy-policy" />
-        <link rel="alternate" hrefLang="es" href="https://zumiasolutions.xyz/" />
-        <link rel="alternate" hrefLang="x-default" href="https://zumiasolutions.xyz/" />
-      </Helmet>
+      <PageSeo
+        title={t("seo.privacyTitle")}
+        description={t("seo.privacyDescription")}
+      />
       <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
