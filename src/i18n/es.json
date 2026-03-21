@@ -1,6 +1,7 @@
 {
     "seo": {
         "homeTitle": "Zumia Solutions",
+        "notFoundTitle": "Pagina no encontrada - Zumia Solutions",
         "homeDescription": "Ofrecemos servicios de creación de en EE. UU., servicios de bookeeping y asistencia para ITIN. Contáctenos para ayudarle a establecer su negocio de manera correcta sin importar si se encuentra dentro o fuera de los Estados Unidos.",
         "servicesTitle": "Servicios - Zumia Solutions",
         "servicesDescription": "En Zumia Solutions, ofrecemos Servicios y soluciones integrales para impuestos, creación de empresas y trámites gubernamentales en Estados Unidos.",
@@ -23,6 +24,11 @@
         "privacy": "Politica de Privacidad",
         "terms": "Términos y Condiciones",
         "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Web%20packages%20info%20(Zumia)&body=Hi%20Zumia,%0ACould%20you%20share%20information%20about%20your%20web%20packages%20and%20pricing%3F%0A%0AThanks,%0A-%20%5BName%5D"
+    },
+    "notFound": {
+        "title": "Esta pagina no existe",
+        "description": "La direccion que escribiste no coincide con ninguna pagina del sitio. Usa el boton para volver al inicio.",
+        "cta": "Volver al inicio"
     },
     "home": {
         "main": "Soluciones Fiscales y Empresariales en Estados Unidos",

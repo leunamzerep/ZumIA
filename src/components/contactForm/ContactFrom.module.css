@@ -16,7 +16,7 @@
 }
 
 .invitation {
-  color: var(--col2);
+  color: var(--darkFont);
   font-size: 22px;
   margin-top: -4px;
   margin: 0;
@@ -39,7 +39,7 @@ textarea {
   padding: 8px 10px;
   border-radius: 6px;
   font-size: 14px;
-  background-color: var(--back2);
+  background-color: var(--backAlt);
   border: none;
   box-shadow: 0 0 5px rgba(116, 156, 157, 0.5);
 }
@@ -58,7 +58,7 @@ textarea {
   font-size: 16px;
   border: none;
   color: white;
-  background-color: var(--col3);
+  background-color: var(--brightFont);
   padding: 6px 20px;
   border-radius: 50px;
 }
@@ -76,7 +76,7 @@ textarea {
 .verification {
   font-size: 14px;
   margin-left: 10px;
-  color: var(--alt);
+  color: var(--brightMain);
   opacity: 0.8;
 }
 

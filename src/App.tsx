@@ -13,6 +13,8 @@ import { PrerenderReady } from "./PrerenderReady";
 import { Header } from "./header/Header";
 import { Footer } from "./footer/Footer";
 import { SplashScreen } from "./components/splashScreen/SplashScreen";
+import { PageTransition } from "./components/PageTransition";
+import { NotFound } from "./pages/notFound/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
 import "./assets/css/app.css";
@@ -67,6 +69,14 @@ export const App = () => {
           children: [
             ...createServerRoutes(canAnimate),
             ...createServerRoutes(canAnimate, "/en"),
+            {
+              path: "*",
+              element: (
+                <PageTransition>
+                  <NotFound canAnimate={canAnimate} />
+                </PageTransition>
+              ),
+            },
           ],
         },
       ]),

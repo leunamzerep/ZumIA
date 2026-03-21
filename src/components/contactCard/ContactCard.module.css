@@ -34,7 +34,7 @@
 }
 
 .title {
-  color: var(--col3);
+  color: var(--brightFont);
   font-size: 22px;
   font-weight: 700;
   margin: 0 0 5px 0;
@@ -43,23 +43,23 @@
 .item {
   margin-bottom: 4px;
   text-decoration: none;
-  color: var(--col1);
+  color: var(--darkFont);
   transition: transform 0.25s ease;
 }
 
 .item:hover {
   transform: translateY(-1.5px);
-  color: var(--col3);
+  color: var(--brightFont);
   text-decoration: underline;
 }
 
 .button {
-  background-color: var(--col3);
+  background-color: var(--brightFont);
   padding: 10px 26px;
   border-radius: 50px;
   font-size: 23px;
   font-weight: 700;
-  color: var(--wtext);
+  color: white;
   text-decoration: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   transition: all 0.15s ease;

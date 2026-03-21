@@ -1,7 +1,7 @@
 {
   "name": "Zumia Solutions",
-  "short_name": "JoTu",
-  "description": "Administration and accounting services helping businesses meet U.S. requirements and tax obligations.",
+  "short_name": "Zumia",
+  "description": "Helping businesses build a strong digital presence through branding, high-converting websites, and growth-focused marketing.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
@@ -10,17 +10,17 @@
   "background_color": "#69b8bb7d",
   "icons": [
     {
-      "src": "/123.png",
+      "src": "/globalIcon.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/123.png",
+      "src": "/globalIcon.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/123.png",
+      "src": "/globalIcon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any maskable"

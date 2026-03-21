@@ -69,12 +69,12 @@
 
 
 .itemTitle {
-  color: var(--col3);
+  color: var(--brightFont);
   margin: 0 0 5px 0;
 }
 
 .itemText {
-  color: var(--col2);
+  color: var(--darkFont);
   font-weight: 500;
   margin: 0;
 }

@@ -12,7 +12,7 @@
 .info {
   display: flex;
   flex-direction: column;
-  background-color: var(--col5);
+  background-color: var(--brightMain);
   padding: 40px 40px 25px 40px;
   border-radius: 40px;
   box-shadow: 0 0 15px rgba(116, 156, 157, 0.75);
@@ -24,7 +24,7 @@ h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
-  color: var(--col2);
+  color: var(--darkFont);
 }
 
 h3,
@@ -32,11 +32,11 @@ h3,
   margin: 0 0 15px 0;
   font-size: 18px;
   font-weight: 600;
-  color: var(--col1);
+  color: var(--darkFont);
 }
 
 .inlineLink {
-  color: var(--col2);
+  color: var(--darkFont);
   text-decoration: underline;
 }
 

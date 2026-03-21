@@ -2,6 +2,7 @@
     "seo": {
         "homeTitle": "Zumia Solutions",
         "homeDescription": "We offer formation services in the United States, bookkeeping services, and ITIN assistance. Contact us to help you establish your business correctly, whether you are inside or outside the United States.",
+        "notFoundTitle": "Page Not Found - Zumia Solutions",
         "servicesTitle": "Services - Zumia Solutions",
         "servicesDescription": "At Zumia Solutions, we provide comprehensive services and solutions for taxes, business formation, and government procedures in the United States.",
         "aboutUsTitle": "About Us - Zumia Solutions",
@@ -23,6 +24,11 @@
         "privacy": "Privacy Policy",
         "terms": "Terms and Conditions",
         "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Info%20de%20paquetes%20web%20(Zumia)&body=Hola%20Zumia,%0A%C2%BFMe%20compartes%20informaci%C3%B3n%20de%20sus%20paquetes%20web%20y%20precios%3F%0A%0AGracias.%0A-%20%5BNombre%5D"
+    },
+    "notFound": {
+        "title": "This page does not exist",
+        "description": "The address you entered does not match any page in this site. Use the button below to return to the main page.",
+        "cta": "Back to home"
     },
     "home": {
         "main": "Fiscal and Business Solutions in the United States",

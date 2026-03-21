@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./SplashScreen.module.css";
-import logo from "../../assets/img/123.png";
+import logo from "../../assets/img/globalIcon.png";
 
 export const SplashScreen = ({ onReady, onFinish }: {
   onReady: () => void;

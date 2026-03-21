@@ -28,13 +28,13 @@
   font-size: medium;
   font-weight: 500;
   text-decoration: none;
-  color: var(--dtext);
+  color: black;
   transition: all 0.2s ease;
 }
 
 .option:hover {
   text-decoration: underline;
-  color: var(--col3);
+  color: var(--brightFont);
   transform: translateY(-1px);
   transition: all 0.2s ease;
 }
@@ -101,7 +101,7 @@
 .whatsappFloat:hover {
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.35);
   transform: translateY(-3px);
-  background-color: var(--col3);
+  background-color: var(--brightFont);
   transition: all 0.3s ease;
 }
 
