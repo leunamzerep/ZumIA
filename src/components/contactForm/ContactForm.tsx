@@ -40,7 +40,7 @@ export const ContactForm = ({ canAnimate }: form) => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const dataURL = 'https://script.google.com/macros/s/AKfycbyU4w1licDsER_6jspu5DU9w2W-UCgXoO93TD9RDi3t0MQ6LARd6-EDBCbyNioLzHlf8A/exec';
+    const dataURL = 'https://script.google.com/macros/s/AKfycbzCaE0mgEdu5-j_0XUAeycWmm7C6F8NODg3bcohHHpHnSsQknFm0opHyRjYZSrMMq4/exec';
     const data = new FormData(form);
 
     const name = String(data.get("name") || "").trim();

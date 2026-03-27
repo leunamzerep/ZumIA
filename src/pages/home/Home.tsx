@@ -9,8 +9,8 @@ import home1 from "../../assets/img/home1.webp";
 import home2 from "../../assets/img/home2.jpg";
 import home3 from "../../assets/img/home3.avif";
 import home4 from "../../assets/img/home4.avif";
-import home5 from "../../assets/img/home5.avif";
-import home6 from "../../assets/img/home6.avif";
+// import home5 from "../../assets/img/home5.avif";
+// import home6 from "../../assets/img/home6.avif";
 
 import styles from "./Home.module.css";
 import { SeoEntry } from "../../components/seoEntry/SeoEntry";
@@ -22,7 +22,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
   const { t } = useTranslation();
   const h1 = t("home.main")
   const [animate, setAnimate] = useState(false);
-  const getUrl = 'https://script.google.com/macros/s/AKfycbx67xF67fqj8WyFOZSfkL1Po8PlRX7t0I_7AbngNT-inTEAVlDR6qcAGqL6M5J9aRtk9Q/exec'
+  const getUrl = 'https://script.google.com/macros/s/AKfycbxscPAE1czwBGME-COYjhEC-sq_vQceer9K3CgcEcEnfzUJZ5_ETvVv9yiUNVLwnK45/exec'
 
   const extractInstagramPostId = (url: string): string | null => {
     try {
@@ -97,20 +97,6 @@ export const Home = ({ canAnimate }: HomeProps) => {
               <h3 className={styles.itemText}>{t("home.text4")}</h3>
             </div>
             <img src={home4} className={styles.home2} />
-          </div>
-          <div className={`${styles.item} ${animate ? styles.enter : ""}`}>
-            <img src={home5} className={styles.home1} />
-            <div className={styles.textContainer1}>
-              <h2 className={styles.itemTitle}>{t("home.title5")}</h2>
-              <h3 className={styles.itemText}>{t("home.text5")}</h3>
-            </div>
-          </div>
-          <div className={`${styles.item} ${animate ? styles.enter : ""}`}>
-            <div className={styles.textContainer2}>
-              <h2 className={styles.itemTitle}>{t("home.title6")}</h2>
-              <h3 className={styles.itemText}>{t("home.text6")}</h3>
-            </div>
-            <img src={home6} className={styles.home2} />
           </div>
         </div>
         {igPostIds.length > 0 && (

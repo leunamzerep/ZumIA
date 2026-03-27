@@ -18,8 +18,8 @@ export const ContactCard = () => {
       <div className={styles.wrapper}>
         <div className={styles.redirects}>
           <p className={styles.title}>{t("card.schedule")}</p>
-          <a className={styles.item} href={whaLink}>{'+1(917)915-6583'}</a>
-          <a className={styles.item} href={mailLink}>info@zumiasolutions.xyz</a>
+          <a className={styles.item} href={whaLink}>{'+57(322)428-6264'}</a>
+          <a className={styles.item} href={mailLink}>zumiasolutions@gmail.com</a>
         </div>
         <Link to={localizePath("/contact")} className={styles.button}>{t("card.contactUs")}</Link>
       </div>

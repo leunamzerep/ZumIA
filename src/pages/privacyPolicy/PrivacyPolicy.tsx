@@ -33,7 +33,8 @@ export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
       <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
-          <h2>{t('privacy.section1')}</h2>
+          <h2>Sub-Página en mantenimiento</h2>
+          {/* <h2>{t('privacy.section1')}</h2>
           <p>{t('privacy.p1')}</p>
           <h2>{t('privacy.section2')}</h2>
           <p>{t('privacy.p2')}</p>
@@ -48,7 +49,7 @@ export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
           <h2>{t('privacy.section7')}</h2>
           <p>{t('privacy.p7')}</p>
           <h2>{t('privacy.section8')}</h2>
-          <p>{t('privacy.p8')}</p>
+          <p>{t('privacy.p8')}</p> */}
         </div>
       </main>
     </>

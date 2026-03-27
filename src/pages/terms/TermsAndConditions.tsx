@@ -32,7 +32,8 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
       <main>
         <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
-          <h2>{t('terms.section1')}</h2>
+          <h2>Sub-Página en mantenimiento</h2>
+          {/* <h2>{t('terms.section1')}</h2>
           <p>{t('terms.p1')}</p>
           <h2>{t('terms.section2')}</h2>
           <p>{t('terms.p2')}</p>
@@ -49,7 +50,7 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
           <h2>{t('terms.section8')}</h2>
           <p>{t('terms.p8')}</p>
           <h2>{t('terms.section9')}</h2>
-          <p>{t('terms.p9')}</p>
+          <p>{t('terms.p9')}</p> */}
         </div>
       </main>
     </>
