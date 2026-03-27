@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { LanguageSwitch } from "../components/langSwitch/LangSwitch";
+// import { LanguageSwitch } from "../components/langSwitch/LangSwitch";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/img/mainIcon.png";
@@ -20,7 +20,8 @@ export const Header = () => {
           <Link to={localizePath("/about-us")} className={styles.option}>{t('header.aboutUs')}</Link>
           <Link to={localizePath("/contact")} className={styles.option}>{t('header.contact')}</Link>
         </div>
-        <LanguageSwitch />
+        <img src={logo} className={styles.logo} />
+        {/* <LanguageSwitch /> */}
       </div>
     </section>
   )
