@@ -65,7 +65,7 @@ export const ContactForm = ({ canAnimate }: form) => {
     );
 
     try {
-      const res = await fetch("https://back.zumiasolutions.workers.dev/api/contacto", {
+      const res = await fetch("https://contact.zumiasolutions.workers.dev/api/contacto", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
