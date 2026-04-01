@@ -40,7 +40,6 @@ export const ContactForm = ({ canAnimate }: form) => {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const dataURL = 'https://script.google.com/macros/s/AKfycbzCaE0mgEdu5-j_0XUAeycWmm7C6F8NODg3bcohHHpHnSsQknFm0opHyRjYZSrMMq4/exec';
     const data = new FormData(form);
 
     const name = String(data.get("name") || "").trim();
@@ -65,18 +64,27 @@ export const ContactForm = ({ canAnimate }: form) => {
       `${t("contact.mail1")} ${name}\n\n${t("contact.mail2")}\n\n"${message}"\n\n${t("contact.mail3")}`
     );
 
-    data.append("formType", "contact");
-    data.append("link", link);
-
     try {
-      const res = await fetch(dataURL, { method: "POST", body: data });
+      const res = await fetch("https://back.zumiasolutions.workers.dev/api/contacto", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          link,
+        }),
+      });
+
       const json = await res.json();
 
-      if (json.result === "success") {
+      if (json.ok) {
         setSubmitState("success");
         form.reset();
       } else {
-        throw new Error();
+        throw new Error(json.error || "Error al enviar");
       }
     } catch {
       setSubmitState("idle");
