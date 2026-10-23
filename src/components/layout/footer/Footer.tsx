@@ -57,20 +57,20 @@ export const Footer = () => {
         <img src={logo} className={styles.logo} />
         <div className={styles.socialContainer}>
           <div className={styles.medias}>
-            <a className={styles.media} style={{ backgroundColor: '#fea501' }} href={INSTAGRAM_URL} target="_blank">
+            <a className={styles.media} style={{ backgroundColor: '#fea501' }} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-instagram"></i>
             </a>
-            <a className={styles.media} style={{ backgroundColor: '#1970ff' }} href={FACEBOOK_URL} target="_blank">
+            <a className={styles.media} style={{ backgroundColor: '#1970ff' }} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-facebook"></i>
             </a>
-            <a className={styles.media} style={{ backgroundColor: '#e23f33' }} href={mailLink} target="_blank">
+            <a className={styles.media} style={{ backgroundColor: '#e23f33' }} href={mailLink} target="_blank" rel="noopener noreferrer">
               <i className="fa-regular fa-envelope"></i>
             </a>
           </div>
           <p className={styles.legalAdvice}>© 2026. All rights reserved.</p>
         </div>
       </div>
-      <a href={WHATSAPP_URL} target="_blank" className={styles.whatsappFloat} style={{ bottom: `${buttonBottom}px` }}>
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.whatsappFloat} style={{ bottom: `${buttonBottom}px` }}>
         <i className="fa-brands fa-whatsapp"></i>
       </a>
     </section>
