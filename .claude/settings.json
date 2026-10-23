@@ -1,0 +1,43 @@
+{
+    "permissions": {
+        "allow": [
+            "Bash(git status)",
+            "Bash(git diff *)",
+            "Bash(git log *)",
+            "Bash(git branch)",
+            "Bash(npm run build)",
+            "Bash(npm run lint)",
+            "WebFetch(domain:tailwindcss.com)"
+        ],
+        "ask": [
+            "Bash(git add *)",
+            "Bash(git commit *)",
+            "Bash(git restore *)",
+            "Bash(git stash *)",
+            "Bash(npm run dev)",
+            "Bash(npm install *)",
+            "Bash(npm i *)",
+            "Bash(npm uninstall *)",
+            "Bash(npx *)",
+            "Bash(rm *)",
+            "Bash(mv *)",
+            "WebFetch"
+        ],
+        "deny": [
+            "Bash(git push *)",
+            "Bash(git merge *)",
+            "Bash(git rebase *)",
+            "Bash(git reset --hard *)",
+            "Bash(git clean *)",
+            "Bash(git branch -D *)",
+            "Bash(git checkout main)",
+            "Bash(git switch main)",
+            "Bash(sudo *)",
+            "Bash(curl *)",
+            "Bash(wget *)",
+            "Read(./.env)",
+            "Read(./.env.local)",
+            "Read(./.env.production)"
+        ]
+    }
+}
