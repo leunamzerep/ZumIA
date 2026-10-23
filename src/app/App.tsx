@@ -14,7 +14,7 @@ import { Header } from "@/components/layout/header/Header";
 import { Footer } from "@/components/layout/footer/Footer";
 import { SplashScreen } from "@/components/layout/splashScreen/SplashScreen";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { NotFound } from "@/pages/notFound/NotFound";
+import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
 import "@/styles/global.css";

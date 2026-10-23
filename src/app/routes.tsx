@@ -1,8 +1,8 @@
 import { Home } from "@/pages/home/Home";
-import { AboutUs } from "@/pages/aboutUs/AboutUs";
+import { AboutUs } from "@/pages/about-us/AboutUs";
 import { Contact } from "@/pages/contact/Contact";
 import { TermsAndConditions } from "@/pages/terms/TermsAndConditions";
-import { PrivacyPolicy } from "@/pages/privacyPolicy/PrivacyPolicy";
+import { PrivacyPolicy } from "@/pages/privacy-policy/PrivacyPolicy";
 
 export const routes = [
   { path: "/", Component: Home },
