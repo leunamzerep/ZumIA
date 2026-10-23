@@ -14,7 +14,7 @@ type TermsProps = {
 export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
 
   const { t } = useTranslation();
-  const h1 = t('terms.h1')
+  const h1 = t('privacy.h1')
 
   const [animate, setAnimate] = useState(false);
 
