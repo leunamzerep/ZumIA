@@ -6,6 +6,32 @@
 /* No buscar clases en la línea base local (copias del HTML generado) */
 @source not "../../.baseline";
 
+/* TOKENS DE MARCA (Anexo A). "static" los deja disponibles como var(--...) aunque ninguna clase los use aún */
+@theme static {
+    --color-brand-navy: #13173D;
+    --color-brand-gold: #D48F40;
+    --color-brand-navy-soft: #1A1E40;
+    --color-brand-gold-deep: #CC8A3F;
+    --color-white: #FFFFFF;
+    --color-logo-copper-from: #C0663D;
+    --color-logo-copper-to: #D79542;
+
+    /* Colores de redes sociales (marcas ajenas) */
+    --color-social-whatsapp: #25D366;
+    --color-social-instagram: #fea501;
+    --color-social-facebook: #1970ff;
+    --color-social-mail: #e23f33;
+
+    /* Tipografías provisionales: mismo valor que --font hasta tener Garet y Agrandir */
+    --font-title: "Canva Sans", sans-serif;
+    --font-body: "Canva Sans", sans-serif;
+}
+
+/* Degradado cobre del logo: clase bg-logo-copper */
+@utility bg-logo-copper {
+    background-image: linear-gradient(90deg, var(--color-logo-copper-from), var(--color-logo-copper-to));
+}
+
 :root {
 
     /* BRAND COLORS */
