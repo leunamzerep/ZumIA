@@ -2,9 +2,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
-import logo from "../assets/img/mainIcon.png";
+import logo from "@/assets/img/mainIcon.png";
 import styles from './Footer.module.css'
-import { useLocalizedPath } from "../i18n/useLocalizedPath";
+import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 
 export const Footer = () => {
 

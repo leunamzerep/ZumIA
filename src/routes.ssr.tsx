@@ -1,6 +1,6 @@
 import type { RouteObject } from "react-router-dom";
 import { routes } from "./routes";
-import { PageTransition } from "./components/PageTransition";
+import { PageTransition } from "@/components/layout/PageTransition";
 import { PageWrapper } from "./PageWrapper";
 
 const buildPath = (basePath: string, path: string) => {
