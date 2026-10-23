@@ -14,6 +14,7 @@ import home4 from "../../assets/img/home4.avif";
 
 import styles from "./Home.module.css";
 import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
+import { INSTAGRAM_FEED_URL } from "@/config/site";
 
 type HomeProps = { canAnimate: boolean };
 
@@ -22,7 +23,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
   const { t } = useTranslation();
   const h1 = t("home.main")
   const [animate, setAnimate] = useState(false);
-  const getUrl = 'https://script.google.com/macros/s/AKfycbxscPAE1czwBGME-COYjhEC-sq_vQceer9K3CgcEcEnfzUJZ5_ETvVv9yiUNVLwnK45/exec'
+  const getUrl = INSTAGRAM_FEED_URL
 
   const extractInstagramPostId = (url: string): string | null => {
     try {

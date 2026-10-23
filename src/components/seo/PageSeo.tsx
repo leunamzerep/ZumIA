@@ -2,9 +2,9 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
 import { getLangFromPath, stripLangPrefix, withLangPrefix } from "@/i18n/langRouting";
+import { SITE_URL } from "@/config/site";
 
-const SITE_ORIGIN = "https://zumiasolutions.xyz";
-const DEFAULT_IMAGE = `${SITE_ORIGIN}/mainIcon.png`;
+const DEFAULT_IMAGE = `${SITE_URL}/mainIcon.png`;
 
 type PageSeoProps = {
   title: string;
@@ -12,7 +12,7 @@ type PageSeoProps = {
 };
 
 const toAbsoluteUrl = (pathname: string) =>
-  pathname === "/" ? `${SITE_ORIGIN}/` : `${SITE_ORIGIN}${pathname}`;
+  pathname === "/" ? `${SITE_URL}/` : `${SITE_URL}${pathname}`;
 
 export const PageSeo = ({ title, description }: PageSeoProps) => {
   const { pathname } = useLocation();
