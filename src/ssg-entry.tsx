@@ -6,7 +6,7 @@ import {
   StaticRouterProvider,
 } from "react-router-dom/server";
 
-import { createServerRoutes } from "./routes.ssr";
+import { createServerRoutes } from "@/app/routes.ssr";
 
 export async function render(url: string) {
   const routes = [

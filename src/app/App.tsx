@@ -14,11 +14,11 @@ import { Header } from "@/components/layout/header/Header";
 import { Footer } from "@/components/layout/footer/Footer";
 import { SplashScreen } from "@/components/layout/splashScreen/SplashScreen";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { NotFound } from "./pages/notFound/NotFound";
+import { NotFound } from "@/pages/notFound/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
-import "./assets/css/app.css";
-import { getLangFromPath } from "./i18n/langRouting";
+import "@/assets/css/app.css";
+import { getLangFromPath } from "@/i18n/langRouting";
 
 const Layout = () => {
   const { i18n } = useTranslation();

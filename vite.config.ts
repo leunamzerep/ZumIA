@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import prerender from "@prerenderer/rollup-plugin";
-import { prerenderRoutes } from "./src/prerender-routes";
+import { prerenderRoutes } from "./src/app/prerender-routes";
 
 export default defineConfig({
   base: "/",
