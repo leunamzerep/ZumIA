@@ -106,7 +106,7 @@ export const ContactForm = ({ canAnimate }: form) => {
           <p className={styles.labelWarn} style={{ opacity: errors.name ? 1 : 0 }}>{t('contact.warn')}</p>
         </label>
         <input id="name" name='name' autoComplete="name" type="text" placeholder={t('contact.place1')} />
-        <label htmlFor="mail">
+        <label htmlFor="email">
           <p className={styles.labelText}>{t('contact.label2')}</p>
           <p className={styles.labelWarn} style={{ opacity: errors.email ? 1 : 0 }}>{t('contact.warn')}</p>
         </label>
