@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { ContactCard } from "@/components/sections/contactCard/ContactCard";
-import { PageSeo } from "../../components/pageSeo/PageSeo";
+import { PageSeo } from "@/components/seo/PageSeo";
 
 import mainImg from "../../assets/img/mainImg.jpg";
 import home1 from "../../assets/img/home1.webp";

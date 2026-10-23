@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import { ContactCard } from "@/components/sections/contactCard/ContactCard";
-import { PageSeo } from "../../components/pageSeo/PageSeo";
+import { PageSeo } from "@/components/seo/PageSeo";
 
 
 import aboutImg from "../../assets/img/aboutImg.jpg"

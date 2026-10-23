@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
-import { getLangFromPath, stripLangPrefix, withLangPrefix } from "../../i18n/langRouting";
+import { getLangFromPath, stripLangPrefix, withLangPrefix } from "@/i18n/langRouting";
 
 const SITE_ORIGIN = "https://zumiasolutions.xyz";
 const DEFAULT_IMAGE = `${SITE_ORIGIN}/mainIcon.png`;
