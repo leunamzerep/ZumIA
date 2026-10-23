@@ -1,9 +1,9 @@
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router-dom";
 
-import contactImg from "../../assets/img/contactImg.jpg";
+import contactImg from "@/assets/img/contactImg.jpg";
 import styles from "./ContactCard.module.css"
-import { useLocalizedPath } from "../../i18n/useLocalizedPath";
+import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 
 export const ContactCard = () => {
 

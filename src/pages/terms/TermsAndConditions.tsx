@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
 import styles from './TermsAndConditions.module.css'
-import { SeoEntry } from "../../components/seoEntry/SeoEntry";
+import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import aboutImg from "../../assets/img/aboutImg.jpg"
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 

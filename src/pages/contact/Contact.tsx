@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { ContactForm } from "../../components/contactForm/ContactForm";
-import { SeoEntry } from "../../components/seoEntry/SeoEntry";
+import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 import mainImg from "../../assets/img/contactMainImg.jpg";

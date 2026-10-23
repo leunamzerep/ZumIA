@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import styles from './PrivacyPolicy.module.css'
 
-import { SeoEntry } from "../../components/seoEntry/SeoEntry";
+import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import aboutImg from "../../assets/img/aboutImg.jpg"
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 

@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 
-import { SeoEntry } from "../../components/seoEntry/SeoEntry";
-import { ContactCard } from "../../components/contactCard/ContactCard";
+import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
+import { ContactCard } from "@/components/sections/contactCard/ContactCard";
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 

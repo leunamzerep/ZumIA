@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ContactCard } from "../../components/contactCard/ContactCard";
+import { ContactCard } from "@/components/sections/contactCard/ContactCard";
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 
 import mainImg from "../../assets/img/mainImg.jpg";
@@ -13,7 +13,7 @@ import home4 from "../../assets/img/home4.avif";
 // import home6 from "../../assets/img/home6.avif";
 
 import styles from "./Home.module.css";
-import { SeoEntry } from "../../components/seoEntry/SeoEntry";
+import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 
 type HomeProps = { canAnimate: boolean };
 
