@@ -17,7 +17,7 @@ import { PageTransition } from "@/components/layout/PageTransition";
 import { NotFound } from "@/pages/notFound/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
-import "@/assets/css/app.css";
+import "@/styles/global.css";
 import { getLangFromPath } from "@/i18n/langRouting";
 
 const Layout = () => {
