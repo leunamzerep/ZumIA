@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import styles from './ContactFrom.module.css'
+import styles from './ContactForm.module.css'
 
 type form = { canAnimate: boolean }
 type SubmitState = "idle" | "loading" | "success";

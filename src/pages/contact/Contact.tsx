@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation, Trans } from "react-i18next";
-import { ContactForm } from "../../components/contactForm/ContactForm";
+import { ContactForm } from "@/components/forms/contactForm/ContactForm";
 import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import { PageSeo } from "../../components/pageSeo/PageSeo";
 
