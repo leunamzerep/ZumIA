@@ -23,6 +23,7 @@
     "@eslint/js": "^9.33.0",
     "@prerenderer/renderer-puppeteer": "^1.2.4",
     "@prerenderer/rollup-plugin": "^0.3.12",
+    "@tailwindcss/vite": "4.3.3",
     "@types/node": "^25.0.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
@@ -32,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
     "puppeteer": "^24.34.0",
+    "tailwindcss": "4.3.3",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.39.1",
     "vite": "^7.1.2"
