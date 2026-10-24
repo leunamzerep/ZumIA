@@ -20,14 +20,15 @@
   filter: brightness(1.25);
 }
 
-h2 {
+/* Solo dentro del bloque .info: sin la clase, este h2/h3 afectaba a todo el sitio */
+.info h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 700;
   color: var(--darkFont);
 }
 
-h3,
+.info h3,
 .inlineText {
   margin: 0 0 15px 0;
   font-size: 18px;
@@ -63,11 +64,11 @@ h3,
     gap: 6px;
   }
 
-  h2 {
+  .info h2 {
     font-size: 22px;
   }
 
-  h3,
+  .info h3,
   .inlineText {
     font-size: 16px;
     font-weight: 500;
