@@ -4,12 +4,13 @@ import LanguageDetector from "i18next-browser-languagedetector";
 
 import en from "./en.json";
 import es from "./es.json";
-import { getLangFromPath } from "./langRouting";
+// import { getLangFromPath } from "./langRouting";
 
-const initialLang =
-  typeof window !== "undefined"
-    ? getLangFromPath(window.location.pathname)
-    : "es";
+// Idioma fijo en español mientras no existan rutas /en (Fase 4). Si no, una
+// URL vieja como /en/contact mostraría la 404 con textos de en.json (otra
+// plantilla). Para revertir, volver a:
+//   typeof window !== "undefined" ? getLangFromPath(window.location.pathname) : "es"
+const initialLang = "es";
 
 i18n.use(LanguageDetector).use(initReactI18next)
     .init({

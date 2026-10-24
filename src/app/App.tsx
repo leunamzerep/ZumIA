@@ -18,14 +18,16 @@ import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
 import "@/styles/global.css";
-import { getLangFromPath } from "@/i18n/langRouting";
+// import { getLangFromPath } from "@/i18n/langRouting";
 
 const Layout = () => {
   const { i18n } = useTranslation();
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const lang = getLangFromPath(pathname);
+    // Idioma fijo en español mientras no existan rutas /en (ver
+    // src/i18n/config.ts). Para revertir: getLangFromPath(pathname).
+    const lang = "es";
     if (i18n.resolvedLanguage !== lang) {
       i18n.changeLanguage(lang);
     }
