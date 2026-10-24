@@ -18,7 +18,7 @@ export const OG_IMAGE = {
 };
 
 /** Teléfono tal como se muestra en la web. */
-export const PHONE_DISPLAY = "+57(322)428-6264";
+export const PHONE_DISPLAY = "+57(315)223-0495";
 
 /** Enlace de WhatsApp con el mensaje inicial ya escrito. */
 export const WHATSAPP_URL =
