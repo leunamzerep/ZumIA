@@ -6,6 +6,7 @@ import logo from "@/assets/img/mainIcon.png";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { FACEBOOK_URL, INSTAGRAM_URL, WHATSAPP_URL } from "@/config/site";
 import { PATHS } from "@/config/paths";
+import { FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 
 // Clases base = móvil (< 768 px); md: = escritorio (≥ 768 px), igual que el CSS anterior
 const optionClass =
@@ -80,20 +81,20 @@ export const Footer = () => {
         <div className="flex flex-col items-center gap-[6px] md:gap-[12px]">
           <div className="flex flex-row items-center gap-[6px] md:gap-[10px]">
             <a className={`${mediaClass} bg-social-instagram`} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              <i className="fa-brands fa-instagram"></i>
+              <InstagramIcon className="size-[1em]" />
             </a>
             <a className={`${mediaClass} bg-social-facebook`} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
-              <i className="fa-brands fa-facebook"></i>
+              <FacebookIcon className="size-[1em]" />
             </a>
             <a className={`${mediaClass} bg-social-mail`} href={mailLink} target="_blank" rel="noopener noreferrer">
-              <i className="fa-regular fa-envelope"></i>
+              <MailIcon className="size-[1em]" />
             </a>
           </div>
           <p className="m-0 text-center max-md:text-[11px]">© 2026 Zumia Solutions. Todos los derechos reservados.</p>
         </div>
       </div>
       <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={whatsappClass} style={{ bottom: `${buttonBottom}px` }}>
-        <i className="fa-brands fa-whatsapp"></i>
+        <WhatsAppIcon className="size-[1em]" />
       </a>
     </section>
   )
