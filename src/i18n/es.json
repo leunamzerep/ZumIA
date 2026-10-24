@@ -43,7 +43,7 @@
         "cta": "Volver al inicio"
     },
     "home": {
-        "main": "Soluciones Digitales para tu Negocio",
+        "main": "Soluciones <1>Digitales</1> para tu Negocio",
         "title1": "Creación y mantenimiento de páginas web",
         "text1": "Mejoramos tu presencia digital rápidamente de manera profesional",
         "title2": "Planes hechos a la medida",
@@ -58,8 +58,32 @@
         "text6": "Gestionamos la nómina y reportes de contratistas para un cumplimiento correcto y puntual.",
         "invitation": "Conoce las Últimas Novedades:",
         "hero": {
-            "eyebrow": "Páginas web para negocios en Colombia"
-        }
+            "eyebrow": "Páginas web para negocios en Colombia",
+            "lead": "Diseñamos, publicamos y mantenemos la página web de tu negocio, con planes claros, precios en pesos colombianos y trabajo mano a mano contigo.",
+            "ctaPlans": "Ver planes",
+            "ctaWhatsapp": "Escríbenos por WhatsApp",
+            "mockupLabel": "Ilustración de una página web en celular y computador"
+        },
+        "services": {
+            "eyebrow": "Servicios",
+            "title": "Lo que hacemos por tu <1>negocio</1>"
+        },
+        "process": {
+            "eyebrow": "Cómo trabajamos",
+            "title": "Del primer mensaje a tu página <1>publicada</1>",
+            "step1Title": "Nos envías los insumos",
+            "step1Text": "Logo, textos, fotos y datos de contacto. Te decimos qué necesitamos.",
+            "step2Title": "Primera entrega",
+            "step2Text": "Te mostramos una primera versión de tu página para que la revises.",
+            "step3Title": "Hasta 2 rondas de cambios sin costo",
+            "step3Text": "Ajustamos lo que necesites en dos rondas de revisión incluidas en todos los planes.",
+            "step4Title": "Entrega final y publicación",
+            "step4Text": "Con tu aprobación y el pago final, publicamos tu página en tu dominio."
+        },
+        "cta": {
+            "text": "Cuéntanos qué necesita tu negocio y te respondemos por WhatsApp o correo."
+        },
+        "instagramPost": "Publicación de Instagram {{id}}"
     },
     "card": {
         "schedule": "Agenda tu Diagnóstico",
@@ -155,5 +179,53 @@
     },
     "brand": {
         "name": "Zumia Solutions"
+    },
+    "plans": {
+        "eyebrow": "Planes",
+        "title": "Elige el plan para tu <1>negocio</1>",
+        "lead": "Precios en pesos colombianos. Escríbenos y resolvemos tus dudas antes de empezar.",
+        "priceLabel": "Precio: {{price}} pesos colombianos",
+        "badge": "Recomendado",
+        "includes": "Incluye",
+        "delivery": "Entrega: {{days}}",
+        "whatsapp": "¡Hola! Me interesa el plan {{plan}} de Zumia Solutions. ¿Me cuentas cómo empezamos?",
+        "conditions": "Se inicia con el 50 % y el otro 50 % se paga a la entrega final. Los plazos cuentan desde el pago del anticipo y la entrega de los insumos mínimos. El dominio y el hosting corren por cuenta del cliente.",
+        "esencial": {
+            "name": "Esencial",
+            "tagline": "Perfecta para empezar a mostrarte más profesional rápidamente",
+            "f1": "Landing de 5 bloques (enganche, formulario, servicios, quiénes somos y reseñas)",
+            "f2": "Diseño responsive",
+            "f3": "Estructura SEO técnica",
+            "f4": "Cabecera, pie y botón flotante",
+            "f5": "2 rondas de cambios sin costo",
+            "days": "6 a 10 días calendario",
+            "maintenance": "Sin mantenimiento incluido",
+            "cta": "Quiero el plan Esencial"
+        },
+        "profesional": {
+            "name": "Profesional",
+            "tagline": "A la medida para crecer pronto",
+            "f1": "3 subpáginas y 10 bloques (Inicio, Servicios y Contacto con formulario)",
+            "f2": "Todo lo del Esencial",
+            "f3": "Mantenimiento gratis por 2 semanas (hasta 10 cambios menores)",
+            "days": "14 a 20 días calendario",
+            "cta": "Quiero el plan Profesional"
+        },
+        "premium": {
+            "name": "Premium",
+            "tagline": "Listo para escalar tu negocio con todo su potencial",
+            "f1": "4 subpáginas y 20 bloques (con una sección especializada en tu negocio)",
+            "f2": "Todo lo del Profesional",
+            "f3": "Mantenimiento gratis por 1 mes (hasta 25 cambios menores)",
+            "f4": "15 % de descuento en herramientas adicionales durante 3 meses tras la entrega final",
+            "days": "30 a 40 días calendario",
+            "cta": "Quiero el plan Premium"
+        },
+        "currencySymbol": "$",
+        "currency": "COP"
+    },
+    "clients": {
+        "jotuName": "JoTu Solutions",
+        "jotuAlt": "Logo de JoTu Solutions"
     }
 }
