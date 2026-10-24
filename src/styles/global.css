@@ -1,7 +1,5 @@
-/* TAILWIND (sin Preflight: no se importa preflight.css para no cambiar el aspecto actual) */
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+/* TAILWIND completo, con Preflight (estilos base que igualan los navegadores). Fase 5 */
+@import "tailwindcss";
 
 /* No buscar clases en la línea base local (copias del HTML generado) */
 @source not "../../.baseline";
