@@ -16,6 +16,8 @@
 
     /* Colores de redes sociales (marcas ajenas) */
     --color-social-whatsapp: #25D366;
+    /* Verde oscuro de la paleta de WhatsApp: el ícono blanco encima pasa el contraste 3:1 (el verde claro no) */
+    --color-social-whatsapp-dark: #128C7E;
     --color-social-instagram: #fea501;
     --color-social-facebook: #1970ff;
     --color-social-mail: #e23f33;

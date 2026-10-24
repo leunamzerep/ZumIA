@@ -12,6 +12,7 @@ import { PrerenderReady } from "./PrerenderReady";
 
 import { Header } from "@/components/layout/header/Header";
 import { Footer } from "@/components/layout/footer/Footer";
+import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
@@ -41,6 +42,8 @@ const Layout = () => {
           <Outlet />
         </AnimatePresence>
       </div>
+      {/* Justo antes del pie: así el botón se detiene encima de él (ver WhatsAppFloat) */}
+      <WhatsAppFloat />
       <Footer />
     </>
   );
