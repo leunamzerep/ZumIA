@@ -38,9 +38,11 @@
         "newTab": "(se abre en otra pestaña)"
     },
     "notFound": {
-        "title": "Esta pagina no existe",
-        "description": "La direccion que escribiste no coincide con ninguna pagina del sitio. Usa el boton para volver al inicio.",
-        "cta": "Volver al inicio"
+        "title": "Esta página no existe",
+        "description": "La dirección que escribiste no coincide con ninguna página del sitio. Usa el botón para volver al inicio.",
+        "cta": "Volver al inicio",
+        "code": "404",
+        "alt": "También puedes ir a:"
     },
     "home": {
         "main": "Soluciones <1>Digitales</1> para tu Negocio",
