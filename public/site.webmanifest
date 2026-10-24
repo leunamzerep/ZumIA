@@ -1,13 +1,13 @@
 {
   "name": "Zumia Solutions",
-  "short_name": "Zumia",
-  "description": "Helping businesses build a strong digital presence through branding, high-converting websites, and growth-focused marketing.",
-  "lang": "en",
+  "short_name": "Zumia Solutions",
+  "description": "Creación de páginas web a la medida para negocios.",
+  "lang": "es-CO",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "theme_color": "#1c7b7e",
-  "background_color": "#69b8bb7d",
+  "theme_color": "#13173D",
+  "background_color": "#13173D",
   "icons": [
     {
       "src": "/globalIcon.png",
