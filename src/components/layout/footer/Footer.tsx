@@ -5,11 +5,8 @@ import logo from "@/assets/img/mainIcon.png";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
 import { PATHS } from "@/config/paths";
-import { ArrowUpRightIcon, FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { NAV_LINKS } from "../navLinks";
-
-/** Autoridad de protección al consumidor (Ley 1480 de 2011, art. 50): enlace visible obligatorio. */
-const SIC_URL = "https://www.sic.gov.co";
 
 const headingClass = "font-title text-sm font-bold uppercase tracking-[0.18em] text-gold-400";
 const linkClass =
@@ -75,13 +72,6 @@ export const Footer = () => {
             </li>
             <li>
               <Link to={localizePath(PATHS.privacy)} className={linkClass}>{t("footer.privacy")}</Link>
-            </li>
-            <li>
-              <a href={SIC_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                {t("footer.sic")}
-                <ArrowUpRightIcon className="ml-1 inline size-4 align-[-2px]" />
-                <span className="sr-only">{t("footer.newTab")}</span>
-              </a>
             </li>
           </ul>
         </nav>
