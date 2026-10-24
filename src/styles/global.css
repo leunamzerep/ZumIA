@@ -23,11 +23,109 @@
     /* Tipografías provisionales: mismo valor que --font hasta tener Garet y Agrandir */
     --font-title: "Canva Sans", sans-serif;
     --font-body: "Canva Sans", sans-serif;
+
+    /* Sin índigo: la marca es navy y dorado */
+    --color-indigo-*: initial;
+
+    /* Escala navy (900 = navy de marca). Clases: bg-navy-900, text-navy-500… */
+    --color-navy-950: #0B0E26;
+    --color-navy-900: #13173D;
+    --color-navy-800: #1A1E40;
+    --color-navy-700: #262B5C;
+    --color-navy-600: #3A407A;
+    --color-navy-500: #565C93;
+    --color-navy-400: #7D82B3;
+    --color-navy-300: #A9ADD0;
+    --color-navy-100: #E6E7F0;
+    --color-navy-50: #F3F4F8;
+
+    /* Escala dorada (500 = dorado de marca). Contraste AA medido:
+       gold-500 solo como texto sobre navy (6,4:1), nunca sobre blanco (2,7:1);
+       sobre fondos claros, el texto dorado usa gold-700 (5,3:1 sobre cream-50). */
+    --color-gold-50: #FCF6EE;
+    --color-gold-100: #F8EAD7;
+    --color-gold-300: #EBC38E;
+    --color-gold-400: #E0A660;
+    --color-gold-500: #D48F40;
+    --color-gold-600: #CC8A3F;
+    --color-gold-700: #8F5A1E;
+    --color-gold-800: #7A4B16;
+
+    /* Fondos crema */
+    --color-cream-50: #FAF6EF;
+    --color-cream-100: #F2E2C8;
+
+    /* Tipografía fluida: crece con el ancho de pantalla entre un mínimo (390 px) y un máximo (1536 px) */
+    --text-display: clamp(2.5rem, 1.75rem + 3.6vw, 5.25rem);
+    --text-display--line-height: 0.98;
+    --text-h2: clamp(2rem, 1.55rem + 2vw, 3.5rem);
+    --text-h2--line-height: 1.02;
+    --text-h3: clamp(1.25rem, 1.12rem + 0.55vw, 1.625rem);
+    --text-h3--line-height: 1.2;
+    --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    --text-lead--line-height: 1.6;
+
+    /* Esquinas muy redondeadas para tarjetas grandes */
+    --radius-card: 1.75rem;
 }
 
 /* Degradado cobre del logo: clase bg-logo-copper */
 @utility bg-logo-copper {
     background-image: linear-gradient(90deg, var(--color-logo-copper-from), var(--color-logo-copper-to));
+}
+
+/* Contenedor del sitio: máximo 1200 px, centrado, con margen lateral fluido (16–32 px) */
+@utility container-site {
+    width: 100%;
+    max-width: 75rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+/* Espacio vertical de las secciones (64–128 px según el ancho) */
+@utility section-y {
+    padding-block: clamp(4rem, 2.8rem + 5vw, 8rem);
+}
+
+/* Palabra en contorno para los títulos. El color del trazo se cambia con
+   [--outline-color:…]; sin soporte de text-stroke, la palabra se ve rellena. */
+@utility text-outline {
+    @supports (-webkit-text-stroke: 1px black) {
+        color: transparent;
+        -webkit-text-stroke: max(1.5px, 0.028em) var(--outline-color, var(--color-gold-500));
+    }
+}
+
+@layer base {
+    :root {
+        /* Color del anillo de foco: oscuro sobre fondos claros; las secciones navy lo cambian a gold-400 */
+        --focus-ring: var(--color-gold-700);
+    }
+
+    /* Foco visible solo al navegar con teclado */
+    :focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
+    /* Si el usuario pide menos movimiento, se apagan animaciones y transiciones */
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        ::before,
+        ::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
 }
 
 :root {
