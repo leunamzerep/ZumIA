@@ -15,7 +15,13 @@
     "header": {
         "home": "Inicio",
         "aboutUs": "Nosotros",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "menu": "Menú principal",
+        "openMenu": "Abrir menú",
+        "closeMenu": "Cerrar menú",
+        "logo": "Zumia Solutions, ir al inicio",
+        "skip": "Saltar al contenido",
+        "whatsapp": "Escríbenos por WhatsApp"
     },
     "footer": {
         "legals": "Documentos legales",
@@ -131,5 +137,8 @@
         "p7": "Usted tiene derecho a solicitar acceso, corrección o eliminación de su información personal. Estas solicitudes pueden realizarse contactándonos en zumiasolutions@gmail.com.",
         "section8": "8. Seguridad de los Datos",
         "p8": "Implementamos medidas administrativas y técnicas razonables para proteger su información personal contra accesos no autorizados o divulgación indebida."
+    },
+    "brand": {
+        "name": "Zumia Solutions"
     }
 }
