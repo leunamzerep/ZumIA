@@ -25,13 +25,13 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
   const dark = Boolean(plan.featured);
 
   return (
-    <li data-reveal style={{ "--reveal-delay": `${index * 110}ms` } as CSSProperties} className={cx(dark && "lg:-my-4")}>
+    <li data-reveal style={{ "--reveal-delay": `${index * 110}ms` } as CSSProperties} className={cx("min-w-0", dark && "lg:-my-4")}>
       <Card as="article" tone={dark ? "dark" : "light"} aria-labelledby={`plan-${plan.id}`} className="flex h-full flex-col gap-6 overflow-hidden">
         {dark && (
           <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1.5 bg-linear-to-r from-gold-700 via-gold-400 to-gold-700" />
         )}
         <div className="flex flex-col gap-3">
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
             <h3 id={`plan-${plan.id}`} className={cx("font-title text-2xl font-extrabold uppercase tracking-wide", dark ? "text-white" : "text-navy-900")}>
               {name}
             </h3>
@@ -44,7 +44,7 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
         <p className="flex items-baseline gap-1.5">
           <span className="sr-only">{t("plans.priceLabel", { price })}</span>
           <span aria-hidden="true" className={cx("font-title text-2xl font-bold", dark ? "text-gold-400" : "text-gold-700")}>{t("plans.currencySymbol")}</span>
-          <span aria-hidden="true" className="font-title text-5xl font-extrabold tracking-tight">{price}</span>
+          <span aria-hidden="true" className="font-title text-[2.75rem] leading-none font-extrabold tracking-tight sm:text-5xl">{price}</span>
           <span aria-hidden="true" className={cx("text-sm font-bold", dark ? "text-white/60" : "text-navy-500")}>{t("plans.currency")}</span>
         </p>
 
@@ -75,7 +75,7 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
           rel="noopener noreferrer"
           variant={dark ? "primary" : "secondary"}
           size="lg"
-          className="w-full"
+          className="w-full px-4 text-[0.9rem] sm:px-7 sm:text-base"
         >
           <WhatsAppIcon className="size-5" />
           {t(`plans.${plan.id}.cta`)}
@@ -94,7 +94,7 @@ export const Plans = () => {
         <div data-reveal>
           <SectionHeading id="planes-titulo" align="center" eyebrow={t("plans.eyebrow")} titleKey="plans.title" lead={t("plans.lead")} />
         </div>
-        <ul className="mx-auto grid w-full max-w-md gap-6 lg:max-w-none lg:grid-cols-3 lg:items-stretch lg:gap-6">
+        <ul className="mx-auto grid w-full max-w-md gap-10 sm:gap-12 lg:max-w-none lg:grid-cols-3 lg:items-stretch lg:gap-6">
           {PLANS.map((plan, index) => (
             <PlanCard key={plan.id} plan={plan} index={index} />
           ))}
