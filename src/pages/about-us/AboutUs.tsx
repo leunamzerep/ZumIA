@@ -1,37 +1,42 @@
+import type { CSSProperties, SVGProps } from "react";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 
-import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
-import { ContactCard } from "@/components/sections/contactCard/ContactCard";
 import { PageSeo } from "@/components/seo/PageSeo";
+import { Clients } from "@/components/sections/Clients";
+import { CtaBand } from "@/components/sections/CtaBand";
+import { PageHero } from "@/components/sections/PageHero";
+import { Card } from "@/components/ui/Card";
+import { GeometricPattern } from "@/components/ui/GeometricPattern";
+import { Section } from "@/components/ui/Section";
 
+// Íconos de las tarjetas (dibujados aquí, decorativos)
+const icon = { "aria-hidden": true, focusable: false, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" } as const;
+const LayersIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...icon} {...p}><path d="m12 3 9 5-9 5-9-5Z" /><path d="m3 13 9 5 9-5" /></svg>
+);
+const ShieldIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...icon} {...p}><path d="M12 3 4.5 6v6c0 4.5 3.2 7.8 7.5 9 4.3-1.2 7.5-4.5 7.5-9V6Z" /><path d="m8.8 12 2.2 2.2 4.4-4.4" /></svg>
+);
+const HandsIcon = (p: SVGProps<SVGSVGElement>) => (
+  <svg {...icon} {...p}><circle cx="8" cy="8" r="3" /><circle cx="16" cy="8" r="3" /><path d="M3 20c0-3 2.2-5 5-5s5 2 5 5M11 20c0-3 2.2-5 5-5s5 2 5 5" /></svg>
+);
 
-import aboutImg from "../../assets/img/aboutImg.jpg"
-import about1 from "../../assets/img/about1.jpg";
-import about2 from "../../assets/img/about2.jpg";
-import about3 from "../../assets/img/about3.avif";
-import about4 from "../../assets/img/about4.avif";
-// import about5 from "../../assets/img/about5.avif";
-// import about6 from "../../assets/img/about6.avif";
-import client1 from "../../assets/img/client1.png";
-// import client2 from "../../assets/img/client2.png";
-// import client3 from "../../assets/img/client3.png";
-// import client4 from "../../assets/img/client4.png";
-// import client5 from "../../assets/img/client5.png";
-// import client6 from "../../assets/img/client6.png";
-import styles from './AboutUs.module.css'
+// Tarjetas: Servicios (h22/h32), Compromiso (h23/h33) y Enfoque (h27/h37).
+// h26/h36 no se usan: son de la plantilla fiscal.
+const VALUES = [
+  { title: "about.h22", text: "about.h32", Icon: LayersIcon },
+  { title: "about.h23", text: "about.h33", Icon: ShieldIcon },
+  { title: "about.h27", text: "about.h37", Icon: HandsIcon },
+];
+
+// Misión (h24/h34) y Visión (h25/h35)
+const PURPOSE = [
+  { title: "about.h24", text: "about.h34" },
+  { title: "about.h25", text: "about.h35" },
+];
 
 export const AboutUs = () => {
-
   const { t } = useTranslation();
-  const h1 = t("about.h1")
-
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setAnimate(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
 
   return (
     <>
@@ -40,58 +45,40 @@ export const AboutUs = () => {
         description={t("seo.aboutUsDescription")}
       />
       <main>
-        <SeoEntry imgPath={aboutImg} content={h1} />
-        <div>
-          <div className={`${styles.header} ${animate ? styles.appear : ""}`}>
-            <h2 className={styles.mainTitle}>{t('about.h21')}</h2>
-            <h3 className={styles.mainText}>{t('about.h31')}</h3>
-          </div>
-          <div className={styles.infoContainer}>
-            <div className={`${styles.item} ${animate ? styles.enter : ""}`} >
-              <div className={styles.titleContainer}>
-                <h2 className={styles.itemTitle}>{t("about.h22")}</h2>
-              </div>
-              <div className={styles.textContainer}>
-                <h3 className={styles.itemText}>{t("about.h32")}</h3>
-                <img src={about1} className={styles.about1} />
-              </div>
-            </div>
-            <div className={`${styles.item} ${animate ? styles.enter : ""}`} >
-              <div className={styles.textContainer}>
-                <h3 className={styles.itemText}>{t("about.h33")}</h3>
-                <img src={about2} className={styles.about2} />
-              </div>
-              <div className={styles.titleContainer}>
-                <h2 className={styles.itemTitle}>{t("about.h23")}</h2>
-              </div>
-            </div>
-            <div className={`${styles.item} ${animate ? styles.enter : ""}`} >
-              <div className={styles.titleContainer}>
-                <h2 className={styles.itemTitle}>{t("about.h24")}</h2>
-              </div>
-              <div className={styles.textContainer}>
-                <h3 className={styles.itemText}>{t("about.h34")}</h3>
-                <img src={about3} className={styles.about2} />
-              </div>
-            </div>
-            <div className={`${styles.item} ${animate ? styles.enter : ""}`} >
-              <div className={styles.textContainer}>
-                <h3 className={styles.itemText}>{t("about.h35")}</h3>
-                <img src={about4} className={styles.about2} />
-              </div>
-              <div className={styles.titleContainer}>
-                <h2 className={styles.itemTitle}>{t("about.h25")}</h2>
-              </div>
-            </div>
-          </div>
-          <h2 className={styles.clients}>{t("about.clients")}</h2>
-          <div className={styles.clientsContainer}>
-            <a className={`${styles.aContainer} ${styles.hasTooltip}`} data-label={`${t('about.from')} Jotu Solutions`} target="_blank" href="https://jotusolutions.net/">
-              <img className={styles.client1} src={client1} />
-            </a>
-          </div>
-        </div>
-        <ContactCard />
+        <PageHero id="nosotros-titulo" eyebrow={t("about.h21")} titleKey="about.h1" lead={t("about.h31")} />
+
+        <Section tone="cream" decoration={<GeometricPattern tone="light" />}>
+          <ul className="grid gap-6 md:grid-cols-3">
+            {VALUES.map(({ title, text, Icon }, i) => (
+              <li key={title} data-reveal style={{ "--reveal-delay": `${i * 100}ms` } as CSSProperties}>
+                <Card className="flex h-full flex-col gap-5">
+                  <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-gold-400">
+                    <Icon className="size-7" />
+                  </span>
+                  <h2 className="font-title text-h3 font-bold text-navy-900">{t(title)}</h2>
+                  <p className="leading-relaxed text-navy-600">{t(text)}</p>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Section tone="navy" decoration={<GeometricPattern tone="dark" />}>
+          <ul className="grid gap-6 lg:grid-cols-2">
+            {PURPOSE.map(({ title, text }, i) => (
+              <li key={title} data-reveal style={{ "--reveal-delay": `${i * 120}ms` } as CSSProperties}>
+                <Card tone="glass" className="flex h-full flex-col gap-5 overflow-hidden md:p-10">
+                  <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-gold-700 via-gold-400 to-transparent" />
+                  <h2 className="font-title text-h2 font-extrabold uppercase tracking-tight text-white">{t(title)}</h2>
+                  <p className="text-lead text-white/80">{t(text)}</p>
+                </Card>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        <Clients />
+        <CtaBand />
       </main>
     </>
   );
