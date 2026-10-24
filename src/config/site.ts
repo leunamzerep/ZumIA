@@ -11,9 +11,9 @@ export const SITE_URL = "https://zumiasolutions.xyz";
  * path → "/og-image.png", width → 1200, height → 630 y el alt.
  */
 export const OG_IMAGE = {
-  path: "/mainIcon.png",
-  width: 1081,
-  height: 1081,
+  path: "/og-image.png",
+  width: 1080,
+  height: 1350,
   alt: "Logo de Zumia Solutions: una letra Z en tonos dorados",
 };
 
