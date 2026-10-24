@@ -124,6 +124,20 @@
         border-radius: 4px;
     }
 
+    /* Entrada al hacer scroll (ver src/components/layout/useReveal.ts). Solo actúa
+       cuando el JavaScript activó "reveal-ready"; sin JS todo se ve desde el inicio.
+       --reveal-delay permite escalonar tarjetas: style={{ "--reveal-delay": "120ms" }} */
+    .reveal-ready [data-reveal] {
+        transition:
+            opacity 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+            translate 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+    }
+
+    .reveal-ready [data-reveal]:not([data-shown]) {
+        opacity: 0;
+        translate: 0 1.75rem;
+    }
+
     /* Si el usuario pide menos movimiento, se apagan animaciones y transiciones */
     @media (prefers-reduced-motion: reduce) {
         *,

@@ -21,6 +21,9 @@ export default defineConfig({
       renderer: "@prerenderer/renderer-puppeteer",
       rendererOptions: {
         renderAfterDocumentEvent: "prerender:ready",
+        // Marca la página como prerender (window.__PRERENDER_INJECTED): así
+        // useReveal no oculta nada en el HTML estático que se genera
+        inject: { prerender: true },
       },
     }),
   ],
