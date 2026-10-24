@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
-import logo from "@/assets/img/mainIcon.png";
+import logo from "@/assets/img/logo-zumia.webp";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
 import { PATHS } from "@/config/paths";
@@ -28,7 +28,7 @@ export const Footer = () => {
       <div className="container-site grid gap-12 py-14 md:grid-cols-2 md:py-16 lg:grid-cols-[1.4fr_1fr_1.3fr_1.2fr]">
         <div className="flex flex-col gap-4">
           <Link to={localizePath(PATHS.home)} aria-label={t("header.logo")} className="flex w-fit items-center gap-3 rounded-xl">
-            <img src={logo} alt="" width={1081} height={1081} className="size-12" />
+            <img src={logo} alt="" width={192} height={192} className="size-12" />
             <span aria-hidden="true" className="font-title text-xl font-extrabold uppercase leading-none tracking-wide">
               {t("brand.name")}
             </span>

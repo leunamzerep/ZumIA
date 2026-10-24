@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 // import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 import { Link, useLocation } from "react-router-dom";
 
-import logo from "@/assets/img/mainIcon.png";
+import logo from "@/assets/img/logo-zumia.webp";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { PATHS } from "@/config/paths";
 import { WHATSAPP_URL } from "@/config/site";
@@ -99,7 +99,7 @@ export const Header = () => {
 
         <div className="container-site flex h-16 items-center justify-between gap-4 md:h-20">
           <Link to={localizePath(PATHS.home)} aria-label={t("header.logo")} className="flex items-center gap-2.5 rounded-xl">
-            <img src={logo} alt="" width={1081} height={1081} className="size-10 md:size-12" />
+            <img src={logo} alt="" width={192} height={192} className="size-10 md:size-12" />
             <span aria-hidden="true" className="font-title text-lg font-bold uppercase leading-none tracking-wide md:text-xl">
               {t("brand.name")}
             </span>
