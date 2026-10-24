@@ -24,7 +24,7 @@ export const WhatsAppFloat = () => {
         rel="noopener noreferrer"
         aria-label={t("footer.whatsapp")}
         className={
-          "pointer-events-auto absolute right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] md:right-6 md:bottom-6 " +
+          "pointer-events-auto absolute right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] md:right-6 md:bottom-7 " +
           "inline-flex size-14 items-center justify-center rounded-full bg-social-whatsapp-dark text-white md:size-15 " +
           "shadow-[0_10px_30px_-8px_rgba(19,23,61,0.55)] ring-4 ring-white/70 " +
           "transition-transform duration-200 hover:-translate-y-0.5"
