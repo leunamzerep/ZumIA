@@ -28,7 +28,7 @@ export const SplashScreen = ({ onReady, onFinish }: {
 
   return (
     <div className={`${styles.splash} ${!visible ? styles.hide : ""}`}>
-      <img src={logo} className={styles.logo} alt="logo" />
+      <img src={logo} className={styles.logo} alt="Logo de Zumia Solutions" />
     </div>
   );
 };

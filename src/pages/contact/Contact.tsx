@@ -59,7 +59,7 @@ export const Contact = ({ canAnimate }: ContactProps) => {
         </div>
         <div className={`${styles.mapContainer} ${animate ? styles.appear : ''}`}>
           <iframe
-            title="Office location"
+            title="Ubicación de la oficina"
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1000.55701215540367!2d-74.1184326!3d4.6097371!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f994a28f11d69%3A0x4c123bddc646c3e1!2zQ2wuIDFoICMgNTFBLTQyLCBQdWVudGUgQXJhbmRhLCBCb2dvdMOhLCBELkMuLCBCb2dvdMOhLCBCb2dvdMOhLCBELkMu!5e0!3m2!1ses-419!2sco!4v1774632123856!5m2!1ses-419!2sco"
             width="100%"
             height="300"

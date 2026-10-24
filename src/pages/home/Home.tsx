@@ -56,7 +56,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
           setIgPostIds(ids);
         }
       } catch (err) {
-        console.error("Failed to load Instagram posts", err);
+        console.error("No se pudieron cargar las publicaciones de Instagram", err);
       }
     })();
   }, [getUrl]);
@@ -108,7 +108,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
               {igPostIds.map((id) => (
                 <iframe
                   key={id}
-                  title={`Instagram post ${id}`}
+                  title={`Publicación de Instagram ${id}`}
                   src={`https://www.instagram.com/p/${id}/embed`}
                   width="100%"
                   height="500"

@@ -88,7 +88,7 @@ export const Footer = () => {
               <i className="fa-regular fa-envelope"></i>
             </a>
           </div>
-          <p className="m-0 text-center max-md:text-[11px]">© 2026. All rights reserved.</p>
+          <p className="m-0 text-center max-md:text-[11px]">© 2026 Zumia Solutions. Todos los derechos reservados.</p>
         </div>
       </div>
       <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={whatsappClass} style={{ bottom: `${buttonBottom}px` }}>
