@@ -5,6 +5,18 @@
 /** Dominio oficial (sin barra final). */
 export const SITE_URL = "https://zumiasolutions.xyz";
 
+/**
+ * Imagen que se ve al compartir la web en redes (og:image / twitter:image).
+ * PENDIENTE: crear public/og-image.png (1200x630) y cambiar aquí
+ * path → "/og-image.png", width → 1200, height → 630 y el alt.
+ */
+export const OG_IMAGE = {
+  path: "/mainIcon.png",
+  width: 1081,
+  height: 1081,
+  alt: "Logo de Zumia Solutions: una letra Z en tonos dorados",
+};
+
 /** Teléfono tal como se muestra en la web. */
 export const PHONE_DISPLAY = "+57(322)428-6264";
 
