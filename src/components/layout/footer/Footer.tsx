@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 
 import logo from "@/assets/img/mainIcon.png";
-import styles from './Footer.module.css'
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { FACEBOOK_URL, INSTAGRAM_URL, WHATSAPP_URL } from "@/config/site";
 
@@ -17,6 +16,14 @@ const mediaClass =
   "p-[3px] md:p-[6px] rounded-[10px] md:rounded-[15px] text-white no-underline " +
   "shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-200 ease-[ease-in-out] " +
   "hover:-translate-y-[2px] hover:shadow-[0_0_10px_rgba(0,0,0,0.3)]";
+
+// Botón flotante: "bottom" sigue en style porque cambia con el scroll
+const whatsappClass =
+  "fixed right-[14px] md:right-[21px] z-99 flex items-center justify-center " +
+  "h-[40px] w-[40px] md:h-[60px] md:w-[60px] p-[3px] md:p-0 rounded-[50%] " +
+  "bg-social-whatsapp text-white text-[18px] md:text-[30px] no-underline cursor-pointer " +
+  "shadow-[0px_4px_10px_rgba(0,0,0,0.25)] transition-all duration-300 ease-[ease] " +
+  "hover:shadow-[0px_4px_10px_rgba(0,0,0,0.35)] hover:-translate-y-[3px] hover:bg-(--brightFont)";
 
 export const Footer = () => {
 
@@ -84,7 +91,7 @@ export const Footer = () => {
           <p className="m-0 text-center max-md:text-[11px]">© 2026. All rights reserved.</p>
         </div>
       </div>
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={styles.whatsappFloat} style={{ bottom: `${buttonBottom}px` }}>
+      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={whatsappClass} style={{ bottom: `${buttonBottom}px` }}>
         <i className="fa-brands fa-whatsapp"></i>
       </a>
     </section>
