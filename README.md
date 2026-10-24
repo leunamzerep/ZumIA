@@ -95,7 +95,7 @@ En el código, `@/` significa `src/`. Por ejemplo, `@/config/site` es `src/confi
 
 Si cambia el dominio, también hay que editar a mano estos archivos estáticos:
 
-- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito).
+- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito; cada uno tiene un comentario que lo recuerda). El sitemap solo lista las 5 rutas en español y con barra final (`https://zumiasolutions.xyz/about-us/`), la misma forma que usa el canonical. Si agregas una página, agrégala también ahí.
 - `public/CNAME` (dominio de GitHub Pages).
 
 El enlace que abre Gmail con un correo ya escrito está en `src/i18n/es.json` y `en.json`, en la clave `footer.mailRedirect`.

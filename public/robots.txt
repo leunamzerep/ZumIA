@@ -1,3 +1,6 @@
+# Archivo estático: el dominio está escrito a mano aquí (también vive en
+# SITE_URL de src/config/site.ts). Si cambia el dominio, cámbialo en ambos.
+# Permite todo: las rutas /en no se bloquean para que Google lea su noindex.
 User-agent: *
 Allow: /
 Sitemap: https://zumiasolutions.xyz/sitemap.xml
