@@ -26,7 +26,9 @@ export const Contact = () => {
       />
       <main>
         <div className={`${styles.main} ${animate ? styles.appear : ''}`}>
-          <div className={styles.formContainer}>
+          <div className="w-full max-w-xl rounded-card bg-white p-6 md:p-8">
+            {/* Provisional hasta el rediseño de Contacto (5.6) */}
+            <h2 className="mb-6 font-title text-2xl font-bold text-navy-900">{t('contact.invitation')}</h2>
             <ContactForm />
           </div>
           <div className={styles.info}>

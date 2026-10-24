@@ -107,7 +107,11 @@
         "ubih24": "¿Cómo llegar?",
         "ubih34": "Sigue el mapa a continuación o <1>haz click aquí</1>",
         "sended": "Solicitud enviada correctamente",
-        "processing": "Procesando"
+        "processing": "Procesando",
+        "consent": "Acepto la <1>Política de Privacidad</1> y autorizo el tratamiento de mis datos para responder mi consulta.",
+        "consentWarn": "Debes aceptar la Política de Privacidad para enviar el formulario.",
+        "consentNote": "El remitente de este mensaje ha aceptado la política de privacidad",
+        "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp."
     },
     "terms": {
         "h1": "Términos y Condiciones",
