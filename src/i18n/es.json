@@ -109,7 +109,7 @@
         "h37": "Trabajamos de la mano con nuestros clientes para construir relaciones duraderas basadas en confianza, transparencia y atención personalizada."
     },
     "contact": {
-        "main": "Contáctanos. Solicita más información y trabajemos juntos",
+        "main": "<1>Contáctanos.</1> Solicita más información y trabajemos juntos",
         "invitation": "Cuéntanos tus dudas o agenda tu diagnóstico Gratis",
         "label1": "Nombre y Apellido",
         "label2": "Correo Electrónico",
@@ -135,7 +135,10 @@
         "consent": "Acepto la <1>Política de Privacidad</1> y autorizo el tratamiento de mis datos para responder mi consulta.",
         "consentWarn": "Debes aceptar la Política de Privacidad para enviar el formulario.",
         "consentNote": "El remitente de este mensaje ha aceptado la política de privacidad",
-        "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp."
+        "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.",
+        "channels": "Otros canales",
+        "emailLabel": "Correo",
+        "whatsappLabel": "WhatsApp"
     },
     "terms": {
         "h1": "Términos y Condiciones",
