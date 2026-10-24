@@ -38,8 +38,9 @@ export const InstagramFeed = () => {
 
   if (igPostIds.length === 0) return null;
 
+  // Sin espacio superior (pt-0): va justo después de la llamada a la acción, que ya deja su margen
   return (
-    <Section tone="cream" labelledBy="instagram-titulo">
+    <Section tone="cream" labelledBy="instagram-titulo" className="pt-0!">
       <div className="flex flex-col gap-10">
         <SectionHeading id="instagram-titulo" titleKey="home.invitation" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
