@@ -16,9 +16,7 @@ import styles from "./Home.module.css";
 import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import { INSTAGRAM_FEED_URL } from "@/config/site";
 
-type HomeProps = { canAnimate: boolean };
-
-export const Home = ({ canAnimate }: HomeProps) => {
+export const Home = () => {
 
   const { t } = useTranslation();
   const h1 = t("home.main")
@@ -37,10 +35,9 @@ export const Home = ({ canAnimate }: HomeProps) => {
   const [igPostIds, setIgPostIds] = useState<string[]>([]);
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -69,7 +66,7 @@ export const Home = ({ canAnimate }: HomeProps) => {
         description={t("seo.homeDescription")}
       />
       <main className={styles.mainContainer}>
-        <SeoEntry imgPath={mainImg} content={h1} canAnimate={canAnimate} />
+        <SeoEntry imgPath={mainImg} content={h1} />
         <div className={styles.infoContainer}>
           <div className={`${styles.item} ${animate ? styles.enter : ""}`}>
             <img src={home1} className={styles.home1} />

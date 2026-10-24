@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect } from "react";
 import {
   RouterProvider,
   Outlet,
@@ -12,7 +12,6 @@ import { PrerenderReady } from "./PrerenderReady";
 
 import { Header } from "@/components/layout/header/Header";
 import { Footer } from "@/components/layout/footer/Footer";
-import { SplashScreen } from "@/components/layout/splashScreen/SplashScreen";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
@@ -44,48 +43,31 @@ const Layout = () => {
   );
 };
 
-export const App = () => {
-  const isPrerender =
-    typeof window !== "undefined" &&
-    (window as any).__PRERENDER_INJECTED?.prerender === true;
+// Sin pantalla de carga (splash): el HTML prerenderizado ya muestra la página
+// real desde el primer momento.
+const router = createBrowserRouter([
+  {
+    element: (
+      <>
+        <Layout />
+        <PrerenderReady />
+      </>
+    ),
+    children: [
+      // Las rutas /en están desactivadas: su contenido era de otra
+      // plantilla (fiscal). Volverán cuando exista la traducción real:
+      // ...createServerRoutes("/en"),
+      ...createServerRoutes(),
+      {
+        path: "*",
+        element: (
+          <PageTransition>
+            <NotFound />
+          </PageTransition>
+        ),
+      },
+    ],
+  },
+]);
 
-  const [canAnimate, setCanAnimate] = useState(isPrerender);
-  const [showSplash, setShowSplash] = useState(!isPrerender);
-
-  const router = useMemo(
-    () =>
-      createBrowserRouter([
-        {
-          element: (
-            <>
-              {showSplash && (
-                <SplashScreen
-                  onReady={() => setCanAnimate(true)}
-                  onFinish={() => setShowSplash(false)}
-                />
-              )}
-              <Layout />
-              <PrerenderReady />
-            </>
-          ),
-          children: [
-            // Las rutas /en están desactivadas: su contenido era de otra
-            // plantilla (fiscal). Volverán cuando exista la traducción real:
-            // ...createServerRoutes(canAnimate, "/en"),
-            ...createServerRoutes(canAnimate),
-            {
-              path: "*",
-              element: (
-                <PageTransition>
-                  <NotFound canAnimate={canAnimate} />
-                </PageTransition>
-              ),
-            },
-          ],
-        },
-      ]),
-    [canAnimate, showSplash]
-  );
-
-  return <RouterProvider router={router} />;
-};
+export const App = () => <RouterProvider router={router} />;

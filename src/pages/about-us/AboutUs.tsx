@@ -21,11 +21,7 @@ import client1 from "../../assets/img/client1.png";
 // import client6 from "../../assets/img/client6.png";
 import styles from './AboutUs.module.css'
 
-type AboutProps = {
-  canAnimate: boolean;
-}
-
-export const AboutUs = ({ canAnimate }: AboutProps) => {
+export const AboutUs = () => {
 
   const { t } = useTranslation();
   const h1 = t("about.h1")
@@ -33,10 +29,9 @@ export const AboutUs = ({ canAnimate }: AboutProps) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   return (
     <>
@@ -45,7 +40,7 @@ export const AboutUs = ({ canAnimate }: AboutProps) => {
         description={t("seo.aboutUsDescription")}
       />
       <main>
-        <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
+        <SeoEntry imgPath={aboutImg} content={h1} />
         <div>
           <div className={`${styles.header} ${animate ? styles.appear : ""}`}>
             <h2 className={styles.mainTitle}>{t('about.h21')}</h2>

@@ -6,11 +6,7 @@ import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import aboutImg from "../../assets/img/aboutImg.jpg"
 import { PageSeo } from "@/components/seo/PageSeo";
 
-type TermsProps = {
-  canAnimate: boolean;
-}
-
-export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
+export const TermsAndConditions = () => {
 
   const { t } = useTranslation();
   const h1 = t('terms.h1')
@@ -18,10 +14,9 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   return (
     <>
@@ -30,7 +25,7 @@ export const TermsAndConditions = ({ canAnimate }: TermsProps) => {
         description={t("seo.termsDescription")}
       />
       <main>
-        <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
+        <SeoEntry imgPath={aboutImg} content={h1} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
           <h2>Sub-Página en mantenimiento</h2>
           {/* <h2>{t('terms.section1')}</h2>

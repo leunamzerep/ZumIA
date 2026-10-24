@@ -4,18 +4,16 @@ import { useTranslation } from "react-i18next";
 import styles from './ContactForm.module.css'
 import { CONTACT_WORKER_URL } from "@/config/site";
 
-type form = { canAnimate: boolean }
 type SubmitState = "idle" | "loading" | "success";
 
-export const ContactForm = ({ canAnimate }: form) => {
+export const ContactForm = () => {
 
   const { t } = useTranslation();
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   const buildGmailLink = (to: string, subject: string, body: string) => {
     const params = new URLSearchParams({

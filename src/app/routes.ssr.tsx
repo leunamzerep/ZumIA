@@ -1,7 +1,6 @@
 import type { RouteObject } from "react-router-dom";
 import { routes } from "./routes";
 import { PageTransition } from "@/components/layout/PageTransition";
-import { PageWrapper } from "./PageWrapper";
 
 const buildPath = (basePath: string, path: string) => {
   if (!basePath) return path;
@@ -9,15 +8,12 @@ const buildPath = (basePath: string, path: string) => {
   return `${basePath}${path}`;
 };
 
-export const createServerRoutes = (
-  canAnimate: boolean,
-  basePath = ""
-): RouteObject[] =>
+export const createServerRoutes = (basePath = ""): RouteObject[] =>
   routes.map(({ path, Component }) => ({
     path: buildPath(basePath, path),
     element: (
       <PageTransition>
-        <PageWrapper Component={Component} canAnimate={canAnimate} />
+        <Component />
       </PageTransition>
     ),
   }));

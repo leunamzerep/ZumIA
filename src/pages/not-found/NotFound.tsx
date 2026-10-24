@@ -5,9 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { PATHS } from "@/config/paths";
 import styles from "./NotFound.module.css";
 
-type NotFoundProps = { canAnimate: boolean };
-
-export const NotFound = ({ canAnimate }: NotFoundProps) => {
+export const NotFound = () => {
   const { t, i18n } = useTranslation();
   const homeHref = i18n.resolvedLanguage === "en" ? "/en" : PATHS.home;
 
@@ -17,7 +15,7 @@ export const NotFound = ({ canAnimate }: NotFoundProps) => {
         <title>{t("seo.notFoundTitle")}</title>
         <meta name="robots" content="noindex" />
       </Helmet>
-      <main className={styles.mainContainer} data-animate={canAnimate}>
+      <main className={styles.mainContainer}>
         <div className={styles.card}>
           <p className={styles.code}>404</p>
           <h1 className={styles.title}>{t("notFound.title")}</h1>

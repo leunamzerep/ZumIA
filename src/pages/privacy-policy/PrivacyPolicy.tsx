@@ -7,11 +7,7 @@ import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
 import aboutImg from "../../assets/img/aboutImg.jpg"
 import { PageSeo } from "@/components/seo/PageSeo";
 
-type TermsProps = {
-  canAnimate: boolean;
-}
-
-export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
+export const PrivacyPolicy = () => {
 
   const { t } = useTranslation();
   const h1 = t('privacy.h1')
@@ -19,10 +15,9 @@ export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   return (
     <>
@@ -31,7 +26,7 @@ export const PrivacyPolicy = ({ canAnimate }: TermsProps) => {
         description={t("seo.privacyDescription")}
       />
       <main>
-        <SeoEntry imgPath={aboutImg} content={h1} canAnimate={canAnimate} />
+        <SeoEntry imgPath={aboutImg} content={h1} />
         <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
           <h2>Sub-Página en mantenimiento</h2>
           {/* <h2>{t('privacy.section1')}</h2>

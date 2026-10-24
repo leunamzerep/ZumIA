@@ -7,19 +7,16 @@ import { PageSeo } from "@/components/seo/PageSeo";
 import mainImg from "../../assets/img/contactMainImg.jpg";
 import styles from './Contact.module.css'
 
-type ContactProps = { canAnimate: boolean };
-
-export const Contact = ({ canAnimate }: ContactProps) => {
+export const Contact = () => {
 
   const { t } = useTranslation();
   const h1 = t('contact.main')
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    if (!canAnimate) return;
     const id = requestAnimationFrame(() => setAnimate(true));
     return () => cancelAnimationFrame(id);
-  }, [canAnimate]);
+  }, []);
 
   return (
     <>
@@ -30,7 +27,7 @@ export const Contact = ({ canAnimate }: ContactProps) => {
       <main>
         <div className={`${styles.main} ${animate ? styles.appear : ''}`}>
           <div className={styles.formContainer}>
-            <ContactForm canAnimate={canAnimate} />
+            <ContactForm />
           </div>
           <div className={styles.info}>
             <h2>{t('contact.ubih23')}</h2>
@@ -69,7 +66,7 @@ export const Contact = ({ canAnimate }: ContactProps) => {
             style={{ border: 0, borderRadius: "22px" }}
           />
         </div>
-        <SeoEntry imgPath={mainImg} content={h1} canAnimate={canAnimate} />
+        <SeoEntry imgPath={mainImg} content={h1} />
       </main>
     </>
   );
