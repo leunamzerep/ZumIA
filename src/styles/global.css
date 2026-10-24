@@ -112,12 +112,6 @@
         border-radius: 4px;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-        html {
-            scroll-behavior: smooth;
-        }
-    }
-
     /* Si el usuario pide menos movimiento, se apagan animaciones y transiciones */
     @media (prefers-reduced-motion: reduce) {
         *,

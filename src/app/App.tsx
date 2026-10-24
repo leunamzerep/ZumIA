@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import {
   RouterProvider,
   Outlet,
+  ScrollRestoration,
   createBrowserRouter,
   useLocation,
 } from "react-router-dom";
@@ -56,6 +57,8 @@ const router = createBrowserRouter([
     element: (
       <>
         <Layout />
+        {/* Cada página nueva empieza arriba; atrás/adelante recuerdan la posición */}
+        <ScrollRestoration />
         <PrerenderReady />
       </>
     ),
