@@ -7,14 +7,14 @@ export const SITE_URL = "https://zumiasolutions.xyz";
 
 /**
  * Imagen que se ve al compartir la web en redes (og:image / twitter:image).
- * PENDIENTE: crear public/og-image.png (1200x630) y cambiar aquí
- * path → "/og-image.png", width → 1200, height → 630 y el alt.
+ * Archivo: public/og-image.png, horizontal de 1200x630 (medida leída del archivo).
+ * Si se cambia la imagen, actualizar aquí width, height y el alt.
  */
 export const OG_IMAGE = {
   path: "/og-image.png",
-  width: 1080,
-  height: 1350,
-  alt: "Logo de Zumia Solutions: una letra Z en tonos dorados",
+  width: 1200,
+  height: 630,
+  alt: "Logo de Zumia Solutions con el texto: Páginas web a la medida de tu negocio",
 };
 
 /** Teléfono tal como se muestra en la web. */
