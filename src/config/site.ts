@@ -22,7 +22,7 @@ export const PHONE_DISPLAY = "+57(322)428-6264";
 
 /** Enlace de WhatsApp con el mensaje inicial ya escrito. */
 export const WHATSAPP_URL =
-  "https://wa.me/573224286264?text=%C2%A1Hola%21%2C%20estoy%20explorando%20opciones%20para%20mejorar%20mi%20presencia%20digital%20y%20ganar%20m%C3%A1s%20clientes.%20%C2%BFMe%20podr%C3%ADas%20brindar%20m%C3%A1s%20informaci%C3%B3n%3F";
+  "https://wa.me/573152230495?text=%C2%A1Hola%21%2C%20estoy%20explorando%20opciones%20para%20mejorar%20mi%20presencia%20digital%20y%20ganar%20m%C3%A1s%20clientes.%20%C2%BFMe%20podr%C3%ADas%20brindar%20m%C3%A1s%20informaci%C3%B3n%3F";
 
 /** Correo de contacto. El enlace que abre Gmail vive en i18n (footer.mailRedirect). */
 export const EMAIL = "zumiasolutions@gmail.com";
