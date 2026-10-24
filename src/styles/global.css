@@ -20,9 +20,10 @@
     --color-social-facebook: #1970ff;
     --color-social-mail: #e23f33;
 
-    /* Tipografías provisionales: mismo valor que --font hasta tener Garet y Agrandir */
-    --font-title: "Canva Sans", sans-serif;
-    --font-body: "Canva Sans", sans-serif;
+    /* Tipografías (Fase 5): títulos Outfit (700–800) y texto Plus Jakarta Sans,
+       autoalojadas con @fontsource (se importan en src/main.tsx). Clases: font-title, font-body */
+    --font-title: "Outfit Variable", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Plus Jakarta Sans Variable", ui-sans-serif, system-ui, sans-serif;
 
     /* Sin índigo: la marca es navy y dorado */
     --color-indigo-*: initial;
@@ -138,8 +139,8 @@
     --back: #F2E2C8;
     --backAlt: #e6ded2cc;
 
-    /* BRAND FONT */
-    --font: "Canva Sans", sans-serif;
+    /* BRAND FONT (variable vieja: apunta a la fuente de texto nueva hasta borrar los CSS modules) */
+    --font: var(--font-body);
 }
 
 html {
