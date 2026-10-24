@@ -25,17 +25,16 @@ export const PageSeo = ({ title, description }: PageSeoProps) => {
   const normalizedPath = stripLangPrefix(pathname);
 
   const canonicalUrl = toAbsoluteUrl(withLangPrefix(normalizedPath, lang));
-  const spanishUrl = toAbsoluteUrl(withLangPrefix(normalizedPath, "es"));
-  const englishUrl = toAbsoluteUrl(withLangPrefix(normalizedPath, "en"));
 
   return (
     <Helmet defer={false}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonicalUrl} />
-      <link rel="alternate" hrefLang="es" href={spanishUrl} />
-      <link rel="alternate" hrefLang="en" href={englishUrl} />
-      <link rel="alternate" hrefLang="x-default" href={spanishUrl} />
+      {/* Las rutas /en tienen contenido de otra plantilla: Google no debe
+          indexarlas, pero sí puede seguir sus enlaces. No hay hreflang
+          hasta que exista una traducción real. */}
+      {lang === "en" && <meta name="robots" content="noindex,follow" />}
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
