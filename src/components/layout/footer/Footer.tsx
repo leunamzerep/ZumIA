@@ -1,101 +1,118 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useEffect, useState, useRef } from "react";
 
 import logo from "@/assets/img/mainIcon.png";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
-import { FACEBOOK_URL, INSTAGRAM_URL, WHATSAPP_URL } from "@/config/site";
+import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
 import { PATHS } from "@/config/paths";
-import { FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowUpRightIcon, FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { NAV_LINKS } from "../navLinks";
 
-// Clases base = móvil (< 768 px); md: = escritorio (≥ 768 px), igual que el CSS anterior
-const optionClass =
-  "text-[10px] md:[font-size:medium] font-medium no-underline text-black " +
-  "transition-all duration-200 ease-[ease] hover:underline hover:text-(--brightFont) hover:-translate-y-px";
+/** Autoridad de protección al consumidor (Ley 1480 de 2011, art. 50): enlace visible obligatorio. */
+const SIC_URL = "https://www.sic.gov.co";
 
-const mediaClass =
-  "flex justify-center items-center text-[14px] md:text-[22px] h-[22px] w-[22px] md:h-[26px] md:w-[26px] " +
-  "p-[3px] md:p-[6px] rounded-[10px] md:rounded-[15px] text-white no-underline " +
-  "shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-200 ease-[ease-in-out] " +
-  "hover:-translate-y-[2px] hover:shadow-[0_0_10px_rgba(0,0,0,0.3)]";
-
-// Botón flotante: "bottom" sigue en style porque cambia con el scroll
-const whatsappClass =
-  "fixed right-[14px] md:right-[21px] z-99 flex items-center justify-center " +
-  "h-[40px] w-[40px] md:h-[60px] md:w-[60px] p-[3px] md:p-0 rounded-[50%] " +
-  "bg-social-whatsapp text-white text-[18px] md:text-[30px] no-underline cursor-pointer " +
-  "shadow-[0px_4px_10px_rgba(0,0,0,0.25)] transition-all duration-300 ease-[ease] " +
-  "hover:shadow-[0px_4px_10px_rgba(0,0,0,0.35)] hover:-translate-y-[3px] hover:bg-(--brightFont)";
+const headingClass = "font-title text-sm font-bold uppercase tracking-[0.18em] text-gold-400";
+const linkClass =
+  "rounded-md text-white/80 underline-offset-4 transition-colors duration-200 hover:text-white hover:underline";
+const socialClass =
+  "inline-flex size-11 items-center justify-center rounded-full bg-white/10 text-white " +
+  "transition-colors duration-200 hover:bg-gold-500 hover:text-navy-900";
 
 export const Footer = () => {
-
   const { t } = useTranslation();
   const localizePath = useLocalizedPath();
-  const mailLink: string = t('footer.mailRedirect')
-
-  const [buttonBottom, setButtonBottom] = useState(30);
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!cardRef.current) return;
-
-      const cardRect = cardRef.current.getBoundingClientRect();
-
-      if (cardRect.top > window.innerHeight) {
-        setButtonBottom(30);
-        return;
-      }
-
-      if (cardRect.top <= window.innerHeight) {
-        const distanceFromBottom = window.innerHeight - cardRect.top;
-        const deviceDistance = window.innerWidth > 767 ? 30 : 115;
-        setButtonBottom(distanceFromBottom + deviceDistance);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [])
+  const mailLink: string = t("footer.mailRedirect");
 
   return (
-    <section>
-      <div
-        ref={cardRef}
-        className="flex flex-row items-center justify-evenly md:justify-center gap-[5px] md:gap-[120px] pt-[18px] pr-[7.5px] pb-[23px] pl-[15px] md:pr-0 md:pb-[18px] md:pl-0 bg-white"
-      >
-        <div className="flex flex-col gap-[3px] md:gap-[5px]">
-          <span className="text-[12px] md:text-[18px] font-bold mb-[2.5px]">
-            {t("footer.legals")}
-          </span>
-          <Link to={localizePath(PATHS.terms)} className={optionClass}>
-            {t("footer.terms")}
+    <footer className="relative overflow-hidden bg-navy-900 font-body text-white [--focus-ring:var(--color-gold-400)]">
+      {/* Línea dorada superior con degradado */}
+      <div aria-hidden="true" className="h-1 bg-linear-to-r from-gold-700 via-gold-500 to-gold-300" />
+
+      <div className="container-site grid gap-12 py-14 md:grid-cols-2 md:py-16 lg:grid-cols-[1.4fr_1fr_1.3fr_1.2fr]">
+        <div className="flex flex-col gap-4">
+          <Link to={localizePath(PATHS.home)} aria-label={t("header.logo")} className="flex w-fit items-center gap-3 rounded-xl">
+            <img src={logo} alt="" width={1081} height={1081} className="size-12" />
+            <span aria-hidden="true" className="font-title text-xl font-extrabold uppercase leading-none tracking-wide">
+              {t("brand.name")}
+            </span>
           </Link>
-          <Link to={localizePath(PATHS.privacy)} className={optionClass}>
-            {t("footer.privacy")}
-          </Link>
+          <p className="max-w-xs text-sm leading-relaxed text-white/70">{t("home.hero.eyebrow")}</p>
+          <ul className="flex gap-3">
+            <li>
+              <a className={socialClass} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label={t("footer.instagram")}>
+                <InstagramIcon className="size-5" />
+              </a>
+            </li>
+            <li>
+              <a className={socialClass} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label={t("footer.facebook")}>
+                <FacebookIcon className="size-5" />
+              </a>
+            </li>
+            <li>
+              <a className={socialClass} href={mailLink} target="_blank" rel="noopener noreferrer" aria-label={t("footer.mail")}>
+                <MailIcon className="size-5" />
+              </a>
+            </li>
+          </ul>
         </div>
-        <img src={logo} className="h-[4.5vh] md:h-[14vh]" />
-        <div className="flex flex-col items-center gap-[6px] md:gap-[12px]">
-          <div className="flex flex-row items-center gap-[6px] md:gap-[10px]">
-            <a className={`${mediaClass} bg-social-instagram`} href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">
-              <InstagramIcon className="size-[1em]" />
-            </a>
-            <a className={`${mediaClass} bg-social-facebook`} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer">
-              <FacebookIcon className="size-[1em]" />
-            </a>
-            <a className={`${mediaClass} bg-social-mail`} href={mailLink} target="_blank" rel="noopener noreferrer">
-              <MailIcon className="size-[1em]" />
-            </a>
-          </div>
-          <p className="m-0 text-center max-md:text-[11px]">© 2026 Zumia Solutions. Todos los derechos reservados.</p>
+
+        <nav aria-label={t("footer.siteNav")} className="flex flex-col gap-4">
+          <h2 className={headingClass}>{t("footer.siteNav")}</h2>
+          <ul className="flex flex-col gap-2.5">
+            {NAV_LINKS.map(({ to, labelKey }) => (
+              <li key={to}>
+                <Link to={localizePath(to)} className={linkClass}>{t(labelKey)}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <nav aria-label={t("footer.legals")} className="flex flex-col gap-4">
+          <h2 className={headingClass}>{t("footer.legals")}</h2>
+          <ul className="flex flex-col gap-2.5">
+            <li>
+              <Link to={localizePath(PATHS.terms)} className={linkClass}>{t("footer.terms")}</Link>
+            </li>
+            <li>
+              <Link to={localizePath(PATHS.privacy)} className={linkClass}>{t("footer.privacy")}</Link>
+            </li>
+            <li>
+              <a href={SIC_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex gap-1.5`}>
+                <span>{t("footer.sic")}</span>
+                <ArrowUpRightIcon className="mt-1 size-4 shrink-0" />
+                <span className="sr-only">{t("footer.newTab")}</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div className="flex flex-col gap-4">
+          <h2 className={headingClass}>{t("header.contact")}</h2>
+          <ul className="flex flex-col gap-3">
+            <li>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2.5`}>
+                <WhatsAppIcon className="size-5 shrink-0 text-gold-400" />
+                <span>{PHONE_DISPLAY}</span>
+                <span className="sr-only">{t("footer.newTab")}</span>
+              </a>
+            </li>
+            <li>
+              <a href={mailLink} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2.5 break-all`}>
+                <MailIcon className="size-5 shrink-0 text-gold-400" />
+                <span>{EMAIL}</span>
+                <span className="sr-only">{t("footer.newTab")}</span>
+              </a>
+            </li>
+            <li className="text-sm text-white/70">{t("contact.ubih33")}</li>
+          </ul>
         </div>
       </div>
-      <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={whatsappClass} style={{ bottom: `${buttonBottom}px` }}>
-        <WhatsAppIcon className="size-[1em]" />
-      </a>
-    </section>
-  )
-}
+
+      <div className="border-t border-white/10">
+        <p className="container-site py-6 text-center text-xs text-white/60 md:text-left">
+          {t("footer.copyright", { year: new Date().getFullYear() })}
+        </p>
+      </div>
+    </footer>
+  );
+};

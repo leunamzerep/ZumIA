@@ -25,9 +25,17 @@
     },
     "footer": {
         "legals": "Documentos legales",
-        "privacy": "Politica de Privacidad",
+        "privacy": "Política de Privacidad",
         "terms": "Términos y Condiciones",
-        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Informaci%C3%B3n%20sobre%20p%C3%A1ginas%20web%20(Zumia)&body=Hola%2C%20equipo%20de%20Zumia%3A%0A%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%20sobre%20sus%20paquetes%20de%20p%C3%A1ginas%20web%20y%20sus%20precios%3F%0A%0AGracias%2C%0A-%20%5BNombre%5D"
+        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Informaci%C3%B3n%20sobre%20p%C3%A1ginas%20web%20(Zumia)&body=Hola%2C%20equipo%20de%20Zumia%3A%0A%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%20sobre%20sus%20paquetes%20de%20p%C3%A1ginas%20web%20y%20sus%20precios%3F%0A%0AGracias%2C%0A-%20%5BNombre%5D",
+        "siteNav": "Navegación",
+        "sic": "Autoridad de protección al consumidor: Superintendencia de Industria y Comercio",
+        "copyright": "© {{year}} Zumia Solutions. Todos los derechos reservados.",
+        "instagram": "Instagram de Zumia Solutions (se abre en otra pestaña)",
+        "facebook": "Facebook de Zumia Solutions (se abre en otra pestaña)",
+        "mail": "Escribir un correo a Zumia Solutions (se abre en otra pestaña)",
+        "whatsapp": "Escríbenos por WhatsApp (se abre en otra pestaña)",
+        "newTab": "(se abre en otra pestaña)"
     },
     "notFound": {
         "title": "Esta pagina no existe",
@@ -48,7 +56,10 @@
         "text5": "Le ayudamos a registrar y cumplir correctamente con sus obligaciones de impuestos sobre ventas.",
         "title6": "Nómina y Contratistas",
         "text6": "Gestionamos la nómina y reportes de contratistas para un cumplimiento correcto y puntual.",
-        "invitation": "Conoce las Últimas Novedades:"
+        "invitation": "Conoce las Últimas Novedades:",
+        "hero": {
+            "eyebrow": "Páginas web para negocios en Colombia"
+        }
     },
     "card": {
         "schedule": "Agenda tu Diagnóstico",
