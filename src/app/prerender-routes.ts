@@ -1,5 +1,3 @@
-const base = ["/", "/about-us", "/contact", "/terms-and-conditions", "/privacy-policy"];
-export const prerenderRoutes = base.flatMap((r) => [
-  r,
-  r === "/" ? "/en" : `/en${r}`,
-]);
+// Solo rutas en español. Las rutas /en están desactivadas (Fase 4) hasta que
+// exista la traducción real; antes se generaba también la copia /en de cada una.
+export const prerenderRoutes = ["/", "/about-us", "/contact", "/terms-and-conditions", "/privacy-policy"];

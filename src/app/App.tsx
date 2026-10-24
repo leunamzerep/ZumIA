@@ -67,8 +67,10 @@ export const App = () => {
             </>
           ),
           children: [
+            // Las rutas /en están desactivadas: su contenido era de otra
+            // plantilla (fiscal). Volverán cuando exista la traducción real:
+            // ...createServerRoutes(canAnimate, "/en"),
             ...createServerRoutes(canAnimate),
-            ...createServerRoutes(canAnimate, "/en"),
             {
               path: "*",
               element: (
