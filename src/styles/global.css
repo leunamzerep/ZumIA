@@ -105,6 +105,18 @@
         --focus-ring: var(--color-gold-700);
     }
 
+    /* La página ocupa al menos el alto de la pantalla: en páginas cortas el pie
+       queda abajo del todo (el contenido #contenido crece para llenar el hueco) */
+    #root {
+        display: flex;
+        min-height: 100dvh;
+        flex-direction: column;
+    }
+
+    #contenido {
+        flex: 1 0 auto;
+    }
+
     /* Foco visible solo al navegar con teclado */
     :focus-visible {
         outline: 3px solid var(--focus-ring);

@@ -77,9 +77,9 @@ export const Footer = () => {
               <Link to={localizePath(PATHS.privacy)} className={linkClass}>{t("footer.privacy")}</Link>
             </li>
             <li>
-              <a href={SIC_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex gap-1.5`}>
-                <span>{t("footer.sic")}</span>
-                <ArrowUpRightIcon className="mt-1 size-4 shrink-0" />
+              <a href={SIC_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {t("footer.sic")}
+                <ArrowUpRightIcon className="ml-1 inline size-4 align-[-2px]" />
                 <span className="sr-only">{t("footer.newTab")}</span>
               </a>
             </li>
