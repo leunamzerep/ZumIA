@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import logo from "@/assets/img/mainIcon.png";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { FACEBOOK_URL, INSTAGRAM_URL, WHATSAPP_URL } from "@/config/site";
+import { PATHS } from "@/config/paths";
 
 // Clases base = móvil (< 768 px); md: = escritorio (≥ 768 px), igual que el CSS anterior
 const optionClass =
@@ -68,10 +69,10 @@ export const Footer = () => {
           <span className="text-[12px] md:text-[18px] font-bold mb-[2.5px]">
             {t("footer.legals")}
           </span>
-          <Link to={localizePath("/terms-and-conditions")} className={optionClass}>
+          <Link to={localizePath(PATHS.terms)} className={optionClass}>
             {t("footer.terms")}
           </Link>
-          <Link to={localizePath("/privacy-policy")} className={optionClass}>
+          <Link to={localizePath(PATHS.privacy)} className={optionClass}>
             {t("footer.privacy")}
           </Link>
         </div>

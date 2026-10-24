@@ -5,6 +5,7 @@ import contactImg from "@/assets/img/contactImg.jpg";
 import styles from "./ContactCard.module.css"
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
+import { PATHS } from "@/config/paths";
 
 export const ContactCard = () => {
 
@@ -21,7 +22,7 @@ export const ContactCard = () => {
           <a className={styles.item} href={WHATSAPP_URL}>{PHONE_DISPLAY}</a>
           <a className={styles.item} href={mailLink}>{EMAIL}</a>
         </div>
-        <Link to={localizePath("/contact")} className={styles.button}>{t("card.contactUs")}</Link>
+        <Link to={localizePath(PATHS.contact)} className={styles.button}>{t("card.contactUs")}</Link>
       </div>
     </section>
   )

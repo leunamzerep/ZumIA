@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
 
+import { PATHS } from "@/config/paths";
 import styles from "./NotFound.module.css";
 
 type NotFoundProps = { canAnimate: boolean };
 
 export const NotFound = ({ canAnimate }: NotFoundProps) => {
   const { t, i18n } = useTranslation();
-  const homeHref = i18n.resolvedLanguage === "en" ? "/en" : "/";
+  const homeHref = i18n.resolvedLanguage === "en" ? "/en" : PATHS.home;
 
   return (
     <>
