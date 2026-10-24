@@ -12,6 +12,28 @@ import { NAV_LINKS, isCurrentPath } from "../navLinks";
 
 const MOBILE_MENU_ID = "menu-movil";
 
+// Animación del menú móvil (solo CSS). El panel se despliega desde la esquina
+// superior derecha (junto al botón ☰) hacia la izquierda y hacia abajo, y los
+// enlaces entran desde la derecha uno tras otro. Con "reducir movimiento"
+// activado en el sistema, global.css apaga las transiciones.
+const EASE = "ease-[cubic-bezier(0.22,1,0.36,1)]";
+const panelClass = (open: boolean) =>
+  "fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-navy-900 text-white " +
+  "[--focus-ring:var(--color-gold-400)] md:hidden " +
+  // Al abrir, visible al instante (si no, el foco no puede entrar); al cerrar,
+  // visibility espera a que termine el recorte para ocultarse
+  `${EASE} ` +
+  (open
+    ? "visible transition-[clip-path] duration-500 [clip-path:inset(0_0_0_0_round_0)]"
+    : "invisible transition-[clip-path,visibility] duration-300 [clip-path:inset(0_0_100%_100%_round_0_0_0_2.5rem)]");
+const itemClass = (open: boolean) =>
+  `transition-[translate,opacity] duration-500 ${EASE} ` +
+  (open ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0");
+// Retraso escalonado al abrir; al cerrar, todo sale a la vez
+const itemDelay = (open: boolean, index: number) => ({
+  transitionDelay: open ? `${120 + index * 70}ms` : "0ms",
+});
+
 // Píldoras del menú de escritorio: la página actual va en navy con texto blanco
 const pillClass = (active: boolean) =>
   "inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 " +
@@ -78,7 +100,7 @@ export const Header = () => {
         <div className="container-site flex h-16 items-center justify-between gap-4 md:h-20">
           <Link to={localizePath(PATHS.home)} aria-label={t("header.logo")} className="flex items-center gap-2.5 rounded-xl">
             <img src={logo} alt="" width={1081} height={1081} className="size-10 md:size-12" />
-            <span aria-hidden="true" className="font-title text-lg font-extrabold uppercase leading-none tracking-wide md:text-xl">
+            <span aria-hidden="true" className="font-title text-lg font-bold uppercase leading-none tracking-wide md:text-xl">
               {t("brand.name")}
             </span>
           </Link>
@@ -124,19 +146,16 @@ export const Header = () => {
       </header>
 
       {/* Menú móvil: panel navy a pantalla completa bajo el encabezado. Va fuera del
-          <header> porque su backdrop-blur haría que "fixed" se mida contra el encabezado */}
-      <div
-        id={MOBILE_MENU_ID}
-        ref={panelRef}
-        hidden={!open}
-        className="fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto bg-navy-900 text-white [--focus-ring:var(--color-gold-400)] md:hidden"
-      >
+          <header> porque su backdrop-blur haría que "fixed" se mida contra el encabezado.
+          Cerrado queda "invisible" (visibility: hidden): no se ve, no recibe el foco
+          y los lectores de pantalla lo ignoran. */}
+      <div id={MOBILE_MENU_ID} ref={panelRef} className={panelClass(open)}>
         <nav aria-label={t("header.menu")} className="container-site flex flex-col gap-8 py-10">
           <ul className="flex flex-col gap-2">
-            {NAV_LINKS.map(({ to, labelKey }) => {
+            {NAV_LINKS.map(({ to, labelKey }, index) => {
               const active = isCurrentPath(pathname, to);
               return (
-                <li key={to}>
+                <li key={to} className={itemClass(open)} style={itemDelay(open, index)}>
                   <Link
                     to={localizePath(to)}
                     aria-current={active ? "page" : undefined}
@@ -155,7 +174,8 @@ export const Header = () => {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-4 text-base font-bold text-navy-900"
+            className={`inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-4 text-base font-bold text-navy-900 ${itemClass(open)}`}
+            style={itemDelay(open, NAV_LINKS.length)}
           >
             <WhatsAppIcon className="size-5" />
             {t("header.whatsapp")}
