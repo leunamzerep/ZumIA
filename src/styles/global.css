@@ -159,28 +159,15 @@
     }
 }
 
-:root {
+/* Estilos base del documento: fuente de texto, color navy y fondo crema */
+@layer base {
+    html {
+        font-family: var(--font-body);
+        color: var(--color-navy-900);
+        background-color: var(--color-cream-50);
+    }
 
-    /* BRAND COLORS */
-    --darkFont: #02174d;
-    --brightFont: #15466d;
-    --darkMain: #C98A3A;
-    --brightMain: #D8A75B;
-    --back: #F2E2C8;
-    --backAlt: #e6ded2cc;
-
-    /* BRAND FONT (variable vieja: apunta a la fuente de texto nueva hasta borrar los CSS modules) */
-    --font: var(--font-body);
-}
-
-html {
-    font-family: var(--font);
-    color: black;
-    background-color: var(--back);
-}
-
-button,
-Link,
-a {
-    cursor: pointer;
+    button:not(:disabled) {
+        cursor: pointer;
+    }
 }

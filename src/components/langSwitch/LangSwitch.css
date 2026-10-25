@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-family: var(--font);
+  font-family: var(--font-body);
   font-size: 10px;
 }
 
@@ -38,7 +38,7 @@
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: var(--darkMain);
+  background-color: var(--color-gold-600);
   border-radius: 50px;
   transition: background-color 0.2s ease;
 }
