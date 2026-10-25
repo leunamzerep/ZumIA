@@ -31,7 +31,7 @@ export const Section = ({
   decoration?: ReactNode;
   children: ReactNode;
 }) => (
-  <section id={id} aria-labelledby={labelledBy} className={cx("relative isolate overflow-hidden section-y font-body", TONES[tone], className)}>
+  <section id={id} aria-labelledby={labelledBy} className={cx("relative isolate overflow-clip section-y font-body", TONES[tone], className)}>
     {decoration}
     <div className={cx("container-site relative", innerClassName)}>{children}</div>
   </section>
