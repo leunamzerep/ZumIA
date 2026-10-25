@@ -119,7 +119,7 @@ export const LegalPage = ({
       <main className="relative">
         <PageHero id={`${ns}-titulo`} eyebrow={t("footer.legals")} titleKey={`${ns}.h1`} lead={<Rich k={`${ns}.updated`} />} />
 
-        <Section tone="white" innerClassName="grid gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-16">
+        <Section tone="white" innerClassName="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-16">
           {/* Índice: desplegable en celular, fijo al lado en escritorio */}
           <details className="rounded-2xl bg-cream-50 p-4 ring-1 ring-navy-900/10 lg:hidden">
             <summary className="cursor-pointer font-title font-bold text-navy-900">{t("legal.toc")}</summary>
