@@ -19,9 +19,10 @@ const CheckIcon = (p: SVGProps<SVGSVGElement>) => <svg {...stroke} {...p}><path 
 const ClockIcon = (p: SVGProps<SVGSVGElement>) => <svg {...stroke} {...p}><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>;
 
 const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const name = t(`plans.${plan.id}.name`);
-  const price = formatPrice(plan.price);
+  // En inglés el separador de miles es la coma (490,000); en español, el punto (490.000)
+  const price = i18n.language === "en" ? new Intl.NumberFormat("en-US").format(plan.price) : formatPrice(plan.price);
   const dark = Boolean(plan.featured);
 
   return (
