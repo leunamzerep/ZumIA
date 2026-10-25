@@ -21,7 +21,9 @@
         "closeMenu": "Cerrar menú",
         "logo": "Zumia Solutions, ir al inicio",
         "skip": "Saltar al contenido",
-        "whatsapp": "Escríbenos por WhatsApp"
+        "whatsapp": "Escríbenos por WhatsApp",
+        "whatsappMessage": "¡Hola!, estoy explorando opciones para mejorar mi presencia digital y ganar más clientes. ¿Me podrías brindar más información?",
+        "langSwitch": "Ver el sitio en inglés"
     },
     "footer": {
         "legals": "Documentos legales",
