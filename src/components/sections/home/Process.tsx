@@ -25,7 +25,9 @@ export const Process = () => {
               key={n}
               data-reveal
               style={{ "--reveal-delay": `${i * 110}ms` } as CSSProperties}
-              className="relative flex flex-col gap-4"
+              // Desde md, cada paso ocupa 3 filas compartidas (número, título, texto):
+              // así los textos quedan alineados aunque un título tenga menos líneas
+              className="relative flex flex-col gap-4 md:row-span-3 md:grid md:grid-rows-subgrid"
             >
               <span
                 aria-hidden="true"
