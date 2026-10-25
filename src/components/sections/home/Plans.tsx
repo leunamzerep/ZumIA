@@ -40,11 +40,12 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
           <p className={cx("leading-relaxed", dark ? "text-white/75" : "text-navy-600")}>{t(`plans.${plan.id}.tagline`)}</p>
         </div>
 
-        {/* Precio: los lectores de pantalla leen la frase completa; la vista, el número grande */}
-        <p className="flex items-baseline gap-1.5">
+        {/* Precio: los lectores de pantalla leen la frase completa; la vista, el número grande y "COP".
+            En pantallas de menos de 360 px el número es algo menor para que "COP" quepa al lado */}
+        <p className="flex flex-wrap items-baseline gap-x-1.5">
           <span className="sr-only">{t("plans.priceLabel", { price })}</span>
           <span aria-hidden="true" className={cx("font-title text-2xl font-bold", dark ? "text-gold-400" : "text-gold-700")}>{t("plans.currencySymbol")}</span>
-          <span aria-hidden="true" className="font-title text-[2.75rem] leading-none font-extrabold tracking-tight sm:text-5xl">{price}</span>
+          <span aria-hidden="true" className="font-title text-[2.25rem] leading-none font-extrabold tracking-tight min-[360px]:text-[2.75rem] sm:text-5xl">{price}</span>
           <span aria-hidden="true" className={cx("text-sm font-bold", dark ? "text-white/60" : "text-navy-500")}>{t("plans.currency")}</span>
         </p>
 
