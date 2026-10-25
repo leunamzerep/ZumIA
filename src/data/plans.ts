@@ -19,7 +19,7 @@ export type Plan = {
 export const PLANS: Plan[] = [
   {
     id: "esencial",
-    price: 499_000,
+    price: 490_000,
     features: ["plans.esencial.f1", "plans.esencial.f2", "plans.esencial.f3", "plans.esencial.f4", "plans.esencial.f5"],
     maintenanceKey: "plans.esencial.maintenance",
   },
@@ -31,10 +31,9 @@ export const PLANS: Plan[] = [
   },
   {
     id: "premium",
-    price: 1_499_000,
+    price: 1_490_000,
     features: ["plans.premium.f1", "plans.premium.f2", "plans.premium.f3", "plans.premium.f4"],
   },
 ];
 
-/** 499000 → "499.000" (separador de miles colombiano) */
 export const formatPrice = (price: number) => new Intl.NumberFormat("es-CO").format(price);

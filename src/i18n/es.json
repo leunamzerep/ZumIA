@@ -67,7 +67,7 @@
         },
         "process": {
             "eyebrow": "Cómo trabajamos",
-            "title": "Del primer mensaje a tu página <1>publicada</1>",
+            "title": "Desde el primer mensaje a tu página <1>publicada</1>",
             "step1Title": "Nos envías los insumos",
             "step1Text": "Logo, textos, fotos y datos de contacto. Te decimos qué necesitamos.",
             "step2Title": "Primera entrega",
@@ -78,7 +78,7 @@
             "step4Text": "Con tu aprobación y el pago final, publicamos tu página en tu dominio."
         },
         "cta": {
-            "text": "Cuéntanos qué necesita tu negocio y te respondemos por WhatsApp o correo."
+            "text": "Cuéntanos qué necesita tu negocio y te respondemos pronto."
         },
         "instagramPost": "Publicación de Instagram {{id}}"
     },
@@ -95,7 +95,7 @@
         "h22": "Nuestros servicios",
         "h32": "En Zumia Solutions, ofrecemos soluciones integrales en desarrollo web y marketing.",
         "h23": "Nuestro compromiso",
-        "h33": "Estamos comprometidos a ayudar a nuestros clientes a alcanzar sus objetivos. Con nosotros, puede tener la tranquilidad de recibir un servicio de calidad y confiabilidad.",
+        "h33": "Estamos comprometidos a ayudar a nuestros clientes a alcanzar sus objetivos. Con nosotros, puede tener la tranquilidad de recibir un servicio confiable de calidad.",
         "h24": "Nuestra Misión",
         "h34": "Acompañar a micronegocios y pymes con soluciones web y de marketing claras, rápidas y medibles, enfocadas en convertir visitas en contactos.",
         "h25": "Nuestra Visión",
@@ -329,7 +329,7 @@
         "includes": "Incluye",
         "delivery": "Entrega: {{days}}",
         "whatsapp": "¡Hola! Me interesa el plan {{plan}} de Zumia Solutions. ¿Me cuentas cómo empezamos?",
-        "conditions": "Se inicia con el 50 % y el otro 50 % se paga a la entrega final. Los plazos cuentan desde el pago del anticipo y la entrega de los insumos mínimos. El dominio y el hosting corren por cuenta del cliente.",
+        "conditions": "Se inicia con el 50 % y el otro 50 % se paga en la entrega final. Los plazos cuentan desde el pago del anticipo y la entrega de los insumos mínimos. El dominio y el hosting corren por cuenta del cliente.",
         "esencial": {
             "name": "Esencial",
             "tagline": "Perfecta para empezar a mostrarte más profesional rápidamente",
@@ -347,7 +347,7 @@
             "tagline": "A la medida para crecer pronto",
             "f1": "3 subpáginas y 10 bloques (Inicio, Servicios y Contacto con formulario)",
             "f2": "Todo lo del Esencial",
-            "f3": "Mantenimiento gratis por 2 semanas (hasta 10 cambios menores)",
+            "f3": "Mantenimiento gratis por 2 semanas",
             "days": "14 a 20 días calendario",
             "cta": "Quiero el plan Profesional"
         },
