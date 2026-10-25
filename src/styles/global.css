@@ -98,6 +98,21 @@
     padding-block: clamp(4rem, 2.8rem + 5vw, 8rem);
 }
 
+/* Animación de tarjetas al pasar el mouse: sube 4 px y la sombra crece.
+   Solo en equipos con mouse (hover: hover) y si el usuario no pidió menos movimiento.
+   Se usa en Servicios (Inicio), en las tarjetas de Nosotros y en la de JoTu. */
+@utility card-hover {
+    transition-property: translate, box-shadow;
+    transition-duration: 300ms;
+
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        &:hover {
+            translate: 0 -0.25rem;
+            box-shadow: 0 30px 60px -30px rgba(19, 23, 61, 0.45);
+        }
+    }
+}
+
 /* Palabra en contorno para los títulos. El color del trazo se cambia con
    [--outline-color:…]; sin soporte de text-stroke, la palabra se ve rellena. */
 @utility text-outline {

@@ -41,7 +41,7 @@ export const Services = () => {
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map(({ n, Icon }, i) => (
             <li key={n} data-reveal style={{ "--reveal-delay": `${i * 90}ms` } as CSSProperties}>
-              <Card className="flex h-full flex-col gap-5 transition-[translate,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgba(19,23,61,0.45)]">
+              <Card className="card-hover flex h-full flex-col gap-5">
                 <div className="flex items-center justify-between">
                   <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-gold-400">
                     <Icon className="size-7" />

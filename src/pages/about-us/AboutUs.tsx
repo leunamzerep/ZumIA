@@ -52,7 +52,7 @@ export const AboutUs = () => {
           <ul className="grid gap-6 md:grid-cols-3">
             {VALUES.map(({ title, text, Icon }, i) => (
               <li key={title} data-reveal style={{ "--reveal-delay": `${i * 100}ms` } as CSSProperties}>
-                <Card className="flex h-full flex-col gap-5">
+                <Card className="card-hover flex h-full flex-col gap-5">
                   <span className="inline-flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-gold-400">
                     <Icon className="size-7" />
                   </span>
@@ -68,7 +68,7 @@ export const AboutUs = () => {
           <ul className="grid gap-6 lg:grid-cols-2">
             {PURPOSE.map(({ title, text }, i) => (
               <li key={title} data-reveal style={{ "--reveal-delay": `${i * 120}ms` } as CSSProperties}>
-                <Card tone="glass" className="flex h-full flex-col gap-5 overflow-hidden md:p-10">
+                <Card tone="glass" className="card-hover flex h-full flex-col gap-5 overflow-hidden md:p-10">
                   <span aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-gold-700 via-gold-400 to-transparent" />
                   <h2 className="font-title text-h2 font-extrabold uppercase tracking-tight text-white">{t(title)}</h2>
                   <p className="text-lead text-white/80">{t(text)}</p>
