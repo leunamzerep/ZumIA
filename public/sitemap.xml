@@ -1,10 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Archivo estático: el dominio está escrito a mano aquí (también vive en
-  SITE_URL de src/config/site.ts). Si cambia el dominio, cámbialo en ambos.
-  Las URL llevan barra final, igual que el canonical que genera PageSeo.
-  Solo van las rutas en español: las /en tienen noindex.
--->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://zumiasolutions.xyz/</loc>
