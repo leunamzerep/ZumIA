@@ -174,7 +174,7 @@
             "title": "7. Planes, Precios, Pagos y Plazos",
             "b1": "Los planes y precios publicados en este sitio y en nuestras redes sociales son ofertas generales, vigentes hasta el 31 de diciembre de 2026 o hasta que los modifiquemos con aviso en el sitio. Cualquier ajuste a un proyecto en particular se acuerda por escrito.",
             "b2": "<1>Precio.</1> Los precios están en pesos colombianos (COP). El precio total del proyecto se te informa por escrito antes de que lo aceptes.",
-            "b3": "<1>Pago.</1> El valor del proyecto se paga de la siguiente manera: 50 % para iniciar el desarrollo y 50 % restante a la entrega final. Medios de pago: Transferencia bancaria ó pago en línea con confirmación de recibido. El sitio se publica una vez recibido el pago total. Si hay mora superior a tres (3) días calendario en un pago pendiente, podemos suspender el proyecto o la publicación.",
+            "b3": "<1>Pago.</1> El valor del proyecto se paga de la siguiente manera: 50 % para iniciar el desarrollo y 50 % restante a la entrega final. Medios de pago: Transferencia bancaria o pago en línea con confirmación de recibido. El sitio se publica una vez recibido el pago total. Si hay mora superior a tres (3) días calendario en un pago pendiente, podemos suspender el proyecto o la publicación.",
             "b4": "<1>Plazos.</1> Los plazos de cada plan se cuentan en días calendario desde el pago del anticipo y la entrega de los insumos mínimos. Pueden extenderse por las rondas de cambios (un día calendario adicional por cada item ajustado) o por suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
             "b5": "<1>Cambios.</1> Cada plan incluye dos rondas de cambios sin costo. Los cambios posteriores se tratan como mantenimiento con alcance, precio y plazo acordados por escrito, o según el mantenimiento incluido en el plan.",
             "b6": "<1>Dominio y hosting.</1> Su costo corresponde al cliente."
@@ -212,7 +212,7 @@
         },
         "s11": {
             "title": "11. Peticiones, Quejas y Reclamos",
-            "b1": "Puedes enviarnos peticiones, quejas o reclamos por el formulario de contacto de este sitio o al correo {{email}}. Conservamos constancia de la fecha y hora de cada comunicación. Plazo de respuesta: 3 días hábiles, para pronta respuesta comunicarse al número de telefono listado.",
+            "b1": "Puedes enviarnos peticiones, quejas o reclamos por el formulario de contacto de este sitio o al correo {{email}}. Conservamos constancia de la fecha y hora de cada comunicación. Plazo de respuesta: 3 días hábiles, para pronta respuesta comunicarse al número de teléfono listado.",
             "b2": "La autoridad de protección al consumidor en Colombia es la Superintendencia de Industria y Comercio: <2>{{sicUrl}}</2>"
         },
         "s12": {
