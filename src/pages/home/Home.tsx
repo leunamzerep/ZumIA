@@ -17,7 +17,8 @@ export const Home = () => {
         title={t("seo.homeTitle")}
         description={t("seo.homeDescription")}
       />
-      <main>
+      {/* "relative": el patrón de fondo de todas las secciones se alinea con <main> */}
+      <main className="relative">
         <Hero />
         <Services />
         <Process />

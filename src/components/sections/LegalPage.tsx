@@ -115,7 +115,8 @@ export const LegalPage = ({
   return (
     <>
       <PageSeo title={t(seoTitleKey)} description={t(seoDescriptionKey)} />
-      <main>
+      {/* "relative": el patrón de fondo de todas las secciones se alinea con <main> */}
+      <main className="relative">
         <PageHero id={`${ns}-titulo`} eyebrow={t("footer.legals")} titleKey={`${ns}.h1`} lead={<Rich k={`${ns}.updated`} />} />
 
         <Section tone="white" innerClassName="grid gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-16">

@@ -41,7 +41,8 @@ export const Contact = () => {
         title={t("seo.contactTitle")}
         description={t("seo.contactDescription")}
       />
-      <main>
+      {/* "relative": el patrón de fondo de todas las secciones se alinea con <main> */}
+      <main className="relative">
         <PageHero id="contacto-titulo" eyebrow={t("header.contact")} titleKey="contact.main" />
 
         <Section tone="cream" decoration={<GeometricPattern tone="light" />}>

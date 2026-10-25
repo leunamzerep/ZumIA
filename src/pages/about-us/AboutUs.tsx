@@ -44,7 +44,8 @@ export const AboutUs = () => {
         title={t("seo.aboutUsTitle")}
         description={t("seo.aboutUsDescription")}
       />
-      <main>
+      {/* "relative": el patrón de fondo de todas las secciones se alinea con <main> */}
+      <main className="relative">
         <PageHero id="nosotros-titulo" eyebrow={t("about.h21")} titleKey="about.h1" lead={t("about.h31")} />
 
         <Section tone="cream" decoration={<GeometricPattern tone="light" />}>

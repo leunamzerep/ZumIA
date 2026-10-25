@@ -6,7 +6,10 @@ import { cx } from "./cx";
  * Patrón geométrico de la marca: triángulos y barras verticales.
  * Es decorativo (aria-hidden) y va detrás del contenido (absolute, -z-10).
  *
- * - "field": mosaico repetido que cubre toda la sección, muy transparente.
+ * - "field": mosaico repetido, muy transparente. Se posiciona contra <main>
+ *   (las secciones no son "relative"), así la rejilla empieza en el mismo punto
+ *   en todas las secciones y el patrón sigue de una a otra sin cortes.
+ *   Dentro de una tarjeta "relative" (CtaBand) cubre solo esa tarjeta.
  * - "cluster": grupo grande de barras y triángulos con degradado dorado, para
  *   una esquina del hero o de una llamada a la acción.
  */
