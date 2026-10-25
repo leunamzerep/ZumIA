@@ -2,15 +2,17 @@ import { useTranslation } from "react-i18next";
 
 import { WHATSAPP_URL } from "@/config/site";
 import { WhatsAppIcon } from "@/components/ui/icons";
+import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 
 /**
- * Botón flotante de WhatsApp, solo con CSS (sin JavaScript ni medidas del pie).
+ * Botones flotantes: switch de idioma (abajo a la izquierda) y WhatsApp (abajo
+ * a la derecha), a la misma altura. Solo con CSS (sin JavaScript ni medidas del pie).
  *
  * Va justo antes del <footer>, dentro de un contenedor "sticky" de altura 0
  * pegado al borde inferior de la ventana:
- * - mientras el pie no se ve, el botón queda fijo abajo a la derecha;
- * - al llegar al pie, el contenedor vuelve a su sitio (encima del pie) y el
- *   botón se detiene ahí, sin taparlo.
+ * - mientras el pie no se ve, los botones quedan fijos abajo;
+ * - al llegar al pie, el contenedor vuelve a su sitio (encima del pie) y los
+ *   botones se detienen ahí, sin taparlo.
  * Como no guarda ninguna posición, cada página empieza igual, venga de donde venga.
  */
 export const WhatsAppFloat = () => {
@@ -18,6 +20,7 @@ export const WhatsAppFloat = () => {
 
   return (
     <div className="pointer-events-none sticky bottom-0 z-30 h-0">
+      <LanguageSwitch className="pointer-events-auto absolute left-4 bottom-[max(1rem,env(safe-area-inset-bottom))] md:left-6 md:bottom-7" />
       <a
         href={WHATSAPP_URL}
         target="_blank"

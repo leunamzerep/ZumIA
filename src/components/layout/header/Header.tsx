@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-// import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 import { Link, useLocation } from "react-router-dom";
 
 import logo from "@/assets/img/logo-zumia.webp";
@@ -141,7 +140,6 @@ export const Header = () => {
           >
             {open ? <CloseIcon className="size-5" /> : <MenuIcon className="size-5" />}
           </button>
-          {/* <LanguageSwitch /> */}
         </div>
       </header>
 

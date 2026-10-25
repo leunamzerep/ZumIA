@@ -1,13 +1,10 @@
 import { AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 import {
   RouterProvider,
   Outlet,
   ScrollRestoration,
   createBrowserRouter,
-  useLocation,
 } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 
 import { PrerenderReady } from "./PrerenderReady";
 
@@ -20,21 +17,10 @@ import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
 
 import "@/styles/global.css";
-// import { getLangFromPath } from "@/i18n/langRouting";
 
 const Layout = () => {
-  const { i18n } = useTranslation();
-  const { pathname } = useLocation();
+  // El idioma lo maneja src/i18n/config.ts (switch ES/EN, sin rutas /en)
   useReveal();
-
-  useEffect(() => {
-    // Idioma fijo en español mientras no existan rutas /en (ver
-    // src/i18n/config.ts). Para revertir: getLangFromPath(pathname).
-    const lang = "es";
-    if (i18n.resolvedLanguage !== lang) {
-      i18n.changeLanguage(lang);
-    }
-  }, [i18n, pathname]);
 
   return (
     <>
@@ -45,7 +31,7 @@ const Layout = () => {
           <Outlet />
         </AnimatePresence>
       </div>
-      {/* Justo antes del pie: así el botón se detiene encima de él (ver WhatsAppFloat) */}
+      {/* Justo antes del pie: así los botones flotantes (WhatsApp e idioma) se detienen encima de él */}
       <WhatsAppFloat />
       <Footer />
     </>
