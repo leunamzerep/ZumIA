@@ -1,52 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+import { LegalPage } from "@/components/sections/LegalPage";
+import { PRIVACY_SECTIONS } from "@/data/legal";
 
-import styles from './PrivacyPolicy.module.css'
-
-import { SeoEntry } from "@/components/sections/seoEntry/SeoEntry";
-import aboutImg from "../../assets/img/aboutImg.jpg"
-import { PageSeo } from "@/components/seo/PageSeo";
-
-export const PrivacyPolicy = () => {
-
-  const { t } = useTranslation();
-  const h1 = t('privacy.h1')
-
-  const [animate, setAnimate] = useState(false);
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setAnimate(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
-  return (
-    <>
-      <PageSeo
-        title={t("seo.privacyTitle")}
-        description={t("seo.privacyDescription")}
-      />
-      <main>
-        <SeoEntry imgPath={aboutImg} content={h1} />
-        <div className={`${styles.main} ${animate ? styles.appear : ""}`}>
-          <h2>Sub-Página en mantenimiento</h2>
-          {/* <h2>{t('privacy.section1')}</h2>
-          <p>{t('privacy.p1')}</p>
-          <h2>{t('privacy.section2')}</h2>
-          <p>{t('privacy.p2')}</p>
-          <h2>{t('privacy.section3')}</h2>
-          <p>{t('privacy.p3')}</p>
-          <h2>{t('privacy.section4')}</h2>
-          <p>{t('privacy.p4')}</p>
-          <h2>{t('privacy.section5')}</h2>
-          <p>{t('privacy.p5')}</p>
-          <h2>{t('privacy.section6')}</h2>
-          <p>{t('privacy.p6')}</p>
-          <h2>{t('privacy.section7')}</h2>
-          <p>{t('privacy.p7')}</p>
-          <h2>{t('privacy.section8')}</h2>
-          <p>{t('privacy.p8')}</p> */}
-        </div>
-      </main>
-    </>
-  );
-};
+export const PrivacyPolicy = () => (
+  <LegalPage ns="privacy" sections={PRIVACY_SECTIONS} seoTitleKey="seo.privacyTitle" seoDescriptionKey="seo.privacyDescription" />
+);

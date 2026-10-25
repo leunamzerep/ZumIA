@@ -143,44 +143,190 @@
         "whatsappLabel": "WhatsApp"
     },
     "terms": {
-        "h1": "Términos y Condiciones",
-        "section1": "1. Introducción",
-        "p1": "Estos Términos y Condiciones regulan el uso del sitio web y de los servicios de Zumia Solutions. Al acceder a este sitio web o enviar una solicitud de servicios, usted acepta quedar sujeto a estos Términos. Si no está de acuerdo, por favor no utilice este sitio web.",
-        "section2": "2. Información de la Empresa",
-        "p2": "Zumia Solutions es una empresa registrada en el estado de Florida, ubicada en 2875 S Orange Ave, Orlando, FL 32806, Estados Unidos. Puede contactarnos en zumiasolutions@gmail.com o al +1 (917) 915-6583.",
-        "section3": "3. Alcance de los Servicios",
-        "p3": "Zumia Solutions ofrece servicios administrativos, de cumplimiento, contabilidad y apoyo fiscal para empresas y emprendedores. No somos un bufete de abogados ni una firma de contadores públicos (CPA), y nuestros servicios no constituyen asesoría legal ni financiera. Las decisiones finales y la presentación de documentos son responsabilidad exclusiva del cliente.",
-        "section4": "4. No Garantía de Resultados",
-        "p4": "Aunque nos esforzamos por obtener los mejores resultados posibles, estos dependen de agencias gubernamentales y terceros, como el IRS, autoridades estatales u otras instituciones. Zumia Solutions no puede garantizar aprobaciones, tiempos de procesamiento ni resultados más allá de lo que dichas entidades permitan.",
-        "section5": "5. Responsabilidades del Cliente",
-        "p5": "Los clientes son responsables de proporcionar información precisa, completa y oportuna. Retrasos o errores derivados de información incorrecta o entregada fuera de plazo pueden afectar los resultados del servicio. Zumia Solutions no se hace responsable de dichos retrasos o inexactitudes.",
-        "section6": "6. Clientes Internacionales",
-        "p6": "Nuestros servicios están disponibles tanto para clientes en los Estados Unidos como para clientes internacionales. Los clientes internacionales son responsables de cumplir con las leyes aplicables en su país de residencia.",
-        "section7": "7. Limitación de Responsabilidad",
-        "p7": "Cualquier responsabilidad, en caso de existir, será evaluada caso por caso. Zumia Solutions no será responsable por daños indirectos, incidentales o consecuentes derivados del uso de nuestros servicios o de este sitio web.",
-        "section8": "8. Resolución de Conflictos",
-        "p8": "En caso de surgir una disputa, ambas partes acuerdan intentar resolverla mediante mediación antes de recurrir a cualquier otra acción legal.",
-        "section9": "9. Propiedad Intelectual",
-        "p9": "Tosos los textos, logotipos propios y elementos de diseño estructural, son propiedad de Zumia Solutions y no puede ser utilizado sin autorización previa por escrito, algunas imagenes de apoyo son de fuentes externas"
+        "h1": "Términos y <1>Condiciones</1>",
+        "updated": "<1>Última actualización:</1> 24/10/2026",
+        "s1": {
+            "title": "1. Introducción",
+            "b1": "Estos Términos y Condiciones regulan el uso del sitio web {{domain}} y la contratación de los servicios de Zumia Solutions. Al navegar por el sitio o enviarnos una solicitud, aceptas estos términos. Si no estás de acuerdo, te pedimos que no uses el sitio. Cuando contrates un plan, las condiciones específicas quedarán en un contrato de prestación de servicios firmado por las partes; si hay diferencias entre este texto y el contrato, prevalece el contrato."
+        },
+        "s2": {
+            "title": "2. Información del Proveedor",
+            "b1": "Zumia Solutions opera como marca bajo persona natural, que presta sus servicios desde Bogotá, Colombia.",
+            "b2": {
+                "i1": "Nombre: {{name}}",
+                "i2": "NIT: {{nit}}",
+                "i3": "Dirección de notificaciones: {{address}}",
+                "i4": "Correo electrónico: {{email}}",
+                "i5": "Teléfono / WhatsApp: {{phone}}",
+                "i6": "Horario de atención: Lunes a Viernes, 7 AM a 6 PM"
+            }
+        },
+        "s3": {
+            "title": "3. Alcance de los Servicios",
+            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes: Esencial, Profesional y Premium. El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos servicios adicionales, cuyo alcance, precio y plazo se acuerdan por escrito caso por caso.",
+            "b2": "No prestamos asesoría legal, contable, tributaria ni financiera. Los borradores de textos legales que podamos entregar (por ejemplo, términos y condiciones o políticas de privacidad) son un punto de partida a partir de la información brindada por el cliente: El cliente debe revisarlos y ajustarlos, y su contenido final es responsabilidad del cliente."
+        },
+        "s4": {
+            "title": "4. No Garantía de Resultados",
+            "b1": "Entregamos sitios adaptables a celulares y computadores, con estructura SEO técnica y listos para publicarse. Esto facilita que los buscadores lean el sitio, aunque estos servicios sean la medida correcta para aproximarse a un mayor alcance no garantizamos posicionamiento, visitas, contactos ni ventas, que dependen de factores fuera de nuestro control (buscadores, competencia, contenidos, inversión en publicidad, entre otros)."
+        },
+        "s5": {
+            "title": "5. Responsabilidades del Cliente",
+            "b1": "El cliente debe entregar los insumos necesarios (logotipo, textos, imágenes, datos de contacto, enlaces a redes y accesos) a más tardar 15 días calendario después de la firma del contrato, y responder a las entregas de revisión. Mientras falten insumos, accesos o respuestas, los plazos del proyecto se suspenden.",
+            "b2": "Si el cliente no responde a una entrega de revisión en 3 días calendario, podemos entenderla como aprobada para continuar con el proyecto, y así se lo avisaremos por escrito. Si el proyecto permanece inactivo por más de 15 días calendario, podemos cerrarlo y liquidarlo, o reactivarlo con un costo de reanudación del 10 % del valor del proyecto.",
+            "b3": "El cliente debe proporcionar información precisa y completa. Los retrasos o errores derivados de información incorrecta o tardía no son responsabilidad de Zumia Solutions."
+        },
+        "s6": {
+            "title": "6. Clientes fuera de Colombia",
+            "b1": "Los precios se expresan en pesos colombianos (COP). Los clientes que residan fuera de Colombia deben cumplir las leyes aplicables en su país y asumir los impuestos o costos de pago que correspondan."
+        },
+        "s7": {
+            "title": "7. Planes, Precios, Pagos y Plazos",
+            "b1": "Los planes y precios publicados en este sitio y en nuestras redes sociales son ofertas generales, vigentes hasta el 31 de diciembre de 2026 o hasta que los modifiquemos con aviso en el sitio. Cualquier ajuste a un proyecto en particular se acuerda por escrito.",
+            "b2": "<1>Precio.</1> Los precios están en pesos colombianos (COP). El precio total del proyecto se te informa por escrito antes de que lo aceptes.",
+            "b3": "<1>Pago.</1> El valor del proyecto se paga de la siguiente manera: 50 % para iniciar el desarrollo y 50 % restante a la entrega final. Medios de pago: Transferencia bancaria ó pago en línea con confirmación de recibido. El sitio se publica una vez recibido el pago total. Si hay mora superior a tres (3) días calendario en un pago pendiente, podemos suspender el proyecto o la publicación.",
+            "b4": "<1>Plazos.</1> Los plazos de cada plan se cuentan en días calendario desde el pago del anticipo y la entrega de los insumos mínimos. Pueden extenderse por las rondas de cambios (un día calendario adicional por cada item ajustado) o por suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
+            "b5": "<1>Cambios.</1> Cada plan incluye dos rondas de cambios sin costo. Los cambios posteriores se tratan como mantenimiento con alcance, precio y plazo acordados por escrito, o según el mantenimiento incluido en el plan.",
+            "b6": "<1>Dominio y hosting.</1> Su costo corresponde al cliente."
+        },
+        "s8": {
+            "title": "8. Derecho de Retracto, Cancelación y Devoluciones",
+            "b1": "<1>Derecho de retracto.</1> Si contratas a distancia como consumidor en los términos de la Ley 1480 de 2011 (persona natural o jurídica que adquiere el servicio como destinatario final y sin que esté ligado intrínsecamente a su actividad económica), puedes retractarte dentro de los cinco (5) días hábiles siguientes a la celebración del contrato, siempre que la prestación del servicio no haya comenzado con tu acuerdo. Para ejercerlo, escríbenos a {{email}} indicando tu nombre y el plan contratado. Si te retractas, resolvemos el contrato y te devolvemos todo lo pagado, sin descuentos ni retenciones, en un máximo de treinta (30) días calendario desde que ejerces el derecho.",
+            "b2": "Comenzamos a prestar el servicio solo cuando lo acuerdas de forma expresa (por ejemplo, al firmar el contrato y pagar el anticipo para iniciar). Desde ese momento, el derecho de retracto deja de aplicar, porque la ley lo exceptúa en servicios cuya prestación comenzó con tu acuerdo.",
+            "b3": "<1>Cancelación.</1> Puedes terminar el contrato en cualquier momento mediante aviso escrito. La devolución depende de la etapa del proyecto, sobre los valores desembolsados:",
+            "b4": {
+                "h1": "Momento de la cancelación",
+                "h2": "Devolución",
+                "r1c1": "Antes de iniciar el proyecto",
+                "r1c2": "100 %",
+                "r2c1": "Después del inicio y antes de la primera entrega",
+                "r2c2": "60 %",
+                "r3c1": "Después de la primera entrega y antes de la primera ronda de cambios",
+                "r3c2": "40 %",
+                "r4c1": "Después de la primera ronda y antes de la segunda",
+                "r4c2": "20 %",
+                "r5c1": "Después de la segunda ronda o de la aceptación",
+                "r5c2": "0 %"
+            },
+            "b5": "Las compras a terceros hechas con tu autorización y financiación (dominio, hosting, licencias) no son reembolsables.",
+            "b6": "<1>Incumplimiento nuestro.</1> Si no ejecutamos, total o parcialmente, el servicio contratado, te devolvemos lo pagado por la parte no ejecutada."
+        },
+        "s9": {
+            "title": "9. Garantía y Corrección de Errores",
+            "b1": "Corregimos sin costo los errores (bugs) atribuibles a nuestro desarrollo que reportes dentro de los diez (10) días calendario siguientes a la entrega final. Esto no limita las garantías que la ley reconoce a los consumidores."
+        },
+        "s10": {
+            "title": "10. Limitación de Responsabilidad",
+            "b1": "En la medida permitida por la ley, la responsabilidad total de Zumia Solutions frente al cliente se limita al valor efectivamente pagado por el plan contratado. No respondemos por lucro cesante, costos de oportunidad, pérdida de datos que no administremos, daños reputacionales, interrupción del negocio ni daños indirectos derivados del uso o del uso inadecuado del sitio, salvo dolo o culpa grave comprobada conforme a la ley. Tampoco somos responsables por caídas, suspensiones o cambios de políticas de terceros (hosting, dominio, bases de datos, redes sociales).",
+            "b2": "Nada de lo anterior limita derechos que la ley reconoce a los consumidores y que no pueden renunciarse."
+        },
+        "s11": {
+            "title": "11. Peticiones, Quejas y Reclamos",
+            "b1": "Puedes enviarnos peticiones, quejas o reclamos por el formulario de contacto de este sitio o al correo {{email}}. Conservamos constancia de la fecha y hora de cada comunicación. Plazo de respuesta: 3 días hábiles, para pronta respuesta comunicarse al número de telefono listado.",
+            "b2": "La autoridad de protección al consumidor en Colombia es la Superintendencia de Industria y Comercio: <2>{{sicUrl}}</2>"
+        },
+        "s12": {
+            "title": "12. Resolución de Conflictos y Ley Aplicable",
+            "b1": "Ante cualquier diferencia, las partes intentarán resolverla mediante arreglo directo dentro de los diez (10) días hábiles siguientes a la notificación escrita. Si persiste, acudirán a conciliación y, de ser necesario, a los jueces competentes de Colombia. Estos términos se rigen por las leyes de la República de Colombia."
+        },
+        "s13": {
+            "title": "13. Propiedad Intelectual",
+            "b1": "Los textos, logotipos, la marca Zumia y los elementos de diseño de este sitio son propiedad de Zumia Solutions y no pueden usarse sin autorización previa por escrito.",
+            "b2": "En los proyectos, el cliente conserva la propiedad de su contenido (textos, logotipo, fotos y datos) y Zumia Solutions conserva la de sus plantillas, componentes, metodología y estructuras genéricas. La entrega estándar es el sitio publicado, sin el código; el cliente puede solicitar el código con un cargo adicional equivalente al 25 % del valor del proyecto. Una vez publicado el proyecto, el cliente autoriza a Zumia Solutions a mostrarlo en su portafolio, salvo que lo prohíba por escrito."
+        },
+        "s14": {
+            "title": "14. Datos Personales",
+            "b1": "Los datos que envías por el formulario de este sitio se tratan según nuestra Política de Privacidad. En los sitios que desarrollamos para clientes, el cliente es el responsable del tratamiento de los datos que recoja su sitio (Ley 1581 de 2012), y Zumia Solutions los usa solo para configurar, probar y mantener técnicamente el sitio."
+        },
+        "s15": {
+            "title": "15. Aceptación y Modificaciones",
+            "b1": "Al firmar el contrato y pagar el anticipo, aceptas de forma expresa las condiciones del plan elegido. Nunca entendemos tu silencio como aceptación de cobros u obligaciones nuevas. Puedes consultar, imprimir y descargar estos términos en cualquier momento desde este sitio.",
+            "b2": "Podemos actualizar estos términos. La versión vigente es la publicada en este sitio, con su fecha de actualización. Los cambios no afectan los contratos ya firmados."
+        }
     },
     "privacy": {
-        "h1": "Política de Privacidad",
-        "section1": "1. Introducción",
-        "p1": "Zumia Solutions respeta su privacidad y está comprometida con la protección de su información personal. Esta Política de Privacidad explica cómo recopilamos, utilizamos y protegemos los datos cuando usted utiliza nuestro sitio web.",
-        "section2": "2. Información que Recopilamos",
-        "p2": "Recopilamos información personal únicamente cuando usted la proporciona de forma voluntaria a través de nuestro formulario de contacto. Esto incluye su nombre, dirección de correo electrónico y el contenido del mensaje.",
-        "section3": "3. Uso de la Información",
-        "p3": "La información enviada se utiliza exclusivamente para responder consultas, brindar asesorías y prestar los servicios solicitados. Los datos pueden ser procesados internamente y a través de Google Apps Script y Gmail con fines de comunicación.",
-        "section4": "4. Almacenamiento de Datos",
-        "p4": "Los envíos del formulario de contacto se almacenan en una base de datos interna privada, accesible únicamente por Zumia Solutions. No vendemos, alquilamos ni compartimos su información personal con terceros con fines comerciales.",
-        "section5": "5. Servicios de Terceros",
-        "p5": "Nuestro sitio web incluye servicios de terceros como Google Maps, integraciones de Instagram, enlaces a WhatsApp, Facebook y enlaces de redacción de correos en Gmail. Estos servicios pueden recopilar datos del dispositivo, uso o dirección IP conforme a sus propias políticas de privacidad.",
-        "section6": "6. Cookies y Almacenamiento Local",
-        "p6": "Zumia Solutions no utiliza cookies propias. Las preferencias de idioma se almacenan localmente en su navegador mediante localStorage. Los servicios de terceros integrados pueden establecer sus propias cookies fuera de nuestro control.",
-        "section7": "7. Derechos del Usuario",
-        "p7": "Usted tiene derecho a solicitar acceso, corrección o eliminación de su información personal. Estas solicitudes pueden realizarse contactándonos en zumiasolutions@gmail.com.",
-        "section8": "8. Seguridad de los Datos",
-        "p8": "Implementamos medidas administrativas y técnicas razonables para proteger su información personal contra accesos no autorizados o divulgación indebida."
+        "h1": "Política de <1>Privacidad</1>",
+        "updated": "<1>Última actualización:</1> 24/10/2026",
+        "s1": {
+            "title": "1. Responsable del Tratamiento",
+            "b1": "Zumia Solutions opera como marca bajo persona natural, con domicilio en Bogotá, Colombia, responsable del tratamiento de los datos personales que recogemos en este sitio (Ley 1581 de 2012).",
+            "b2": {
+                "i1": "Correo: {{email}}",
+                "i2": "Teléfono / WhatsApp: {{phone}}",
+                "i3": "NIT: {{nit}}",
+                "i4": "Dirección de notificaciones: {{address}}"
+            }
+        },
+        "s2": {
+            "title": "2. Datos que Recogemos",
+            "b1": {
+                "i1": "<1>Formulario de contacto:</1> Nombre, correo electrónico y el contenido de la consulta. Se entregan de forma voluntaria.",
+                "i2": "<1>WhatsApp y correo:</1> Si nos escribe por estos medios, recibimos su número o su correo y lo que nos cuente.",
+                "i3": "<1>Datos técnicos:</1> Al visitar el sitio, el hosting y los servicios de seguridad pueden registrar datos técnicos como la dirección IP, el navegador y la fecha de la visita."
+            },
+            "b2": "No le pedimos datos sensibles (salud, orientación sexual, religión, datos biométricos, entre otros) y le pedimos no enviarlos. Este sitio no está dirigido a menores de edad."
+        },
+        "s3": {
+            "title": "3. Para Qué Usamos sus Datos",
+            "b1": {
+                "i1": "Responder su consulta y darle información sobre nuestros servicios.",
+                "i2": "Agendar un diagnóstico o preparar una propuesta, si lo solicita.",
+                "i3": "Gestionar la relación comercial si decide contratar.",
+                "i4": "Mantener la seguridad del sitio y prevenir el envío no deseado (spam)."
+            },
+            "b2": "No usamos sus datos para fines distintos sin pedirle antes su autorización."
+        },
+        "s4": {
+            "title": "4. Su Autorización",
+            "b1": "Antes de enviar el formulario, le pedimos que acepte esta política marcando una casilla. Sin su autorización no recogemos sus datos. Puede retirarla en cualquier momento escribiéndonos a {{email}}."
+        },
+        "s5": {
+            "title": "5. Dónde se Guardan y Quién Interviene",
+            "b1": "Para recibir sus mensajes usamos estos servicios de terceros:",
+            "b2": {
+                "i1": "<1>GitHub Pages:</1> Aloja el sitio web.",
+                "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía.",
+                "i3": "<1>Google (Apps Script, Hojas de cálculo y Gmail):</1> Almacena su consulta en una hoja de cálculo privada y recibimos los avisos por correo.",
+                "i4": "<1>WhatsApp (Meta) e Instagram (Meta):</1> Si usa el botón de WhatsApp o ve la sección de Instagram, esos servicios aplican sus propias políticas."
+            },
+            "b3": "Algunos de estos proveedores procesan datos en servidores ubicados fuera de Colombia, por ejemplo, en Estados Unidos. Al aceptar esta política, usted autoriza de forma expresa ese envío. No vendemos, alquilamos ni compartimos sus datos con terceros con fines comerciales."
+        },
+        "s6": {
+            "title": "6. Cuánto Tiempo los Conservamos",
+            "b1": "Los datos son conservados a menos de que usted solicite su eliminación."
+        },
+        "s7": {
+            "title": "7. Sus Derechos",
+            "b1": "Como titular de los datos, usted puede:",
+            "b2": {
+                "i1": "Conocer, actualizar y rectificar sus datos.",
+                "i2": "Pedir prueba de la autorización que nos otorgó.",
+                "i3": "Ser informado sobre el uso que hacemos de sus datos.",
+                "i4": "Revocar la autorización y pedir la eliminación de sus datos, cuando la ley lo permita.",
+                "i5": "Acceder de forma gratuita a sus datos.",
+                "i6": "Presentar quejas ante la Superintendencia de Industria y Comercio (<2>{{sicUrl}}</2>) por infracciones a la ley."
+            }
+        },
+        "s8": {
+            "title": "8. Cómo Ejercer sus Derechos",
+            "b1": "Escríbanos a {{email}} indicando su nombre, el correo con el que nos contactó y lo que solicita. Atendemos las consultas en un máximo de diez (10) días hábiles y los reclamos en un máximo de quince (15) días hábiles, contados desde que se reciban. Si necesitamos más tiempo, le avisamos el motivo y la nueva fecha."
+        },
+        "s9": {
+            "title": "9. Cookies y Almacenamiento Local",
+            "b1": "Zumia Solutions no usa cookies propias para publicidad ni para seguirlo. Usamos información de su preferencia en cuanto a idioma respecto al navegador. Los servicios de terceros incluidos en el sitio pueden establecer sus propias cookies, fuera de nuestro control y según sus políticas."
+        },
+        "s10": {
+            "title": "10. Seguridad",
+            "b1": "Aplicamos medidas técnicas y administrativas razonables para proteger sus datos contra acceso no autorizado, pérdida o uso indebido: Conexión cifrada (HTTPS), acceso restringido a la hoja de cálculo y a la cuenta de correo, y uso de proveedores reconocidos. Ningún sistema es completamente seguro, por lo que no podemos garantizar una protección absoluta."
+        },
+        "s11": {
+            "title": "11. Sitios Desarrollados para Clientes",
+            "b1": "En los sitios web que creamos para clientes, el cliente es el responsable de los datos que recoja su sitio y de contar con su propia política de privacidad. Zumia Solutions accede a esos datos solo para configurar, probar y mantener técnicamente el sitio."
+        },
+        "s12": {
+            "title": "12. Cambios a esta Política",
+            "b1": "Podemos actualizar esta política. La versión vigente es la publicada en este sitio, con su fecha de actualización."
+        }
     },
     "brand": {
         "name": "Zumia Solutions"
@@ -232,5 +378,8 @@
     "clients": {
         "jotuName": "JoTu Solutions",
         "jotuAlt": "Logo de JoTu Solutions"
+    },
+    "legal": {
+        "toc": "En esta página"
     }
 }

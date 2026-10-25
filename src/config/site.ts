@@ -37,3 +37,12 @@ export const CONTACT_WORKER_URL = "https://contact.zumiasolutions.workers.dev/ap
 /** Google Apps Script que devuelve las publicaciones de Instagram de Inicio (endpoint público). */
 export const INSTAGRAM_FEED_URL =
   "https://script.google.com/macros/s/AKfycbxscPAE1czwBGME-COYjhEC-sq_vQceer9K3CgcEcEnfzUJZ5_ETvVv9yiUNVLwnK45/exec";
+
+/** Datos del proveedor para Términos y Privacidad (Ley 1480 de 2011, art. 50). */
+export const OWNER_NAME = "Manuel Santiago Pérez Hernández";
+export const OWNER_NIT = "1013105486-6";
+/** Dirección de notificaciones: se publica SOLO en las páginas legales. */
+export const NOTIFICATION_ADDRESS = "TV. 70D BIS A #68-75 SUR, Bogotá";
+
+/** Superintendencia de Industria y Comercio (autoridad de protección al consumidor). */
+export const SIC_URL = "https://www.sic.gov.co";
