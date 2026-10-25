@@ -80,7 +80,8 @@ const Block = ({ base, block }: { base: string; block: LegalBlock }) => {
 const Toc = ({ ns, sections }: { ns: string; sections: LegalSection[] }) => {
   const { t } = useTranslation();
   return (
-    <ol className="flex flex-col gap-1 text-sm">
+    // Los títulos de las secciones siempre están en español (también con el sitio en inglés)
+    <ol lang="es" className="flex flex-col gap-1 text-sm">
       {sections.map(({ id }) => (
         <li key={id}>
           <a
@@ -110,7 +111,10 @@ export const LegalPage = ({
   seoTitleKey: string;
   seoDescriptionKey: string;
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  // Los textos legales solo existen en español: en inglés se muestran en
+  // español (fallback de i18next) con un aviso arriba
+  const isEnglish = i18n.language === "en";
 
   return (
     <>
@@ -120,6 +124,12 @@ export const LegalPage = ({
         <PageHero id={`${ns}-titulo`} eyebrow={t("footer.legals")} titleKey={`${ns}.h1`} lead={<Rich k={`${ns}.updated`} />} />
 
         <Section tone="white" innerClassName="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-16">
+          {/* Solo con el sitio en inglés: aviso de que el documento está en español */}
+          {isEnglish && (
+            <p className="rounded-2xl bg-cream-50 p-4 leading-relaxed font-semibold text-navy-900 ring-1 ring-navy-900/10 lg:col-span-2">
+              {t("legal.notice")}
+            </p>
+          )}
           {/* Índice: desplegable en celular, fijo al lado en escritorio */}
           <details className="rounded-2xl bg-cream-50 p-4 ring-1 ring-navy-900/10 lg:hidden">
             <summary className="cursor-pointer font-title font-bold text-navy-900">{t("legal.toc")}</summary>
@@ -132,7 +142,7 @@ export const LegalPage = ({
             <Toc ns={ns} sections={sections} />
           </nav>
 
-          <article className="flex max-w-[70ch] flex-col gap-12 text-[1.0625rem] leading-[1.8] text-navy-800">
+          <article lang="es" className="flex max-w-[70ch] flex-col gap-12 text-[1.0625rem] leading-[1.8] text-navy-800">
             {sections.map(({ id, blocks }) => (
               <section key={id} aria-labelledby={`${ns}-${id}`} className="flex flex-col gap-4">
                 <h2 id={`${ns}-${id}`} className="scroll-mt-24 font-title text-2xl leading-tight font-bold text-navy-900 md:text-[1.75rem]">
