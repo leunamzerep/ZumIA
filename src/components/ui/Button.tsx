@@ -22,7 +22,7 @@ const SIZES: Record<Size, string> = {
   lg: "gap-2.5 px-7 py-4 text-base",
 };
 
-export const buttonClass = (variant: Variant = "primary", size: Size = "md", className?: string) =>
+const buttonClass = (variant: Variant = "primary", size: Size = "md", className?: string) =>
   cx(
     "inline-flex items-center justify-center rounded-full font-body font-bold",
     "transition-[background-color,color,translate,box-shadow] duration-200 hover:-translate-y-0.5",
