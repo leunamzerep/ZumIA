@@ -18,7 +18,7 @@ const CursorIcon = (p: SVGProps<SVGSVGElement>) => (
   <svg {...icon} {...p}><path d="m5 3 14 7-6 2-2 6Z" /><path d="m13 12 6 6" /></svg>
 );
 const GrowthIcon = (p: SVGProps<SVGSVGElement>) => (
-  <svg {...icon} {...p}><path d="M4 20V14M10 20V10M16 20V6" /><path d="m14 4 3-2 3 2M17 2v6" /></svg>
+  <svg {...icon} {...p}><path d="M5 20v-4M10 20v-7M15 20v-10" /><path d="m4 10 5-4 3 2 7-5M15 3h4v4" /></svg>
 );
 
 // Las 4 tarjetas existentes (home.title1–4 y home.text1–4)
