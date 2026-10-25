@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { WHATSAPP_URL } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 
@@ -17,12 +17,13 @@ import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
  */
 export const WhatsAppFloat = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
 
   return (
     <div className="pointer-events-none sticky bottom-0 z-30 h-0">
       <LanguageSwitch className="pointer-events-auto absolute left-4 bottom-[max(1rem,env(safe-area-inset-bottom))] md:left-6 md:bottom-7" />
       <a
-        href={WHATSAPP_URL}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t("footer.whatsapp")}

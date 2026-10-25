@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/img/logo-zumia.webp";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { PATHS } from "@/config/paths";
-import { WHATSAPP_URL } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { NAV_LINKS, isCurrentPath } from "../navLinks";
 
@@ -40,6 +40,7 @@ const pillClass = (active: boolean) =>
 
 export const Header = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
   const localizePath = useLocalizedPath();
   const { pathname } = useLocation();
 
@@ -120,7 +121,7 @@ export const Header = () => {
           </nav>
 
           <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="hidden items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 text-sm font-bold text-navy-900 shadow-sm transition-colors duration-200 hover:bg-gold-400 lg:inline-flex"
@@ -169,7 +170,7 @@ export const Header = () => {
             })}
           </ul>
           <a
-            href={WHATSAPP_URL}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className={`inline-flex items-center justify-center gap-2 rounded-full bg-gold-500 px-6 py-4 text-base font-bold text-navy-900 ${itemClass(open)}`}

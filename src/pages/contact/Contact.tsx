@@ -8,7 +8,8 @@ import { Card } from "@/components/ui/Card";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
-import { EMAIL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
+import { EMAIL, PHONE_DISPLAY } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 
 // Íconos de horario y ubicación (dibujados aquí, decorativos)
 const icon = { "aria-hidden": true, focusable: false, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" } as const;
@@ -33,6 +34,7 @@ const linkClass = "break-words font-semibold text-white underline-offset-4 hover
 // Sin dirección ni mapa: la dirección de notificaciones solo va en las páginas legales
 export const Contact = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
   const mailLink: string = t("footer.mailRedirect");
 
   return (
@@ -59,7 +61,7 @@ export const Contact = () => {
               <h2 id="canales-titulo" className="font-title text-h3 font-bold text-white">{t("contact.channels")}</h2>
               <ul className="flex flex-col gap-6">
                 <Channel icon={<WhatsAppIcon className="size-6" />} label={t("contact.whatsappLabel")}>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
                     {PHONE_DISPLAY}
                     <span className="sr-only"> {t("footer.newTab")}</span>
                   </a>

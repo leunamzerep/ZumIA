@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { WHATSAPP_URL } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 import { ButtonAnchor } from "@/components/ui/Button";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { WhatsAppIcon } from "@/components/ui/icons";
@@ -11,6 +11,7 @@ import { PLANS_ID } from "./Plans";
 /** Hero de Inicio: propuesta de valor, dos acciones y el mockup de la web. */
 export const Hero = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
 
   return (
     <section
@@ -37,7 +38,7 @@ export const Hero = () => {
               <ButtonAnchor href={`#${PLANS_ID}`} size="lg">
                 {t("home.hero.ctaPlans")}
               </ButtonAnchor>
-              <ButtonAnchor href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" variant="outline-light" size="lg">
+              <ButtonAnchor href={whatsappUrl} target="_blank" rel="noopener noreferrer" variant="outline-light" size="lg">
                 <WhatsAppIcon className="size-5" />
                 {t("home.hero.ctaWhatsapp")}
               </ButtonAnchor>

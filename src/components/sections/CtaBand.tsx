@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import { WHATSAPP_URL } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 import { PATHS } from "@/config/paths";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
@@ -12,6 +12,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 /** Llamada a la acción final (Inicio y Nosotros): ir a Contacto o escribir por WhatsApp. */
 export const CtaBand = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
   const localizePath = useLocalizedPath();
 
   return (
@@ -31,7 +32,7 @@ export const CtaBand = () => {
             <ButtonLink to={localizePath(PATHS.contact)} size="lg">
               {t("card.contactUs")}
             </ButtonLink>
-            <ButtonAnchor href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" variant="outline-light" size="lg">
+            <ButtonAnchor href={whatsappUrl} target="_blank" rel="noopener noreferrer" variant="outline-light" size="lg">
               <WhatsAppIcon className="size-5" />
               {t("header.whatsapp")}
             </ButtonAnchor>

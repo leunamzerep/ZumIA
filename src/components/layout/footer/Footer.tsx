@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 
 import logo from "@/assets/img/logo-zumia.webp";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
-import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY, WHATSAPP_URL } from "@/config/site";
+import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY } from "@/config/site";
+import { useWhatsappUrl } from "@/config/whatsapp";
 import { PATHS } from "@/config/paths";
 import { FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { NAV_LINKS } from "../navLinks";
@@ -17,6 +18,7 @@ const socialClass =
 
 export const Footer = () => {
   const { t } = useTranslation();
+  const whatsappUrl = useWhatsappUrl();
   const localizePath = useLocalizedPath();
   const mailLink: string = t("footer.mailRedirect");
 
@@ -80,7 +82,7 @@ export const Footer = () => {
           <h2 className={headingClass}>{t("header.contact")}</h2>
           <ul className="flex flex-col gap-3">
             <li>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2.5`}>
+              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className={`${linkClass} inline-flex items-center gap-2.5`}>
                 <WhatsAppIcon className="size-5 shrink-0 text-gold-400" />
                 <span>{PHONE_DISPLAY}</span>
                 <span className="sr-only">{t("footer.newTab")}</span>
