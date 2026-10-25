@@ -55,8 +55,8 @@
         "text4": "Desarrollamos campañas de marketing apuntando a tu página web",
         "invitation": "Conoce las Últimas Novedades:",
         "hero": {
-            "eyebrow": "Páginas web para negocios en Colombia",
-            "lead": "Diseñamos, publicamos y mantenemos la página web de tu negocio, con planes claros, precios en pesos colombianos y trabajo mano a mano contigo.",
+            "eyebrow": "Páginas web desde Colombia",
+            "lead": "Diseñamos, publicamos y mantenemos la página web de tu negocio, con planes claros y trabajo mano a mano contigo.",
             "ctaPlans": "Ver planes",
             "ctaWhatsapp": "Escríbenos por WhatsApp",
             "mockupLabel": "Ilustración de una página web en celular y computador"
@@ -324,7 +324,7 @@
     "plans": {
         "eyebrow": "Planes",
         "title": "Elige el plan para tu <1>negocio</1>",
-        "lead": "Precios en pesos colombianos. Escríbenos y resolvemos tus dudas antes de empezar.",
+        "lead": "Escríbenos y resolvemos tus dudas antes de empezar.",
         "priceLabel": "Precio: {{price}} pesos colombianos",
         "badge": "Recomendado",
         "includes": "Incluye",
