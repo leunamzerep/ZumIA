@@ -84,6 +84,7 @@
     },
     "card": {
         "schedule": "Agenda tu Diagnóstico",
+        "scheduleDescription": "El diagnóstico es gratuito: revisamos las necesidades de tu negocio y te proponemos los planes y soluciones que mejor resuelven tus problemas.",
         "contactUs": "Contáctanos"
     },
     "about": {

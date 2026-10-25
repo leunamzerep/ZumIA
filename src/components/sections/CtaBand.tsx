@@ -23,7 +23,10 @@ export const CtaBand = () => {
         <GeometricPattern tone="dark" />
         <GeometricPattern variant="cluster" className="-right-10 -bottom-10 w-72 opacity-70 md:w-96" />
         <div className="flex max-w-2xl flex-col gap-8">
-          <SectionHeading id="cta-titulo" tone="dark" titleKey="card.schedule" lead={t("home.cta.text")} />
+          <div className="flex flex-col gap-4">
+            <SectionHeading id="cta-titulo" tone="dark" titleKey="card.schedule" lead={t("home.cta.text")} />
+            <p className="text-sm leading-relaxed text-white/70 md:text-base">{t("card.scheduleDescription")}</p>
+          </div>
           <div className="flex flex-col gap-3 sm:flex-row">
             <ButtonLink to={localizePath(PATHS.contact)} size="lg">
               {t("card.contactUs")}
