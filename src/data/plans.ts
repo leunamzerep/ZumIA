@@ -19,7 +19,7 @@ export type Plan = {
 export const PLANS: Plan[] = [
   {
     id: "esencial",
-    price: 490_000,
+    price: 590_000,
     features: ["plans.esencial.f1", "plans.esencial.f2", "plans.esencial.f3", "plans.esencial.f4", "plans.esencial.f5"],
     maintenanceKey: "plans.esencial.maintenance",
   },
@@ -31,7 +31,7 @@ export const PLANS: Plan[] = [
   },
   {
     id: "premium",
-    price: 1_490_000,
+    price: 1_690_000,
     features: ["plans.premium.f1", "plans.premium.f2", "plans.premium.f3", "plans.premium.f4"],
   },
 ];
