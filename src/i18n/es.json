@@ -369,7 +369,9 @@
     },
     "clients": {
         "jotuName": "JoTu Solutions",
-        "jotuAlt": "Logo de JoTu Solutions"
+        "jotuAlt": "Logo de JoTu Solutions",
+        "ac4Name": "AC4 Group",
+        "ac4Alt": "Logo de AC4 Group"
     },
     "legal": {
         "toc": "En esta página"
