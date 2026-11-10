@@ -3,7 +3,7 @@
 // public/robots.txt y public/CNAME son archivos estáticos y repiten el dominio.
 
 /** Dominio oficial (sin barra final). */
-export const SITE_URL = "https://zumiasolutions.xyz";
+export const SITE_URL = "https://zumia.dev";
 
 /**
  * Imagen que se ve al compartir la web en redes (og:image / twitter:image).

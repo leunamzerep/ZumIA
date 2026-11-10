@@ -3,4 +3,4 @@
 # Permite todo: las rutas /en no se bloquean para que Google lea su noindex.
 User-agent: *
 Allow: /
-Sitemap: https://zumiasolutions.xyz/sitemap.xml
+Sitemap: https://zumia.dev/sitemap.xml

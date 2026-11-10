@@ -1,6 +1,6 @@
 # Zumia Solutions — sitio web
 
-Web de la marca Zumia Solutions: https://zumiasolutions.xyz
+Web de la marca Zumia Solutions: https://zumia.dev
 
 Hecha con React 18 + TypeScript + Vite 7. Las rutas usan React Router y los textos están en `src/i18n/`.
 
@@ -49,7 +49,7 @@ La publicación es automática:
 
 - Hacer **push a la rama `main`** activa el workflow `.github/workflows/deploy.yml`.
 - El workflow instala dependencias, corre `npm run build` y publica `dist/` en **GitHub Pages**.
-- El dominio propio (zumiasolutions.xyz, comprado en Porkbun) apunta a GitHub Pages.
+- El dominio propio (zumia.dev, comprado en Porkbun) apunta a GitHub Pages.
 
 Solo `main` publica. El trabajo se hace en otras ramas.
 
@@ -95,7 +95,7 @@ En el código, `@/` significa `src/`. Por ejemplo, `@/config/site` es `src/confi
 
 Si cambia el dominio, también hay que editar a mano estos archivos estáticos:
 
-- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito; cada uno tiene un comentario que lo recuerda). El sitemap solo lista las 5 rutas en español y con barra final (`https://zumiasolutions.xyz/about-us/`), la misma forma que usa el canonical. Si agregas una página, agrégala también ahí.
+- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito; cada uno tiene un comentario que lo recuerda). El sitemap solo lista las 5 rutas en español y con barra final (`https://zumia.dev/about-us/`), la misma forma que usa el canonical. Si agregas una página, agrégala también ahí.
 - `public/CNAME` (dominio de GitHub Pages).
 
 El enlace que abre Gmail con un correo ya escrito está en `src/i18n/es.json` y `en.json`, en la clave `footer.mailRedirect`.
