@@ -6,9 +6,36 @@ import { OG_IMAGE, SITE_URL } from "@/config/site";
 
 const OG_IMAGE_URL = `${SITE_URL}${OG_IMAGE.path}`;
 
+type ArticleSeo = {
+  /** Título del artículo sin el sufijo de la marca (headline del JSON-LD) */
+  headline: string;
+  /** Fecha de publicación, AAAA-MM-DD */
+  published: string;
+};
+
 type PageSeoProps = {
   title: string;
   description: string;
+  /** Solo en artículos del blog: og:type=article y datos estructurados Article */
+  article?: ArticleSeo;
+};
+
+// Datos estructurados (schema.org Article) de un artículo del blog
+const articleJsonLd = (article: ArticleSeo, description: string, url: string) => {
+  const organization = { "@type": "Organization", name: "Zumia Solutions", url: `${SITE_URL}/` };
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.headline,
+    description,
+    datePublished: article.published,
+    dateModified: article.published,
+    inLanguage: "es-CO",
+    image: OG_IMAGE_URL,
+    mainEntityOfPage: url,
+    author: organization,
+    publisher: { ...organization, logo: { "@type": "ImageObject", url: `${SITE_URL}/mainIcon.png` } },
+  });
 };
 
 // URL absoluta siempre con barra final (/about-us/), porque el build genera
@@ -19,7 +46,7 @@ const toAbsoluteUrl = (pathname: string) => {
   return clean === "" ? `${SITE_URL}/` : `${SITE_URL}${clean}/`;
 };
 
-export const PageSeo = ({ title, description }: PageSeoProps) => {
+export const PageSeo = ({ title, description, article }: PageSeoProps) => {
   const { pathname } = useLocation();
   const lang = getLangFromPath(pathname);
   const normalizedPath = stripLangPrefix(pathname);
@@ -35,7 +62,8 @@ export const PageSeo = ({ title, description }: PageSeoProps) => {
           indexarlas, pero sí puede seguir sus enlaces. No hay hreflang
           hasta que exista una traducción real. */}
       {lang === "en" && <meta name="robots" content="noindex,follow" />}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={article ? "article" : "website"} />
+      {article && <meta property="article:published_time" content={article.published} />}
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={canonicalUrl} />
@@ -50,6 +78,7 @@ export const PageSeo = ({ title, description }: PageSeoProps) => {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={OG_IMAGE_URL} />
       <meta name="twitter:image:alt" content={OG_IMAGE.alt} />
+      {article && <script type="application/ld+json">{articleJsonLd(article, description, canonicalUrl)}</script>}
     </Helmet>
   );
 };

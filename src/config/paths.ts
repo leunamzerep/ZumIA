@@ -8,11 +8,15 @@ export const PATHS = {
   home: "/",
   services: "/services/",
   quote: "/quote/",
+  blog: "/blog/",
   aboutUs: "/about-us/",
   contact: "/contact/",
   terms: "/terms-and-conditions/",
   privacy: "/privacy-policy/",
 } as const;
+
+/** URL de un artículo del blog: /blog/<slug>/ */
+export const blogPostPath = (slug: string) => `${PATHS.blog}${slug}/`;
 
 /** id de la sección de agenda en Contacto: los botones "Agendar asesoría" llevan a /contact/#agenda */
 export const AGENDA_ID = "agenda";

@@ -14,7 +14,9 @@
         "servicesTitle": "Services and extra tools | Zumia Solutions",
         "servicesDescription": "See how we work and the extra tools you can add to your website: bookings, online store, blog, chatbot and more.",
         "quoteTitle": "Build your quote | Zumia Solutions",
-        "quoteDescription": "Choose the plan that fits your business, add extra tools and get an estimated price and timeline for your website."
+        "quoteDescription": "Choose the plan that fits your business, add extra tools and get an estimated price and timeline for your website.",
+        "blogTitle": "Blog | Zumia Solutions",
+        "blogDescription": "Clear articles for small business owners: how customers look for you online, what builds their trust and how to save time. In Spanish."
     },
     "header": {
         "home": "Home",
@@ -28,7 +30,8 @@
         "whatsapp": "Message us on WhatsApp",
         "whatsappMessage": "Hi! I want to know more about your digital services",
         "langSwitch": "View the site in English",
-        "services": "Services"
+        "services": "Services",
+        "blog": "Blog"
     },
     "footer": {
         "legals": "Legal documents",
@@ -60,7 +63,6 @@
         "text3": "Clear, easy-to-use websites designed to bring you closer to your customers",
         "title4": "Grow your digital reach",
         "text4": "We run marketing campaigns that point to your website",
-        "invitation": "Check Out Our Latest News:",
         "hero": {
             "eyebrow": "Professional websites",
             "lead": "We design, publish and maintain your business website, with clear plans and hands-on work with your business.",
@@ -85,8 +87,7 @@
         },
         "cta": {
             "text": "Tell us what your business needs and we'll get back to you soon."
-        },
-        "instagramPost": "Instagram post {{id}}"
+        }
     },
     "card": {
         "schedule": "Book your Assessment",
@@ -349,5 +350,17 @@
         "waPlan": "{{plan}} plan",
         "waMore_one": "and {{count}} more tool",
         "waMore_other": "and {{count}} more tools"
+    },
+    "blog": {
+        "eyebrow": "Blog",
+        "title": "Ideas for your <1>business</1>",
+        "lead": "Short, clear articles for small business owners: how customers look for you, what builds their trust and how to save time.",
+        "notice": "Articles are available in Spanish only.",
+        "readMore": "Read article",
+        "readingTime": "{{count}} min read",
+        "back": "Back to blog",
+        "ctaTitle": "Want a website for your business?",
+        "ctaText": "Build your quote online or message us on WhatsApp and let's talk.",
+        "ctaQuote": "Build my quote"
     }
 }

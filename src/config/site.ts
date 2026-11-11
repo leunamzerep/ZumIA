@@ -45,10 +45,6 @@ export const FACEBOOK_URL = "https://www.facebook.com/people/Zumia-Solutions/615
 /** Cloudflare Worker que recibe el formulario de contacto (endpoint público, no es secreto). */
 export const CONTACT_WORKER_URL = "https://contact.zumiasolutions.workers.dev/api/contacto";
 
-/** Google Apps Script que devuelve las publicaciones de Instagram de Inicio (endpoint público). */
-export const INSTAGRAM_FEED_URL =
-  "https://script.google.com/macros/s/AKfycbxscPAE1czwBGME-COYjhEC-sq_vQceer9K3CgcEcEnfzUJZ5_ETvVv9yiUNVLwnK45/exec";
-
 /** Datos del proveedor para Términos y Privacidad (Ley 1480 de 2011, art. 50). */
 export const OWNER_NAME = "Manuel Santiago Pérez Hernández";
 export const OWNER_NIT = "1013105486-6";

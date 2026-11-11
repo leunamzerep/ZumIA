@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { PageSeo } from "@/components/seo/PageSeo";
 import { CtaBand } from "@/components/sections/CtaBand";
 import { Hero } from "@/components/sections/home/Hero";
-import { InstagramFeed } from "@/components/sections/home/InstagramFeed";
 import { Plans } from "@/components/sections/home/Plans";
 import { Process } from "@/components/sections/home/Process";
 import { Services } from "@/components/sections/home/Services";
@@ -23,8 +22,7 @@ export const Home = () => {
         <Services />
         <Process />
         <Plans />
-        <CtaBand />
-        <InstagramFeed />
+        <CtaBand tone="white" />
       </main>
     </>
   );

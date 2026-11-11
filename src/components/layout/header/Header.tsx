@@ -7,7 +7,7 @@ import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { PATHS } from "@/config/paths";
 import { useWhatsappUrl } from "@/config/whatsapp";
 import { CloseIcon, MenuIcon, WhatsAppIcon } from "@/components/ui/icons";
-import { NAV_LINKS, isCurrentPath } from "../navLinks";
+import { NAV_LINKS, isCurrentPath, isInSection } from "../navLinks";
 
 const MOBILE_MENU_ID = "menu-movil";
 
@@ -35,7 +35,7 @@ const itemDelay = (open: boolean, index: number) => ({
 
 // Píldoras del menú de escritorio: la página actual va en navy con texto blanco
 const pillClass = (active: boolean) =>
-  "inline-flex items-center rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 " +
+  "inline-flex items-center rounded-full px-3 py-2 xl:px-4 text-sm font-semibold transition-colors duration-200 " +
   (active ? "bg-navy-900 text-white" : "text-navy-900 hover:bg-navy-900/8");
 
 export const Header = () => {
@@ -108,10 +108,12 @@ export const Header = () => {
           <nav aria-label={t("header.menu")} className="hidden md:block">
             <ul className="flex items-center gap-1 rounded-full bg-white/70 p-1 ring-1 ring-navy-900/10">
               {NAV_LINKS.map(({ to, labelKey }) => {
-                const active = isCurrentPath(pathname, to);
+                const active = isInSection(pathname, to);
+              // "page" solo en la página exacta; en una subpágina (un artículo), "true"
+              const current = isCurrentPath(pathname, to) ? "page" : active ? "true" : undefined;
                 return (
                   <li key={to}>
-                    <Link to={localizePath(to)} aria-current={active ? "page" : undefined} className={pillClass(active)}>
+                    <Link to={localizePath(to)} aria-current={current} className={pillClass(active)}>
                       {t(labelKey)}
                     </Link>
                   </li>
@@ -124,7 +126,7 @@ export const Header = () => {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-full bg-gold-500 px-5 py-2.5 text-sm font-bold text-navy-900 shadow-sm transition-colors duration-200 hover:bg-gold-400 lg:inline-flex"
+            className="hidden items-center gap-2 shrink-0 whitespace-nowrap rounded-full bg-gold-500 px-5 py-2.5 text-sm font-bold text-navy-900 shadow-sm transition-colors duration-200 hover:bg-gold-400 lg:inline-flex"
           >
             <WhatsAppIcon className="size-4" />
             {t("header.whatsapp")}
@@ -152,12 +154,14 @@ export const Header = () => {
         <nav aria-label={t("header.menu")} className="container-site flex flex-col gap-8 py-10">
           <ul className="flex flex-col gap-2">
             {NAV_LINKS.map(({ to, labelKey }, index) => {
-              const active = isCurrentPath(pathname, to);
+              const active = isInSection(pathname, to);
+                // "page" solo en la página exacta; en una subpágina (un artículo), "true"
+                const current = isCurrentPath(pathname, to) ? "page" : active ? "true" : undefined;
               return (
                 <li key={to} className={itemClass(open)} style={itemDelay(open, index)}>
                   <Link
                     to={localizePath(to)}
-                    aria-current={active ? "page" : undefined}
+                    aria-current={current}
                     className={
                       "block rounded-2xl px-4 py-3 font-title text-3xl font-extrabold uppercase tracking-wide " +
                       (active ? "bg-white/10 text-gold-400" : "text-white hover:bg-white/5")

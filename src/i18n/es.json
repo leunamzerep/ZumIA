@@ -14,7 +14,9 @@
         "servicesTitle": "Servicios y herramientas extra | Zumia Solutions",
         "servicesDescription": "Conoce cómo trabajamos y las herramientas extra que puedes sumar a tu página web: reservas, tienda, blog, chatbot y más.",
         "quoteTitle": "Arma tu cotización | Zumia Solutions",
-        "quoteDescription": "Elige el plan que se ajusta a tu negocio, suma herramientas extra y obtén un estimado de precio y plazo para tu página web."
+        "quoteDescription": "Elige el plan que se ajusta a tu negocio, suma herramientas extra y obtén un estimado de precio y plazo para tu página web.",
+        "blogTitle": "Blog | Zumia Solutions",
+        "blogDescription": "Artículos claros para dueños de pequeños negocios: cómo te buscan tus clientes en internet, qué les genera confianza y cómo ganar tiempo."
     },
     "header": {
         "home": "Principal",
@@ -28,7 +30,8 @@
         "whatsapp": "Escríbenos por WhatsApp",
         "whatsappMessage": "¡Hola! Quiero saber más sobre los servicios digitales",
         "langSwitch": "Ver el sitio en inglés",
-        "services": "Servicios"
+        "services": "Servicios",
+        "blog": "Blog"
     },
     "footer": {
         "legals": "Documentos legales",
@@ -60,7 +63,6 @@
         "text3": "Páginas web claras y fáciles de usar, pensadas para acercar a tu cliente",
         "title4": "Haz crecer tu alcance digital",
         "text4": "Desarrollamos campañas de marketing apuntando a tu página web",
-        "invitation": "Conoce las Últimas Novedades:",
         "hero": {
             "eyebrow": "Páginas web profesionales",
             "lead": "Diseñamos, publicamos y mantenemos la página web de tu negocio, con planes claros y trabajo mano a mano con tu equipo de trabajo.",
@@ -85,8 +87,7 @@
         },
         "cta": {
             "text": "Cuéntanos qué necesita tu negocio y te respondemos pronto."
-        },
-        "instagramPost": "Publicación de Instagram {{id}}"
+        }
     },
     "card": {
         "schedule": "Agenda tu Diagnóstico",
@@ -527,5 +528,17 @@
         "waPlan": "Plan {{plan}}",
         "waMore_one": "y {{count}} herramienta más",
         "waMore_other": "y {{count}} herramientas más"
+    },
+    "blog": {
+        "eyebrow": "Blog",
+        "title": "Ideas para tu <1>negocio</1>",
+        "lead": "Artículos cortos y claros para dueños de pequeños negocios: cómo te buscan tus clientes, qué les genera confianza y cómo ganar tiempo.",
+        "notice": "Los artículos están disponibles solo en español.",
+        "readMore": "Leer artículo",
+        "readingTime": "{{count}} min de lectura",
+        "back": "Volver al blog",
+        "ctaTitle": "¿Quieres una página para tu negocio?",
+        "ctaText": "Arma tu cotización en línea o escríbenos por WhatsApp y lo conversamos.",
+        "ctaQuote": "Armar mi cotización"
     }
 }
