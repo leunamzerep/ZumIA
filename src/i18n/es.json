@@ -10,7 +10,9 @@
         "privacyTitle": "Política de privacidad | Zumia Solutions",
         "privacyDescription": "Cómo Zumia Solutions recoge, usa y protege los datos que compartes al visitar este sitio o al escribirnos por el formulario de contacto.",
         "termsTitle": "Términos y condiciones | Zumia Solutions",
-        "termsDescription": "Condiciones de uso del sitio web de Zumia Solutions y de los servicios de creación de páginas web que ofrecemos."
+        "termsDescription": "Condiciones de uso del sitio web de Zumia Solutions y de los servicios de creación de páginas web que ofrecemos.",
+        "servicesTitle": "Servicios y herramientas extra | Zumia Solutions",
+        "servicesDescription": "Conoce cómo trabajamos y las herramientas extra que puedes sumar a tu página web: reservas, tienda, blog, chatbot y más."
     },
     "header": {
         "home": "Principal",
@@ -23,7 +25,8 @@
         "skip": "Saltar al contenido",
         "whatsapp": "Escríbenos por WhatsApp",
         "whatsappMessage": "¡Hola! Quiero saber más sobre los servicios digitales",
-        "langSwitch": "Ver el sitio en inglés"
+        "langSwitch": "Ver el sitio en inglés",
+        "services": "Servicios"
     },
     "footer": {
         "legals": "Documentos legales",
@@ -64,7 +67,6 @@
             "mockupLabel": "Ilustración de una página web en celular y computador"
         },
         "services": {
-            "eyebrow": "Servicios",
             "title": "Lo que hacemos por tu <1>negocio</1>"
         },
         "process": {
@@ -156,7 +158,7 @@
         },
         "s3": {
             "title": "3. Alcance de los Servicios",
-            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes (Esencial, A la Medida y Profesional). El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos servicios adicionales, cuyo alcance, precio y plazo se acuerdan por escrito caso por caso.",
+            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes (Esencial, A la Medida y Profesional). El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos herramientas extra, cuyos precios y días adicionales de entrega se publican en la página de Servicios. Su alcance final y los costos de servicios externos que requieran se confirman por escrito antes de contratarlas.",
             "b2": "No prestamos asesoría legal, contable, tributaria ni financiera. Los borradores de textos legales que podamos entregar (por ejemplo, términos y condiciones o políticas de privacidad) son un punto de partida a partir de la información brindada por el cliente: El cliente debe revisarlos y ajustarlos, y su contenido final es responsabilidad del cliente."
         },
         "s4": {
@@ -369,7 +371,8 @@
             "cta": "Quiero el plan Profesional"
         },
         "currencySymbol": "$",
-        "currency": "COP"
+        "currency": "COP",
+        "extrasLink": "Conoce las herramientas extra"
     },
     "clients": {
         "jotuName": "JoTu Solutions",
@@ -379,5 +382,92 @@
     },
     "legal": {
         "toc": "En esta página"
+    },
+    "services": {
+        "eyebrow": "Servicios",
+        "title": "Tu web, de principio a <1>fin</1>",
+        "lead": "Diseñamos, publicamos y mantenemos la página web de tu negocio, con planes claros y trabajo mano a mano contigo. Elige un plan y suma las herramientas extra que necesites.",
+        "process": {
+            "eyebrow": "Proceso",
+            "title": "Así <1>trabajamos</1>",
+            "lead": "Siete pasos claros, desde la primera conversación hasta tu web publicada.",
+            "step1Title": "Asesoría",
+            "step1Text": "Conversamos sobre tu negocio y te recomendamos un plan.",
+            "step2Title": "Contrato y anticipo",
+            "step2Text": "Firmamos el contrato y pagas el 50 % para empezar.",
+            "step3Title": "Tu contenido",
+            "step3Text": "Nos entregas textos, imágenes, logo y accesos.",
+            "step4Title": "Diseño y construcción",
+            "step4Text": "Armamos tu sitio con tu marca.",
+            "step5Title": "Revisión",
+            "step5Text": "Revisas el sitio y pides ajustes.",
+            "step6Title": "Entrega y pago final",
+            "step6Text": "Con tu aprobación, pagas el 50 % restante.",
+            "step7Title": "Publicación y mantenimiento",
+            "step7Text": "Publicamos tu web y te acompañamos con el mantenimiento básico gratuito de tu plan."
+        }
+    },
+    "extras": {
+        "eyebrow": "Herramientas extra",
+        "title": "Suma lo que <1>necesitas</1>",
+        "lead": "Cada herramienta tiene precio fijo y suma días hábiles a la entrega de tu plan.",
+        "discount": "Descuento en herramientas extra: {{esencial}}, precio normal · {{alamedida}}, 10 % · {{profesional}}, 20 %",
+        "externalNote": "Algunas herramientas usan servicios externos (por ejemplo IA, mensajería, pasarela de pagos, bases de datos o dominios) cuyos costos corren por cuenta del cliente. Pueden variar según la solución y te los informamos al cotizar.",
+        "price": "${{price}} COP",
+        "perLanguage": "por idioma",
+        "days_one": "+{{count}} día hábil",
+        "days_other": "+{{count}} días hábiles",
+        "translation": {
+            "name": "Botón de traducción",
+            "desc": "Tu web en otro idioma con un selector visible."
+        },
+        "forms": {
+            "name": "Formularios de más de 3 preguntas",
+            "desc": "Formularios a la medida para recibir más información de tus clientes."
+        },
+        "logo": {
+            "name": "Creación de logo",
+            "desc": "Un logo sencillo y profesional para tu marca."
+        },
+        "analytics": {
+            "name": "Analítica con Pixel y GA4",
+            "desc": "Mide las visitas y los resultados de tus campañas (incluye aviso de cookies)."
+        },
+        "reviews": {
+            "name": "Reseñas de Google integradas",
+            "desc": "Muestra en tu web las reseñas reales de tus clientes."
+        },
+        "faq": {
+            "name": "Sección de preguntas frecuentes (FAQ)",
+            "desc": "Responde las dudas habituales antes de que te escriban."
+        },
+        "blog": {
+            "name": "Blog autosostenible",
+            "desc": "Un panel seguro para que publiques tus propias entradas (título, descripción, contenido y foto) sin depender de nosotros. Recomendamos un máximo de 3 entradas por semana y 80 al año para cuidar la velocidad de tu web."
+        },
+        "booking": {
+            "name": "Reservas con Google Calendar",
+            "desc": "Tus clientes agendan citas en tus horarios disponibles y se agregan a tu Google Calendar."
+        },
+        "paymentLinks": {
+            "name": "Links de pago",
+            "desc": "Cobra con enlaces de pago de tu propia cuenta de pasarela."
+        },
+        "store": {
+            "name": "Tienda con carrito de compras",
+            "desc": "Catálogo, carrito y pago en línea; cada producto incluye el botón \"Pregunta por este producto\" que te lleva a WhatsApp."
+        },
+        "chatbot": {
+            "name": "Chatbot de inteligencia artificial",
+            "desc": "Un asistente que responde las preguntas frecuentes de tus clientes."
+        },
+        "crm": {
+            "name": "CRM interno",
+            "desc": "Un panel privado para organizar los contactos y solicitudes que recibes."
+        }
+    },
+    "booking": {
+        "title": "¿Hablamos de tu <1>proyecto</1>?",
+        "text": "Cuéntanos qué necesita tu negocio y te recomendamos el plan y las herramientas ideales."
     }
 }

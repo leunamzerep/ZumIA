@@ -10,7 +10,9 @@
         "privacyTitle": "Privacy policy | Zumia Solutions",
         "privacyDescription": "How Zumia Solutions collects, uses and protects the data you share when you visit this site or write to us through the contact form.",
         "termsTitle": "Terms and conditions | Zumia Solutions",
-        "termsDescription": "Terms of use of the Zumia Solutions website and of the website creation services we offer."
+        "termsDescription": "Terms of use of the Zumia Solutions website and of the website creation services we offer.",
+        "servicesTitle": "Services and extra tools | Zumia Solutions",
+        "servicesDescription": "See how we work and the extra tools you can add to your website: bookings, online store, blog, chatbot and more."
     },
     "header": {
         "home": "Home",
@@ -23,7 +25,8 @@
         "skip": "Skip to content",
         "whatsapp": "Message us on WhatsApp",
         "whatsappMessage": "Hi! I want to know more about your digital services",
-        "langSwitch": "View the site in English"
+        "langSwitch": "View the site in English",
+        "services": "Services"
     },
     "footer": {
         "legals": "Legal documents",
@@ -64,7 +67,6 @@
             "mockupLabel": "Illustration of a website on a phone and a computer"
         },
         "services": {
-            "eyebrow": "Services",
             "title": "What we do for your <1>business</1>"
         },
         "process": {
@@ -191,7 +193,8 @@
             "cta": "I want the Professional plan"
         },
         "currencySymbol": "$",
-        "currency": "COP"
+        "currency": "COP",
+        "extrasLink": "Explore the extra tools"
     },
     "clients": {
         "jotuName": "JoTu Solutions",
@@ -202,5 +205,92 @@
     "legal": {
         "toc": "On this page",
         "notice": "This document is only available in Spanish. The Spanish text below is the official version."
+    },
+    "services": {
+        "eyebrow": "Services",
+        "title": "Your website, from start to <1>finish</1>",
+        "lead": "We design, publish and maintain your business website, with clear plans and hands-on work alongside you. Pick a plan and add the extra tools you need.",
+        "process": {
+            "eyebrow": "Process",
+            "title": "How we <1>work</1>",
+            "lead": "Seven clear steps, from our first conversation to your live website.",
+            "step1Title": "Consultation",
+            "step1Text": "We talk about your business and recommend a plan.",
+            "step2Title": "Contract and deposit",
+            "step2Text": "We sign the contract and you pay 50% to get started.",
+            "step3Title": "Your content",
+            "step3Text": "You send us your texts, images, logo and access details.",
+            "step4Title": "Design and build",
+            "step4Text": "We build your site with your brand.",
+            "step5Title": "Review",
+            "step5Text": "You review the site and request adjustments.",
+            "step6Title": "Delivery and final payment",
+            "step6Text": "Once you approve, you pay the remaining 50%.",
+            "step7Title": "Launch and maintenance",
+            "step7Text": "We publish your website and support you with the free basic maintenance included in your plan."
+        }
+    },
+    "extras": {
+        "eyebrow": "Extra tools",
+        "title": "Add what you <1>need</1>",
+        "lead": "Each tool has a fixed price and adds business days to your plan's delivery.",
+        "discount": "Discount on extra tools: {{esencial}}, regular price · {{alamedida}}, 10% · {{profesional}}, 20%",
+        "externalNote": "Some tools rely on external services (for example AI, messaging, payment gateways, databases or domains) whose costs are paid by the client. They may vary depending on the solution, and we will let you know when we quote.",
+        "price": "${{price}} COP",
+        "perLanguage": "per language",
+        "days_one": "+{{count}} business day",
+        "days_other": "+{{count}} business days",
+        "translation": {
+            "name": "Translation button",
+            "desc": "Your website in another language, with a visible language selector."
+        },
+        "forms": {
+            "name": "Forms with more than 3 questions",
+            "desc": "Custom forms to collect more information from your customers."
+        },
+        "logo": {
+            "name": "Logo design",
+            "desc": "A simple, professional logo for your brand."
+        },
+        "analytics": {
+            "name": "Analytics with Pixel and GA4",
+            "desc": "Measure visits and the results of your campaigns (includes a cookie notice)."
+        },
+        "reviews": {
+            "name": "Embedded Google reviews",
+            "desc": "Show your customers' real reviews on your website."
+        },
+        "faq": {
+            "name": "FAQ section",
+            "desc": "Answer common questions before people write to you."
+        },
+        "blog": {
+            "name": "Self-managed blog",
+            "desc": "A secure dashboard to publish your own posts (title, description, content and photo) without depending on us. We recommend a maximum of 3 posts per week and 80 per year to keep your site fast."
+        },
+        "booking": {
+            "name": "Bookings with Google Calendar",
+            "desc": "Your customers book appointments in your available hours and they are added to your Google Calendar."
+        },
+        "paymentLinks": {
+            "name": "Payment links",
+            "desc": "Get paid with payment links from your own payment gateway account."
+        },
+        "store": {
+            "name": "Online store with shopping cart",
+            "desc": "Catalog, cart and online payment; every product includes an \"Ask about this product\" button that takes you to WhatsApp."
+        },
+        "chatbot": {
+            "name": "AI chatbot",
+            "desc": "An assistant that answers your customers' frequently asked questions."
+        },
+        "crm": {
+            "name": "Internal CRM",
+            "desc": "A private dashboard to organize the contacts and requests you receive."
+        }
+    },
+    "booking": {
+        "title": "Shall we talk about your <1>project</1>?",
+        "text": "Tell us what your business needs and we will recommend the ideal plan and tools."
     }
 }

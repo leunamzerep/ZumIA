@@ -26,6 +26,12 @@ export const PHONE_DISPLAY = "+57 312 484 2024";
  */
 export const WHATSAPP_URL = `https://wa.me/573124842024?text=${encodeURIComponent("¡Hola! Quiero saber más sobre los servicios digitales")}`;
 
+/**
+ * Enlace para agendar una reunión. Vacío hasta la Fase C: cuando exista, el
+ * componente BookingCta mostrará un segundo botón de agenda con esta URL.
+ */
+export const BOOKING_URL = "";
+
 /** Correo de contacto. El enlace que abre Gmail vive en i18n (footer.mailRedirect). */
 export const EMAIL = "contact@zumia.dev";
 

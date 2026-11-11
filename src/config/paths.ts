@@ -6,6 +6,7 @@
 
 export const PATHS = {
   home: "/",
+  services: "/services/",
   aboutUs: "/about-us/",
   contact: "/contact/",
   terms: "/terms-and-conditions/",

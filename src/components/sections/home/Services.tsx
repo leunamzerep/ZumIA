@@ -36,7 +36,7 @@ export const Services = () => {
     <Section tone="cream" labelledBy="servicios-titulo" decoration={<GeometricPattern tone="light" />}>
       <div className="flex flex-col gap-12 md:gap-16">
         <div data-reveal>
-          <SectionHeading id="servicios-titulo" eyebrow={t("home.services.eyebrow")} titleKey="home.services.title" />
+          <SectionHeading id="servicios-titulo" titleKey="home.services.title" />
         </div>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map(({ n, Icon }, i) => (

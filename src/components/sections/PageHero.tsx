@@ -12,6 +12,7 @@ export const PageHero = ({
   eyebrow,
   titleKey,
   lead,
+  align = "left",
   children,
 }: {
   /** id del h1 */
@@ -20,6 +21,8 @@ export const PageHero = ({
   /** Clave de es.json del h1; admite <1>…</1> para la palabra en contorno */
   titleKey: string;
   lead?: ReactNode;
+  /** "center" centra el encabezado y el contenido extra (por defecto, a la izquierda) */
+  align?: "left" | "center";
   /** Contenido extra bajo el título (botones, enlaces) */
   children?: ReactNode;
 }) => (
@@ -31,8 +34,8 @@ export const PageHero = ({
     <GeometricPattern tone="dark" />
     <div className="relative">
       <GeometricPattern variant="cluster" className="-right-6 -bottom-8 hidden w-72 opacity-60 md:block" />
-      <div className="container-site flex flex-col gap-8 pt-14 pb-16 md:pt-20 md:pb-24">
-        <SectionHeading as="h1" id={id} tone="dark" eyebrow={eyebrow} titleKey={titleKey} lead={lead} className="max-w-4xl" />
+      <div className={`container-site flex flex-col gap-8 pt-14 pb-16 md:pt-20 md:pb-24${align === "center" ? " items-center" : ""}`}>
+        <SectionHeading as="h1" id={id} tone="dark" eyebrow={eyebrow} titleKey={titleKey} lead={lead} align={align} className="max-w-4xl" />
         {children}
       </div>
     </div>

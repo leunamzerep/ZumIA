@@ -1,6 +1,9 @@
 import type { CSSProperties, SVGProps } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { PATHS } from "@/config/paths";
+import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { PLANS, formatPrice, type Plan } from "@/data/plans";
 import { whatsappWithMessage } from "@/config/whatsapp";
 import { ButtonAnchor } from "@/components/ui/Button";
@@ -86,6 +89,7 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
 
 export const Plans = () => {
   const { t } = useTranslation();
+  const localizePath = useLocalizedPath();
 
   return (
     <Section id={PLANS_ID} tone="white" labelledBy="planes-titulo" className="scroll-mt-16 md:scroll-mt-20">
@@ -108,6 +112,9 @@ export const Plans = () => {
               </li>
             ))}
           </ul>
+          <Link to={localizePath(PATHS.services)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
+            {t("plans.extrasLink")}
+          </Link>
         </div>
         <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-navy-600">{t("plans.conditions")}</p>
       </div>

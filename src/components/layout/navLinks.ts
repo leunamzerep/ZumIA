@@ -3,6 +3,7 @@ import { PATHS } from "@/config/paths";
 /** Enlaces del menú principal (los usan el encabezado y el pie de página). */
 export const NAV_LINKS = [
   { to: PATHS.home, labelKey: "header.home" },
+  { to: PATHS.services, labelKey: "header.services" },
   { to: PATHS.aboutUs, labelKey: "header.aboutUs" },
   { to: PATHS.contact, labelKey: "header.contact" },
 ] as const;
