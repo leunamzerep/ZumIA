@@ -4,7 +4,7 @@
 //
 // WhatsApp, Instagram y Facebook: trazos de Simple Icons 16.35.0 (licencia CC0 1.0,
 // https://simpleicons.org). Son marcas de Meta: se usan solo para enlazar a sus perfiles.
-// Correo, menú, cerrar y flecha: dibujados aquí.
+// Correo, menú, cerrar, flecha y calendario: dibujados aquí.
 
 import type { SVGProps } from "react";
 
@@ -42,6 +42,14 @@ export const MailIcon = (props: IconProps) => (
   <svg {...base} viewBox="0 0 24 24" {...stroke} {...props}>
     <rect x="3" y="5" width="18" height="14" rx="3" />
     <path d="m4 7 8 6 8-6" />
+  </svg>
+);
+
+export const CalendarIcon = (props: IconProps) => (
+  <svg {...base} viewBox="0 0 24 24" {...stroke} {...props}>
+    <rect x="3" y="5" width="18" height="16" rx="3" />
+    <path d="M3 10h18M8 3v4M16 3v4" />
+    <path d="M8 14h2M14 14h2M8 17.5h2" />
   </svg>
 );
 
