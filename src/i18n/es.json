@@ -380,7 +380,7 @@
         },
         "currencySymbol": "$",
         "currency": "COP",
-        "extrasLink": "Conoce las herramientas extra",
+        "extrasLink": "Conoce todos nuestros servicios",
         "quoteLink": "Arma tu cotización"
     },
     "clients": {
@@ -447,7 +447,7 @@
             "desc": "Muestra en tu web las reseñas reales de tus clientes."
         },
         "faq": {
-            "name": "Sección de preguntas frecuentes (FAQ)",
+            "name": "Preguntas Frecuentes (FAQ)",
             "desc": "Responde las dudas habituales antes de que te escriban."
         },
         "blog": {
