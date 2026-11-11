@@ -1,5 +1,6 @@
 import type { ReactNode, SVGProps } from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 import { ContactForm } from "@/components/forms/contactForm/ContactForm";
 import { PageSeo } from "@/components/seo/PageSeo";
@@ -9,7 +10,9 @@ import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Section } from "@/components/ui/Section";
 import { EMAIL, PHONE_DISPLAY } from "@/config/site";
+import { PATHS } from "@/config/paths";
 import { useWhatsappUrl } from "@/config/whatsapp";
+import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 
 // Íconos de horario y ubicación (dibujados aquí, decorativos)
 const icon = { "aria-hidden": true, focusable: false, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" } as const;
@@ -35,6 +38,7 @@ const linkClass = "break-words font-semibold text-white underline-offset-4 hover
 export const Contact = () => {
   const { t } = useTranslation();
   const whatsappUrl = useWhatsappUrl();
+  const localizePath = useLocalizedPath();
   const mailLink: string = t("footer.mailRedirect");
 
   return (
@@ -79,6 +83,12 @@ export const Contact = () => {
                   {t("contact.ubih31")}
                 </Channel>
               </ul>
+              <p className="text-sm leading-relaxed text-white/70">
+                <Trans
+                  i18nKey="contact.privacyNote"
+                  components={{ 1: <Link to={localizePath(PATHS.privacy)} className="font-semibold text-white underline underline-offset-4 hover:text-gold-300" /> }}
+                />
+              </p>
             </Card>
           </div>
         </Section>

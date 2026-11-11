@@ -22,14 +22,14 @@
         "logo": "Zumia Solutions, ir al inicio",
         "skip": "Saltar al contenido",
         "whatsapp": "Escríbenos por WhatsApp",
-        "whatsappMessage": "¡Hola!, estoy explorando opciones para mejorar mi presencia digital y ganar más clientes. ¿Me podrías brindar más información?",
+        "whatsappMessage": "¡Hola! Quiero saber más sobre los servicios digitales",
         "langSwitch": "Ver el sitio en inglés"
     },
     "footer": {
         "legals": "Documentos legales",
         "privacy": "Política de Privacidad",
         "terms": "Términos y Condiciones",
-        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Informaci%C3%B3n%20sobre%20p%C3%A1ginas%20web%20(Zumia)&body=Hola%2C%20equipo%20de%20Zumia%3A%0A%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%20sobre%20sus%20paquetes%20de%20p%C3%A1ginas%20web%20y%20sus%20precios%3F%0A%0AGracias%2C%0A-%20%5BNombre%5D",
+        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=contact@zumia.dev&su=Informaci%C3%B3n%20sobre%20p%C3%A1ginas%20web%20(Zumia)&body=Hola%2C%20equipo%20de%20Zumia%3A%0A%C2%BFMe%20podr%C3%ADan%20compartir%20informaci%C3%B3n%20sobre%20sus%20paquetes%20de%20p%C3%A1ginas%20web%20y%20sus%20precios%3F%0A%0AGracias%2C%0A-%20%5BNombre%5D",
         "siteNav": "Navegación",
         "copyright": "© {{year}} Zumia Solutions. Todos los derechos reservados.",
         "instagram": "Instagram de Zumia Solutions (se abre en otra pestaña)",
@@ -74,8 +74,8 @@
             "step1Text": "Logo, textos, fotos y datos de contacto. Te decimos qué necesitamos.",
             "step2Title": "Primera entrega",
             "step2Text": "Te mostramos una primera versión de tu página para que la revises.",
-            "step3Title": "Hasta 2 rondas de cambios sin costo",
-            "step3Text": "Ajustamos lo que necesites en dos rondas de revisión incluidas en todos los planes.",
+            "step3Title": "Revisión y ajustes",
+            "step3Text": "Revisas la primera versión y ajustamos lo necesario antes de la entrega final.",
             "step4Title": "Entrega final y publicación",
             "step4Text": "Con tu aprobación y el pago final, publicamos tu página en tu dominio."
         },
@@ -122,12 +122,13 @@
         "mail3": "Gracias por contactarnos, -----",
         "ubih21": "Ubicación",
         "ubih31": "Estamos ubicados en Bogotá, Colombia, brindando soluciones integrales en servicios web y de marketing para apoyar a nuestros clientes en cada etapa de su negocio.",
-        "ubih23": "Horario de Atención",
+        "ubih23": "Horario de Atención por Chat",
         "ubih33": "Lunes a Viernes 7 AM - 6 PM",
         "sended": "Solicitud enviada correctamente",
         "processing": "Procesando",
         "consent": "Acepto la <1>Política de Privacidad</1> y autorizo el tratamiento de mis datos para responder mi consulta.",
         "consentWarn": "Debes aceptar la Política de Privacidad para enviar el formulario.",
+        "privacyNote": "Al escribirnos por WhatsApp o correo aceptas el tratamiento de tus datos según nuestra <1>Política de Privacidad</1>.",
         "consentNote": "El remitente de este mensaje ha aceptado la política de privacidad",
         "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.",
         "channels": "Otros canales",
@@ -136,7 +137,7 @@
     },
     "terms": {
         "h1": "Términos y <1>Condiciones</1>",
-        "updated": "<1>Última actualización:</1> 24/10/2026",
+        "updated": "<1>Última actualización:</1> 10/11/2026",
         "s1": {
             "title": "1. Introducción",
             "b1": "Estos Términos y Condiciones regulan el uso del sitio web {{domain}} y la contratación de los servicios de Zumia Solutions. Al navegar por el sitio o enviarnos una solicitud, aceptas estos términos. Si no estás de acuerdo, te pedimos que no uses el sitio. Cuando contrates un plan, las condiciones específicas quedarán en un contrato de prestación de servicios firmado por las partes; si hay diferencias entre este texto y el contrato, prevalece el contrato."
@@ -150,21 +151,21 @@
                 "i3": "Dirección de notificaciones: {{address}}",
                 "i4": "Correo electrónico: {{email}}",
                 "i5": "Teléfono / WhatsApp: {{phone}}",
-                "i6": "Horario de atención: Lunes a Viernes, 7 AM a 6 PM"
+                "i6": "Horario de atención por chat: Lunes a Viernes, 7 AM a 6 PM"
             }
         },
         "s3": {
             "title": "3. Alcance de los Servicios",
-            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes: Esencial, Profesional y Premium. El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos servicios adicionales, cuyo alcance, precio y plazo se acuerdan por escrito caso por caso.",
+            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes (Esencial, A la Medida y Profesional). El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos servicios adicionales, cuyo alcance, precio y plazo se acuerdan por escrito caso por caso.",
             "b2": "No prestamos asesoría legal, contable, tributaria ni financiera. Los borradores de textos legales que podamos entregar (por ejemplo, términos y condiciones o políticas de privacidad) son un punto de partida a partir de la información brindada por el cliente: El cliente debe revisarlos y ajustarlos, y su contenido final es responsabilidad del cliente."
         },
         "s4": {
             "title": "4. No Garantía de Resultados",
-            "b1": "Entregamos sitios adaptables a celulares y computadores, con estructura SEO técnica y listos para publicarse. Esto facilita que los buscadores lean el sitio, aunque estos servicios sean la medida correcta para aproximarse a un mayor alcance no garantizamos posicionamiento, visitas, contactos ni ventas, que dependen de factores fuera de nuestro control (buscadores, competencia, contenidos, inversión en publicidad, entre otros)."
+            "b1": "Entregamos sitios adaptables a celulares y computadores, con estructura SEO técnica y listos para publicarse. Esto facilita que los buscadores lean el sitio, pero no garantizamos posicionamiento, visitas, contactos ni ventas, que dependen de factores fuera de nuestro control (buscadores, competencia, contenidos, inversión en publicidad, entre otros)."
         },
         "s5": {
             "title": "5. Responsabilidades del Cliente",
-            "b1": "El cliente debe entregar los insumos necesarios (logotipo, textos, imágenes, datos de contacto, enlaces a redes y accesos) a más tardar 15 días calendario después de la firma del contrato, y responder a las entregas de revisión. Mientras falten insumos, accesos o respuestas, los plazos del proyecto se suspenden.",
+            "b1": "El cliente debe entregar los insumos necesarios (logotipo, textos, imágenes, datos de contacto, enlaces a redes y accesos) a más tardar 15 días calendario después de la firma del contrato, y responder a las entregas de revisión. Los plazos de entrega se cuentan en días hábiles, desde que Zumia recibe el anticipo y todo el material del proyecto (textos, imágenes, logos y accesos). Si el material llega incompleto o con retraso, el plazo se cuenta desde que esté completo. Mientras falten insumos, accesos o respuestas, los plazos del proyecto se suspenden.",
             "b2": "Si el cliente no responde a una entrega de revisión en 3 días calendario, podemos entenderla como aprobada para continuar con el proyecto, y así se lo avisaremos por escrito. Si el proyecto permanece inactivo por más de 15 días calendario, podemos cerrarlo y liquidarlo, o reactivarlo con un costo de reanudación del 10 % del valor del proyecto.",
             "b3": "El cliente debe proporcionar información precisa y completa. Los retrasos o errores derivados de información incorrecta o tardía no son responsabilidad de Zumia Solutions."
         },
@@ -177,8 +178,8 @@
             "b1": "Los planes y precios publicados en este sitio y en nuestras redes sociales son ofertas generales, vigentes hasta el 31 de diciembre de 2026 o hasta que los modifiquemos con aviso en el sitio. Cualquier ajuste a un proyecto en particular se acuerda por escrito.",
             "b2": "<1>Precio.</1> Los precios están en pesos colombianos (COP). El precio total del proyecto se te informa por escrito antes de que lo aceptes.",
             "b3": "<1>Pago.</1> El valor del proyecto se paga de la siguiente manera: 50 % para iniciar el desarrollo y 50 % restante a la entrega final. Medios de pago: Transferencia bancaria o pago en línea con confirmación de recibido. El sitio se publica una vez recibido el pago total. Si hay mora superior a tres (3) días calendario en un pago pendiente, podemos suspender el proyecto o la publicación.",
-            "b4": "<1>Plazos.</1> Los plazos de cada plan se cuentan en días calendario desde el pago del anticipo y la entrega de los insumos mínimos. Pueden extenderse por las rondas de cambios (un día calendario adicional por cada item ajustado) o por suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
-            "b5": "<1>Cambios.</1> Cada plan incluye dos rondas de cambios sin costo. Los cambios posteriores se tratan como mantenimiento con alcance, precio y plazo acordados por escrito, o según el mantenimiento incluido en el plan.",
+            "b4": "<1>Plazos.</1> Los plazos de entrega se cuentan en días hábiles, desde que recibimos el anticipo y todo el material del proyecto. Entrega máxima: Esencial, 3 días hábiles; A la Medida, 5; Profesional, 8. Cada herramienta extra suma días, que se informan al cotizar. Los ajustes que pida el cliente durante el proyecto pueden ampliar el plazo; el contrato indica cuánto. También pueden ampliarlo las suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
+            "b5": "<1>Mantenimiento.</1> Cada plan incluye mantenimiento básico gratuito después de la entrega final, limitado en tiempo y en horas: Esencial, 2 semanas y hasta 2 horas por semana; A la Medida, 3 semanas y hasta 3 horas por semana; Profesional, 1 mes y hasta 3 horas por semana. Se mide por tiempo de trabajo, no por dificultad. Superado el límite, cada hora adicional cuesta $29.000 COP, o se rige por un plan mensual recurrente acordado por escrito.",
             "b6": "<1>Dominio y hosting.</1> Su costo corresponde al cliente."
         },
         "s8": {
@@ -193,11 +194,11 @@
                 "r1c2": "100 %",
                 "r2c1": "Después del inicio y antes de la primera entrega",
                 "r2c2": "60 %",
-                "r3c1": "Después de la primera entrega y antes de la primera ronda de cambios",
+                "r3c1": "Después de la primera versión entregada para tu revisión y antes de solicitar ajustes",
                 "r3c2": "40 %",
-                "r4c1": "Después de la primera ronda y antes de la segunda",
+                "r4c1": "Con los ajustes solicitados en curso",
                 "r4c2": "20 %",
-                "r5c1": "Después de la segunda ronda o de la aceptación",
+                "r5c1": "Después de la entrega final o de la aceptación del cliente",
                 "r5c2": "0 %"
             },
             "b5": "Las compras a terceros hechas con tu autorización y financiación (dominio, hosting, licencias) no son reembolsables.",
@@ -238,7 +239,7 @@
     },
     "privacy": {
         "h1": "Política de <1>Privacidad</1>",
-        "updated": "<1>Última actualización:</1> 24/10/2026",
+        "updated": "<1>Última actualización:</1> 10/11/2026",
         "s1": {
             "title": "1. Responsable del Tratamiento",
             "b1": "Zumia Solutions opera como marca bajo persona natural, con domicilio en Bogotá, Colombia, responsable del tratamiento de los datos personales que recogemos en este sitio (Ley 1581 de 2012).",
@@ -270,7 +271,7 @@
         },
         "s4": {
             "title": "4. Su Autorización",
-            "b1": "Antes de enviar el formulario, le pedimos que acepte esta política marcando una casilla. Sin su autorización no recogemos sus datos. Puede retirarla en cualquier momento escribiéndonos a {{email}}."
+            "b1": "Antes de enviar el formulario, le pedimos que acepte esta política marcando una casilla. Sin su autorización no recogemos sus datos. Puede retirarla en cualquier momento escribiéndonos a {{email}}. Si nos escribe por WhatsApp o correo, al enviarnos su mensaje nos autoriza a usar su número o correo y el contenido del mensaje solo para responderle, gestionar su solicitud y, si contrata, la relación comercial, en los términos de esta política. En el sitio mostramos un aviso con enlace a esta política junto a nuestros datos de contacto. Conservamos el mensaje como prueba de su autorización. Puede revocarla escribiéndonos."
         },
         "s5": {
             "title": "5. Dónde se Guardan y Quién Interviene",
@@ -285,7 +286,7 @@
         },
         "s6": {
             "title": "6. Cuánto Tiempo los Conservamos",
-            "b1": "Los datos son conservados a menos de que usted solicite su eliminación."
+            "b1": "Conservamos sus datos mientras dure la relación comercial y dos años más; después los eliminamos o anonimizamos. Puede pedir su eliminación antes, salvo cuando una obligación legal nos exija conservarlos."
         },
         "s7": {
             "title": "7. Sus Derechos",
@@ -305,7 +306,7 @@
         },
         "s9": {
             "title": "9. Cookies y Almacenamiento Local",
-            "b1": "Zumia Solutions no usa cookies propias para publicidad ni para seguirlo. Usamos información de su preferencia en cuanto a idioma respecto al navegador. Los servicios de terceros incluidos en el sitio pueden establecer sus propias cookies, fuera de nuestro control y según sus políticas."
+            "b1": "Guardamos en el almacenamiento local de su navegador (no en una cookie) su preferencia de idioma, español o inglés, para recordarla. No usamos cookies de publicidad ni de seguimiento. Los servicios de terceros incluidos en el sitio, como la publicación de Instagram que mostramos, pueden establecer sus propias cookies, fuera de nuestro control y según sus políticas. Si en el futuro añadimos analítica (por ejemplo Google Analytics o Meta Pixel), se lo informaremos y solo se activará si usted lo acepta."
         },
         "s10": {
             "title": "10. Seguridad",
@@ -332,37 +333,40 @@
         "includes": "Incluye",
         "delivery": "Entrega: {{days}}",
         "whatsapp": "¡Hola! Me interesa el plan {{plan}} de Zumia Solutions. ¿Me cuentas cómo empezamos?",
-        "conditions": "Se inicia con el 50 % y el otro 50 % se paga en la entrega final. Los plazos cuentan desde el pago del anticipo y la entrega de los insumos mínimos. El dominio y el hosting corren por cuenta del cliente.",
+        "conditions": "Se inicia con el 50 % y el otro 50 % se paga en la entrega final. Los plazos cuentan desde que recibimos tu anticipo y todo tu material. El dominio y el hosting corren por cuenta del cliente.",
+        "allTitle": "Todos los planes incluyen",
+        "all1": "Header y footer",
+        "all2": "Términos y Condiciones",
+        "all3": "Política de Privacidad",
+        "all4": "Indexación en Google Search Console",
         "esencial": {
             "name": "Esencial",
-            "tagline": "Perfecta para empezar a mostrarte más profesional rápidamente",
-            "f1": "Landing de 5 bloques (enganche, formulario, servicios, quiénes somos y reseñas)",
-            "f2": "Diseño responsive",
-            "f3": "Estructura SEO técnica",
-            "f4": "Cabecera, pie y botón flotante",
-            "f5": "2 rondas de cambios sin costo",
-            "days": "6 a 10 días calendario",
-            "maintenance": "Sin mantenimiento incluido",
+            "tagline": "Empieza a crecer rápidamente",
+            "f1": "1 página: hero llamativo y hasta 7 secciones",
+            "f2": "Mantenimiento básico gratis: 2 semanas, hasta 2 h por semana",
+            "f3": "Herramientas extra al precio normal",
+            "days": "hasta 3 días hábiles tras tu anticipo y tu material completo",
             "cta": "Quiero el plan Esencial"
+        },
+        "alamedida": {
+            "name": "A la Medida",
+            "tagline": "Brinda aún más credibilidad a cada uno de tus clientes",
+            "f1": "3 subpáginas (Inicio cuenta como una), cada una con su hero",
+            "f2": "15 secciones en total, distribuibles entre las subpáginas",
+            "f3": "Mantenimiento básico gratis: 3 semanas, hasta 3 h por semana",
+            "f4": "10 % de descuento en herramientas extra",
+            "days": "hasta 5 días hábiles tras tu anticipo y tu material completo",
+            "cta": "Quiero el plan A la Medida"
         },
         "profesional": {
             "name": "Profesional",
-            "tagline": "A la medida para crecer pronto",
-            "f1": "3 subpáginas y 10 bloques (Inicio, Servicios y Contacto con formulario)",
-            "f2": "Todo lo del Esencial",
-            "f3": "Mantenimiento gratis por 2 semanas",
-            "days": "14 a 20 días calendario",
+            "tagline": "Lleva tu negocio al siguiente nivel",
+            "f1": "5 subpáginas (Inicio cuenta como una), cada una con su hero",
+            "f2": "32 secciones en total, distribuibles entre las subpáginas",
+            "f3": "Mantenimiento básico gratis: 1 mes, hasta 3 h por semana",
+            "f4": "20 % de descuento en herramientas extra",
+            "days": "hasta 8 días hábiles tras tu anticipo y tu material completo",
             "cta": "Quiero el plan Profesional"
-        },
-        "premium": {
-            "name": "Premium",
-            "tagline": "Listo para escalar tu negocio con todo su potencial",
-            "f1": "4 subpáginas y 20 bloques (con una sección especializada en tu negocio)",
-            "f2": "Todo lo del Profesional",
-            "f3": "Mantenimiento gratis por 1 mes (hasta 25 cambios menores)",
-            "f4": "15 % de descuento en herramientas adicionales durante 3 meses tras la entrega final",
-            "days": "30 a 40 días calendario",
-            "cta": "Quiero el plan Premium"
         },
         "currencySymbol": "$",
         "currency": "COP"

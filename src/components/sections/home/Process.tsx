@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 
 const STEPS = [1, 2, 3, 4];
 
-/** "Cómo trabajamos": insumos → primera entrega → 2 rondas de cambios → entrega final. */
+/** "Cómo trabajamos": insumos → primera entrega → revisión y ajustes → entrega final. */
 export const Process = () => {
   const { t } = useTranslation();
 

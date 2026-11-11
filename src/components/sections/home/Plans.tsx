@@ -66,9 +66,6 @@ const PlanCard = ({ plan, index }: { plan: Plan; index: number }) => {
             <ClockIcon className={cx("size-4.5 shrink-0", dark ? "text-gold-400" : "text-gold-700")} />
             {t("plans.delivery", { days: t(`plans.${plan.id}.days`) })}
           </p>
-          {plan.maintenanceKey && (
-            <p className={cx("text-sm", dark ? "text-white/60" : "text-navy-500")}>{t(plan.maintenanceKey)}</p>
-          )}
         </div>
 
         <ButtonAnchor
@@ -101,6 +98,17 @@ export const Plans = () => {
             <PlanCard key={plan.id} plan={plan} index={index} />
           ))}
         </ul>
+        <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 text-center">
+          <p className="text-xs font-bold uppercase tracking-[0.16em] text-gold-700">{t("plans.allTitle")}</p>
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm font-semibold text-navy-800">
+            {[1, 2, 3, 4].map((n) => (
+              <li key={n} className="flex items-center gap-2">
+                <CheckIcon className="size-4 text-gold-700" />
+                {t(`plans.all${n}`)}
+              </li>
+            ))}
+          </ul>
+        </div>
         <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-navy-600">{t("plans.conditions")}</p>
       </div>
     </Section>

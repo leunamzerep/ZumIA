@@ -1,4 +1,4 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import logo from "@/assets/img/logo-zumia.webp";
@@ -101,6 +101,12 @@ export const Footer = () => {
       </div>
 
       <div className="border-t border-white/10">
+        <p className="container-site pt-6 text-center text-xs leading-relaxed text-white/70 md:text-left">
+          <Trans
+            i18nKey="contact.privacyNote"
+            components={{ 1: <Link to={localizePath(PATHS.privacy)} className="font-semibold text-white underline underline-offset-4 hover:text-gold-300" /> }}
+          />
+        </p>
         <p className="container-site py-6 text-center text-xs text-white/60 md:text-left">
           {t("footer.copyright", { year: new Date().getFullYear() })}
         </p>

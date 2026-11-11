@@ -22,14 +22,14 @@
         "logo": "Zumia Solutions, go to home page",
         "skip": "Skip to content",
         "whatsapp": "Message us on WhatsApp",
-        "whatsappMessage": "Hi! I'm exploring options to improve my online presence and win more customers. Could you give me more information?",
+        "whatsappMessage": "Hi! I want to know more about your digital services",
         "langSwitch": "View the site in English"
     },
     "footer": {
         "legals": "Legal documents",
         "privacy": "Privacy Policy",
         "terms": "Terms and Conditions",
-        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=zumiasolutions@gmail.com&su=Information%20about%20websites%20%28Zumia%29&body=Hi%20Zumia%20team%2C%0ACould%20you%20share%20information%20about%20your%20website%20packages%20and%20prices%3F%0A%0AThanks%2C%0A-%20%5BName%5D",
+        "mailRedirect": "https://mail.google.com/mail/?view=cm&fs=1&to=contact@zumia.dev&su=Information%20about%20websites%20%28Zumia%29&body=Hi%20Zumia%20team%2C%0ACould%20you%20share%20information%20about%20your%20website%20packages%20and%20prices%3F%0A%0AThanks%2C%0A-%20%5BName%5D",
         "siteNav": "Navigation",
         "copyright": "© {{year}} Zumia Solutions. All rights reserved.",
         "instagram": "Zumia Solutions on Instagram (opens in a new tab)",
@@ -74,8 +74,8 @@
             "step1Text": "Logo, texts, photos and contact details. We tell you what we need.",
             "step2Title": "First delivery",
             "step2Text": "We show you a first version of your website for you to review.",
-            "step3Title": "Up to 2 rounds of changes at no cost",
-            "step3Text": "We adjust whatever you need in two review rounds included in every plan.",
+            "step3Title": "Review and adjustments",
+            "step3Text": "You review the first version and we adjust what's needed before final delivery.",
             "step4Title": "Final delivery and launch",
             "step4Text": "With your approval and the final payment, we publish your website on your domain."
         },
@@ -122,12 +122,13 @@
         "mail3": "Thank you for contacting us, -----",
         "ubih21": "Location",
         "ubih31": "We are located in Bogotá, Colombia, providing complete web and marketing solutions to support our clients at every stage of their business.",
-        "ubih23": "Business hours",
+        "ubih23": "Chat hours",
         "ubih33": "Monday to Friday 7 AM - 6 PM",
         "sended": "Request sent successfully",
         "processing": "Processing",
         "consent": "I accept the <1>Privacy Policy</1> and authorize the processing of my data to answer my inquiry.",
         "consentWarn": "You must accept the Privacy Policy to send the form.",
+        "privacyNote": "By writing to us via WhatsApp or email you accept the processing of your data under our <1>Privacy Policy</1>.",
         "consentNote": "The sender of this message has accepted the privacy policy",
         "error": "We couldn't send your message. Please try again or message us on WhatsApp.",
         "channels": "Other channels",
@@ -136,11 +137,11 @@
     },
     "terms": {
         "h1": "Terms and <1>Conditions</1>",
-        "updated": "<1>Last updated:</1> October 24, 2026"
+        "updated": "<1>Last updated:</1> November 10, 2026"
     },
     "privacy": {
         "h1": "Privacy <1>Policy</1>",
-        "updated": "<1>Last updated:</1> October 24, 2026"
+        "updated": "<1>Last updated:</1> November 10, 2026"
     },
     "brand": {
         "name": "Zumia Solutions"
@@ -154,44 +155,49 @@
         "includes": "Includes",
         "delivery": "Delivery: {{days}}",
         "whatsapp": "Hi! I'm interested in the Zumia Solutions {{plan}} plan. Can you tell me how we get started?",
-        "conditions": "We start with 50% and the other 50% is paid on final delivery. Timelines start once the deposit is paid and the minimum materials are delivered. The domain and hosting are paid by the client.",
+        "conditions": "We start with 50% and the other 50% is paid on final delivery. Timelines start once we receive your deposit and all of your material. The domain and hosting are paid by the client.",
+        "allTitle": "Every plan includes",
+        "all1": "Header and footer",
+        "all2": "Terms and Conditions",
+        "all3": "Privacy Policy",
+        "all4": "Google Search Console indexing",
         "esencial": {
             "name": "Essential",
-            "tagline": "Perfect to start looking more professional, fast",
-            "f1": "5-block landing page (hook, form, services, about us and reviews)",
-            "f2": "Responsive design",
-            "f3": "Technical SEO structure",
-            "f4": "Header, footer and floating button",
-            "f5": "2 rounds of changes at no cost",
-            "days": "6 to 10 calendar days",
-            "maintenance": "No maintenance included",
+            "tagline": "Start growing, fast",
+            "f1": "1 page: eye-catching hero and up to 7 sections",
+            "f2": "Free basic maintenance: 2 weeks, up to 2 h per week",
+            "f3": "Extra tools at the regular price",
+            "days": "up to 3 business days after your deposit and complete material",
             "cta": "I want the Essential plan"
+        },
+        "alamedida": {
+            "name": "Tailored",
+            "tagline": "Build even more credibility with each of your customers",
+            "f1": "3 subpages (Home counts as one), each with its own hero",
+            "f2": "15 sections in total, split across the subpages as you need",
+            "f3": "Free basic maintenance: 3 weeks, up to 3 h per week",
+            "f4": "10% off extra tools",
+            "days": "up to 5 business days after your deposit and complete material",
+            "cta": "I want the Tailored plan"
         },
         "profesional": {
             "name": "Professional",
-            "tagline": "Tailor-made to grow soon",
-            "f1": "3 subpages and 10 blocks (Home, Services and Contact with form)",
-            "f2": "Everything in Essential",
-            "f3": "Free maintenance for 2 weeks",
-            "days": "14 to 20 calendar days",
+            "tagline": "Take your business to the next level",
+            "f1": "5 subpages (Home counts as one), each with its own hero",
+            "f2": "32 sections in total, split across the subpages as you need",
+            "f3": "Free basic maintenance: 1 month, up to 3 h per week",
+            "f4": "20% off extra tools",
+            "days": "up to 8 business days after your deposit and complete material",
             "cta": "I want the Professional plan"
-        },
-        "premium": {
-            "name": "Premium",
-            "tagline": "Ready to scale your business to its full potential",
-            "f1": "4 subpages and 20 blocks (with a section specialized in your business)",
-            "f2": "Everything in Professional",
-            "f3": "Free maintenance for 1 month (up to 25 minor changes)",
-            "f4": "15% off additional tools for 3 months after final delivery",
-            "days": "30 to 40 calendar days",
-            "cta": "I want the Premium plan"
         },
         "currencySymbol": "$",
         "currency": "COP"
     },
     "clients": {
         "jotuName": "JoTu Solutions",
-        "jotuAlt": "JoTu Solutions logo"
+        "jotuAlt": "JoTu Solutions logo",
+        "ac4Name": "AC4 Group",
+        "ac4Alt": "AC4 Group logo"
     },
     "legal": {
         "toc": "On this page",
