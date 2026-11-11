@@ -74,13 +74,13 @@
         "process": {
             "eyebrow": "Cómo trabajamos",
             "title": "Desde el primer mensaje a tu página <1>publicada</1>",
-            "step1Title": "Nos envías los insumos",
+            "step1Title": "Asesoría e Insumos",
             "step1Text": "Logo, textos, fotos y datos de contacto. Te decimos qué necesitamos.",
             "step2Title": "Primera entrega",
             "step2Text": "Te mostramos una primera versión de tu página para que la revises.",
             "step3Title": "Revisión y ajustes",
             "step3Text": "Revisas la primera versión y ajustamos lo necesario antes de la entrega final.",
-            "step4Title": "Entrega final y publicación",
+            "step4Title": "¡Lanzamiento!",
             "step4Text": "Con tu aprobación y el pago final, publicamos tu página en tu dominio."
         },
         "cta": {
