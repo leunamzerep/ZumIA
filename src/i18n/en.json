@@ -101,19 +101,19 @@
         "h21": "About Us",
         "h31": "Our team, specialized in growing online presence, stands out for its detailed, hands-on work with our clients, delivering results efficiently and on time",
         "h22": "Our services",
-        "h32": "At Zumia Solutions, we offer complete web development and marketing solutions.",
+        "h32": "At Zumia Solutions, we offer complete web development and marketing solutions tailored to our clients' needs.",
         "h23": "Our commitment",
         "h33": "We are committed to helping our clients reach their goals. With us, you can rest assured you'll receive a reliable, quality service.",
         "h24": "Our Mission",
-        "h34": "To support micro and small businesses with clear, fast and measurable web and marketing solutions, focused on turning visits into contacts.",
+        "h34": "To support micro and small businesses with clear, fast and measurable web and marketing solutions, focused on turning curious visitors into contacts with potential to become customers.",
         "h25": "Our Vision",
-        "h35": "To be a regionally recognized brand in fast website implementation, with a scalable model of standardized processes.",
+        "h35": "To be a regionally recognized brand in fast website implementation, with a scalable model of standardized, professional and personalized processes.",
         "h27": "Our Approach",
         "h37": "We work hand in hand with our clients to build lasting relationships based on trust, transparency and personal attention."
     },
     "contact": {
         "main": "<1>Contact us.</1> Ask for more information and let's work together",
-        "invitation": "Tell us your questions or book your free assessment",
+        "invitation": "Tell us your questions, we'll reply soon",
         "label1": "Full name",
         "label2": "Email",
         "label3": "Inquiry",
@@ -142,7 +142,7 @@
         "agendaTitle": "Book your <1>consultation</1>",
         "agendaText": "Pick the day and time that suit you to talk about your project.",
         "agendaLoad": "Load calendar",
-        "agendaNote": "Loading it opens a Google service.",
+        "agendaNote": "Loading it opens a Google Calendar service.",
         "agendaFrameTitle": "Google calendar to book a consultation with Zumia Solutions"
     },
     "terms": {
@@ -174,30 +174,30 @@
         "esencial": {
             "name": "Essential",
             "tagline": "Start growing, fast",
-            "f1": "1 page: Eye-catching hero and up to 7 sections",
-            "f2": "Free basic maintenance: 2 weeks, up to 2 h per week",
-            "f3": "Extra tools at the regular price",
-            "days": "up to 3 business days after your deposit and complete material",
+            "f1": "1 page with an eye-catching visual hook and up to 7 sections",
+            "f2": "Free basic maintenance for 2 weeks, up to 2 h/week",
+            "f3": "Extra tools at the base price",
+            "days": "Up to 3 business days after deposit and complete material",
             "cta": "I want the Essential plan"
         },
         "alamedida": {
             "name": "Tailored",
-            "tagline": "Build even more credibility with each of your customers",
-            "f1": "3 subpages (Home counts as one), each with its own hero",
+            "tagline": "Build more credibility with your customers",
+            "f1": "3 subpages, each with its own visual hook",
             "f2": "15 sections in total, split across the subpages as you need",
-            "f3": "Free basic maintenance: 3 weeks, up to 3 h per week",
+            "f3": "Free basic maintenance for 3 weeks, up to 3 h/week",
             "f4": "10% off extra tools",
-            "days": "up to 5 business days after your deposit and complete material",
+            "days": "Up to 5 business days after deposit and complete material",
             "cta": "I want the Tailored plan"
         },
         "profesional": {
             "name": "Professional",
             "tagline": "Take your business to the next level",
-            "f1": "5 subpages (Home counts as one), each with its own hero",
+            "f1": "5 subpages, each with its own visual hook",
             "f2": "32 sections in total, split across the subpages as you need",
-            "f3": "Free basic maintenance: 1 month, up to 3 h per week",
+            "f3": "Free basic maintenance for 1 month, up to 3 h/week",
             "f4": "20% off extra tools",
-            "days": "up to 8 business days after your deposit and complete material",
+            "days": "Up to 8 business days after deposit and complete material",
             "cta": "I want the Professional plan"
         },
         "currencySymbol": "$",
@@ -224,26 +224,26 @@
             "title": "How we <1>work</1>",
             "lead": "Seven clear steps, from our first conversation to your live website.",
             "step1Title": "Consultation",
-            "step1Text": "We talk about your business and recommend a plan.",
+            "step1Text": "We talk about your business and work out a plan.",
             "step2Title": "Contract and deposit",
             "step2Text": "We sign the contract and you pay 50% to get started.",
             "step3Title": "Your content",
             "step3Text": "You send us your texts, images, logo and access details.",
             "step4Title": "Build",
-            "step4Text": "We build your site with your brand.",
+            "step4Text": "We design and build your site with your brand.",
             "step5Title": "Review",
-            "step5Text": "You review the site and request adjustments.",
-            "step6Title": "Delivery and final payment",
+            "step5Text": "You review the site and approve it or request adjustments.",
+            "step6Title": "Final delivery",
             "step6Text": "Once you approve, you pay the remaining 50%.",
-            "step7Title": "Launch and maintenance",
-            "step7Text": "We publish your website and support you with the free basic maintenance included in your plan."
+            "step7Title": "Launch",
+            "step7Text": "We publish your website and follow up on it."
         }
     },
     "extras": {
         "eyebrow": "Extra tools",
         "title": "Add what you <1>need</1>",
-        "lead": "Each tool has a fixed price and adds business days to your plan's delivery.",
-        "discount": "Discount on extra tools: {{esencial}}, regular price · {{alamedida}}, {{alamedidaPct}}% · {{profesional}}, {{profesionalPct}}%",
+        "lead": "Each tool adds business days to your plan's delivery.",
+        "discount": "Discount on tools: {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
         "externalNote": "Some tools rely on external services (for example AI, messaging, payment gateways, databases or domains) whose costs are paid by the client. They may vary depending on the solution, and we will let you know when we quote.",
         "price": "${{price}} COP",
         "perLanguage": "per language",
@@ -254,12 +254,12 @@
             "desc": "Your website in another language, with a visible language selector."
         },
         "forms": {
-            "name": "Forms with more than 3 questions",
-            "desc": "Custom forms to collect more information from your customers."
+            "name": "Extended forms",
+            "desc": "Forms with more than 5 questions for your customers."
         },
         "logo": {
-            "name": "Logo design",
-            "desc": "A simple, professional logo for your brand."
+            "name": "Branding (logo and color palette)",
+            "desc": "A clear, professional logo for your own brand."
         },
         "analytics": {
             "name": "Analytics with Pixel and GA4",
@@ -275,11 +275,11 @@
         },
         "blog": {
             "name": "Self-managed blog",
-            "desc": "A secure dashboard to publish your own posts (title, description, content and photo) without depending on us. We recommend a maximum of 3 posts per week and 80 per year to keep your site fast."
+            "desc": "A secure dashboard to publish your own posts."
         },
         "booking": {
             "name": "Bookings with Google Calendar",
-            "desc": "Your customers book appointments in your available hours and they are added to your Google Calendar."
+            "desc": "Your customers book available slots and they are added to your Google Calendar."
         },
         "paymentLinks": {
             "name": "Payment links",
@@ -287,11 +287,11 @@
         },
         "store": {
             "name": "Online store with shopping cart",
-            "desc": "Catalog, cart and online payment; every product includes an \"Ask about this product\" button that takes you to WhatsApp."
+            "desc": "Catalog and cart + WhatsApp button: \"Ask about this product\"."
         },
         "chatbot": {
             "name": "AI chatbot",
-            "desc": "An assistant that answers your customers' frequently asked questions."
+            "desc": "An assistant that replies to all your customers."
         },
         "crm": {
             "name": "Internal CRM",
@@ -303,23 +303,23 @@
     },
     "booking": {
         "title": "Shall we talk about your <1>project</1>?",
-        "text": "Tell us what your business needs and we will recommend the ideal plan and tools.",
+        "text": "Tell us what your business needs, and we will recommend the ideal plan and tools to take your business to the next level.",
         "scheduleCta": "Book a consultation",
         "quoteCta": "Build your quote"
     },
     "quote": {
         "eyebrow": "Quote builder",
         "title": "Build your <1>quote</1>",
-        "lead": "Answer two questions, choose your plan and add the extra tools you want. You will instantly see an estimated price and timeline.",
-        "needTitle": "1. What do you need?",
+        "lead": "Answer a few questions, choose your plan or add the extra tools you want. You will instantly see an estimated price and timeline.",
+        "needTitle": "1. Scope of your service",
         "pagesLegend": "How many pages do you need?",
         "pages_1": "A single page",
         "pages_3": "Up to 3 pages",
-        "pages_5": "Up to 5 pages",
+        "pages_5": "5 pages or more",
         "sectionsLegend": "How much content will you show?",
         "sections_7": "The essentials (up to 7 sections)",
         "sections_15": "Quite a lot (up to 15 sections)",
-        "sections_32": "A lot (up to 32 sections)",
+        "sections_32": "A lot (32 sections or more)",
         "planTitle": "2. Your plan",
         "planLegend": "Plan",
         "suggested": "Suggested",
@@ -339,9 +339,9 @@
         "total": "Estimated total",
         "deposit": "Deposit (50%)",
         "delivery": "Estimated timeline",
-        "deliveryNote": "Counted from your deposit and your complete material.",
+        "deliveryNote": "Counted from your deposit and delivery of your complete material.",
         "live": "Estimated total: {{total}}. Timeline: {{days}}.",
-        "disclaimer": "This is an approximate estimate, not an offer. The final price, the scope and the costs of external services (AI, messaging, payment gateway, databases, domains), which are paid by the client, are confirmed in writing before hiring.",
+        "disclaimer": "This is an approximate estimate. The final price, the scope and the costs of external services paid by the client are communicated in writing before hiring.",
         "doubts": "Any questions?",
         "whatsappCta": "Message us on WhatsApp",
         "reset": "Start over",
