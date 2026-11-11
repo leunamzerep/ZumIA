@@ -27,14 +27,14 @@ export type Extra = {
 };
 
 export const EXTRAS: Extra[] = [
-  { id: "translation", price: 49_000, days: 1, perLanguage: true },
-  { id: "forms", price: 49_000, days: 1 },
+  { id: "booking", price: 49_000, days: 2 },
   { id: "logo", price: 49_000, days: 1 },
-  { id: "analytics", price: 49_000, days: 1 },
-  { id: "reviews", price: 49_000, days: 1 },
+  { id: "translation", price: 49_000, days: 1, perLanguage: true },
   { id: "faq", price: 49_000, days: 1 },
+  { id: "reviews", price: 49_000, days: 1 },
+  { id: "forms", price: 49_000, days: 1 },
+  { id: "analytics", price: 99_000, days: 1 },
   { id: "blog", price: 99_000, days: 2 },
-  { id: "booking", price: 99_000, days: 2 },
   { id: "paymentLinks", price: 99_000, days: 2 },
   { id: "store", price: 199_000, days: 4 },
   { id: "chatbot", price: 199_000, days: 4 },

@@ -77,13 +77,13 @@
             "eyebrow": "How we work",
             "title": "From the first message to your <1>published</1> website",
             "step1Title": "Guidance and materials",
-            "step1Text": "Logo, texts, photos and contact details. We tell you what we need.",
+            "step1Text": "Logo, texts, photos and details. We tell you what we need.",
             "step2Title": "First delivery",
             "step2Text": "We show you a first version of your website for you to review.",
             "step3Title": "Review and adjustments",
-            "step3Text": "You review the first version and we adjust what's needed before final delivery.",
+            "step3Text": "You review the first version and we adjust what's needed.",
             "step4Title": "¡Launch!",
-            "step4Text": "With your approval and the final payment, we publish your website on your domain."
+            "step4Text": "With your approval, we publish your website on your domain."
         },
         "cta": {
             "text": "Tell us what your business needs and we'll get back to you soon."
@@ -174,7 +174,7 @@
         "esencial": {
             "name": "Essential",
             "tagline": "Start growing, fast",
-            "f1": "1 page: eye-catching hero and up to 7 sections",
+            "f1": "1 page: Eye-catching hero and up to 7 sections",
             "f2": "Free basic maintenance: 2 weeks, up to 2 h per week",
             "f3": "Extra tools at the regular price",
             "days": "up to 3 business days after your deposit and complete material",
@@ -229,7 +229,7 @@
             "step2Text": "We sign the contract and you pay 50% to get started.",
             "step3Title": "Your content",
             "step3Text": "You send us your texts, images, logo and access details.",
-            "step4Title": "Design and build",
+            "step4Title": "Build",
             "step4Text": "We build your site with your brand.",
             "step5Title": "Review",
             "step5Text": "You review the site and request adjustments.",

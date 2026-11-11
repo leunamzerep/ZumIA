@@ -2,14 +2,14 @@ import type { Post } from "./types";
 
 export const atendiendoMientrasTrabajas: Post = {
   slug: "tu-negocio-atendiendo-mientras-tu-trabajas",
-  title: "Tu negocio atendiendo mientras tú trabajas",
+  title: "Tu negocio puede estar atendiendo mientras tú trabajas",
   description:
     "Responder las mismas preguntas una y otra vez quita tiempo. Cómo una página web puede adelantar parte de la atención mientras tú sigues trabajando.",
   // PENDIENTE: fecha real de publicación (por ahora, el día de esta fase)
   date: "2026-11-11",
   blocks: [
-    { type: "p", text: "Si tienes un negocio pequeño, seguramente haces de todo: atiendes, produces, compras, cobras, respondes mensajes y, cuando sobra un rato, piensas en cómo mejorar. El tiempo no alcanza, y una buena parte se va en contestar las mismas preguntas una y otra vez." },
-    { type: "p", text: "\"¿Dónde quedan?\", \"¿qué horario tienen?\", \"¿cuánto se demora?\", \"¿hacen domicilios?\". Cada pregunta es importante para quien la hace, pero responderlas todas, a cualquier hora y mientras haces otra cosa, desgasta." },
+    { type: "p", text: "Si tienes un negocio pequeño, seguramente haces de todo: Atiendes, produces, compras, cobras, respondes mensajes y, cuando sobra un rato, piensas en cómo mejorar. El tiempo no alcanza, y una buena parte se va en contestar las mismas preguntas una y otra vez." },
+    { type: "p", text: "\"¿Dónde quedan?\", \"¿Qué horario tienen?\", \"¿Cuánto se demora?\", \"¿Hacen domicilios?\". Cada pregunta es importante para quien la hace, pero responderlas todas, a cualquier hora y mientras haces otra cosa, desgasta." },
     { type: "h2", text: "Las preguntas que se repiten" },
     { type: "p", text: "Haz una pausa y revisa tus últimos mensajes de WhatsApp. Es muy probable que encuentres un patrón. Las preguntas más frecuentes suelen ser de este tipo:" },
     {
@@ -40,7 +40,7 @@ export const atendiendoMientrasTrabajas: Post = {
     },
     { type: "p", text: "No todas son necesarias para todos. Lo importante es elegir las que resuelven un problema real de tu día a día, no llenar la página de cosas que nadie usa." },
     { type: "h2", text: "Lo que una página no hace por ti" },
-    { type: "p", text: "Es bueno tener expectativas claras. Una página web no atiende con la calidez con la que tú lo haces, no reemplaza tu experiencia y no garantiza por sí sola más clientes ni más ventas. Tampoco se mantiene sola: si cambias de horario, de precio o de servicio, hay que actualizarla." },
+    { type: "p", text: "Es bueno tener expectativas claras. Una página web no atiende con la calidez con la que tú lo haces, no reemplaza tu experiencia y no garantiza por sí sola más clientes ni más ventas. Tampoco se mantiene sola: Si cambias de horario, de precio o de servicio, hay que actualizarla." },
     { type: "p", text: "Lo que sí puede hacer es quitarte parte de la carga repetitiva y darle al cliente una forma sencilla de informarse por su cuenta. Ese tiempo que recuperas lo puedes dedicar a lo que mejor sabes hacer." },
     { type: "h2", text: "Cómo empezar sin complicarte" },
     { type: "p", text: "Si te interesa la idea, no tienes que hacerlo todo de una vez. Puedes empezar así:" },

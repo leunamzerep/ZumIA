@@ -16,7 +16,7 @@
         "quoteTitle": "Arma tu cotización | Zumia Solutions",
         "quoteDescription": "Elige el plan que se ajusta a tu negocio, suma herramientas extra y obtén un estimado de precio y plazo para tu página web.",
         "blogTitle": "Blog | Zumia Solutions",
-        "blogDescription": "Artículos claros para dueños de pequeños negocios: cómo te buscan tus clientes en internet, qué les genera confianza y cómo ganar tiempo."
+        "blogDescription": "Artículos claros para dueños de pequeños negocios: Cómo te buscan tus clientes en internet, qué les genera confianza y cómo ganar tiempo."
     },
     "header": {
         "home": "Principal",
@@ -77,13 +77,13 @@
             "eyebrow": "Cómo trabajamos",
             "title": "Desde el primer mensaje a tu página <1>publicada</1>",
             "step1Title": "Asesoría e Insumos",
-            "step1Text": "Logo, textos, fotos y datos de contacto. Te decimos qué necesitamos.",
+            "step1Text": "Logo, textos, fotos y datos. Te decimos qué necesitamos.",
             "step2Title": "Primera entrega",
             "step2Text": "Te mostramos una primera versión de tu página para que la revises.",
             "step3Title": "Revisión y ajustes",
-            "step3Text": "Revisas la primera versión y ajustamos lo necesario antes de la entrega final.",
+            "step3Text": "Revisas la primera versión y ajustamos lo necesario.",
             "step4Title": "¡Lanzamiento!",
-            "step4Text": "Con tu aprobación y el pago final, publicamos tu página en tu dominio."
+            "step4Text": "Con tu aprobación, publicamos tu página en tu dominio."
         },
         "cta": {
             "text": "Cuéntanos qué necesita tu negocio y te respondemos pronto."
@@ -101,19 +101,19 @@
         "h21": "Sobre Nosotros",
         "h31": "Nuestro equipo especializado en crecimiento de presencia digital se destaca por su trabajo detallado mano a mano con nuestros clientes dando resultados de manera eficiente y oportuna",
         "h22": "Nuestros servicios",
-        "h32": "En Zumia Solutions, ofrecemos soluciones integrales en desarrollo web y marketing.",
+        "h32": "En Zumia Solutions, ofrecemos soluciones integrales en desarrollo web y marketing que se adaptan a las necesidades de nuestros clientes.",
         "h23": "Nuestro compromiso",
         "h33": "Estamos comprometidos a ayudar a nuestros clientes a alcanzar sus objetivos. Con nosotros, puede tener la tranquilidad de recibir un servicio confiable de calidad.",
         "h24": "Nuestra Misión",
-        "h34": "Acompañar a micronegocios y pymes con soluciones web y de marketing claras, rápidas y medibles, enfocadas en convertir visitas en contactos.",
+        "h34": "Acompañar a micronegocios y pymes con soluciones para web y marketing claras, rápidas y medibles, enfocadas en convertir visitantes curiosos en contactos con potencial de clientes.",
         "h25": "Nuestra Visión",
-        "h35": "Ser una marca reconocida a nivel regional en implementación rápida de páginas web con un modelo escalable de procesos estandarizados.",
+        "h35": "Ser una marca reconocida a nivel regional en implementación rápida de páginas web con un modelo escalable de procesos estandarizados profesionales y personalizados.",
         "h27": "Nuestro Enfoque",
         "h37": "Trabajamos de la mano con nuestros clientes para construir relaciones duraderas basadas en confianza, transparencia y atención personalizada."
     },
     "contact": {
         "main": "<1>Contáctanos.</1> Solicita más información y trabajemos juntos",
-        "invitation": "Cuéntanos tus dudas o agenda tu diagnóstico Gratis",
+        "invitation": "Cuéntanos tus dudas, respondemos pronto",
         "label1": "Nombre y Apellido",
         "label2": "Correo Electrónico",
         "label3": "Consulta",
@@ -142,7 +142,7 @@
         "agendaTitle": "Agenda tu <1>asesoría</1>",
         "agendaText": "Elige el día y la hora que te sirvan para conversar sobre tu proyecto.",
         "agendaLoad": "Cargar calendario",
-        "agendaNote": "Al cargarlo, se abre un servicio de Google.",
+        "agendaNote": "Al cargarlo, se abre un servicio de Google Calendar.",
         "agendaFrameTitle": "Calendario de Google para agendar una asesoría con Zumia Solutions"
     },
     "terms": {
@@ -353,30 +353,30 @@
         "esencial": {
             "name": "Esencial",
             "tagline": "Empieza a crecer rápidamente",
-            "f1": "1 página: hero llamativo y hasta 7 secciones",
-            "f2": "Mantenimiento básico gratis: 2 semanas, hasta 2 h por semana",
-            "f3": "Herramientas extra al precio normal",
-            "days": "hasta 3 días hábiles tras tu anticipo y tu material completo",
+            "f1": "1 página con enganche visual y hasta 7 secciones",
+            "f2": "Mantenimiento básico gratis por 2 semanas, hasta 2h/semana",
+            "f3": "Herramientas extra a precio básico",
+            "days": "Hasta 3 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan Esencial"
         },
         "alamedida": {
             "name": "A la Medida",
-            "tagline": "Brinda aún más credibilidad a cada uno de tus clientes",
-            "f1": "3 subpáginas (Inicio cuenta como una), cada una con su hero",
+            "tagline": "Brinda más credibilidad a tus clientes",
+            "f1": "3 subpáginas, cada una con su enganche visual",
             "f2": "15 secciones en total, distribuibles entre las subpáginas",
-            "f3": "Mantenimiento básico gratis: 3 semanas, hasta 3 h por semana",
-            "f4": "10 % de descuento en herramientas extra",
-            "days": "hasta 5 días hábiles tras tu anticipo y tu material completo",
+            "f3": "Mantenimiento básico gratis por 3 semanas, hasta 3h/semana",
+            "f4": "10% de descuento en herramientas extra",
+            "days": "Hasta 5 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan A la Medida"
         },
         "profesional": {
             "name": "Profesional",
             "tagline": "Lleva tu negocio al siguiente nivel",
-            "f1": "5 subpáginas (Inicio cuenta como una), cada una con su hero",
+            "f1": "5 subpáginas, cada una con su enganche visual",
             "f2": "32 secciones en total, distribuibles entre las subpáginas",
-            "f3": "Mantenimiento básico gratis: 1 mes, hasta 3 h por semana",
-            "f4": "20 % de descuento en herramientas extra",
-            "days": "hasta 8 días hábiles tras tu anticipo y tu material completo",
+            "f3": "Mantenimiento básico gratis por 1 mes, hasta 3h/semana",
+            "f4": "20% de descuento en herramientas extra",
+            "days": "Hasta 8 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan Profesional"
         },
         "currencySymbol": "$",
@@ -402,27 +402,27 @@
             "title": "Así <1>trabajamos</1>",
             "lead": "Siete pasos claros, desde la primera conversación hasta tu web publicada.",
             "step1Title": "Asesoría",
-            "step1Text": "Conversamos sobre tu negocio y te recomendamos un plan.",
+            "step1Text": "Conversamos sobre tu negocio y vemos plan.",
             "step2Title": "Contrato y anticipo",
             "step2Text": "Firmamos el contrato y pagas el 50 % para empezar.",
             "step3Title": "Tu contenido",
             "step3Text": "Nos entregas textos, imágenes, logo y accesos.",
-            "step4Title": "Diseño y construcción",
-            "step4Text": "Armamos tu sitio con tu marca.",
+            "step4Title": "Construcción",
+            "step4Text": "Diseñamos y armamos tu sitio con tu marca.",
             "step5Title": "Revisión",
-            "step5Text": "Revisas el sitio y pides ajustes.",
-            "step6Title": "Entrega y pago final",
+            "step5Text": "Revisas el sitio y apruebas o pides ajustes.",
+            "step6Title": "Entrega final",
             "step6Text": "Con tu aprobación, pagas el 50 % restante.",
-            "step7Title": "Publicación y mantenimiento",
-            "step7Text": "Publicamos tu web y te acompañamos con el mantenimiento básico gratuito de tu plan."
+            "step7Title": "Publicación",
+            "step7Text": "Publicamos tu web y le hacemos seguimiento."
         }
     },
     "extras": {
         "eyebrow": "Herramientas extra",
         "title": "Suma lo que <1>necesitas</1>",
-        "lead": "Cada herramienta tiene precio fijo y suma días hábiles a la entrega de tu plan.",
-        "discount": "Descuento en herramientas extra: {{esencial}}, precio normal · {{alamedida}}, {{alamedidaPct}} % · {{profesional}}, {{profesionalPct}} %",
-        "externalNote": "Algunas herramientas usan servicios externos (por ejemplo IA, mensajería, pasarela de pagos, bases de datos o dominios) cuyos costos corren por cuenta del cliente. Pueden variar según la solución y te los informamos al cotizar.",
+        "lead": "Cada herramienta suma días hábiles a la entrega de tu plan.",
+        "discount": "Descuento en herramientas: {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
+        "externalNote": "Algunas herramientas usan servicios externos (por ejemplo IA, mensajería, pasarela de pagos, bases de datos o dominios) cuyos costos corren por cuenta del cliente. Pueden variar según la solución y los informamos al cotizar.",
         "price": "${{price}} COP",
         "perLanguage": "por idioma",
         "days_one": "+{{count}} día hábil",
@@ -432,12 +432,12 @@
             "desc": "Tu web en otro idioma con un selector visible."
         },
         "forms": {
-            "name": "Formularios de más de 3 preguntas",
-            "desc": "Formularios a la medida para recibir más información de tus clientes."
+            "name": "Formularios extensos",
+            "desc": "Formularios de más de 5 preguntas para tus clientes."
         },
         "logo": {
-            "name": "Creación de logo",
-            "desc": "Un logo sencillo y profesional para tu marca."
+            "name": "Branding (Logo y colorimetría)",
+            "desc": "Un logo claro y profesional para tu marca propia."
         },
         "analytics": {
             "name": "Analítica con Pixel y GA4",
@@ -453,11 +453,11 @@
         },
         "blog": {
             "name": "Blog autosostenible",
-            "desc": "Un panel seguro para que publiques tus propias entradas (título, descripción, contenido y foto) sin depender de nosotros. Recomendamos un máximo de 3 entradas por semana y 80 al año para cuidar la velocidad de tu web."
+            "desc": "Un panel seguro para que publiques tus propias publicaciones."
         },
         "booking": {
             "name": "Reservas con Google Calendar",
-            "desc": "Tus clientes agendan citas en tus horarios disponibles y se agregan a tu Google Calendar."
+            "desc": "Tus clientes agendan citas disponibles y se agregan a tu Google Calendar."
         },
         "paymentLinks": {
             "name": "Links de pago",
@@ -465,11 +465,11 @@
         },
         "store": {
             "name": "Tienda con carrito de compras",
-            "desc": "Catálogo, carrito y pago en línea; cada producto incluye el botón \"Pregunta por este producto\" que te lleva a WhatsApp."
+            "desc": "Catálogo y carrito + Botón a WhatsApp: \"Pregunta por este producto\"."
         },
         "chatbot": {
             "name": "Chatbot de inteligencia artificial",
-            "desc": "Un asistente que responde las preguntas frecuentes de tus clientes."
+            "desc": "Un asistente que responde a todos tus clientes."
         },
         "crm": {
             "name": "CRM interno",
@@ -481,23 +481,23 @@
     },
     "booking": {
         "title": "¿Hablamos de tu <1>proyecto</1>?",
-        "text": "Cuéntanos qué necesita tu negocio y te recomendamos el plan y las herramientas ideales.",
+        "text": "Cuéntanos qué necesita tu negocio, te recomendamos el plan y las herramientas ideales para llevar tu negocio al siguiente nivel.",
         "scheduleCta": "Agendar asesoría",
         "quoteCta": "Arma tu cotización"
     },
     "quote": {
         "eyebrow": "Cotizador",
         "title": "Arma tu <1>cotización</1>",
-        "lead": "Responde dos preguntas, elige tu plan y suma las herramientas extra que quieras. Verás al instante un estimado de precio y plazo.",
-        "needTitle": "1. ¿Qué necesitas?",
+        "lead": "Responde algunas preguntas, elige tu plan o suma las herramientas extra que quieras. Verás al instante un estimado de precio y plazo.",
+        "needTitle": "1. Extensión de tu servicio",
         "pagesLegend": "¿Cuántas páginas necesitas?",
         "pages_1": "Una sola página",
         "pages_3": "Hasta 3 páginas",
-        "pages_5": "Hasta 5 páginas",
+        "pages_5": "5 páginas o más",
         "sectionsLegend": "¿Cuánto contenido vas a mostrar?",
         "sections_7": "Lo esencial (hasta 7 secciones)",
         "sections_15": "Bastante (hasta 15 secciones)",
-        "sections_32": "Mucho (hasta 32 secciones)",
+        "sections_32": "Mucho (32 secciones o más)",
         "planTitle": "2. Tu plan",
         "planLegend": "Plan",
         "suggested": "Sugerido",
@@ -517,9 +517,9 @@
         "total": "Total estimado",
         "deposit": "Anticipo (50 %)",
         "delivery": "Plazo estimado",
-        "deliveryNote": "Cuenta desde tu anticipo y tu material completo.",
+        "deliveryNote": "Cuenta desde tu anticipo y la entrega del material completo.",
         "live": "Total estimado: {{total}}. Plazo: {{days}}.",
-        "disclaimer": "Estimado orientativo, no es una oferta. El precio final, el alcance y los costos de servicios externos (IA, mensajería, pasarela de pagos, bases de datos, dominios), que corren por cuenta del cliente, se confirman por escrito antes de contratar.",
+        "disclaimer": "Estimado orientativo. El precio final, el alcance y los costos de servicios externos que corren por cuenta del cliente, se informan por escrito antes de contratar.",
         "doubts": "¿Tienes dudas?",
         "whatsappCta": "Escríbenos por WhatsApp",
         "reset": "Reiniciar",
@@ -532,7 +532,7 @@
     "blog": {
         "eyebrow": "Blog",
         "title": "Ideas para tu <1>negocio</1>",
-        "lead": "Artículos cortos y claros para dueños de pequeños negocios: cómo te buscan tus clientes, qué les genera confianza y cómo ganar tiempo.",
+        "lead": "Artículos cortos y claros para dueños de pequeños negocios: Cómo te buscan tus clientes, qué les genera confianza y cómo ganar tiempo.",
         "notice": "Los artículos están disponibles solo en español.",
         "readMore": "Leer artículo",
         "readingTime": "{{count}} min de lectura",
