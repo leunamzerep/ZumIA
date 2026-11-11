@@ -88,6 +88,11 @@ export const Quote = () => {
   };
   // Cerrar el bloque borra sus respuestas
   const toggleSite = () => {
+    // Al abrirlo se ocultan las dos preguntas de extensión: se borran sus respuestas
+    if (!hasSite) {
+      setPages(undefined);
+      setSections(undefined);
+    }
     setHasSite((open) => !open);
     setHired(undefined);
     setGoal(undefined);
@@ -153,10 +158,12 @@ export const Quote = () => {
                     {t("quote.haveSite")}
                   </button>
                 </div>
-                {external ? (
-                  <p className="rounded-2xl bg-gold-50 px-4 py-3 text-sm leading-relaxed text-navy-800 ring-1 ring-gold-700/20">
-                    {t("quote.noteExternal")}
-                  </p>
+                {hasSite ? (
+                  external && (
+                    <p className="rounded-2xl bg-gold-50 px-4 py-3 text-sm leading-relaxed text-navy-800 ring-1 ring-gold-700/20">
+                      {t("quote.noteExternal")}
+                    </p>
+                  )
                 ) : (
                   <>
                     <RadioCards
@@ -213,12 +220,17 @@ export const Quote = () => {
               {!external && (
                 <Card className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
-                    <h2 className={stepTitle}>{t("quote.planTitle")}</h2>
-                    <p className="text-sm leading-relaxed text-navy-600">
-                      {mode === "zumiaClient" ? t("quote.noteClient") : suggested ? t("quote.suggestionNote") : t("quote.planHint")}
-                    </p>
-                    {mode === "redesign" && <p className="text-sm leading-relaxed text-navy-600">{t("quote.noteRedesign")}</p>}
+                    <h2 className={stepTitle}>
+                      {t("quote.planTitle")}
+                      {hasSite && <span className="ml-2 text-base font-semibold text-navy-600">{t("quote.planNewOnly")}</span>}
+                    </h2>
+                    {!hasSite && (
+                      <p className="text-sm leading-relaxed text-navy-600">{suggested ? t("quote.suggestionNote") : t("quote.planHint")}</p>
+                    )}
                   </div>
+                  {/* Con "conservar mi sitio" las opciones se ven atenuadas y no se pueden usar (inert: sin clic ni teclado);
+                      se conserva el plan que ya estaba elegido, que da el descuento */}
+                  <div className={hasSite ? "pointer-events-none opacity-50" : undefined} {...(hasSite ? ({ inert: "" } as object) : {})}>
                   <RadioCards
                     name="plan"
                     legend={t("quote.planLegend")}
@@ -238,6 +250,7 @@ export const Quote = () => {
                     value={planId}
                     onChange={setPlanId}
                   />
+                  </div>
                 </Card>
               )}
 
