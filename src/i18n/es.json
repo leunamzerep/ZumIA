@@ -248,7 +248,7 @@
     },
     "privacy": {
         "h1": "Política de <1>Privacidad</1>",
-        "updated": "<1>Última actualización:</1> 10/11/2026",
+        "updated": "<1>Última actualización:</1> 11/11/2026",
         "s1": {
             "title": "1. Responsable del Tratamiento",
             "b1": "Zumia Solutions opera como marca bajo persona natural, con domicilio en Bogotá, Colombia, responsable del tratamiento de los datos personales que recogemos en este sitio (Ley 1581 de 2012).",
@@ -289,7 +289,8 @@
                 "i1": "<1>GitHub Pages:</1> Aloja el sitio web.",
                 "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía.",
                 "i3": "<1>Google (Apps Script, Hojas de cálculo y Gmail):</1> Almacena su consulta en una hoja de cálculo privada y recibimos los avisos por correo.",
-                "i4": "<1>WhatsApp (Meta) e Instagram (Meta):</1> Si usa el botón de WhatsApp o ve la sección de Instagram, esos servicios aplican sus propias políticas."
+                "i4": "<1>WhatsApp (Meta) e Instagram (Meta):</1> Si usa el botón de WhatsApp o ve la sección de Instagram, esos servicios aplican sus propias políticas.",
+                "i5": "<1>Google Calendar:</1> Si agenda una asesoría, el calendario es un servicio de Google: los datos que escriba allí (por ejemplo nombre, correo y horario) los trata Google según sus propias políticas y nosotros los recibimos para atender su cita. El calendario solo se carga cuando usted lo solicita."
             },
             "b3": "Algunos de estos proveedores procesan datos en servidores ubicados fuera de Colombia, por ejemplo, en Estados Unidos. Al aceptar esta política, usted autoriza de forma expresa ese envío. No vendemos, alquilamos ni compartimos sus datos con terceros con fines comerciales."
         },
