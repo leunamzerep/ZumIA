@@ -22,7 +22,7 @@ export type Extra = {
   price: number;
   /** Días hábiles que suma a la entrega del plan */
   days: number;
-  /** El precio es por cada idioma adicional (solo el botón de traducción) */
+  /** El precio y los días son por cada idioma adicional (solo el botón de traducción) */
   perLanguage?: boolean;
 };
 

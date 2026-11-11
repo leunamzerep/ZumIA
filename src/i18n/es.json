@@ -411,7 +411,7 @@
         "eyebrow": "Herramientas extra",
         "title": "Suma lo que <1>necesitas</1>",
         "lead": "Cada herramienta tiene precio fijo y suma días hábiles a la entrega de tu plan.",
-        "discount": "Descuento en herramientas extra: {{esencial}}, precio normal · {{alamedida}}, 10 % · {{profesional}}, 20 %",
+        "discount": "Descuento en herramientas extra: {{esencial}}, precio normal · {{alamedida}}, {{alamedidaPct}} % · {{profesional}}, {{profesionalPct}} %",
         "externalNote": "Algunas herramientas usan servicios externos (por ejemplo IA, mensajería, pasarela de pagos, bases de datos o dominios) cuyos costos corren por cuenta del cliente. Pueden variar según la solución y te los informamos al cotizar.",
         "price": "${{price}} COP",
         "perLanguage": "por idioma",
@@ -464,7 +464,9 @@
         "crm": {
             "name": "CRM interno",
             "desc": "Un panel privado para organizar los contactos y solicitudes que recibes."
-        }
+        },
+        "daysPerLanguage_one": "+{{count}} día hábil por idioma",
+        "daysPerLanguage_other": "+{{count}} días hábiles por idioma"
     },
     "booking": {
         "title": "¿Hablamos de tu <1>proyecto</1>?",

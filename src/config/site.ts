@@ -27,10 +27,13 @@ export const PHONE_DISPLAY = "+57 312 484 2024";
 export const WHATSAPP_URL = `https://wa.me/573124842024?text=${encodeURIComponent("¡Hola! Quiero saber más sobre los servicios digitales")}`;
 
 /**
- * Enlace para agendar una reunión. Vacío hasta la Fase C: cuando exista, el
- * componente BookingCta mostrará un segundo botón de agenda con esta URL.
+ * Calendario de citas de Google (página de reservas embebible). Solo se usa en
+ * el iframe de /contact/#agenda, que se carga cuando la persona lo pide.
+ * Los botones "Agendar asesoría" (BookingCta y /quote) no abren Google: llevan
+ * a /contact/#agenda. Con null, la sección de agenda y esos botones no aparecen.
  */
-export const BOOKING_URL = "";
+export const BOOKING_URL: string | null =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ0J87DIG0QSnYpiPOEiqwP4f-zXCEhu-G0DClmH2uafDnsL0WKI64YHeq-_GjO1GdhVHkqXlqew?gv=true";
 
 /** Correo de contacto. El enlace que abre Gmail vive en i18n (footer.mailRedirect). */
 export const EMAIL = "contact@zumia.dev";

@@ -234,7 +234,7 @@
         "eyebrow": "Extra tools",
         "title": "Add what you <1>need</1>",
         "lead": "Each tool has a fixed price and adds business days to your plan's delivery.",
-        "discount": "Discount on extra tools: {{esencial}}, regular price · {{alamedida}}, 10% · {{profesional}}, 20%",
+        "discount": "Discount on extra tools: {{esencial}}, regular price · {{alamedida}}, {{alamedidaPct}}% · {{profesional}}, {{profesionalPct}}%",
         "externalNote": "Some tools rely on external services (for example AI, messaging, payment gateways, databases or domains) whose costs are paid by the client. They may vary depending on the solution, and we will let you know when we quote.",
         "price": "${{price}} COP",
         "perLanguage": "per language",
@@ -287,7 +287,9 @@
         "crm": {
             "name": "Internal CRM",
             "desc": "A private dashboard to organize the contacts and requests you receive."
-        }
+        },
+        "daysPerLanguage_one": "+{{count}} business day per language",
+        "daysPerLanguage_other": "+{{count}} business days per language"
     },
     "booking": {
         "title": "Shall we talk about your <1>project</1>?",

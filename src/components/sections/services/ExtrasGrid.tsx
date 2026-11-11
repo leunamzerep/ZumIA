@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
 
 import { EXTRAS, type Extra } from "@/data/extras";
-import { formatPrice } from "@/data/plans";
+import { formatPriceFor, getPlan } from "@/data/plans";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,7 +17,7 @@ const ClockIcon = () => (
 const ExtraCard = ({ extra, index }: { extra: Extra; index: number }) => {
   const { t, i18n } = useTranslation();
   // En inglés el separador de miles es la coma ($49,000); en español, el punto ($49.000)
-  const price = i18n.language === "en" ? new Intl.NumberFormat("en-US").format(extra.price) : formatPrice(extra.price);
+  const price = formatPriceFor(extra.price, i18n.language);
 
   return (
     <li data-reveal style={{ "--reveal-delay": `${(index % 3) * 90}ms` } as CSSProperties} className="min-w-0">
@@ -33,7 +33,7 @@ const ExtraCard = ({ extra, index }: { extra: Extra; index: number }) => {
           </p>
           <p className="flex items-center gap-2 text-sm font-semibold text-navy-700">
             <ClockIcon />
-            {t("extras.days", { count: extra.days })}
+            {t(extra.perLanguage ? "extras.daysPerLanguage" : "extras.days", { count: extra.days })}
           </p>
         </div>
       </Card>
@@ -61,6 +61,8 @@ export const ExtrasGrid = () => {
             esencial: t("plans.esencial.name"),
             alamedida: t("plans.alamedida.name"),
             profesional: t("plans.profesional.name"),
+            alamedidaPct: getPlan("alamedida").extrasDiscount,
+            profesionalPct: getPlan("profesional").extrasDiscount,
           })}
         </p>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
