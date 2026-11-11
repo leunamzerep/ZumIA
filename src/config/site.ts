@@ -40,7 +40,7 @@ export const EMAIL = "contact@zumia.dev";
 
 /** Redes sociales. */
 export const INSTAGRAM_URL = "https://www.instagram.com/zumiasolutions";
-export const FACEBOOK_URL = "https://www.facebook.com/people/Zumia-Solutions/61586976116654";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/zumia-solutions-3857a344a";
 
 /** Cloudflare Worker que recibe el formulario de contacto (endpoint público, no es secreto). */
 export const CONTACT_WORKER_URL = "https://contact.zumiasolutions.workers.dev/api/contacto";

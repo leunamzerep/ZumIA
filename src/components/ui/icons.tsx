@@ -2,8 +2,10 @@
 // Son decorativos (aria-hidden): el texto accesible va en el enlace o botón.
 // Toman el color del texto (currentColor) y el tamaño de la clase (size-5, size-6…).
 //
-// WhatsApp, Instagram y Facebook: trazos de Simple Icons 16.35.0 (licencia CC0 1.0,
+// WhatsApp e Instagram: trazos de Simple Icons 16.35.0 (licencia CC0 1.0,
 // https://simpleicons.org). Son marcas de Meta: se usan solo para enlazar a sus perfiles.
+// LinkedIn: trazo de Bootstrap Icons 1.13.2 (icons/linkedin.svg, licencia MIT,
+// © The Bootstrap Authors, https://github.com/twbs/icons). Simple Icons ya no incluye LinkedIn.
 // Correo, menú, cerrar, flecha y calendario: dibujados aquí.
 
 import type { SVGProps } from "react";
@@ -24,9 +26,9 @@ export const InstagramIcon = (props: IconProps) => (
   </svg>
 );
 
-export const FacebookIcon = (props: IconProps) => (
-  <svg {...base} viewBox="0 0 24 24" fill="currentColor" {...props}>
-    <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" />
+export const LinkedInIcon = (props: IconProps) => (
+  <svg {...base} viewBox="0 0 16 16" fill="currentColor" {...props}>
+    <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z" />
   </svg>
 );
 

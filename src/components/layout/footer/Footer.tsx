@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 import logo from "@/assets/img/logo-zumia.webp";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
-import { EMAIL, FACEBOOK_URL, INSTAGRAM_URL, PHONE_DISPLAY } from "@/config/site";
+import { EMAIL, INSTAGRAM_URL, LINKEDIN_URL, PHONE_DISPLAY } from "@/config/site";
 import { useWhatsappUrl } from "@/config/whatsapp";
 import { PATHS } from "@/config/paths";
-import { FacebookIcon, InstagramIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
+import { InstagramIcon, LinkedInIcon, MailIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { NAV_LINKS } from "../navLinks";
 
 const headingClass = "font-title text-sm font-bold uppercase tracking-[0.18em] text-gold-400";
@@ -43,8 +43,8 @@ export const Footer = () => {
               </a>
             </li>
             <li>
-              <a className={socialClass} href={FACEBOOK_URL} target="_blank" rel="noopener noreferrer" aria-label={t("footer.facebook")}>
-                <FacebookIcon className="size-5" />
+              <a className={socialClass} href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label={t("footer.linkedin")}>
+                <LinkedInIcon className="size-5" />
               </a>
             </li>
             <li>
