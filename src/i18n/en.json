@@ -176,7 +176,7 @@
             "tagline": "Start growing, fast",
             "f1": "1 page with an eye-catching visual hook and up to 7 sections",
             "f2": "Free basic maintenance for 2 weeks, up to 2 h/week",
-            "f3": "Extra tools at the base price",
+            "f3": "5% off extra tools and additional subpages or sections",
             "days": "Up to 3 business days after deposit and complete material",
             "cta": "I want the Essential plan"
         },
@@ -186,7 +186,7 @@
             "f1": "3 subpages, each with its own visual hook",
             "f2": "15 sections in total, split across the subpages as you need",
             "f3": "Free basic maintenance for 3 weeks, up to 3 h/week",
-            "f4": "10% off extra tools",
+            "f4": "10% off extra tools and additional subpages or sections",
             "days": "Up to 5 business days after deposit and complete material",
             "cta": "I want the Tailored plan"
         },
@@ -196,7 +196,7 @@
             "f1": "5 subpages, each with its own visual hook",
             "f2": "32 sections in total, split across the subpages as you need",
             "f3": "Free basic maintenance for 1 month, up to 3 h/week",
-            "f4": "20% off extra tools",
+            "f4": "20% off extra tools and additional subpages or sections",
             "days": "Up to 8 business days after deposit and complete material",
             "cta": "I want the Professional plan"
         },
@@ -243,7 +243,7 @@
         "eyebrow": "Extra tools",
         "title": "Add what you <1>need</1>",
         "lead": "Each tool adds business days to your plan's delivery.",
-        "discount": "Discount on tools: {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
+        "discount": "Discount on tools and on additional subpages or sections: {{esencial}}: {{esencialPct}}% · {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
         "externalNote": "Some tools rely on external services (for example AI, messaging, payment gateways, databases or domains) whose costs are paid by the client. They may vary depending on the solution, and we will let you know when we quote.",
         "price": "${{price}} COP",
         "perLanguage": "per language",
@@ -299,7 +299,25 @@
         },
         "daysPerLanguage_one": "+{{count}} business day per language",
         "daysPerLanguage_other": "+{{count}} business days per language",
-        "quoteLink": "Calculate your estimate"
+        "quoteLink": "Calculate your estimate",
+        "other": {
+            "title": "Other",
+            "surcharge": "surcharge",
+            "perSubpage": "per subpage",
+            "perSection": "per section",
+            "redesign": {
+                "name": "Redesign of an old website",
+                "desc": "We refresh the design of your current website. The price starts from a base amount and may go up if the project is very large; we confirm it in writing."
+            },
+            "external": {
+                "name": "Tools for outside websites",
+                "desc": "We add our extra tools to a website we did not build. A one-time surcharge applies, and plan discounts do not."
+            },
+            "additional": {
+                "name": "Additional subpages or sections",
+                "desc": "Add more subpages (each with its own visual hook) or more sections to your website. They are priced per unit and get your plan's discount."
+            }
+        }
     },
     "booking": {
         "title": "Shall we talk about your <1>project</1>?",
@@ -329,7 +347,7 @@
         "planDays_other": "Up to {{count}} business days",
         "extrasTitle": "3. Extra tools",
         "extrasLead": "Check the ones you want to add. Prices already include your plan's discount.",
-        "extrasDiscount": "{{plan}} plan discount: {{pct}}%",
+        "extrasDiscount": "{{plan}} plan discount: {{pct}}% on tools and on additional subpages or sections",
         "languages": "Number of languages",
         "summaryTitle": "Your estimate",
         "summaryEmpty": "Choose a plan to see your estimate.",
@@ -349,7 +367,47 @@
         "waIntro": "Hi! I would like a quote: {{items}}. Estimated total: {{total}}.",
         "waPlan": "{{plan}} plan",
         "waMore_one": "and {{count}} more tool",
-        "waMore_other": "and {{count}} more tools"
+        "waMore_other": "and {{count}} more tools",
+        "fromAmount": "From {{amount}}",
+        "daysFrom_one": "From {{count}} business day",
+        "daysFrom_other": "From {{count}} business days",
+        "haveSite": "I already have a website",
+        "hiredLegend": "Have you hired a Zumia service before?",
+        "yes": "Yes",
+        "no": "No",
+        "goalLegend": "What do you want to do with your current website?",
+        "goalRedesign": "Redesign it with Zumia",
+        "goalExternal": "Add tools to my current website",
+        "noteExternal": "To add tools to a website we did not build, you don't need to choose a plan or a size. A surcharge applies and there is no discount.",
+        "noteClient": "Choose the plan you hired: it sets your discount on tools and additional items.",
+        "noteRedesign": "A redesign has its own \"from\" price. The plan you choose sets your discount and the total number of subpages and sections.",
+        "otherTitle": "Other",
+        "otherLead": "Add more subpages or sections to your website.",
+        "counterSubpages": "Additional subpages",
+        "counterSections": "Additional sections",
+        "counterUnit": "{{price}} per {{unit}}",
+        "unitSubpage": "subpage",
+        "unitSection": "section",
+        "counterLess": "Fewer",
+        "counterMore": "More",
+        "summaryEmptyTools": "Choose at least one tool to see your estimate.",
+        "summaryEmptyClient": "Choose your plan and check tools or additional items to see your estimate.",
+        "redesignLine": "Redesign of your website (from)",
+        "additional_subpages_one": "Additional subpage × {{count}}",
+        "additional_subpages_other": "Additional subpages × {{count}}",
+        "additional_sections_one": "Additional section × {{count}}",
+        "additional_sections_other": "Additional sections × {{count}}",
+        "surchargeLine": "External website surcharge",
+        "totalPages": "Total subpages",
+        "totalSections": "Total sections",
+        "fromNote": "The redesign base price is a \"from\" price: it may go up if your project is very large. The final price is confirmed in writing.",
+        "waRedesign": "Redesign of my current website",
+        "waClient": "I'm already a Zumia client (plan {{plan}})",
+        "waExternal": "Tools for my current website (with a {{surcharge}} surcharge)",
+        "waAdditional_subpages_one": "{{count}} additional subpage",
+        "waAdditional_subpages_other": "{{count}} additional subpages",
+        "waAdditional_sections_one": "{{count}} additional section",
+        "waAdditional_sections_other": "{{count}} additional sections"
     },
     "blog": {
         "eyebrow": "Blog",

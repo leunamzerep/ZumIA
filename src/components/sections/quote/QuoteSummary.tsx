@@ -6,7 +6,7 @@ import { Card } from "@/components/ui/Card";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { AGENDA_ID, PATHS } from "@/config/paths";
 import { BOOKING_URL } from "@/config/site";
-import type { Quote } from "@/data/quote";
+import type { Quote, QuoteMode } from "@/data/quote";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 
 export const SUMMARY_ID = "resumen";
@@ -14,8 +14,17 @@ export const SUMMARY_ID = "resumen";
 /** Resumen del estimado: plan, extras con descuento, total, anticipo, plazo y acciones. */
 export const QuoteSummary = forwardRef<
   HTMLHeadingElement,
-  { quote: Quote | null; money: (value: number) => string; whatsappUrl: string; onReset: () => void }
->(({ quote, money, whatsappUrl, onReset }, headingRef) => {
+  {
+    quote: Quote | null;
+    mode: QuoteMode;
+    money: (value: number) => string;
+    /** Importe con la palabra "desde" cuando el modo es rediseño */
+    from: (value: number) => string;
+    days: (count: number) => string;
+    whatsappUrl: string;
+    onReset: () => void;
+  }
+>(({ quote, mode, money, from, days, whatsappUrl, onReset }, headingRef) => {
   const { t } = useTranslation();
   const localizePath = useLocalizedPath();
   const row = "flex items-baseline justify-between gap-4";
@@ -29,10 +38,18 @@ export const QuoteSummary = forwardRef<
       {quote ? (
         <>
           <ul className="flex flex-col gap-3 text-sm">
-            <li className={row}>
-              <span className="font-semibold text-white">{t("quote.planLine", { plan: t(`plans.${quote.plan.id}.name`) })}</span>
-              <span className="shrink-0 font-semibold whitespace-nowrap text-white">{money(quote.plan.price)}</span>
-            </li>
+            {quote.mode === "normal" && quote.plan && (
+              <li className={row}>
+                <span className="font-semibold text-white">{t("quote.planLine", { plan: t(`plans.${quote.plan.id}.name`) })}</span>
+                <span className="shrink-0 font-semibold whitespace-nowrap text-white">{money(quote.basePrice)}</span>
+              </li>
+            )}
+            {quote.mode === "redesign" && (
+              <li className={row}>
+                <span className="font-semibold text-white">{t("quote.redesignLine")}</span>
+                <span className="shrink-0 font-semibold whitespace-nowrap text-white">{from(quote.basePrice)}</span>
+              </li>
+            )}
             {quote.lines.map((line) => (
               <li key={line.id} className={row}>
                 <span className="min-w-0 text-white/80">
@@ -42,25 +59,50 @@ export const QuoteSummary = forwardRef<
                 <span className="shrink-0 whitespace-nowrap text-white/80">{money(line.price)}</span>
               </li>
             ))}
+            {quote.additionalLines.map((line) => (
+              <li key={line.kind} className={row}>
+                <span className="min-w-0 text-white/80">{t(`quote.additional_${line.kind}`, { count: line.quantity })}</span>
+                <span className="shrink-0 whitespace-nowrap text-white/80">{money(line.price)}</span>
+              </li>
+            ))}
+            {quote.surcharge > 0 && (
+              <li className={row}>
+                <span className="min-w-0 text-white/80">{t("quote.surchargeLine")}</span>
+                <span className="shrink-0 whitespace-nowrap text-white/80">{money(quote.surcharge)}</span>
+              </li>
+            )}
           </ul>
+          {quote.totals && (
+            <ul className="flex flex-col gap-1 border-t border-white/15 pt-4 text-sm text-white/80">
+              <li className={row}>
+                <span>{t("quote.totalPages")}</span>
+                <span className="font-semibold text-white">{quote.totals.pages}</span>
+              </li>
+              <li className={row}>
+                <span>{t("quote.totalSections")}</span>
+                <span className="font-semibold text-white">{quote.totals.sections}</span>
+              </li>
+            </ul>
+          )}
           <dl className="flex flex-col gap-3 border-t border-white/15 pt-5">
             <div className={row}>
               <dt className="font-semibold text-gold-300">{t("quote.total")}</dt>
-              <dd className="text-right font-title text-2xl font-extrabold whitespace-nowrap text-white">{money(quote.total)}</dd>
+              <dd className="text-right font-title text-2xl font-extrabold whitespace-nowrap text-white">{from(quote.total)}</dd>
             </div>
             <div className={row}>
               <dt className="text-sm text-white/80">{t("quote.deposit")}</dt>
-              <dd className="text-sm font-semibold whitespace-nowrap text-white">{money(quote.deposit)}</dd>
+              <dd className="text-sm font-semibold whitespace-nowrap text-white">{from(quote.deposit)}</dd>
             </div>
             <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-1">
               <dt className="text-sm text-white/80">{t("quote.delivery")}</dt>
-              <dd className="text-right text-sm font-semibold text-white">{t("quote.planDays", { count: quote.days })}</dd>
+              <dd className="text-right text-sm font-semibold text-white">{days(quote.days)}</dd>
               <dd className="col-span-2 text-xs text-white/70">{t("quote.deliveryNote")}</dd>
             </div>
           </dl>
+          {quote.isFrom && <p className="text-xs leading-relaxed text-gold-300">{t("quote.fromNote")}</p>}
         </>
       ) : (
-        <p className="text-white/80">{t("quote.summaryEmpty")}</p>
+        <p className="text-white/80">{t(mode === "external" ? "quote.summaryEmptyTools" : mode === "zumiaClient" ? "quote.summaryEmptyClient" : "quote.summaryEmpty")}</p>
       )}
 
       <p className="text-xs leading-relaxed text-white/70">{t("quote.disclaimer")}</p>

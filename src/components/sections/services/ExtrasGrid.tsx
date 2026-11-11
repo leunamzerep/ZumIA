@@ -1,10 +1,10 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 import { PATHS } from "@/config/paths";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
-import { EXTRAS, type Extra } from "@/data/extras";
+import { EXTRAS, OTHER_SERVICES, type Extra } from "@/data/extras";
 import { formatPriceFor, getPlan } from "@/data/plans";
 import { Card } from "@/components/ui/Card";
 import { Section } from "@/components/ui/Section";
@@ -44,6 +44,86 @@ const ExtraCard = ({ extra, index }: { extra: Extra; index: number }) => {
   );
 };
 
+/** Tarjeta informativa del grupo "Otros": precios base, sin descuento del plan. */
+const OtherCard = ({ id, index, prices, days }: { id: "redesign" | "external" | "additional"; index: number; prices: ReactNode; days?: ReactNode }) => {
+  const { t } = useTranslation();
+  return (
+    <li data-reveal style={{ "--reveal-delay": `${(index % 3) * 90}ms` } as CSSProperties} className="min-w-0">
+      <Card as="article" aria-labelledby={`other-${id}`} className="flex h-full flex-col gap-4 md:p-6">
+        <h4 id={`other-${id}`} className="font-title text-lg font-bold text-navy-900">
+          {t(`extras.other.${id}.name`)}
+        </h4>
+        <p className="leading-relaxed text-navy-600">{t(`extras.other.${id}.desc`)}</p>
+        <div className="mt-auto flex flex-col gap-1 border-t border-navy-900/10 pt-4">
+          {prices}
+          {days && (
+            <p className="flex items-center gap-2 text-sm font-semibold text-navy-700">
+              <ClockIcon />
+              {days}
+            </p>
+          )}
+        </div>
+      </Card>
+    </li>
+  );
+};
+
+const priceClass = "font-title text-xl font-extrabold text-navy-900";
+const unitClass = "ml-1.5 font-body text-sm font-semibold text-navy-600";
+
+/** Grupo "Otros": rediseño, herramientas a sitios externos y subpáginas/secciones adicionales (datos de OTHER_SERVICES). */
+const OtherServices = () => {
+  const { t, i18n } = useTranslation();
+  const money = (value: number) => t("extras.price", { price: formatPriceFor(value, i18n.language) });
+  const { redesign, external, additional } = OTHER_SERVICES;
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div data-reveal className="flex items-center gap-4">
+        <h3 id="servicios-otros-titulo" className="font-title text-h3 font-bold text-navy-900">
+          {t("extras.other.title")}
+        </h3>
+        <span aria-hidden="true" className="h-px flex-1 bg-navy-900/15" />
+      </div>
+      <ul aria-labelledby="servicios-otros-titulo" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <OtherCard
+          id="redesign"
+          index={0}
+          prices={<p className={priceClass}>{t("quote.fromAmount", { amount: money(redesign.price) })}</p>}
+          days={t("quote.daysFrom", { count: redesign.days })}
+        />
+        <OtherCard
+          id="external"
+          index={1}
+          prices={
+            <p className={priceClass}>
+              {`+${money(external.surcharge)}`}
+              <span className={unitClass}>{t("extras.other.surcharge")}</span>
+            </p>
+          }
+          days={t("extras.days", { count: external.days })}
+        />
+        <OtherCard
+          id="additional"
+          index={2}
+          prices={
+            <>
+              <p className={priceClass}>
+                {money(additional.subpagePrice)}
+                <span className={unitClass}>{t("extras.other.perSubpage")}</span>
+              </p>
+              <p className={priceClass}>
+                {money(additional.sectionPrice)}
+                <span className={unitClass}>{t("extras.other.perSection")}</span>
+              </p>
+            </>
+          }
+        />
+      </ul>
+    </div>
+  );
+};
+
 /** Herramientas extra: tarjetas leídas de src/data/extras.ts, con descuento por plan y nota de costos externos. */
 export const ExtrasGrid = () => {
   const { t } = useTranslation();
@@ -63,6 +143,7 @@ export const ExtrasGrid = () => {
         <p data-reveal className="w-fit max-w-full rounded-2xl bg-gold-100 px-5 py-3 text-sm font-semibold text-gold-800 ring-1 ring-gold-700/20">
           {t("extras.discount", {
             esencial: t("plans.esencial.name"),
+            esencialPct: getPlan("esencial").extrasDiscount,
             alamedida: t("plans.alamedida.name"),
             profesional: t("plans.profesional.name"),
             alamedidaPct: getPlan("alamedida").extrasDiscount,
@@ -74,6 +155,7 @@ export const ExtrasGrid = () => {
             <ExtraCard key={extra.id} extra={extra} index={index} />
           ))}
         </ul>
+        <OtherServices />
         <div className="flex flex-col items-start gap-3">
           <p className="max-w-3xl text-sm leading-relaxed text-navy-600">{t("extras.externalNote")}</p>
           <Link to={localizePath(PATHS.quote)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">

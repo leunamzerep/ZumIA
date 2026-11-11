@@ -355,7 +355,7 @@
             "tagline": "Empieza a crecer rápidamente",
             "f1": "1 página con enganche visual y hasta 7 secciones",
             "f2": "Mantenimiento básico gratis por 2 semanas, hasta 2h/semana",
-            "f3": "Herramientas extra a precio básico",
+            "f3": "5% de descuento en herramientas extra y en subpáginas o secciones adicionales",
             "days": "Hasta 3 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan Esencial"
         },
@@ -365,7 +365,7 @@
             "f1": "3 subpáginas, cada una con su enganche visual",
             "f2": "15 secciones en total, distribuibles entre las subpáginas",
             "f3": "Mantenimiento básico gratis por 3 semanas, hasta 3h/semana",
-            "f4": "10% de descuento en herramientas extra",
+            "f4": "10% de descuento en herramientas extra y en subpáginas o secciones adicionales",
             "days": "Hasta 5 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan A la Medida"
         },
@@ -375,7 +375,7 @@
             "f1": "5 subpáginas, cada una con su enganche visual",
             "f2": "32 secciones en total, distribuibles entre las subpáginas",
             "f3": "Mantenimiento básico gratis por 1 mes, hasta 3h/semana",
-            "f4": "20% de descuento en herramientas extra",
+            "f4": "20% de descuento en herramientas extra y en subpáginas o secciones adicionales",
             "days": "Hasta 8 días hábiles tras anticipo y material completo",
             "cta": "Quiero el plan Profesional"
         },
@@ -421,7 +421,7 @@
         "eyebrow": "Herramientas extra",
         "title": "Suma lo que <1>necesitas</1>",
         "lead": "Cada herramienta suma días hábiles a la entrega de tu plan.",
-        "discount": "Descuento en herramientas: {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
+        "discount": "Descuento en herramientas y en subpáginas o secciones adicionales: {{esencial}}: {{esencialPct}}% · {{alamedida}}: {{alamedidaPct}}% · {{profesional}}: {{profesionalPct}}%",
         "externalNote": "Algunas herramientas usan servicios externos (por ejemplo IA, mensajería, pasarela de pagos, bases de datos o dominios) cuyos costos corren por cuenta del cliente. Pueden variar según la solución y los informamos al cotizar.",
         "price": "${{price}} COP",
         "perLanguage": "por idioma",
@@ -477,7 +477,25 @@
         },
         "daysPerLanguage_one": "+{{count}} día hábil por idioma",
         "daysPerLanguage_other": "+{{count}} días hábiles por idioma",
-        "quoteLink": "Calcula tu estimado"
+        "quoteLink": "Calcula tu estimado",
+        "other": {
+            "title": "Otros",
+            "surcharge": "de recargo",
+            "perSubpage": "por subpágina",
+            "perSection": "por sección",
+            "redesign": {
+                "name": "Rediseño de web antigua",
+                "desc": "Renovamos el diseño de tu sitio actual. El precio parte de una base y puede subir si el proyecto es muy grande; lo confirmamos por escrito."
+            },
+            "external": {
+                "name": "Herramientas a sitios externos",
+                "desc": "Añadimos nuestras herramientas extra a un sitio que no hicimos nosotros. Se suma un recargo único y no aplica el descuento de los planes."
+            },
+            "additional": {
+                "name": "Subpáginas o secciones adicionales",
+                "desc": "Suma más subpáginas (cada una con su enganche visual) o más secciones a tu página. Se cobran por unidad y reciben el descuento de tu plan."
+            }
+        }
     },
     "booking": {
         "title": "¿Hablamos de tu <1>proyecto</1>?",
@@ -507,7 +525,7 @@
         "planDays_other": "Hasta {{count}} días hábiles",
         "extrasTitle": "3. Herramientas extra",
         "extrasLead": "Marca las que quieres sumar. Los precios ya incluyen el descuento de tu plan.",
-        "extrasDiscount": "Descuento del plan {{plan}}: {{pct}} %",
+        "extrasDiscount": "Descuento del plan {{plan}}: {{pct}} % en herramientas y en subpáginas o secciones adicionales",
         "languages": "Cantidad de idiomas",
         "summaryTitle": "Tu estimado",
         "summaryEmpty": "Elige un plan para ver tu estimado.",
@@ -527,7 +545,47 @@
         "waIntro": "¡Hola! Quiero cotizar: {{items}}. Total estimado: {{total}}.",
         "waPlan": "Plan {{plan}}",
         "waMore_one": "y {{count}} herramienta más",
-        "waMore_other": "y {{count}} herramientas más"
+        "waMore_other": "y {{count}} herramientas más",
+        "fromAmount": "Desde {{amount}}",
+        "daysFrom_one": "Desde {{count}} día hábil",
+        "daysFrom_other": "Desde {{count}} días hábiles",
+        "haveSite": "Ya tengo un sitio web",
+        "hiredLegend": "¿Contrataste un servicio de Zumia antes?",
+        "yes": "Sí",
+        "no": "No",
+        "goalLegend": "¿Qué quieres hacer con tu sitio actual?",
+        "goalRedesign": "Rediseñarlo con Zumia",
+        "goalExternal": "Añadirle herramientas a mi sitio actual",
+        "noteExternal": "Para añadir herramientas a un sitio que no hicimos nosotros no necesitas elegir plan ni extensión. Se suma un recargo y no hay descuento.",
+        "noteClient": "Elige el plan que contrataste: define tu descuento en herramientas y adicionales.",
+        "noteRedesign": "El rediseño tiene su propio precio «desde». El plan que elijas define tu descuento y el total de subpáginas y secciones.",
+        "otherTitle": "Otros",
+        "otherLead": "Suma más subpáginas o secciones a tu página.",
+        "counterSubpages": "Subpáginas adicionales",
+        "counterSections": "Secciones adicionales",
+        "counterUnit": "{{price}} por {{unit}}",
+        "unitSubpage": "subpágina",
+        "unitSection": "sección",
+        "counterLess": "Menos",
+        "counterMore": "Más",
+        "summaryEmptyTools": "Elige al menos una herramienta para ver tu estimado.",
+        "summaryEmptyClient": "Elige tu plan y marca herramientas o adicionales para ver tu estimado.",
+        "redesignLine": "Rediseño de tu sitio (desde)",
+        "additional_subpages_one": "Subpágina adicional × {{count}}",
+        "additional_subpages_other": "Subpáginas adicionales × {{count}}",
+        "additional_sections_one": "Sección adicional × {{count}}",
+        "additional_sections_other": "Secciones adicionales × {{count}}",
+        "surchargeLine": "Recargo por sitio externo",
+        "totalPages": "Subpáginas en total",
+        "totalSections": "Secciones en total",
+        "fromNote": "El precio base del rediseño es «desde»: puede subir si tu proyecto es muy grande. El precio final se confirma por escrito.",
+        "waRedesign": "Rediseño de mi sitio actual",
+        "waClient": "Ya soy cliente de Zumia (plan {{plan}})",
+        "waExternal": "Herramientas para mi sitio actual (con recargo de {{surcharge}})",
+        "waAdditional_subpages_one": "{{count}} subpágina adicional",
+        "waAdditional_subpages_other": "{{count}} subpáginas adicionales",
+        "waAdditional_sections_one": "{{count}} sección adicional",
+        "waAdditional_sections_other": "{{count}} secciones adicionales"
     },
     "blog": {
         "eyebrow": "Blog",

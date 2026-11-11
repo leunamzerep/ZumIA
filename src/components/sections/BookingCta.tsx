@@ -19,7 +19,7 @@ export const BookingCta = () => {
   const localizePath = useLocalizedPath();
 
   return (
-    <Section tone="cream" labelledBy="reservar-titulo" className="pt-0! pb-12! md:pb-16!">
+    <Section tone="cream" labelledBy="reservar-titulo" className="pt-12! pb-12! md:pt-16! md:pb-16!">
       <div
         data-reveal
         className="relative isolate overflow-hidden rounded-[2rem] bg-linear-to-br from-navy-900 via-navy-800 to-navy-700 px-6 py-14 text-white [--focus-ring:var(--color-gold-400)] md:px-14 md:py-20"

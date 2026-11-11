@@ -21,7 +21,7 @@ export type Plan = {
   sections: number;
   /** Días hábiles de entrega (desde el anticipo y el material completo) */
   days: number;
-  /** % de descuento en herramientas extra: única fuente para /services y /quote */
+  /** % de descuento en herramientas extra y en subpáginas/secciones adicionales: única fuente para /services y /quote */
   extrasDiscount: number;
 };
 
@@ -33,7 +33,7 @@ export const PLANS: Plan[] = [
     pages: 1,
     sections: 7,
     days: 3,
-    extrasDiscount: 0,
+    extrasDiscount: 5,
   },
   {
     id: "alamedida",
