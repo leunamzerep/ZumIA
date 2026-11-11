@@ -115,6 +115,9 @@ export const Plans = () => {
           <Link to={localizePath(PATHS.services)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
             {t("plans.extrasLink")}
           </Link>
+          <Link to={localizePath(PATHS.quote)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
+            {t("plans.quoteLink")}
+          </Link>
         </div>
         <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-navy-600">{t("plans.conditions")}</p>
       </div>

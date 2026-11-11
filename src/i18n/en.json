@@ -137,11 +137,16 @@
         "error": "We couldn't send your message. Please try again or message us on WhatsApp.",
         "channels": "Other channels",
         "emailLabel": "Email",
-        "whatsappLabel": "WhatsApp"
+        "whatsappLabel": "WhatsApp",
+        "agendaTitle": "Book your <1>consultation</1>",
+        "agendaText": "Pick the day and time that suit you to talk about your project.",
+        "agendaLoad": "Load calendar",
+        "agendaNote": "Loading it opens a Google service.",
+        "agendaFrameTitle": "Google calendar to book a consultation with Zumia Solutions"
     },
     "terms": {
         "h1": "Terms and <1>Conditions</1>",
-        "updated": "<1>Last updated:</1> November 10, 2026"
+        "updated": "<1>Last updated:</1> November 11, 2026"
     },
     "privacy": {
         "h1": "Privacy <1>Policy</1>",
@@ -196,7 +201,8 @@
         },
         "currencySymbol": "$",
         "currency": "COP",
-        "extrasLink": "Explore the extra tools"
+        "extrasLink": "Explore the extra tools",
+        "quoteLink": "Build your quote"
     },
     "clients": {
         "jotuName": "JoTu Solutions",
@@ -291,12 +297,14 @@
             "desc": "A private dashboard to organize the contacts and requests you receive."
         },
         "daysPerLanguage_one": "+{{count}} business day per language",
-        "daysPerLanguage_other": "+{{count}} business days per language"
+        "daysPerLanguage_other": "+{{count}} business days per language",
+        "quoteLink": "Calculate your estimate"
     },
     "booking": {
         "title": "Shall we talk about your <1>project</1>?",
         "text": "Tell us what your business needs and we will recommend the ideal plan and tools.",
-        "scheduleCta": "Book a consultation"
+        "scheduleCta": "Book a consultation",
+        "quoteCta": "Build your quote"
     },
     "quote": {
         "eyebrow": "Quote builder",

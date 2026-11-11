@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import { ContactForm } from "@/components/forms/contactForm/ContactForm";
 import { PageSeo } from "@/components/seo/PageSeo";
+import { AgendaSection } from "@/components/sections/AgendaSection";
 import { PageHero } from "@/components/sections/PageHero";
 import { Card } from "@/components/ui/Card";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
@@ -50,6 +51,9 @@ export const Contact = () => {
       {/* "relative": el patrón de fondo de todas las secciones se alinea con <main> */}
       <main className="relative">
         <PageHero id="contacto-titulo" eyebrow={t("header.contact")} titleKey="contact.main" />
+
+        {/* Agenda (/contact/#agenda): encima del formulario; no aparece si BOOKING_URL es null */}
+        <AgendaSection />
 
         <Section tone="cream" decoration={<GeometricPattern tone="light" />}>
           <div className="grid items-start gap-6 lg:grid-cols-[1.45fr_1fr] lg:gap-8">

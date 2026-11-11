@@ -1,6 +1,9 @@
 import type { CSSProperties } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
+import { PATHS } from "@/config/paths";
+import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { EXTRAS, type Extra } from "@/data/extras";
 import { formatPriceFor, getPlan } from "@/data/plans";
 import { Card } from "@/components/ui/Card";
@@ -44,6 +47,7 @@ const ExtraCard = ({ extra, index }: { extra: Extra; index: number }) => {
 /** Herramientas extra: tarjetas leídas de src/data/extras.ts, con descuento por plan y nota de costos externos. */
 export const ExtrasGrid = () => {
   const { t } = useTranslation();
+  const localizePath = useLocalizedPath();
 
   return (
     <Section id="herramientas" tone="white" labelledBy="servicios-extras-titulo" className="scroll-mt-16 md:scroll-mt-20">
@@ -70,7 +74,12 @@ export const ExtrasGrid = () => {
             <ExtraCard key={extra.id} extra={extra} index={index} />
           ))}
         </ul>
-        <p className="max-w-3xl text-sm leading-relaxed text-navy-600">{t("extras.externalNote")}</p>
+        <div className="flex flex-col items-start gap-3">
+          <p className="max-w-3xl text-sm leading-relaxed text-navy-600">{t("extras.externalNote")}</p>
+          <Link to={localizePath(PATHS.quote)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
+            {t("extras.quoteLink")}
+          </Link>
+        </div>
       </div>
     </Section>
   );

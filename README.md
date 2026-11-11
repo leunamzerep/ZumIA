@@ -35,7 +35,7 @@ Este comando hace tres cosas:
 
 1. Revisa los tipos de TypeScript (`tsc -b`). Si hay errores, se detiene.
 2. Genera la web en la carpeta `dist/`.
-3. **Prerenderiza**: abre un Chrome invisible con puppeteer, visita las 10 rutas (`/`, `/about-us`, `/contact`, `/terms-and-conditions`, `/privacy-policy` y las mismas con `/en`) y guarda el HTML de cada una. Así cada ruta tiene su propio HTML con contenido y etiquetas SEO, y GitHub Pages puede servirlo directamente. Si una ruta no tiene HTML, `public/404.html` redirige al inicio y la app abre la ruta correcta.
+3. **Prerenderiza**: abre un Chrome invisible con puppeteer, visita las 7 rutas (`/`, `/services`, `/quote`, `/about-us`, `/contact`, `/terms-and-conditions`, `/privacy-policy`; las rutas `/en` están desactivadas) y guarda el HTML de cada una. Así cada ruta tiene su propio HTML con contenido y etiquetas SEO, y GitHub Pages puede servirlo directamente. Si una ruta no tiene HTML, `public/404.html` redirige al inicio y la app abre la ruta correcta.
 
 Para ver el resultado del build en local:
 
@@ -95,7 +95,7 @@ En el código, `@/` significa `src/`. Por ejemplo, `@/config/site` es `src/confi
 
 Si cambia el dominio, también hay que editar a mano estos archivos estáticos:
 
-- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito; cada uno tiene un comentario que lo recuerda). El sitemap solo lista las 5 rutas en español y con barra final (`https://zumia.dev/about-us/`), la misma forma que usa el canonical. Si agregas una página, agrégala también ahí.
+- `public/sitemap.xml` y `public/robots.txt` (llevan el dominio escrito; cada uno tiene un comentario que lo recuerda). El sitemap solo lista las 7 rutas en español y con barra final (`https://zumia.dev/about-us/`), la misma forma que usa el canonical. Si agregas una página, agrégala también ahí.
 - `public/CNAME` (dominio de GitHub Pages).
 
 El enlace que abre Gmail con un correo ya escrito está en `src/i18n/es.json` y `en.json`, en la clave `footer.mailRedirect`.

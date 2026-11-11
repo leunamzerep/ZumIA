@@ -137,11 +137,16 @@
         "error": "No pudimos enviar tu mensaje. Inténtalo de nuevo o escríbenos por WhatsApp.",
         "channels": "Otros canales",
         "emailLabel": "Correo",
-        "whatsappLabel": "WhatsApp"
+        "whatsappLabel": "WhatsApp",
+        "agendaTitle": "Agenda tu <1>asesoría</1>",
+        "agendaText": "Elige el día y la hora que te sirvan para conversar sobre tu proyecto.",
+        "agendaLoad": "Cargar calendario",
+        "agendaNote": "Al cargarlo, se abre un servicio de Google.",
+        "agendaFrameTitle": "Calendario de Google para agendar una asesoría con Zumia Solutions"
     },
     "terms": {
         "h1": "Términos y <1>Condiciones</1>",
-        "updated": "<1>Última actualización:</1> 10/11/2026",
+        "updated": "<1>Última actualización:</1> 11/11/2026",
         "s1": {
             "title": "1. Introducción",
             "b1": "Estos Términos y Condiciones regulan el uso del sitio web {{domain}} y la contratación de los servicios de Zumia Solutions. Al navegar por el sitio o enviarnos una solicitud, aceptas estos términos. Si no estás de acuerdo, te pedimos que no uses el sitio. Cuando contrates un plan, las condiciones específicas quedarán en un contrato de prestación de servicios firmado por las partes; si hay diferencias entre este texto y el contrato, prevalece el contrato."
@@ -160,7 +165,7 @@
         },
         "s3": {
             "title": "3. Alcance de los Servicios",
-            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes (Esencial, A la Medida y Profesional). El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos herramientas extra, cuyos precios y días adicionales de entrega se publican en la página de Servicios. Su alcance final y los costos de servicios externos que requieran se confirman por escrito antes de contratarlas.",
+            "b1": "Zumia Solutions diseña, desarrolla y mantiene páginas web para micronegocios y pymes, en tres planes (Esencial, A la Medida y Profesional). El contenido, el precio y el plazo de cada plan se publican en este sitio y se detallan en el contrato en caso de tener alguna modificación. También ofrecemos herramientas extra, cuyos precios y días adicionales de entrega se publican en la página de Servicios. Su alcance final y los costos de servicios externos que requieran se confirman por escrito antes de contratarlas. El cotizador de la página Arma tu cotización da un estimado orientativo que no constituye una oferta; el precio y el alcance finales se confirman por escrito.",
             "b2": "No prestamos asesoría legal, contable, tributaria ni financiera. Los borradores de textos legales que podamos entregar (por ejemplo, términos y condiciones o políticas de privacidad) son un punto de partida a partir de la información brindada por el cliente: El cliente debe revisarlos y ajustarlos, y su contenido final es responsabilidad del cliente."
         },
         "s4": {
@@ -374,7 +379,8 @@
         },
         "currencySymbol": "$",
         "currency": "COP",
-        "extrasLink": "Conoce las herramientas extra"
+        "extrasLink": "Conoce las herramientas extra",
+        "quoteLink": "Arma tu cotización"
     },
     "clients": {
         "jotuName": "JoTu Solutions",
@@ -468,12 +474,14 @@
             "desc": "Un panel privado para organizar los contactos y solicitudes que recibes."
         },
         "daysPerLanguage_one": "+{{count}} día hábil por idioma",
-        "daysPerLanguage_other": "+{{count}} días hábiles por idioma"
+        "daysPerLanguage_other": "+{{count}} días hábiles por idioma",
+        "quoteLink": "Calcula tu estimado"
     },
     "booking": {
         "title": "¿Hablamos de tu <1>proyecto</1>?",
         "text": "Cuéntanos qué necesita tu negocio y te recomendamos el plan y las herramientas ideales.",
-        "scheduleCta": "Agendar asesoría"
+        "scheduleCta": "Agendar asesoría",
+        "quoteCta": "Arma tu cotización"
     },
     "quote": {
         "eyebrow": "Cotizador",
