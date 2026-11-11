@@ -12,7 +12,9 @@
         "termsTitle": "Terms and conditions | Zumia Solutions",
         "termsDescription": "Terms of use of the Zumia Solutions website and of the website creation services we offer.",
         "servicesTitle": "Services and extra tools | Zumia Solutions",
-        "servicesDescription": "See how we work and the extra tools you can add to your website: bookings, online store, blog, chatbot and more."
+        "servicesDescription": "See how we work and the extra tools you can add to your website: bookings, online store, blog, chatbot and more.",
+        "quoteTitle": "Build your quote | Zumia Solutions",
+        "quoteDescription": "Choose the plan that fits your business, add extra tools and get an estimated price and timeline for your website."
     },
     "header": {
         "home": "Home",
@@ -293,6 +295,51 @@
     },
     "booking": {
         "title": "Shall we talk about your <1>project</1>?",
-        "text": "Tell us what your business needs and we will recommend the ideal plan and tools."
+        "text": "Tell us what your business needs and we will recommend the ideal plan and tools.",
+        "scheduleCta": "Book a consultation"
+    },
+    "quote": {
+        "eyebrow": "Quote builder",
+        "title": "Build your <1>quote</1>",
+        "lead": "Answer two questions, choose your plan and add the extra tools you want. You will instantly see an estimated price and timeline.",
+        "needTitle": "1. What do you need?",
+        "pagesLegend": "How many pages do you need?",
+        "pages_1": "A single page",
+        "pages_3": "Up to 3 pages",
+        "pages_5": "Up to 5 pages",
+        "sectionsLegend": "How much content will you show?",
+        "sections_7": "The essentials (up to 7 sections)",
+        "sections_15": "Quite a lot (up to 15 sections)",
+        "sections_32": "A lot (up to 32 sections)",
+        "planTitle": "2. Your plan",
+        "planLegend": "Plan",
+        "suggested": "Suggested",
+        "suggestionNote": "It is a suggestion. We will confirm it with you during the consultation.",
+        "planHint": "Answer the questions to get a suggestion, or pick a plan directly.",
+        "planDays_one": "Up to {{count}} business day",
+        "planDays_other": "Up to {{count}} business days",
+        "extrasTitle": "3. Extra tools",
+        "extrasLead": "Check the ones you want to add. Prices already include your plan's discount.",
+        "extrasDiscount": "{{plan}} plan discount: {{pct}}%",
+        "languages": "Number of languages",
+        "summaryTitle": "Your estimate",
+        "summaryEmpty": "Choose a plan to see your estimate.",
+        "planLine": "{{plan}} plan",
+        "languagesCount_one": "{{count}} language",
+        "languagesCount_other": "{{count}} languages",
+        "total": "Estimated total",
+        "deposit": "Deposit (50%)",
+        "delivery": "Estimated timeline",
+        "deliveryNote": "Counted from your deposit and your complete material.",
+        "live": "Estimated total: {{total}}. Timeline: {{days}}.",
+        "disclaimer": "This is an approximate estimate, not an offer. The final price, the scope and the costs of external services (AI, messaging, payment gateway, databases, domains), which are paid by the client, are confirmed in writing before hiring.",
+        "doubts": "Any questions?",
+        "whatsappCta": "Message us on WhatsApp",
+        "reset": "Start over",
+        "seeSummary": "See summary",
+        "waIntro": "Hi! I would like a quote: {{items}}. Estimated total: {{total}}.",
+        "waPlan": "{{plan}} plan",
+        "waMore_one": "and {{count}} more tool",
+        "waMore_other": "and {{count}} more tools"
     }
 }

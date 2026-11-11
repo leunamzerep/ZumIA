@@ -1,6 +1,9 @@
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
+import { PATHS } from "@/config/paths";
 import { useWhatsappUrl } from "@/config/whatsapp";
+import { isCurrentPath } from "@/components/layout/navLinks";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 
@@ -18,9 +21,11 @@ import { LanguageSwitch } from "@/components/langSwitch/LangSwitch";
 export const WhatsAppFloat = () => {
   const { t } = useTranslation();
   const whatsappUrl = useWhatsappUrl();
+  // En /quote, por debajo de lg, hay una barra fija con el total: los botones suben por encima de ella
+  const lifted = isCurrentPath(useLocation().pathname, PATHS.quote);
 
   return (
-    <div className="pointer-events-none sticky bottom-0 z-30 h-0">
+    <div className={`pointer-events-none sticky bottom-0 z-30 h-0${lifted ? " max-lg:-translate-y-18" : ""}`}>
       <LanguageSwitch className="pointer-events-auto absolute left-4 bottom-[max(1rem,env(safe-area-inset-bottom))] md:left-6 md:bottom-7" />
       <a
         href={whatsappUrl}
