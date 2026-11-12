@@ -45,6 +45,14 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/zumia-solutions-3857a34
 /** Cloudflare Worker que recibe el formulario de contacto (endpoint público, no es secreto). */
 export const CONTACT_WORKER_URL = "https://contact.zumiasolutions.workers.dev/api/contacto";
 
+/**
+ * Cloudflare Worker de verificación de clientes previos (worker/), para /quote.
+ * Se define con VITE_VERIFY_API_URL (ver .env.example). La URL es pública, no es un secreto.
+ * Sin ella (null), /quote no ofrece la verificación y el modo "cliente" queda a precio de lista.
+ */
+const verifyApiUrl = import.meta.env.VITE_VERIFY_API_URL?.trim().replace(/\/+$/, "");
+export const VERIFY_API_URL: string | null = verifyApiUrl ? verifyApiUrl : null;
+
 /** Datos del proveedor para Términos y Privacidad (Ley 1480 de 2011, art. 50). */
 export const OWNER_NAME = "Manuel Santiago Pérez Hernández";
 export const OWNER_NIT = "1013105486-6";
