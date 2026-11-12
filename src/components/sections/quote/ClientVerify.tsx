@@ -372,7 +372,7 @@ export const ClientVerify = ({
 
       <p className="text-sm text-navy-600">
         {t("quote.verify.privacyNote")}{" "}
-        <Link to={localizePath(PATHS.privacy)} className="font-semibold text-navy-900 underline underline-offset-2 hover:text-gold-800">
+        <Link to={`${localizePath(PATHS.privacy)}#privacy-s13`} className="font-semibold text-navy-900 underline underline-offset-2 hover:text-gold-800">
           {t("quote.verify.privacyLink")}
         </Link>
       </p>

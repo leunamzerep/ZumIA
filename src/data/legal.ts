@@ -120,4 +120,9 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
   { id: "s12", blocks: [
     { type: "p", key: "b1" },
   ] },
+  { id: "s13", blocks: [
+    { type: "p", key: "b1" },
+    { type: "list", key: "b2", count: 6 },
+    { type: "p", key: "b3" },
+  ] },
 ];
