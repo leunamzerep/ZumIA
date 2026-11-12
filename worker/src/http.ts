@@ -24,8 +24,15 @@ export const corsHeaders = (request: Request, env: Env): Record<string, string> 
   return headers;
 };
 
+/** Cabeceras de todas las respuestas (también errores y preflight): nada se guarda en caché ni se interpreta como otro tipo. */
+const BASE_HEADERS = { "cache-control": "no-store", "x-content-type-options": "nosniff" };
+
 export const json = (data: unknown, status = 200, extra: Record<string, string> = {}): Response =>
   new Response(JSON.stringify(data), {
     status,
-    headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store", ...extra },
+    headers: { "content-type": "application/json; charset=utf-8", ...BASE_HEADERS, ...extra },
   });
+
+/** Respuesta al preflight (OPTIONS): 204 sin cuerpo; CORS solo si el Origin está permitido (ver corsHeaders). */
+export const preflight = (cors: Record<string, string>): Response =>
+  new Response(null, { status: 204, headers: { ...BASE_HEADERS, ...cors } });

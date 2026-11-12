@@ -4,6 +4,8 @@ VERIFY_PEPPER=cambiar
 TOKEN_SECRET=cambiar
 TOKEN_TTL_SECONDS=1800
 DEV_LOG_CODES=1
+# Solo local: en wrangler dev no hay CF-Connecting-IP; con esto se usa una IP fija. Nunca en producción.
+ALLOW_MISSING_IP=1
 ALLOWED_ORIGINS=http://localhost:5173,https://zumia.dev
 # Brevo: clave API v3 (xkeysib-…), no la clave SMTP (xsmtpsib-…). Vacía = no se envía correo.
 BREVO_API_KEY=

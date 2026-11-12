@@ -2,8 +2,8 @@
 // La respuesta es idéntica exista o no el correo (solo cambian 400 por formato y 429 por límite).
 
 import { hmacHex, randomCode } from "./crypto";
-import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json } from "./http";
-import { hit } from "./ratelimit";
+import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json, preflight } from "./http";
+import { clientIp, hit } from "./ratelimit";
 import { sendCode } from "./send";
 import type { Env, ExecutionContext } from "./types";
 import { parseEmailBody, readJsonBody } from "./validate";
@@ -32,7 +32,7 @@ export const handleVerifyRequest = async (request: Request, env: Env, ctx: Execu
   const cors = corsHeaders(request, env);
   const reply = (data: unknown, status = 200) => json(data, status, cors);
 
-  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+  if (request.method === "OPTIONS") return preflight(cors);
   if (request.method !== "POST") return reply(METHOD_NOT_ALLOWED, 405);
 
   // Falta el secreto, o TOKEN_SECRET (si existe) es igual a VERIFY_PEPPER: configuración insegura.
@@ -42,7 +42,11 @@ export const handleVerifyRequest = async (request: Request, env: Env, ctx: Execu
   const now = Math.floor(Date.now() / 1000);
 
   // 1) Límite por IP, antes de leer el cuerpo.
-  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const ip = clientIp(request, env);
+  if (!ip) {
+    console.error("missing client ip");
+    return reply(SERVER_ERROR, 500);
+  }
   if ((await hit(env, `ip:${await hmacHex(pepper, ip)}`, now)) > IP_LIMIT) return reply(RATE_LIMITED, 429);
 
   // 2) Limpieza oportunista de códigos con más de 24 h.

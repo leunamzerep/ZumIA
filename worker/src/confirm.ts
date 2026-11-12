@@ -3,8 +3,8 @@
 
 import { hmacHex, safeEqual } from "./crypto";
 import { extrasDiscountFor, isPlanId } from "./discounts";
-import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json } from "./http";
-import { hit } from "./ratelimit";
+import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json, preflight } from "./http";
+import { clientIp, hit } from "./ratelimit";
 import { loadSecrets, signToken, tokenTtl, verifyToken } from "./token";
 import type { Env } from "./types";
 import { parseConfirmBody, parseDiscountBody, readJsonBody } from "./validate";
@@ -29,7 +29,7 @@ export const handleVerifyConfirm = async (request: Request, env: Env): Promise<R
   const cors = corsHeaders(request, env);
   const reply = (data: unknown, status = 200) => json(data, status, cors);
 
-  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+  if (request.method === "OPTIONS") return preflight(cors);
   if (request.method !== "POST") return reply(METHOD_NOT_ALLOWED, 405);
 
   const secrets = loadSecrets(env);
@@ -39,7 +39,11 @@ export const handleVerifyConfirm = async (request: Request, env: Env): Promise<R
   const now = Math.floor(Date.now() / 1000);
 
   // 1) Límite por IP (bucket propio), antes de leer el cuerpo.
-  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const ip = clientIp(request, env);
+  if (!ip) {
+    console.error("missing client ip");
+    return reply(SERVER_ERROR, 500);
+  }
   if ((await hit(env, `confirm-ip:${await hmacHex(pepper, ip)}`, now)) > CONFIRM_IP_LIMIT) return reply(RATE_LIMITED, 429);
 
   // 2) Validación (los 400 de formato no cuentan contra el límite del correo).
@@ -125,7 +129,7 @@ export const handleVerifyDiscount = async (request: Request, env: Env): Promise<
   const cors = corsHeaders(request, env);
   const reply = (data: unknown, status = 200) => json(data, status, cors);
 
-  if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
+  if (request.method === "OPTIONS") return preflight(cors);
   if (request.method !== "POST") return reply(METHOD_NOT_ALLOWED, 405);
 
   const secrets = loadSecrets(env);
@@ -135,7 +139,11 @@ export const handleVerifyDiscount = async (request: Request, env: Env): Promise<
   const now = Math.floor(Date.now() / 1000);
 
   // Límite por IP (bucket propio de las rutas de token), antes de leer el cuerpo.
-  const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
+  const ip = clientIp(request, env);
+  if (!ip) {
+    console.error("missing client ip");
+    return reply(SERVER_ERROR, 500);
+  }
   if ((await hit(env, `token-ip:${await hmacHex(pepper, ip)}`, now)) > TOKEN_IP_LIMIT) return reply(RATE_LIMITED, 429);
 
   const body = await readJsonBody(request, DISCOUNT_MAX_BODY_BYTES);

@@ -24,6 +24,12 @@ export interface ExecutionContext {
   waitUntil(promise: Promise<unknown>): void;
 }
 
+/** Solo lo que usamos del evento programado (cron). */
+export interface ScheduledController {
+  scheduledTime: number;
+  cron: string;
+}
+
 export interface Env {
   DB: D1Database;
   /** Secreto para los HMAC (wrangler secret put VERIFY_PEPPER). */
@@ -37,6 +43,8 @@ export interface Env {
   /** Remitente (no secretos; valores por defecto en wrangler.toml [vars]). */
   MAIL_FROM_EMAIL?: string;
   MAIL_FROM_NAME?: string;
+  /** "1" = solo local: permite peticiones sin CF-Connecting-IP (IP fija). Nunca definir en producción. */
+  ALLOW_MISSING_IP?: string;
   /** "1" = imprimir el código en consola (solo desarrollo). */
   DEV_LOG_CODES?: string;
   /** Orígenes permitidos para CORS, separados por comas. */
