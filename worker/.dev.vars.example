@@ -1,4 +1,7 @@
 # Copia a .dev.vars (ignorado por git) y cambia los valores. Producción: wrangler secret put.
+# TOKEN_SECRET debe ser distinto de VERIFY_PEPPER.
 VERIFY_PEPPER=cambiar
+TOKEN_SECRET=cambiar
+TOKEN_TTL_SECONDS=1800
 DEV_LOG_CODES=1
 ALLOWED_ORIGINS=http://localhost:5173,https://zumia.dev

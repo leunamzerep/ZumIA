@@ -23,6 +23,10 @@ export interface Env {
   DB: D1Database;
   /** Secreto para los HMAC (wrangler secret put VERIFY_PEPPER). */
   VERIFY_PEPPER?: string;
+  /** Secreto para firmar tokens; debe ser distinto de VERIFY_PEPPER. */
+  TOKEN_SECRET?: string;
+  /** Vigencia del token en segundos (por defecto 1800). */
+  TOKEN_TTL_SECONDS?: string;
   /** "1" = imprimir el código en consola (solo desarrollo). */
   DEV_LOG_CODES?: string;
   /** Orígenes permitidos para CORS, separados por comas. */

@@ -2,67 +2,20 @@
 // La respuesta es idéntica exista o no el correo (solo cambian 400 por formato y 429 por límite).
 
 import { hmacHex, randomCode } from "./crypto";
-import { corsHeaders, json } from "./http";
+import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json } from "./http";
 import { hit } from "./ratelimit";
 import { sendCode } from "./send";
 import type { Env } from "./types";
+import { parseEmailBody, readJsonBody } from "./validate";
 
 const MAX_BODY_BYTES = 1024;
-const MAX_EMAIL_LENGTH = 254;
 const CODE_TTL_SECONDS = 600;
 const COOLDOWN_SECONDS = 60;
 const CLEANUP_AFTER_SECONDS = 24 * 3600;
 const IP_LIMIT = 10;
 const EMAIL_LIMIT = 3;
 
-const EMAIL_PATTERN = /^[^\s@]{1,64}@[^\s@.]+(\.[^\s@.]+)+$/;
-
 const GENERIC_OK = { ok: true, message: "Si el correo tiene proyectos activos, recibirás un código." };
-const RATE_LIMITED = { ok: false, error: "rate_limited" };
-const INVALID = { ok: false, error: "invalid_request" };
-
-/** Lee el cuerpo como texto con tope real de bytes. Devuelve null si lo excede. */
-const readLimitedBody = async (request: Request): Promise<string | null> => {
-  const declared = Number(request.headers.get("content-length"));
-  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) return null;
-  if (!request.body) return "";
-  const reader = request.body.getReader();
-  const chunks: Uint8Array[] = [];
-  let total = 0;
-  for (;;) {
-    const { done, value } = await reader.read();
-    if (done) break;
-    total += value.byteLength;
-    if (total > MAX_BODY_BYTES) {
-      await reader.cancel();
-      return null;
-    }
-    chunks.push(value);
-  }
-  const bytes = new Uint8Array(total);
-  let offset = 0;
-  for (const chunk of chunks) {
-    bytes.set(chunk, offset);
-    offset += chunk.byteLength;
-  }
-  return new TextDecoder().decode(bytes);
-};
-
-/** Devuelve el correo normalizado (trim + minúsculas) o null si el formato no es válido. */
-const parseEmail = (raw: string): string | null => {
-  let data: unknown;
-  try {
-    data = JSON.parse(raw);
-  } catch {
-    return null;
-  }
-  if (typeof data !== "object" || data === null || !("email" in data)) return null;
-  const value = (data as { email: unknown }).email;
-  if (typeof value !== "string") return null;
-  const email = value.trim().toLowerCase();
-  if (email.length === 0 || email.length > MAX_EMAIL_LENGTH || !EMAIL_PATTERN.test(email)) return null;
-  return email;
-};
 
 /** Escritura "señuelo": mismo número de escrituras que el camino real, sin guardar datos del correo. */
 const decoyWrites = (env: Env, now: number) =>
@@ -80,10 +33,11 @@ export const handleVerifyRequest = async (request: Request, env: Env): Promise<R
   const reply = (data: unknown, status = 200) => json(data, status, cors);
 
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
-  if (request.method !== "POST") return reply({ ok: false, error: "method_not_allowed" }, 405);
+  if (request.method !== "POST") return reply(METHOD_NOT_ALLOWED, 405);
 
+  // Falta el secreto, o TOKEN_SECRET (si existe) es igual a VERIFY_PEPPER: configuración insegura.
   const pepper = env.VERIFY_PEPPER;
-  if (!pepper) return reply({ ok: false, error: "server_error" }, 500);
+  if (!pepper || env.TOKEN_SECRET === pepper) return reply(SERVER_ERROR, 500);
 
   const now = Math.floor(Date.now() / 1000);
 
@@ -97,13 +51,10 @@ export const handleVerifyRequest = async (request: Request, env: Env): Promise<R
     .run();
 
   // 3) Validación de la petición (estos 400 no cuentan contra el límite del correo).
-  if (!(request.headers.get("content-type") ?? "").toLowerCase().startsWith("application/json")) {
-    return reply({ ok: false, error: "unsupported_media_type" }, 415);
-  }
-  const body = await readLimitedBody(request);
-  if (body === null) return reply({ ok: false, error: "payload_too_large" }, 413);
-  const email = parseEmail(body);
-  if (!email) return reply(INVALID, 400);
+  const body = await readJsonBody(request, MAX_BODY_BYTES);
+  if ("error" in body) return reply(body.error === 415 ? { ok: false, error: "unsupported_media_type" } : { ok: false, error: "payload_too_large" }, body.error);
+  const email = body.data ? parseEmailBody(body.data) : null;
+  if (!email) return reply(INVALID_REQUEST, 400);
 
   // 4) Límite por correo: antes de consultar projects, así el 429 no delata si existe.
   if ((await hit(env, `email:${await hmacHex(pepper, email)}`, now)) > EMAIL_LIMIT) return reply(RATE_LIMITED, 429);
