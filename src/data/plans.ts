@@ -1,3 +1,4 @@
+// No importar nada del front: este archivo también lo usa worker/
 // Planes de Zumia Solutions (esquema de Fase A: Esencial, A la Medida, Profesional).
 // Los textos viven en es.json / en.json (plans.*); aquí solo van las claves, el precio y el orden.
 // Precios en pesos colombianos (COP), sin IVA: Manuel no es responsable de IVA.

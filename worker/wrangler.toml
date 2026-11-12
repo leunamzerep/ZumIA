@@ -1,0 +1,12 @@
+name = "zumia-verificacion"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+
+# Base D1. En local no hace falta un id real; wrangler usa un SQLite en .wrangler/.
+# PENDIENTE: al desplegar, crear la base con `wrangler d1 create zumia-verificacion`
+# y poner aquí el database_id que devuelva.
+[[d1_databases]]
+binding = "DB"
+database_name = "zumia-verificacion"
+database_id = "PENDIENTE"
+migrations_dir = "migrations"

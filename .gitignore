@@ -53,3 +53,7 @@ Thumbs.db
 CLAUDE.md
 
 docs/
+# Worker (Cloudflare): datos locales
+worker/seed.local.sql
+worker/.dev.vars
+worker/.wrangler/
