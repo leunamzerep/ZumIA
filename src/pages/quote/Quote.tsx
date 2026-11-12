@@ -4,12 +4,14 @@ import { useTranslation } from "react-i18next";
 import { PageSeo } from "@/components/seo/PageSeo";
 import { PageHero } from "@/components/sections/PageHero";
 import { ChoiceMark, RadioCards, choiceCardClass } from "@/components/sections/quote/ChoiceCards";
+import { ClientVerify, ClientVerifyUnavailable, type VerifiedClient } from "@/components/sections/quote/ClientVerify";
 import { Counter } from "@/components/sections/quote/Counter";
 import { QuoteSummary, SUMMARY_ID } from "@/components/sections/quote/QuoteSummary";
 import { Card } from "@/components/ui/Card";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { Pill } from "@/components/ui/Pill";
 import { Section } from "@/components/ui/Section";
+import { VERIFY_API_URL } from "@/config/site";
 import { useWhatsappUrl, whatsappWithMessage } from "@/config/whatsapp";
 import { EXTRAS, OTHER_SERVICES, type ExtraId } from "@/data/extras";
 import { PLANS, formatPriceFor, type PlanId } from "@/data/plans";
@@ -36,7 +38,8 @@ const MAX_WHATSAPP_URL = 1800;
 const stepTitle = "font-title text-h3 font-bold text-navy-900";
 const SITE_QUESTIONS_ID = "sitio-existente";
 
-// Estado solo en memoria: nada se guarda (sin localStorage, cookies ni formularios)
+// Estado solo en memoria: nada se guarda (sin localStorage, sessionStorage, cookies ni URL).
+// Esto incluye el token de verificación del cliente: si se recarga la página, vuelve a verificar.
 export const Quote = () => {
   const { t, i18n } = useTranslation();
   const genericWhatsappUrl = useWhatsappUrl();
@@ -49,14 +52,19 @@ export const Quote = () => {
   const [hasSite, setHasSite] = useState(false);
   const [hired, setHired] = useState<boolean>();
   const [goal, setGoal] = useState<SiteGoal>();
+  // Cliente Zumia verificado con el Worker (incluye el token, solo en memoria)
+  const [verified, setVerified] = useState<VerifiedClient | null>(null);
   const stepOneRef = useRef<HTMLHeadingElement>(null);
   const summaryRef = useRef<HTMLHeadingElement>(null);
 
   const suggested = suggestPlan(pages, sections);
   const mode = deriveMode({ hasSite, hired, goal });
   const external = mode === "external";
-  const quote = computeQuote(mode, planId, selection, additional);
-  const discount = discountFor(mode, planId);
+  const client = mode === "zumiaClient";
+  // El descuento de un cliente Zumia solo existe con verificación; sin ella, precio de lista
+  const activeVerified = client ? verified : null;
+  const quote = computeQuote(mode, planId, selection, additional, activeVerified?.extrasDiscount);
+  const discount = discountFor(mode, planId, activeVerified?.extrasDiscount);
   const money = (value: number) => t("extras.price", { price: formatPriceFor(value, i18n.language) });
   // En rediseño el precio y el plazo son "desde"
   const from = (value: number) => (mode === "redesign" ? t("quote.fromAmount", { amount: money(value) }) : money(value));
@@ -76,6 +84,7 @@ export const Quote = () => {
   const answerHired = (value: boolean) => {
     setHired(value);
     setGoal(undefined); // la segunda pregunta solo existe si la respuesta es "No"
+    setVerified(null);
   };
   const answerGoal = (value: SiteGoal) => {
     setGoal(value);
@@ -96,6 +105,7 @@ export const Quote = () => {
     setHasSite((open) => !open);
     setHired(undefined);
     setGoal(undefined);
+    setVerified(null);
   };
 
   const toggleExtra = (id: ExtraId, checked: boolean) =>
@@ -115,6 +125,7 @@ export const Quote = () => {
     setHasSite(false);
     setHired(undefined);
     setGoal(undefined);
+    setVerified(null);
     stepOneRef.current?.focus();
   };
 
@@ -124,7 +135,7 @@ export const Quote = () => {
     summaryRef.current?.focus({ preventScroll: true });
   };
 
-  const whatsappUrl = quote ? buildWhatsappUrl(quote, t, money, from) : genericWhatsappUrl;
+  const whatsappUrl = quote ? buildWhatsappUrl(quote, t, money, from, activeVerified?.plan) : genericWhatsappUrl;
   const summaryEmpty = t(
     external ? "quote.summaryEmptyTools" : mode === "zumiaClient" ? "quote.summaryEmptyClient" : "quote.summaryEmpty",
   );
@@ -216,8 +227,11 @@ export const Quote = () => {
                 </div>
               </Card>
 
-              {/* 2. Plan (sugerido, pero se puede cambiar); no aplica en modo externo */}
-              {!external && (
+              {/* 2. Cliente Zumia: el descuento sale solo de la verificación (no del plan elegido a mano) */}
+              {client && (VERIFY_API_URL ? <ClientVerify verified={activeVerified} onVerified={setVerified} /> : <ClientVerifyUnavailable />)}
+
+              {/* 2. Plan (sugerido, pero se puede cambiar); no aplica en modo externo ni de cliente */}
+              {!external && !client && (
                 <Card className="flex flex-col gap-6">
                   <div className="flex flex-col gap-2">
                     <h2 className={stepTitle}>
@@ -258,12 +272,23 @@ export const Quote = () => {
               <Card className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <h2 className={stepTitle}>{t("quote.extrasTitle")}</h2>
-                  <p className="text-sm leading-relaxed text-navy-600">{t("quote.extrasLead")}</p>
-                </div>
-                {!external && planId && discount > 0 && (
-                  <p className="w-fit max-w-full rounded-2xl bg-gold-100 px-4 py-2 text-sm font-semibold text-gold-800 ring-1 ring-gold-700/20">
-                    {t("quote.extrasDiscount", { plan: t(`plans.${planId}.name`), pct: discount })}
+                  <p className="text-sm leading-relaxed text-navy-600">
+                    {t(client && !activeVerified ? "quote.extrasLeadClient" : "quote.extrasLead")}
                   </p>
+                </div>
+                {activeVerified ? (
+                  <p className="w-fit max-w-full rounded-2xl bg-gold-100 px-4 py-2 text-sm font-semibold text-gold-800 ring-1 ring-gold-700/20">
+                    {t("quote.verify.extrasBanner", { plan: t(`plans.${activeVerified.plan}.name`), pct: activeVerified.extrasDiscount })}
+                  </p>
+                ) : (
+                  !external &&
+                  !client &&
+                  planId &&
+                  discount > 0 && (
+                    <p className="w-fit max-w-full rounded-2xl bg-gold-100 px-4 py-2 text-sm font-semibold text-gold-800 ring-1 ring-gold-700/20">
+                      {t("quote.extrasDiscount", { plan: t(`plans.${planId}.name`), pct: discount })}
+                    </p>
+                  )
                 )}
                 <ul className="grid gap-3 sm:grid-cols-2">
                   {EXTRAS.map((extra) => {
@@ -394,13 +419,17 @@ const buildWhatsappUrl = (
   t: ReturnType<typeof useTranslation>["t"],
   money: (value: number) => string,
   from: (value: number) => string,
+  verifiedPlan?: PlanId,
 ) => {
   const planName = quote.plan ? t(`plans.${quote.plan.id}.name`) : "";
+  // Nunca van el correo, el token ni el nombre del proyecto: solo el plan, y solo si está verificado
   const base =
     quote.mode === "redesign"
       ? t("quote.waRedesign")
       : quote.mode === "zumiaClient"
-        ? t("quote.waClient", { plan: planName })
+        ? verifiedPlan
+          ? t("quote.waClientPlan", { plan: t(`plans.${verifiedPlan}.name`) })
+          : t("quote.waClient")
         : quote.mode === "external"
           ? t("quote.waExternal", { surcharge: money(quote.surcharge) })
           : t("quote.waPlan", { plan: planName });
