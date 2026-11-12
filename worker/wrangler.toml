@@ -2,6 +2,12 @@ name = "zumia-verificacion"
 main = "src/index.ts"
 compatibility_date = "2026-11-01"
 
+# Remitente del correo (no son secretos). En local se pueden cambiar desde .dev.vars.
+# BREVO_API_KEY es secret: nunca aquí (wrangler secret put BREVO_API_KEY).
+[vars]
+MAIL_FROM_EMAIL = "auth@zumia.dev"
+MAIL_FROM_NAME = "Zumia Solutions"
+
 # Base D1. En local no hace falta un id real; wrangler usa un SQLite en .wrangler/.
 # PENDIENTE: al desplegar, crear la base con `wrangler d1 create zumia-verificacion`
 # y poner aquí el database_id que devuelva.

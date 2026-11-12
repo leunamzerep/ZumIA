@@ -23,6 +23,19 @@ npm run dev                  # http://localhost:8787/health
 Secretos (`.dev.vars` en local, `wrangler secret put` en producción): `VERIFY_PEPPER` y `TOKEN_SECRET`
 deben ser distintos. Ver `.dev.vars.example`.
 
+## Correo (Brevo) — checklist
+
+- [ ] Usar una clave **API v3** (`xkeysib-…`), no la clave SMTP (`xsmtpsib-…`): con esa el Worker no envía.
+- [ ] Acceso **Restricted** y solo "Transactional email: All".
+- [ ] "Authorized IPs" sin bloqueo (las IPs de Cloudflare cambian).
+- [ ] La clave caduca tras 90 días seguidos sin uso: poner un recordatorio y hacer un envío de prueba cada ~60 días.
+- [ ] Paso 6: `wrangler secret put BREVO_API_KEY` (nunca en el repo).
+- [ ] Tras la mudanza de zumia.dev (19/11): comprobar que los registros DNS de Brevo siguen (incluidos los 3 CNAME
+      de marca en "DNS only", nunca Proxied) y que el dominio sigue autenticado en Brevo.
+
+El remitente (`MAIL_FROM_EMAIL`, `MAIL_FROM_NAME`) tiene valores por defecto en `wrangler.toml`.
+En local, `DEV_LOG_CODES=1` imprime el código en consola y, si hay `BREVO_API_KEY`, también envía el correo.
+
 ## Pendientes (sugerencias)
 
 - Paso 6: limpiar la tabla `rate_limits` (hoy nunca se borra).

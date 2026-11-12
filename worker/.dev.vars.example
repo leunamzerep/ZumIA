@@ -5,3 +5,9 @@ TOKEN_SECRET=cambiar
 TOKEN_TTL_SECONDS=1800
 DEV_LOG_CODES=1
 ALLOWED_ORIGINS=http://localhost:5173,https://zumia.dev
+# Brevo: clave API v3 (xkeysib-…), no la clave SMTP (xsmtpsib-…). Vacía = no se envía correo.
+BREVO_API_KEY=
+# Remitente: ya tiene valores por defecto en wrangler.toml [vars]. Descomenta solo para cambiarlo en local
+# (si los dejas vacíos, anulan el valor por defecto y no se envía correo).
+# MAIL_FROM_EMAIL=auth@zumia.dev
+# MAIL_FROM_NAME=Zumia Solutions

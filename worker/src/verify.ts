@@ -5,7 +5,7 @@ import { hmacHex, randomCode } from "./crypto";
 import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json } from "./http";
 import { hit } from "./ratelimit";
 import { sendCode } from "./send";
-import type { Env } from "./types";
+import type { Env, ExecutionContext } from "./types";
 import { parseEmailBody, readJsonBody } from "./validate";
 
 const MAX_BODY_BYTES = 1024;
@@ -28,7 +28,7 @@ const decoyWrites = (env: Env, now: number) =>
     ).bind(now),
   ]);
 
-export const handleVerifyRequest = async (request: Request, env: Env): Promise<Response> => {
+export const handleVerifyRequest = async (request: Request, env: Env, ctx: ExecutionContext): Promise<Response> => {
   const cors = corsHeaders(request, env);
   const reply = (data: unknown, status = 200) => json(data, status, cors);
 
@@ -81,7 +81,8 @@ export const handleVerifyRequest = async (request: Request, env: Env): Promise<R
         now + CODE_TTL_SECONDS,
       ),
     ]);
-    await sendCode(env, email, code);
+    // Sin await: el envío no puede alargar la respuesta (si no, se distinguiría un correo existente).
+    ctx.waitUntil(sendCode(env, email, code));
   } else {
     await decoyWrites(env, now);
   }
