@@ -33,6 +33,9 @@ deben ser distintos. Ver `.dev.vars.example`.
 - [ ] Tras la mudanza de zumia.dev (19/11): comprobar que los registros DNS de Brevo siguen (incluidos los 3 CNAME
       de marca en "DNS only", nunca Proxied) y que el dominio sigue autenticado en Brevo.
 
+- [ ] SPF softfail en auth.zumia.dev (Return-Path): no bloquea porque DMARC pasa por DKIM; revisar el registro de marca
+      tras la mudanza de zumia.dev (19/11).
+
 El remitente (`MAIL_FROM_EMAIL`, `MAIL_FROM_NAME`) tiene valores por defecto en `wrangler.toml`.
 En local, `DEV_LOG_CODES=1` imprime el código en consola y, si hay `BREVO_API_KEY`, también envía el correo.
 
