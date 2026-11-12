@@ -586,6 +586,8 @@
             "network": "No pudimos conectar con el servicio de verificación. Tu estimado sigue a precio de lista; intenta de nuevo en un momento.",
             "expired": "La verificación venció. Tu estimado volvió a precio de lista; verifica de nuevo si quieres tu descuento.",
             "unavailable": "Por ahora el descuento de cliente no se puede verificar en línea. Tu estimado es a precio de lista; escríbenos y lo aplicamos contigo.",
+            "privacyNote": "Usamos tu correo solo para enviarte el código de verificación.",
+            "privacyLink": "Política de privacidad",
             "contactHelp": "¿No puedes verificarte?",
             "contactLink": "Escríbenos"
         },

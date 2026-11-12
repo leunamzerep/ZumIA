@@ -408,6 +408,8 @@
             "network": "We could not reach the verification service. Your estimate stays at list price; please try again in a moment.",
             "expired": "The verification expired. Your estimate went back to list price; verify again if you want your discount.",
             "unavailable": "Client discounts cannot be verified online right now. Your estimate is at list price; write to us and we will apply it with you.",
+            "privacyNote": "We use your email only to send you the verification code.",
+            "privacyLink": "Privacy policy",
             "contactHelp": "Can't verify?",
             "contactLink": "Write to us"
         },

@@ -72,6 +72,7 @@ export const ClientVerify = ({
   onVerified: (client: VerifiedClient | null) => void;
 }) => {
   const { t } = useTranslation();
+  const localizePath = useLocalizedPath();
   const [step, setStep] = useState<Step>("email");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -369,6 +370,12 @@ export const ClientVerify = ({
         </form>
       )}
 
+      <p className="text-sm text-navy-600">
+        {t("quote.verify.privacyNote")}{" "}
+        <Link to={localizePath(PATHS.privacy)} className="font-semibold text-navy-900 underline underline-offset-2 hover:text-gold-800">
+          {t("quote.verify.privacyLink")}
+        </Link>
+      </p>
       <ContactHelp />
     </Card>
   );
