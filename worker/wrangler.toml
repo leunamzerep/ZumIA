@@ -19,11 +19,10 @@ ALLOWED_ORIGINS = "https://zumia.dev"
 crons = ["17 3 * * *"]
 
 # Base D1. En local no hace falta un id real (wrangler usa un SQLite en .wrangler/).
-# ANTES DE DESPLEGAR: `npx wrangler d1 create zumia-verificacion` y pegar aquí el database_id que devuelva.
 [[d1_databases]]
 binding = "DB"
 database_name = "zumia-verificacion"
-database_id = "PEGAR-AQUI-EL-DATABASE_ID-DE-d1-create"
+database_id = "b4e5896d-b09c-48b3-9541-dfc27e55d391"
 migrations_dir = "migrations"
 
 # Después de mover la zona de zumia.dev a Cloudflare (19/11): descomentar para servir en api.zumia.dev.
