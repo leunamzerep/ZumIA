@@ -63,8 +63,9 @@ export const deriveMode = ({ hasSite, hired, goal }: SiteAnswers): QuoteMode => 
  * - zumiaClient: solo el verificado con el Worker (verifiedDiscount); sin verificar, 0 (precio de lista).
  * - external: 0.
  *
- * TODO(paso 6): este descuento es solo visual. El precio final se recalculará en el servidor
- * con el token de verificación (nunca se confía en el valor del navegador).
+ * TODO (diferido): este descuento es solo informativo; hoy no existe pago ni pedido que lo use. Cuando
+ * exista un endpoint de pago o pedido, el precio final debe recalcularse en el servidor con el token de
+ * verificación (nunca se confía en el valor del navegador).
  */
 export const discountFor = (mode: QuoteMode, planId: PlanId | null, verifiedDiscount = 0) => {
   if (mode === "external") return 0;
