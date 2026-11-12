@@ -1,18 +1,32 @@
 name = "zumia-verificacion"
 main = "src/index.ts"
 compatibility_date = "2026-11-01"
+# Primero se publica en *.workers.dev; api.zumia.dev se conecta después (ver bloque al final).
+workers_dev = true
 
-# Remitente del correo (no son secretos). En local se pueden cambiar desde .dev.vars.
-# BREVO_API_KEY es secret: nunca aquí (wrangler secret put BREVO_API_KEY).
+# Variables NO secretas de producción. En local, .dev.vars las sobrescribe.
+# Secretos (nunca aquí): VERIFY_PEPPER, TOKEN_SECRET, BREVO_API_KEY -> wrangler secret put.
+# NO definir aquí DEV_LOG_CODES ni ALLOW_MISSING_IP: son solo locales (.dev.vars).
 [vars]
 MAIL_FROM_EMAIL = "auth@zumia.dev"
 MAIL_FROM_NAME = "Zumia Solutions"
+# Orígenes exactos del sitio, separados por comas. Sin comodín.
+# www.zumia.dev solo se añade si, tras la mudanza del DNS (19/11), sirve el sitio en vez de redirigir al apex.
+ALLOWED_ORIGINS = "https://zumia.dev"
 
-# Base D1. En local no hace falta un id real; wrangler usa un SQLite en .wrangler/.
-# PENDIENTE: al desplegar, crear la base con `wrangler d1 create zumia-verificacion`
-# y poner aquí el database_id que devuelva.
+# Limpieza diaria a las 03:17 UTC (src/cleanup.ts)
+[triggers]
+crons = ["17 3 * * *"]
+
+# Base D1. En local no hace falta un id real (wrangler usa un SQLite en .wrangler/).
+# ANTES DE DESPLEGAR: `npx wrangler d1 create zumia-verificacion` y pegar aquí el database_id que devuelva.
 [[d1_databases]]
 binding = "DB"
 database_name = "zumia-verificacion"
-database_id = "PENDIENTE"
+database_id = "PEGAR-AQUI-EL-DATABASE_ID-DE-d1-create"
 migrations_dir = "migrations"
+
+# Después de mover la zona de zumia.dev a Cloudflare (19/11): descomentar para servir en api.zumia.dev.
+# [[routes]]
+# pattern = "api.zumia.dev"
+# custom_domain = true
