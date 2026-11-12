@@ -38,7 +38,8 @@ export const NO_ADDITIONAL: Additional = { subpages: 0, sections: 0 };
  * Modo del estimado:
  * - normal: precio del plan.
  * - redesign: rediseño de un sitio viejo (precio base "desde"; el plan solo da el descuento y los totales).
- * - zumiaClient: ya contrató antes; no se cobra plan, solo herramientas y adicionales.
+ * - zumiaClient: ya contrató antes; no se cobra plan, solo herramientas y adicionales. El descuento
+ *   solo se aplica si el correo se verificó con el Worker; si no, precio de lista.
  * - external: herramientas para un sitio externo; sin plan, sin descuento, con recargo.
  */
 export type QuoteMode = "normal" | "redesign" | "zumiaClient" | "external";
@@ -56,9 +57,20 @@ export const deriveMode = ({ hasSite, hired, goal }: SiteAnswers): QuoteMode => 
   return "normal";
 };
 
-/** Descuento (en %) que aplica a herramientas y adicionales según el modo y el plan elegido. */
-export const discountFor = (mode: QuoteMode, planId: PlanId | null) =>
-  mode === "external" || !planId ? 0 : getPlan(planId).extrasDiscount;
+/**
+ * Descuento (en %) que aplica a herramientas y adicionales según el modo:
+ * - normal y rediseño: el del plan elegido.
+ * - zumiaClient: solo el verificado con el Worker (verifiedDiscount); sin verificar, 0 (precio de lista).
+ * - external: 0.
+ *
+ * TODO(paso 6): este descuento es solo visual. El precio final se recalculará en el servidor
+ * con el token de verificación (nunca se confía en el valor del navegador).
+ */
+export const discountFor = (mode: QuoteMode, planId: PlanId | null, verifiedDiscount = 0) => {
+  if (mode === "external") return 0;
+  if (mode === "zumiaClient") return verifiedDiscount;
+  return planId ? getPlan(planId).extrasDiscount : 0;
+};
 
 export type QuoteLine = { id: ExtraId; quantity: number; price: number; days: number };
 export type AdditionalLine = { kind: "subpages" | "sections"; quantity: number; price: number };
@@ -92,11 +104,14 @@ export const computeQuote = (
   planId: PlanId | null,
   selection: ExtrasSelection,
   additional: Additional = NO_ADDITIONAL,
+  verifiedDiscount = 0,
 ): Quote | null => {
   const external = mode === "external";
-  if (!external && !planId) return null;
-  const plan = planId ? getPlan(planId) : null;
-  const discount = discountFor(mode, planId);
+  const client = mode === "zumiaClient";
+  // En modo cliente el plan elegido a mano no cuenta: el descuento viene solo de la verificación
+  if (!external && !client && !planId) return null;
+  const plan = external || client || !planId ? null : getPlan(planId);
+  const discount = discountFor(mode, planId, verifiedDiscount);
 
   // Mismo orden que en /services (extras.ts)
   const lines = EXTRAS.filter((extra) => selection[extra.id]).map((extra) => {
