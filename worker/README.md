@@ -41,6 +41,10 @@ En local, `DEV_LOG_CODES=1` imprime el código en consola y, si hay `BREVO_API_K
 
 ## Pendientes (sugerencias)
 
+- Paso 6: definir `VITE_VERIFY_API_URL` en el build de GitHub Pages (variable pública) y añadir `https://zumia.dev`
+  a `ALLOWED_ORIGINS` en producción. No mergear `feat/quote-verify` a `main` antes.
+- Paso 6: recalcular el precio final en el servidor con el token (el descuento del frontend es solo visual).
+
 - Paso 6: limpiar la tabla `rate_limits` (hoy nunca se borra).
 - Paso 6: revisar si el token debe ser de un solo uso en el pago con Wompi (hoy es sin estado y
   se puede reusar hasta que venza; hacerlo de un solo uso exigiría guardar el `jti` en D1).

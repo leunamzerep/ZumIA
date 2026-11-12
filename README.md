@@ -25,6 +25,17 @@ npm run dev
 
 Abre la dirección que muestra la terminal (normalmente http://localhost:5173). Los cambios se ven al guardar.
 
+## Verificación de clientes en /quote (rama `feat/quote-verify`)
+
+> ⚠️ **No mergear ni desplegar esta rama a `main` hasta el paso 6.** En producción todavía no existe
+> `VITE_VERIFY_API_URL`, así que los clientes de Zumia verían precio de lista y perderían su descuento actual.
+
+- El modo "ya contraté con Zumia" ya no toma el descuento del plan elegido a mano: solo se aplica si el cliente verifica su correo con el Worker (`worker/`). Sin verificar, el cotizador muestra el precio de lista.
+- Para probar en local: `copy .env.example .env.local` (define `VITE_VERIFY_API_URL=http://localhost:8787`), arranca el Worker (`worker/README.md`) y usa el origen `http://localhost:5173` (en `ALLOWED_ORIGINS` del `.dev.vars` del Worker). Arranca Vite con `npm run dev -- --port 5173 --strictPort` para que el puerto no cambie.
+- El token vive solo en memoria (estado de React): nunca en localStorage, sessionStorage ni URL. Si se recarga la página, hay que verificar de nuevo.
+- El descuento que ve el navegador es solo visual. TODO paso 6: el precio final se recalcula en el servidor con el token.
+- Paso 6: definir `VITE_VERIFY_API_URL` en el build de GitHub Pages (`.github/workflows`), con la URL pública del Worker desplegado. Es una variable pública, no un secreto.
+
 ## Construir
 
 ```bash
