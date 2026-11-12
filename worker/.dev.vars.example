@@ -1,0 +1,4 @@
+# Copia a .dev.vars (ignorado por git) y cambia los valores. Producción: wrangler secret put.
+VERIFY_PEPPER=cambiar
+DEV_LOG_CODES=1
+ALLOWED_ORIGINS=http://localhost:5173,https://zumia.dev
