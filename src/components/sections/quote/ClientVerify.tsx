@@ -81,6 +81,8 @@ export const ClientVerify = ({
   const [error, setError] = useState<ErrorKey | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [selectedId, setSelectedId] = useState<string>();
+  // Autorización para tratar el correo (sección 13 de la política). Solo estado de React: no se persiste.
+  const [consent, setConsent] = useState(false);
   const [cooldownUntil, setCooldownUntil] = useState(0);
   const [now, setNow] = useState(() => Date.now());
   const mounted = useRef(true);
@@ -111,6 +113,7 @@ export const ClientVerify = ({
     setSelectedId(undefined);
     setCode("");
     setStep("email");
+    setConsent(false);
     setError(null);
     setNotice("expired");
     onVerified(null);
@@ -127,6 +130,8 @@ export const ClientVerify = ({
     status === "rateLimited" ? "tryLater" : status === "invalid" ? invalidKey : "network";
 
   const sendCode = async () => {
+    // Sin la casilla marcada no se llama al Worker
+    if (!consent) return;
     const value = email.trim().toLowerCase();
     if (value.length > 254 || !EMAIL_PATTERN.test(value)) {
       setError("emailInvalid");
@@ -212,6 +217,7 @@ export const ClientVerify = ({
 
   const changeEmail = () => {
     setStep("email");
+    setConsent(false);
     setCode("");
     setNotice(null);
     setError(null);
@@ -229,6 +235,7 @@ export const ClientVerify = ({
     setSelectedId(undefined);
     setCode("");
     setStep("email");
+    setConsent(false);
     setNotice(null);
     setError(null);
     setCooldownUntil(0);
@@ -323,8 +330,29 @@ export const ClientVerify = ({
             aria-invalid={error === "emailInvalid"}
             className={inputClass}
           />
+          <label htmlFor="verify-consent" className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-navy-800">
+            <input
+              id="verify-consent"
+              type="checkbox"
+              required
+              checked={consent}
+              onChange={(event) => setConsent(event.target.checked)}
+              className="mt-0.5 size-5 shrink-0 cursor-pointer accent-gold-700 focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-solid focus-visible:[outline-color:var(--focus-ring)]"
+            />
+            <span>
+              {t("quote.verify.consent")}{" "}
+              <Link
+                to={`${localizePath(PATHS.privacy)}#privacy-s13`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-navy-900 underline underline-offset-2 hover:text-gold-800"
+              >
+                {t("quote.verify.consentLink")}
+              </Link>
+            </span>
+          </label>
           <div className="flex flex-wrap gap-3">
-            <Button type="submit" variant="secondary" disabled={busy}>
+            <Button type="submit" variant="secondary" disabled={busy || !consent}>
               {t(busy ? "quote.verify.sending" : "quote.verify.sendCode")}
             </Button>
           </div>
@@ -360,7 +388,7 @@ export const ClientVerify = ({
             <Button type="submit" variant="secondary" disabled={busy}>
               {t(busy ? "quote.verify.verifying" : "quote.verify.confirm")}
             </Button>
-            <Button variant="outline" disabled={busy || secondsLeft > 0} onClick={() => void sendCode()}>
+            <Button variant="outline" disabled={busy || secondsLeft > 0 || !consent} onClick={() => void sendCode()}>
               {secondsLeft > 0 ? t("quote.verify.resendIn", { seconds: secondsLeft }) : t("quote.verify.resend")}
             </Button>
             <Button variant="outline" disabled={busy} onClick={changeEmail}>

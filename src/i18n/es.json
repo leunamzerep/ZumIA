@@ -285,7 +285,7 @@
         },
         "s5": {
             "title": "5. Dónde se Guardan y Quién Interviene",
-            "b1": "Para recibir sus mensajes usamos estos servicios de terceros:",
+            "b1": "Para recibir y enviar mensajes usamos estos servicios de terceros:",
             "b2": {
                 "i1": "<1>GitHub Pages:</1> Aloja el sitio web.",
                 "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía. También aloja la base de datos D1 y el Worker de verificación.",
@@ -337,7 +337,7 @@
             "b1": "Si ya contrató con Zumia y quiere que su descuento se aplique en el cotizador de este sitio, puede verificar su correo. Para eso tratamos sus datos así:",
             "b2": {
                 "i1": "<1>Qué guardamos de sus proyectos:</1> En una base de datos de Cloudflare (D1) guardamos el correo con el que contrató, el nombre del proyecto y su plan.",
-                "i2": "<1>Al pedir un código:</1> Guardamos solo un hash del código, que se elimina dentro de las 48 horas siguientes, la fecha de creación y de vencimiento (el código vence a los 10 minutos) y el número de intentos.",
+                "i2": "<1>Al pedir un código:</1> Guardamos solo un hash del código, que se elimina dentro de las 48 horas siguientes a su creación, la fecha de creación y de vencimiento (el código vence a los 10 minutos) y el número de intentos.",
                 "i3": "<1>Contra el abuso:</1> Para frenar abusos guardamos contadores por hora asociados a un hash de su dirección IP y de su correo. Esos hash no permiten reconocer directamente ni la IP ni el correo, y los contadores se borran periódicamente.",
                 "i4": "<1>Envío del código:</1> El correo con el código lo envía Brevo, nuestro proveedor de correo transaccional, que recibe su correo y el contenido del mensaje solo para entregarlo.",
                 "i5": "<1>Uso:</1> Usamos su correo solo para este fin.",
@@ -600,7 +600,9 @@
             "network": "No pudimos conectar con el servicio de verificación. Tu estimado sigue a precio de lista; intenta de nuevo en un momento.",
             "expired": "La verificación venció. Tu estimado volvió a precio de lista; verifica de nuevo si quieres tu descuento.",
             "unavailable": "Por ahora el descuento de cliente no se puede verificar en línea. Tu estimado es a precio de lista; escríbenos y lo aplicamos contigo.",
-            "privacyNote": "Usamos tu correo solo para verificar tu descuento: enviarte el código y comprobar tus proyectos.",
+            "consent": "Acepto el tratamiento de mi correo para verificar mi descuento, según la",
+            "consentLink": "sección 13 de la Política de Privacidad",
+            "privacyNote":"Usamos tu correo solo para verificar tu descuento: enviarte el código y comprobar tus proyectos.",
             "privacyLink": "Política de privacidad",
             "contactHelp": "¿No puedes verificarte?",
             "contactLink": "Escríbenos"
