@@ -288,10 +288,11 @@
             "b1": "Para recibir sus mensajes usamos estos servicios de terceros:",
             "b2": {
                 "i1": "<1>GitHub Pages:</1> Aloja el sitio web.",
-                "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía.",
+                "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía. También aloja la base de datos D1 y el Worker de verificación.",
                 "i3": "<1>Google (Apps Script, Hojas de cálculo y Gmail):</1> Almacena su consulta en una hoja de cálculo privada y recibimos los avisos por correo.",
                 "i4": "<1>WhatsApp (Meta) e Instagram (Meta):</1> Si usa el botón de WhatsApp o ve la sección de Instagram, esos servicios aplican sus propias políticas.",
-                "i5": "<1>Google Calendar:</1> Si agenda una asesoría, el calendario es un servicio de Google: los datos que escriba allí (por ejemplo nombre, correo y horario) los trata Google según sus propias políticas y nosotros los recibimos para atender su cita. El calendario solo se carga cuando usted lo solicita."
+                "i5": "<1>Google Calendar:</1> Si agenda una asesoría, el calendario es un servicio de Google: los datos que escriba allí (por ejemplo nombre, correo y horario) los trata Google según sus propias políticas y nosotros los recibimos para atender su cita. El calendario solo se carga cuando usted lo solicita.",
+                "i6": "<1>Brevo:</1> Proveedor de envío de correo transaccional: envía el correo con el código de verificación y recibe su correo y el contenido del mensaje solo para entregarlo."
             },
             "b3": "Algunos de estos proveedores procesan datos en servidores ubicados fuera de Colombia, por ejemplo, en Estados Unidos. Al aceptar esta política, usted autoriza de forma expresa ese envío. No vendemos, alquilamos ni compartimos sus datos con terceros con fines comerciales."
         },
@@ -336,11 +337,11 @@
             "b1": "Si ya contrató con Zumia y quiere que su descuento se aplique en el cotizador de este sitio, puede verificar su correo. Para eso tratamos sus datos así:",
             "b2": {
                 "i1": "<1>Qué guardamos de sus proyectos:</1> En una base de datos de Cloudflare (D1) guardamos el correo con el que contrató, el nombre del proyecto y su plan.",
-                "i2": "<1>Al pedir un código:</1> Guardamos solo un hash del código, que se elimina en aproximadamente 24 horas, la fecha de creación y de vencimiento (el código vence a los 10 minutos) y el número de intentos.",
-                "i3": "<1>Contra el abuso:</1> Para frenar abusos guardamos contadores por hora asociados a un hash de su dirección IP y de su correo. Esos hash no permiten reconocer ni la IP ni el correo, y los contadores se borran periódicamente.",
+                "i2": "<1>Al pedir un código:</1> Guardamos solo un hash del código, que se elimina dentro de las 48 horas siguientes, la fecha de creación y de vencimiento (el código vence a los 10 minutos) y el número de intentos.",
+                "i3": "<1>Contra el abuso:</1> Para frenar abusos guardamos contadores por hora asociados a un hash de su dirección IP y de su correo. Esos hash no permiten reconocer directamente ni la IP ni el correo, y los contadores se borran periódicamente.",
                 "i4": "<1>Envío del código:</1> El correo con el código lo envía Brevo, nuestro proveedor de correo transaccional, que recibe su correo y el contenido del mensaje solo para entregarlo.",
                 "i5": "<1>Uso:</1> Usamos su correo solo para este fin.",
-                "i6": "<1>Conservación:</1> Conservamos el correo, el proyecto y el plan mientras el descuento siga vigente para usted, y los eliminamos si usted lo solicita o cuando termine la relación comercial o el descuento deje de aplicar."
+                "i6": "<1>Conservación:</1> Conservamos el correo, el proyecto y el plan mientras el descuento siga vigente para usted, y los eliminamos si usted lo solicita o cuando termine la relación comercial o el descuento deje de aplicar y, en todo caso, sin superar los plazos indicados en la sección 6."
             },
             "b3": "Puede pedir la actualización o supresión de sus datos por los canales de contacto del sitio (vea las secciones 7 y 8)."
         }
