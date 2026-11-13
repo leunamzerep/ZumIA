@@ -8,6 +8,8 @@ import { ButtonLink } from "@/components/ui/Button";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
 
 const OTHER_LINKS = [
+  { to: PATHS.services, labelKey: "header.services" },
+  { to: PATHS.blog, labelKey: "header.blog" },
   { to: PATHS.aboutUs, labelKey: "header.aboutUs" },
   { to: PATHS.contact, labelKey: "header.contact" },
 ];
