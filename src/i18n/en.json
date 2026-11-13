@@ -147,11 +147,11 @@
     },
     "terms": {
         "h1": "Terms and <1>Conditions</1>",
-        "updated": "<1>Last updated:</1> November 11, 2026"
+        "updated": "<1>Last updated:</1> November 13, 2026"
     },
     "privacy": {
         "h1": "Privacy <1>Policy</1>",
-        "updated": "<1>Last updated:</1> November 12, 2026"
+        "updated": "<1>Last updated:</1> November 13, 2026"
     },
     "brand": {
         "name": "Zumia Solutions"
@@ -443,7 +443,10 @@
         "waAdditional_subpages_one": "{{count}} additional subpage",
         "waAdditional_subpages_other": "{{count}} additional subpages",
         "waAdditional_sections_one": "{{count}} additional section",
-        "waAdditional_sections_other": "{{count}} additional sections"
+        "waAdditional_sections_other": "{{count}} additional sections",
+        "pay": {
+            "floorNotice": "The minimum deposit payment is {{minimum}}. Your discounts have been reduced by {{amount}}. To get your full discount, add one or more additional services"
+        }
     },
     "blog": {
         "eyebrow": "Blog",

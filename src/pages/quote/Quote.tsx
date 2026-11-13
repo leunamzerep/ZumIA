@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { Suspense, lazy, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { PageSeo } from "@/components/seo/PageSeo";
@@ -11,7 +11,7 @@ import { Card } from "@/components/ui/Card";
 import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { Pill } from "@/components/ui/Pill";
 import { Section } from "@/components/ui/Section";
-import { VERIFY_API_URL } from "@/config/site";
+import { PAYMENTS_ENABLED, VERIFY_API_URL } from "@/config/site";
 import { useWhatsappUrl, whatsappWithMessage } from "@/config/whatsapp";
 import { EXTRAS, OTHER_SERVICES, type ExtraId } from "@/data/extras";
 import { PLANS, formatPriceFor, type PlanId } from "@/data/plans";
@@ -31,6 +31,9 @@ import {
   type Quote as QuoteData,
   type SiteGoal,
 } from "@/data/quote";
+
+/** Paso de pago: con el interruptor apagado es null y su código no entra al bundle (ver PAYMENTS_ENABLED). */
+const PaymentStep = PAYMENTS_ENABLED ? lazy(() => import("@/features/payments/PaymentStep")) : null;
 
 /** Largo máximo del enlace de WhatsApp; si se pasa, se recorta la lista con "y N herramientas más". */
 const MAX_WHATSAPP_URL = 1800;
@@ -382,6 +385,11 @@ export const Quote = () => {
             >
               <div className="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:[scrollbar-color:rgb(255_255_255/0.35)_transparent] lg:[scrollbar-width:thin]">
                 <QuoteSummary ref={summaryRef} quote={quote} mode={mode} money={money} from={from} days={days} whatsappUrl={whatsappUrl} onReset={reset} />
+                {PaymentStep && (
+                  <Suspense fallback={null}>
+                    <PaymentStep />
+                  </Suspense>
+                )}
               </div>
             </aside>
           </div>

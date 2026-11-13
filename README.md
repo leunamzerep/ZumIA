@@ -36,6 +36,14 @@ Abre la dirección que muestra la terminal (normalmente http://localhost:5173). 
 - El descuento que ve el navegador es solo informativo: hoy no existe pago ni pedido que lo use. Recalcular el precio en el servidor con el token queda diferido hasta que exista un endpoint de pago o pedido.
 - Paso 6: definir `VITE_VERIFY_API_URL` en el build de GitHub Pages (`.github/workflows`), con la URL pública del Worker desplegado. Es una variable pública, no un secreto.
 
+## Pago del anticipo con Wompi en /quote (rama `feat/wompi-anticipo`)
+
+- **Interruptor `VITE_PAYMENTS_ENABLED`:** solo el texto exacto `true` enciende el pago. Cualquier otro valor (`TRUE`, `1`, vacío o sin definir) lo apaga: la sección de pago **no existe** (no se renderiza, no se prerenderiza y su código no entra al bundle). También necesita `VITE_VERIFY_API_URL`, porque usa el mismo Worker.
+- En local: añade `VITE_PAYMENTS_ENABLED=true` a `.env.local` y usa el Worker local o el de staging (ver `worker/README.md`). Vite lee las variables al arrancar: reinicia `npm run dev` tras cambiarlas.
+- En producción el interruptor sigue apagado hasta que se decida publicarlo (se definirá en el build de GitHub Pages en la tanda 8).
+- Código: `src/lib/payApi.ts` (cliente de `/pay/*`, nunca envía montos), `src/features/payments/` (URL del checkout, estados del paso, aviso del piso y referencia en `sessionStorage`). Pruebas: `scripts/pay-front-calc.mjs`.
+- Solo se guarda la referencia de la orden (`ZUM-…`) en `sessionStorage`, justo antes de ir a Wompi, para la página de resultado. Nunca nombre, correo, montos ni el token de verificación (que sigue solo en memoria).
+
 ## Construir
 
 ```bash

@@ -53,6 +53,14 @@ export const CONTACT_WORKER_URL = "https://contact.zumiasolutions.workers.dev/ap
 const verifyApiUrl = import.meta.env.VITE_VERIFY_API_URL?.trim().replace(/\/+$/, "");
 export const VERIFY_API_URL: string | null = verifyApiUrl ? verifyApiUrl : null;
 
+/**
+ * Interruptor del pago del anticipo con Wompi (VITE_PAYMENTS_ENABLED, ver .env.example).
+ * Solo el texto exacto "true" lo enciende; cualquier otro valor (o ninguno) lo apaga y la sección de pago
+ * no existe: ni se renderiza ni se prerenderiza, y su código no entra al bundle. Usa el mismo Worker que la
+ * verificación, así que también exige VITE_VERIFY_API_URL.
+ */
+export const PAYMENTS_ENABLED: boolean = import.meta.env.VITE_PAYMENTS_ENABLED === "true" && VERIFY_API_URL !== null;
+
 /** Datos del proveedor para Términos y Privacidad (Ley 1480 de 2011, art. 50). */
 export const OWNER_NAME = "Manuel Santiago Pérez Hernández";
 export const OWNER_NIT = "1013105486-6";

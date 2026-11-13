@@ -147,7 +147,7 @@
     },
     "terms": {
         "h1": "Términos y <1>Condiciones</1>",
-        "updated": "<1>Última actualización:</1> 11/11/2026",
+        "updated": "<1>Última actualización:</1> 13/11/2026",
         "s1": {
             "title": "1. Introducción",
             "b1": "Estos Términos y Condiciones regulan el uso del sitio web {{domain}} y la contratación de los servicios de Zumia Solutions. Al navegar por el sitio o enviarnos una solicitud, aceptas estos términos. Si no estás de acuerdo, te pedimos que no uses el sitio. Cuando contrates un plan, las condiciones específicas quedarán en un contrato de prestación de servicios firmado por las partes; si hay diferencias entre este texto y el contrato, prevalece el contrato."
@@ -175,7 +175,7 @@
         },
         "s5": {
             "title": "5. Responsabilidades del Cliente",
-            "b1": "El cliente debe entregar los insumos necesarios (logotipo, textos, imágenes, datos de contacto, enlaces a redes y accesos) a más tardar 15 días calendario después de la firma del contrato, y responder a las entregas de revisión. Los plazos de entrega se cuentan en días hábiles, desde que Zumia recibe el anticipo y todo el material del proyecto (textos, imágenes, logos y accesos). Si el material llega incompleto o con retraso, el plazo se cuenta desde que esté completo. Mientras falten insumos, accesos o respuestas, los plazos del proyecto se suspenden.",
+            "b1": "El cliente debe entregar los insumos necesarios (logotipo, textos, imágenes, datos de contacto, enlaces a redes y accesos) a más tardar 15 días calendario después de la firma del contrato, y responder a las entregas de revisión. Los plazos de entrega se cuentan en días hábiles, desde que el contrato está firmado, Zumia recibe el anticipo y todo el material del proyecto (textos, imágenes, logos y accesos). Si el material llega incompleto o con retraso, el plazo se cuenta desde que esté completo. Mientras falten insumos, accesos o respuestas, los plazos del proyecto se suspenden.",
             "b2": "Si el cliente no responde a una entrega de revisión en 3 días calendario, podemos entenderla como aprobada para continuar con el proyecto, y así se lo avisaremos por escrito. Si el proyecto permanece inactivo por más de 15 días calendario, podemos cerrarlo y liquidarlo, o reactivarlo con un costo de reanudación del 10 % del valor del proyecto.",
             "b3": "El cliente debe proporcionar información precisa y completa. Los retrasos o errores derivados de información incorrecta o tardía no son responsabilidad de Zumia Solutions."
         },
@@ -188,14 +188,16 @@
             "b1": "Los planes y precios publicados en este sitio y en nuestras redes sociales son ofertas generales, vigentes hasta el 31 de diciembre de 2026 o hasta que los modifiquemos con aviso en el sitio. Cualquier ajuste a un proyecto en particular se acuerda por escrito.",
             "b2": "<1>Precio.</1> Los precios están en pesos colombianos (COP). El precio total del proyecto se te informa por escrito antes de que lo aceptes.",
             "b3": "<1>Pago.</1> El valor del proyecto se paga de la siguiente manera: 50 % para iniciar el desarrollo y 50 % restante a la entrega final. Medios de pago: Transferencia bancaria o pago en línea con confirmación de recibido. El sitio se publica una vez recibido el pago total. Si hay mora superior a tres (3) días calendario en un pago pendiente, podemos suspender el proyecto o la publicación.",
-            "b4": "<1>Plazos.</1> Los plazos de entrega se cuentan en días hábiles, desde que recibimos el anticipo y todo el material del proyecto. Entrega máxima: Esencial, 3 días hábiles; A la Medida, 5; Profesional, 8. Cada herramienta extra suma días, que se informan al cotizar. Los ajustes que pida el cliente durante el proyecto pueden ampliar el plazo; el contrato indica cuánto. También pueden ampliarlo las suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
-            "b5": "<1>Mantenimiento.</1> Cada plan incluye mantenimiento básico gratuito después de la entrega final, limitado en tiempo y en horas: Esencial, 2 semanas y hasta 2 horas por semana; A la Medida, 3 semanas y hasta 3 horas por semana; Profesional, 1 mes y hasta 3 horas por semana. Se mide por tiempo de trabajo, no por dificultad. Superado el límite, cada hora adicional cuesta $29.000 COP, o se rige por un plan mensual recurrente acordado por escrito.",
-            "b6": "<1>Dominio y hosting.</1> Su costo corresponde al cliente."
+            "b4": "<1>Pago en línea del anticipo.</1> Cuando esa opción esté disponible en el sitio, puedes pagar en línea el anticipo del 50 % del estimado del cotizador, mediante la pasarela de pagos Wompi. Pagar en línea el anticipo no inicia el servicio: reserva tu cupo de trabajo durante cinco (5) días hábiles, tiempo en el que las partes firman el contrato, que fija el alcance, el precio final y los plazos. El servicio comienza cuando el contrato está firmado, el anticipo está pagado y has entregado el material necesario (sección 5). El anticipo pagado en línea se abona al precio final del contrato. El 50 % restante se paga a la entrega final por los medios indicados arriba; este sitio solo recibe el anticipo. Si el contrato no se firma dentro de esos cinco (5) días hábiles por causas no imputables a ti, o si decides no firmarlo antes de que comencemos el servicio, te devolvemos el 100 % del anticipo, por el mismo medio de pago, sin descontar la comisión de la pasarela, en un máximo de treinta (30) días calendario. Los descuentos de cliente solo aplican si verificaste tu correo en el cotizador; si no lo hiciste, pagas el precio de lista y lo tendremos en cuenta en el contrato. El pago en línea no está disponible para servicios cotizados de forma personalizada (rediseño o herramientas en un sitio externo).",
+            "b5": "<1>Códigos de descuento.</1> Los códigos los entrega Zumia; no son canjeables por dinero y, si se emitieron a nombre de un correo concreto, no son transferibles. Cada código puede tener un número limitado de usos y una fecha de vencimiento; uno agotado, vencido o desactivado no se aplica. Un código se acumula con el descuento por plan o por cliente verificado (que nunca se suman entre sí) y se aplica sobre el total. Después de todos los descuentos, el total a pagar no será inferior a $24.000 COP (anticipo mínimo de $12.000 COP): si un código llevara el total por debajo, se reduce el descuento hasta ese mínimo y te lo informamos. Mientras tu orden esté vigente (30 minutos), el código queda reservado; si el pago no se completa, se libera automáticamente poco después. Podemos desactivar un código por error, abuso o uso indebido.",
+            "b6": "<1>Plazos.</1> Los plazos de entrega se cuentan en días hábiles, desde que el contrato está firmado y recibimos el anticipo y todo el material del proyecto. Entrega máxima: Esencial, 3 días hábiles; A la Medida, 5; Profesional, 8. Cada herramienta extra suma días, que se informan al cotizar. Los ajustes que pida el cliente durante el proyecto pueden ampliar el plazo; el contrato indica cuánto. También pueden ampliarlo las suspensiones imputables al cliente. Los plazos de entrega acordados en el contrato prevalecen sobre cualquier plazo general.",
+            "b7": "<1>Mantenimiento.</1> Cada plan incluye mantenimiento básico gratuito después de la entrega final, limitado en tiempo y en horas: Esencial, 2 semanas y hasta 2 horas por semana; A la Medida, 3 semanas y hasta 3 horas por semana; Profesional, 1 mes y hasta 3 horas por semana. Se mide por tiempo de trabajo, no por dificultad. Superado el límite, cada hora adicional cuesta $29.000 COP, o se rige por un plan mensual recurrente acordado por escrito.",
+            "b8": "<1>Dominio y hosting.</1> Su costo corresponde al cliente."
         },
         "s8": {
             "title": "8. Derecho de Retracto, Cancelación y Devoluciones",
             "b1": "<1>Derecho de retracto.</1> Si contratas a distancia como consumidor en los términos de la Ley 1480 de 2011 (persona natural o jurídica que adquiere el servicio como destinatario final y sin que esté ligado intrínsecamente a su actividad económica), puedes retractarte dentro de los cinco (5) días hábiles siguientes a la celebración del contrato, siempre que la prestación del servicio no haya comenzado con tu acuerdo. Para ejercerlo, escríbenos a {{email}} indicando tu nombre y el plan contratado. Si te retractas, resolvemos el contrato y te devolvemos todo lo pagado, sin descuentos ni retenciones, en un máximo de treinta (30) días calendario desde que ejerces el derecho.",
-            "b2": "Comenzamos a prestar el servicio solo cuando lo acuerdas de forma expresa (por ejemplo, al firmar el contrato y pagar el anticipo para iniciar). Desde ese momento, el derecho de retracto deja de aplicar, porque la ley lo exceptúa en servicios cuya prestación comenzó con tu acuerdo.",
+            "b2": "Comenzamos a prestar el servicio solo cuando lo acuerdas de forma expresa (por ejemplo, al firmar el contrato y pagar el anticipo para iniciar). Desde ese momento, el derecho de retracto deja de aplicar, porque la ley lo exceptúa en servicios cuya prestación comenzó con tu acuerdo. Pagar en línea el anticipo, por sí solo, no inicia el servicio ni cuenta como acuerdo para iniciarlo (sección 7).",
             "b3": "<1>Cancelación.</1> Puedes terminar el contrato en cualquier momento mediante aviso escrito. La devolución depende de la etapa del proyecto, sobre los valores desembolsados:",
             "b4": {
                 "h1": "Momento de la cancelación",
@@ -243,13 +245,13 @@
         },
         "s15": {
             "title": "15. Aceptación y Modificaciones",
-            "b1": "Al firmar el contrato y pagar el anticipo, aceptas de forma expresa las condiciones del plan elegido. Nunca entendemos tu silencio como aceptación de cobros u obligaciones nuevas. Puedes consultar, imprimir y descargar estos términos en cualquier momento desde este sitio.",
+            "b1": "Al firmar el contrato y pagar el anticipo, aceptas de forma expresa las condiciones del plan elegido. Si pagas el anticipo en línea, al marcar la casilla de aceptación antes de pagar aceptas estos Términos y la Política de Privacidad vigentes en ese momento; guardamos la fecha, la hora y la versión que aceptaste. Nunca entendemos tu silencio como aceptación de cobros u obligaciones nuevas. Puedes consultar, imprimir y descargar estos términos en cualquier momento desde este sitio.",
             "b2": "Podemos actualizar estos términos. La versión vigente es la publicada en este sitio, con su fecha de actualización. Los cambios no afectan los contratos ya firmados."
         }
     },
     "privacy": {
         "h1": "Política de <1>Privacidad</1>",
-        "updated": "<1>Última actualización:</1> 12/11/2026",
+        "updated": "<1>Última actualización:</1> 13/11/2026",
         "s1": {
             "title": "1. Responsable del Tratamiento",
             "b1": "Zumia Solutions opera como marca bajo persona natural, con domicilio en Bogotá, Colombia, responsable del tratamiento de los datos personales que recogemos en este sitio (Ley 1581 de 2012).",
@@ -275,30 +277,33 @@
                 "i1": "Responder su consulta y darle información sobre nuestros servicios.",
                 "i2": "Agendar un diagnóstico o preparar una propuesta, si lo solicita.",
                 "i3": "Gestionar la relación comercial si decide contratar.",
-                "i4": "Mantener la seguridad del sitio y prevenir el envío no deseado (spam)."
+                "i4": "Mantener la seguridad del sitio y prevenir el envío no deseado (spam).",
+                "i5": "Procesar y confirmar el pago del anticipo, reservar su cupo y gestionar su orden.",
+                "i6": "Cumplir obligaciones contables y tributarias."
             },
             "b2": "No usamos sus datos para fines distintos sin pedirle antes su autorización."
         },
         "s4": {
             "title": "4. Su Autorización",
-            "b1": "Antes de enviar el formulario, le pedimos que acepte esta política marcando una casilla. Sin su autorización no recogemos sus datos. Puede retirarla en cualquier momento escribiéndonos a {{email}}. Si nos escribe por WhatsApp o correo, al enviarnos su mensaje nos autoriza a usar su número o correo y el contenido del mensaje solo para responderle, gestionar su solicitud y, si contrata, la relación comercial, en los términos de esta política. En el sitio mostramos un aviso con enlace a esta política junto a nuestros datos de contacto. Conservamos el mensaje como prueba de su autorización. Puede revocarla escribiéndonos."
+            "b1": "Antes de enviar el formulario, le pedimos que acepte esta política marcando una casilla. Sin su autorización no recogemos sus datos. Puede retirarla en cualquier momento escribiéndonos a {{email}}. Si nos escribe por WhatsApp o correo, al enviarnos su mensaje nos autoriza a usar su número o correo y el contenido del mensaje solo para responderle, gestionar su solicitud y, si contrata, la relación comercial, en los términos de esta política. En el sitio mostramos un aviso con enlace a esta política junto a nuestros datos de contacto. Conservamos el mensaje como prueba de su autorización. Puede revocarla escribiéndonos. Si paga el anticipo en línea, le pedimos marcar una casilla de aceptación de los Términos y de esta política antes de pagar; sin ella no se genera la orden."
         },
         "s5": {
             "title": "5. Dónde se Guardan y Quién Interviene",
-            "b1": "Para recibir y enviar mensajes usamos estos servicios de terceros:",
+            "b1": "Para recibir y enviar mensajes y procesar pagos usamos estos servicios de terceros:",
             "b2": {
                 "i1": "<1>GitHub Pages:</1> Aloja el sitio web.",
-                "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía. También aloja la base de datos D1 y el Worker de verificación.",
+                "i2": "<1>Cloudflare:</1> Recibe el envío del formulario y lo reenvía. También aloja la base de datos D1 y el Worker de verificación. También guarda las órdenes de pago.",
                 "i3": "<1>Google (Apps Script, Hojas de cálculo y Gmail):</1> Almacena su consulta en una hoja de cálculo privada y recibimos los avisos por correo.",
                 "i4": "<1>WhatsApp (Meta) e Instagram (Meta):</1> Si usa el botón de WhatsApp o ve la sección de Instagram, esos servicios aplican sus propias políticas.",
                 "i5": "<1>Google Calendar:</1> Si agenda una asesoría, el calendario es un servicio de Google: los datos que escriba allí (por ejemplo nombre, correo y horario) los trata Google según sus propias políticas y nosotros los recibimos para atender su cita. El calendario solo se carga cuando usted lo solicita.",
-                "i6": "<1>Brevo:</1> Proveedor de envío de correo transaccional: envía el correo con el código de verificación y recibe su correo y el contenido del mensaje solo para entregarlo."
+                "i6": "<1>Brevo:</1> Proveedor de envío de correo transaccional: envía el correo con el código de verificación y recibe su correo y el contenido del mensaje solo para entregarlo. También envía el aviso interno de la orden que recibe Zumia cuando alguien paga el anticipo; para eso recibe su nombre, su correo, la referencia, los valores y el tipo de la orden, si es cliente verificado y el código de descuento usado (si lo hay), solo para entregarlo.",
+                "i7": "<1>Wompi:</1> Pasarela de pagos. Procesa el pago del anticipo en su propia página y trata sus datos de pago según su propia política; nosotros solo recibimos el estado, el identificador y el tipo de medio de pago de la transacción."
             },
             "b3": "Algunos de estos proveedores procesan datos en servidores ubicados fuera de Colombia, por ejemplo, en Estados Unidos. Al aceptar esta política, usted autoriza de forma expresa ese envío. No vendemos, alquilamos ni compartimos sus datos con terceros con fines comerciales."
         },
         "s6": {
             "title": "6. Cuánto Tiempo los Conservamos",
-            "b1": "Conservamos sus datos mientras dure la relación comercial y dos años más; después los eliminamos o anonimizamos. Puede pedir su eliminación antes, salvo cuando una obligación legal nos exija conservarlos."
+            "b1": "Conservamos sus datos mientras dure la relación comercial y dos años más; después los eliminamos o anonimizamos. Puede pedir su eliminación antes, salvo cuando una obligación legal nos exija conservarlos. Las órdenes de pago y sus soportes las conservamos dos (2) años después de terminada la relación comercial, o por el plazo mayor que exija una obligación legal contable o tributaria."
         },
         "s7": {
             "title": "7. Sus Derechos",
@@ -344,6 +349,19 @@
                 "i6": "<1>Conservación:</1> Conservamos el correo, el proyecto y el plan mientras el descuento siga vigente para usted, y los eliminamos si usted lo solicita o cuando termine la relación comercial o el descuento deje de aplicar y, en todo caso, sin superar los plazos indicados en la sección 6."
             },
             "b3": "Puede pedir la actualización o supresión de sus datos por los canales de contacto del sitio (vea las secciones 7 y 8)."
+        },
+        "s14": {
+            "title": "14. Pagos en Línea y Órdenes",
+            "b1": "Cuando paga el anticipo en este sitio, tratamos estos datos:",
+            "b2": {
+                "i1": "<1>Qué guardamos:</1> Su nombre y correo, los servicios seleccionados, los valores del anticipo y del saldo, el código de descuento usado (si lo hay), la referencia y el estado de la orden, el idioma, la fecha, hora y versión de su aceptación de los Términos y de esta política, el modo, si es cliente verificado y su proyecto, el subtotal y los descuentos, el identificador de la transacción en Wompi y el tipo de medio de pago (por ejemplo tarjeta o Nequi).",
+                "i2": "<1>Datos de pago:</1> Los recoge y procesa directamente Wompi en su propia página, que además le pide sus propios datos (por ejemplo nombre, teléfono y correo). Nosotros no recibimos ni guardamos los datos de su tarjeta, cuenta o billetera; solo el estado, el identificador y el tipo de medio de pago de la transacción.",
+                "i3": "<1>Para qué:</1> Confirmar el pago y reservar su cupo, gestionar su orden, avisarnos internamente por correo, cumplir obligaciones contables y tributarias, y prevenir fraudes y abusos.",
+                "i4": "<1>Contra el abuso:</1> Guardamos contadores por hora asociados a un hash de su dirección IP y de su correo, como se explica en la sección 13.",
+                "i5": "<1>Autorización:</1> La da al marcar la casilla de aceptación antes de pagar.",
+                "i6": "<1>Conservación:</1> Según la sección 6.",
+                "i7": "<1>Derechos:</1> Puede ejercerlos como se indica en las secciones 7 y 8."
+            }
         }
     },
     "brand": {
@@ -635,7 +653,10 @@
         "waAdditional_subpages_one": "{{count}} subpágina adicional",
         "waAdditional_subpages_other": "{{count}} subpáginas adicionales",
         "waAdditional_sections_one": "{{count}} sección adicional",
-        "waAdditional_sections_other": "{{count}} secciones adicionales"
+        "waAdditional_sections_other": "{{count}} secciones adicionales",
+        "pay": {
+            "floorNotice": "El pago mínimo para anticipo es de {{minimum}}, tus descuentos se han reducido en {{amount}}, si deseas aprovechar todo tu descuento, añade uno o más servicios adicionales"
+        }
     },
     "blog": {
         "eyebrow": "Blog",

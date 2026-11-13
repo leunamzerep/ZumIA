@@ -41,6 +41,8 @@ export const TERMS_SECTIONS: LegalSection[] = [
     { type: "p", key: "b4" },
     { type: "p", key: "b5" },
     { type: "p", key: "b6" },
+    { type: "p", key: "b7" },
+    { type: "p", key: "b8" },
   ] },
   { id: "s8", blocks: [
     { type: "p", key: "b1" },
@@ -87,7 +89,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     { type: "p", key: "b2" },
   ] },
   { id: "s3", blocks: [
-    { type: "list", key: "b1", count: 4 },
+    { type: "list", key: "b1", count: 6 },
     { type: "p", key: "b2" },
   ] },
   { id: "s4", blocks: [
@@ -95,7 +97,7 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
   ] },
   { id: "s5", blocks: [
     { type: "p", key: "b1" },
-    { type: "list", key: "b2", count: 6 },
+    { type: "list", key: "b2", count: 7 },
     { type: "p", key: "b3" },
   ] },
   { id: "s6", blocks: [
@@ -125,6 +127,10 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     { type: "list", key: "b2", count: 6 },
     { type: "p", key: "b3" },
   ] },
+  { id: "s14", blocks: [
+    { type: "p", key: "b1" },
+    { type: "list", key: "b2", count: 7 },
+  ] },
 ];
 
 /**
@@ -132,4 +138,4 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
  * Cámbiala junto con terms.updated y privacy.updated (es.json / en.json). Máximo 32 caracteres.
  * No importar nada del front: este valor también lo usa worker/.
  */
-export const LEGAL_VERSION = "T2026-11-11.P2026-11-12";
+export const LEGAL_VERSION = "T2026-11-13.P2026-11-13";
