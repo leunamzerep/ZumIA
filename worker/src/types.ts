@@ -59,4 +59,6 @@ export interface Env {
   WOMPI_EVENTS_SECRET?: string;
   /** Secreto de integridad (test_integrity_… / prod_integrity_…): secret. Firma el Web Checkout. */
   WOMPI_INTEGRITY_SECRET?: string;
+  /** Base del sitio para redirect-url (https://zumia.dev; http://localhost:5173 solo en staging). Sin barra final. */
+  PAY_REDIRECT_BASE?: string;
 }

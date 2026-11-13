@@ -126,3 +126,10 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
     { type: "p", key: "b3" },
   ] },
 ];
+
+/**
+ * Versión de Términos y Política que acepta quien paga el anticipo (se guarda en orders.terms_version).
+ * Cámbiala junto con terms.updated y privacy.updated (es.json / en.json). Máximo 32 caracteres.
+ * No importar nada del front: este valor también lo usa worker/.
+ */
+export const LEGAL_VERSION = "T2026-11-11.P2026-11-12";

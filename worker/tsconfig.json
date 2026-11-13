@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["src", "../src/data/plans.ts", "../src/data/extras.ts", "../src/data/quote.ts"]
+  "include": ["src", "../src/data/plans.ts", "../src/data/extras.ts", "../src/data/quote.ts", "../src/data/legal.ts"]
 }

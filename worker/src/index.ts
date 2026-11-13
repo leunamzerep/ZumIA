@@ -3,6 +3,7 @@
 import { runCleanup } from "./cleanup";
 import { handleVerifyConfirm, handleVerifyDiscount } from "./confirm";
 import { json } from "./http";
+import { handlePayCode, handlePayOrders } from "./pay";
 import type { Env, ExecutionContext, ScheduledController } from "./types";
 import { handleVerifyRequest } from "./verify";
 
@@ -13,6 +14,8 @@ export default {
     if (pathname === "/verify/request") return handleVerifyRequest(request, env, ctx);
     if (pathname === "/verify/confirm") return handleVerifyConfirm(request, env);
     if (pathname === "/verify/discount") return handleVerifyDiscount(request, env);
+    if (pathname === "/pay/code") return handlePayCode(request, env);
+    if (pathname === "/pay/orders") return handlePayOrders(request, env);
     return json({ ok: false, error: "not_found" }, 404);
   },
 
