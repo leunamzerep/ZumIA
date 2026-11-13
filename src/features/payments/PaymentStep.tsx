@@ -50,6 +50,8 @@ export type PaymentStepProps = {
   money: (value: number) => string;
   /** El Worker dijo que el token de verificación ya no vale: el cotizador vuelve a precio de lista */
   onVerificationInvalid: () => void;
+  /** Ubicación en la grilla del cotizador (sin contenedor extra: si no hay nada que mostrar, no ocupa espacio) */
+  className?: string;
 };
 
 const stepTitle = "font-title text-h3 font-bold text-navy-900";
@@ -70,7 +72,7 @@ const NewTabLink = ({ to, newTab, children }: { to: string; newTab: string; chil
   </Link>
 );
 
-const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discountPct, money, onVerificationInvalid }: PaymentStepProps) => {
+const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discountPct, money, onVerificationInvalid, className = "" }: PaymentStepProps) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language === "en" ? "en" : "es";
   const localizePath = useLocalizedPath();
@@ -143,7 +145,7 @@ const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discou
 
   if (availability.kind === "blocked") {
     return (
-      <Card className="flex flex-col gap-3">
+      <Card className={`flex flex-col gap-3 ${className}`}>
         <h2 className={stepTitle}>{t("quote.pay.title")}</h2>
         <p role="status" className="text-sm leading-relaxed text-navy-700">
           {t(`quote.pay.blocked.${availability.reason}`, { minimum: money(MIN_TOTAL) })}
@@ -232,7 +234,7 @@ const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discou
         : null;
 
   return (
-    <Card className="flex flex-col gap-6">
+    <Card className={`flex flex-col gap-6 ${className}`}>
       <div className="flex flex-col gap-2">
         <h2 className={stepTitle}>{t("quote.pay.title")}</h2>
         <p className="text-sm leading-relaxed text-navy-600">{t("quote.pay.lead")}</p>

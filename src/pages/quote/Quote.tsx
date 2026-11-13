@@ -157,7 +157,7 @@ export const Quote = () => {
 
         <Section tone="cream" decoration={<GeometricPattern tone="light" />}>
           <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-8 xl:grid-cols-[minmax(0,1fr)_25rem]">
-            <div className="flex min-w-0 flex-col gap-6">
+            <div className="flex min-w-0 flex-col gap-6 lg:col-start-1 lg:row-start-1">
               {/* 1. Selector de necesidad */}
               <Card className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -380,22 +380,6 @@ export const Quote = () => {
                 )}
               </Card>
 
-              {/* Pago del anticipo: solo existe con VITE_PAYMENTS_ENABLED="true" (ver PAYMENTS_ENABLED) */}
-              {PaymentStep && (
-                <Suspense fallback={null}>
-                  <PaymentStep
-                    mode={mode}
-                    quote={quote}
-                    planId={planId}
-                    extras={selection}
-                    additional={additional}
-                    verified={activeVerified}
-                    discountPct={discount}
-                    money={money}
-                    onVerificationInvalid={clearVerification}
-                  />
-                </Suspense>
-              )}
             </div>
 
             {/* 4. Resumen: tarjeta fija al lado en escritorio; en móvil y tableta, al final, con la barra de abajo.
@@ -403,12 +387,32 @@ export const Quote = () => {
             <aside
               id={SUMMARY_ID}
               aria-labelledby="resumen-titulo"
-              className="scroll-mt-20 md:scroll-mt-24 lg:sticky lg:top-24 lg:overflow-hidden lg:rounded-card lg:bg-navy-900"
+              className="scroll-mt-20 md:scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-24 lg:overflow-hidden lg:rounded-card lg:bg-navy-900"
             >
               <div className="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:[scrollbar-color:rgb(255_255_255/0.35)_transparent] lg:[scrollbar-width:thin]">
                 <QuoteSummary ref={summaryRef} quote={quote} mode={mode} money={money} from={from} days={days} whatsappUrl={whatsappUrl} onReset={reset} />
               </div>
             </aside>
+
+            {/* Pago del anticipo: solo existe con VITE_PAYMENTS_ENABLED="true" (ver PAYMENTS_ENABLED).
+                En móvil y tableta va después del estimado; en escritorio, al pie de la columna izquierda,
+                con el estimado fijo al lado (el resumen ocupa las dos filas de la derecha). */}
+            {PaymentStep && (
+              <Suspense fallback={null}>
+                <PaymentStep
+                  mode={mode}
+                  quote={quote}
+                  planId={planId}
+                  extras={selection}
+                  additional={additional}
+                  verified={activeVerified}
+                  discountPct={discount}
+                  money={money}
+                  onVerificationInvalid={clearVerification}
+                  className="min-w-0 lg:col-start-1 lg:row-start-2"
+                />
+              </Suspense>
+            )}
           </div>
         </Section>
 
