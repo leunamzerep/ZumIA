@@ -63,9 +63,8 @@ PAY_NOTICE_TO = "payments@zumia.dev"
 [env.staging.triggers]
 crons = ["17 3 * * *", "*/10 * * * *"]
 
-# D1 SEPARADA de producción. Tras `npx wrangler d1 create zumia-verificacion-staging`, pega aquí el id que imprime.
 [[env.staging.d1_databases]]
 binding = "DB"
 database_name = "zumia-verificacion-staging"
-database_id = "PEGAR-AQUI-EL-ID-DE-STAGING"
+database_id = "cc161c60-c593-4ddf-bc15-694fcf6be836"
 migrations_dir = "migrations"
