@@ -20,7 +20,18 @@
 
 <body>
   <p>Redirigiendo…</p>
-  <noscript>Este sitio necesita JavaScript. Vuelve a la página de inicio.</noscript>
+  <noscript>
+    <p>Este sitio necesita JavaScript. Vuelve a la página de inicio.</p>
+    <!-- Solo se ve sin JavaScript: con JavaScript, el script de arriba ya redirigió -->
+    <nav aria-label="Páginas del sitio">
+      <ul>
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/services/">Servicios</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/contact/">Contacto</a></li>
+      </ul>
+    </nav>
+  </noscript>
 </body>
 
 </html>
