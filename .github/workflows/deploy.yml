@@ -28,6 +28,8 @@ jobs:
         run: npm run build
         env:
           VITE_VERIFY_API_URL: ${{ vars.VITE_VERIFY_API_URL }}
+          # Pago del anticipo con Wompi: apagado salvo que la variable del repositorio VITE_PAYMENTS_ENABLED sea "true"
+          VITE_PAYMENTS_ENABLED: ${{ vars.VITE_PAYMENTS_ENABLED || 'false' }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

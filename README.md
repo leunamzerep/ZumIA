@@ -25,23 +25,25 @@ npm run dev
 
 Abre la dirección que muestra la terminal (normalmente http://localhost:5173). Los cambios se ven al guardar.
 
-## Verificación de clientes en /quote (rama `feat/quote-verify`)
+## Verificación de clientes en /quote
 
-> ⚠️ **No mergear ni desplegar esta rama a `main` hasta el paso 6.** En producción todavía no existe
-> `VITE_VERIFY_API_URL`, así que los clientes de Zumia verían precio de lista y perderían su descuento actual.
+> Nota (tanda 9): esta sección venía de la rama `feat/quote-verify` y estaba desactualizada. El workflow de
+> despliegue ya pasa `VITE_VERIFY_API_URL` al build (`vars.VITE_VERIFY_API_URL`); confirma en GitHub
+> (Settings → Secrets and variables → Actions → Variables) que la variable exista con la URL del Worker.
 
 - El modo "ya contraté con Zumia" ya no toma el descuento del plan elegido a mano: solo se aplica si el cliente verifica su correo con el Worker (`worker/`). Sin verificar, el cotizador muestra el precio de lista.
 - Para probar en local: `copy .env.example .env.local` (define `VITE_VERIFY_API_URL=http://localhost:8787`), arranca el Worker (`worker/README.md`) y usa el origen `http://localhost:5173` (en `ALLOWED_ORIGINS` del `.dev.vars` del Worker). Arranca Vite con `npm run dev -- --port 5173 --strictPort` para que el puerto no cambie.
 - El token vive solo en memoria (estado de React): nunca en localStorage, sessionStorage ni URL. Si se recarga la página, hay que verificar de nuevo.
-- El descuento que ve el navegador es solo informativo: hoy no existe pago ni pedido que lo use. Recalcular el precio en el servidor con el token queda diferido hasta que exista un endpoint de pago o pedido.
-- Paso 6: definir `VITE_VERIFY_API_URL` en el build de GitHub Pages (`.github/workflows`), con la URL pública del Worker desplegado. Es una variable pública, no un secreto.
+- El descuento que ve el navegador es solo informativo: al pagar el anticipo, el Worker (`/pay/code` y `/pay/orders`) recalcula el precio con el token.
+- `VITE_VERIFY_API_URL` es una variable pública del repositorio (no un secreto) que el workflow pasa al build.
 
 ## Pago del anticipo con Wompi en /quote (rama `feat/wompi-anticipo`)
 
 - **Interruptor `VITE_PAYMENTS_ENABLED`:** solo el texto exacto `true` enciende el pago. Cualquier otro valor (`TRUE`, `1`, vacío o sin definir) lo apaga: la sección de pago **no existe** (no se renderiza, no se prerenderiza y su código no entra al bundle). También necesita `VITE_VERIFY_API_URL`, porque usa el mismo Worker.
 - En local: añade `VITE_PAYMENTS_ENABLED=true` a `.env.local` y usa el Worker local o el de staging (ver `worker/README.md`). Vite lee las variables al arrancar: reinicia `npm run dev` tras cambiarlas.
-- En producción el interruptor sigue apagado hasta que se decida publicarlo (se definirá en el build de GitHub Pages en la tanda 8).
-- Código: `src/lib/payApi.ts` (cliente de `/pay/*`, nunca envía montos), `src/features/payments/` (URL del checkout, estados del paso, aviso del piso y referencia en `sessionStorage`). Pruebas: `scripts/pay-front-calc.mjs`.
+- **Producción:** `.github/workflows/deploy.yml` pasa `VITE_PAYMENTS_ENABLED: ${{ vars.VITE_PAYMENTS_ENABLED || 'false' }}`. Sin variable del repositorio queda en `false` (apagado). Para encenderlo: crea la variable `VITE_PAYMENTS_ENABLED` = `true` en GitHub (Settings → Secrets and variables → Actions → Variables) y vuelve a desplegar. Para apagarlo: bórrala o ponle `false` y despliega.
+- **Interfaz (tanda 9):** `src/features/payments/PaymentStep.tsx`, al final de la columna del cotizador. Bloquea rediseño, sitio externo y totales por debajo de $24.000 COP con un mensaje; si se puede pagar, el botón «Me gustaría pagar ahora» abre el panel: desglose (el del Worker tras aplicar un código), código de descuento, avisos (anticipo del 50 %, cliente sin verificar, piso), nombre, correo, casilla de aceptación (enlaces a `#terms-s7` y `#privacy-s14`) y «Pagar anticipo». Si el Worker devuelve un anticipo distinto del mostrado, no redirige y muestra el nuevo desglose.
+- Código: `src/lib/payApi.ts` (cliente de `/pay/*`, nunca envía montos), `src/features/payments/` (`flow.ts`: estados y reglas; `checkout.ts`: URL del checkout; `pendingReference.ts`: referencia en `sessionStorage`). Pruebas: `scripts/pay-front-calc.mjs` (no hay pruebas de componentes en el repo: el panel se prueba a mano).
 - Solo se guarda la referencia de la orden (`ZUM-…`) en `sessionStorage`, justo antes de ir a Wompi, para la página de resultado. Nunca nombre, correo, montos ni el token de verificación (que sigue solo en memoria).
 
 ## Construir

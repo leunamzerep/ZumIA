@@ -1,5 +1,6 @@
 // Pruebas de la capa de pago del frontend (sin navegador ni red): payApi con fetch simulado, URL del checkout,
-// estados del paso, formulario, disponibilidad, aviso del piso (texto exacto) y referencia en sessionStorage.
+// estados del paso (panel, código, bfcache, cambio de selección), formulario, disponibilidad, mensajes por error
+// (ES/EN), aviso del piso (texto exacto) y referencia en sessionStorage.
 // Uso (desde la raíz; usa el alias @/ de tsconfig.app.json y define import.meta.env):
 //   npx esbuild scripts/pay-front-calc.mjs --bundle --platform=node --format=esm --tsconfig=tsconfig.app.json
 //     "--define:import.meta.env={\"VITE_VERIFY_API_URL\":\"https://api.test\"}" --outfile=<carpeta-temporal>/pay-front-calc.mjs
@@ -7,7 +8,20 @@
 import en from "../src/i18n/en.json";
 import es from "../src/i18n/es.json";
 import { buildCheckoutUrl, CHECKOUT_FIELDS } from "../src/features/payments/checkout.ts";
-import { canSubmitOrder, floorNotice, initialPayState, payAvailability, payReducer, validateOrderForm } from "../src/features/payments/flow.ts";
+import {
+  amountMatches,
+  canSubmitOrder,
+  codeErrorKey,
+  floorNotice,
+  initialPayState,
+  isPanelOpen,
+  ORDER_ERRORS,
+  orderErrorKey,
+  payAvailability,
+  payReducer,
+  submitBlockReason,
+  validateOrderForm,
+} from "../src/features/payments/flow.ts";
 import { clearPendingReference, readPendingReference, savePendingReference } from "../src/features/payments/pendingReference.ts";
 import { checkCode, createOrder, getPayStatus } from "../src/lib/payApi.ts";
 
@@ -110,40 +124,80 @@ const keysDeep = (v) => (v && typeof v === "object" ? Object.entries(v).flatMap(
 
 // ---------- 3) Disponibilidad ----------
 {
-  const a = (mode, verified) => JSON.stringify(payAvailability(mode, verified));
+  const a = (mode, verified, total) => JSON.stringify(payAvailability(mode, verified, total));
   check(a("redesign", false) === '{"kind":"blocked","reason":"redesign"}' && a("external", true) === '{"kind":"blocked","reason":"external"}', "rediseño y sitio externo → bloqueado con motivo");
   check(a("normal", false) === '{"kind":"payable","listPrice":false}', "normal → se paga");
   check(a("zumiaClient", false) === '{"kind":"payable","listPrice":true}', "cliente Zumia sin verificar → precio de lista con aviso");
   check(a("zumiaClient", true) === '{"kind":"payable","listPrice":false}', "cliente Zumia verificado → su descuento");
+  check(a("zumiaClient", true, 23_999) === '{"kind":"blocked","reason":"below_minimum"}' && a("normal", false, 24_000) === '{"kind":"payable","listPrice":false}', "total < 24.000 → bloqueado (below_minimum); 24.000 sí se paga");
 }
 
 // ---------- 4) Estados del paso ----------
 {
   const run = (events, from = initialPayState) => events.reduce(payReducer, from);
   const code = { code: "ABCD2345", kind: "percent", value: 10 };
-  let s = run([{ type: "CODE_SUBMIT" }]);
-  check(s.step === "code-checking", "idle → code-checking");
+  // Panel: cerrado por defecto; el código se aplica con el panel abierto y el panel sigue abierto
+  check(!isPanelOpen(initialPayState), "el panel empieza cerrado");
+  let s = run([{ type: "OPEN_PANEL" }]);
+  check(s.step === "confirming" && isPanelOpen(s), "OPEN_PANEL abre el panel (confirming)");
+  s = run([{ type: "CODE_SUBMIT" }], s);
+  check(s.step === "code-checking" && s.codeFrom === "panel" && isPanelOpen(s), "aplicar código con el panel abierto → code-checking sin cerrar el panel");
   s = run([{ type: "CODE_OK", code, breakdown }], s);
-  check(s.step === "ready" && s.code.code === "ABCD2345", "code-checking → ready con el código");
-  const fallo = run([{ type: "CODE_SUBMIT" }, { type: "CODE_FAIL", error: "invalid_code" }], s);
-  check(fallo.step === "ready" && fallo.code.code === "ABCD2345" && fallo.codeError === "invalid_code", "un código nuevo inválido no borra el aplicado y muestra el error");
-  s = run([{ type: "OPEN_PANEL" }], s);
-  check(s.step === "confirming" && s.back === "ready", "ready → confirming");
+  check(s.step === "confirming" && s.code.code === "ABCD2345" && s.breakdown.deposit === 295000, "código aplicado → vuelve al panel con el desglose del Worker");
+  check(run([{ type: "CODE_SUBMIT" }], s) === s, "un código por orden: con uno aplicado no se puede pedir otro");
+  const fallo = run([{ type: "OPEN_PANEL" }, { type: "CODE_SUBMIT" }, { type: "CODE_FAIL", error: "invalid_code" }]);
+  check(fallo.step === "confirming" && fallo.code === null && fallo.codeError === "invalid_code", "código inválido → error junto al campo, panel abierto");
+  check(run([{ type: "CODE_REMOVE" }], s).code === null && run([{ type: "CODE_REMOVE" }], s).step === "confirming", "quitar el código deja el panel abierto y sin código");
+  check(run([{ type: "CODE_OK", code, breakdown }], run([{ type: "OPEN_PANEL" }])).code === null, "respuesta de código fuera de code-checking se ignora");
   check(!canSubmitOrder(s, { name: "Ana", email: "a@b.co", acceptTerms: false }) && canSubmitOrder(s, { name: "Ana", email: "a@b.co", acceptTerms: true }), "pagar deshabilitado hasta marcar Términos y Política");
+  check(submitBlockReason(s, { name: "", email: "", acceptTerms: false }) === "terms" && submitBlockReason(s, { name: "Ana", email: "a@b.co", acceptTerms: true }) === null, "motivo en texto: 'terms' sin casilla, null con casilla");
   s = run([{ type: "ORDER_SUBMIT" }], s);
-  check(s.step === "creating-order", "confirming → creating-order");
-  check(run([{ type: "SELECTION_CHANGED" }, { type: "OPEN_PANEL" }], s) === s, "mientras se crea la orden, otros eventos se ignoran");
+  check(s.step === "creating-order" && submitBlockReason(s, { name: "Ana", email: "a@b.co", acceptTerms: true }) === "busy", "confirming → creating-order (botón ocupado)");
+  check(run([{ type: "OPEN_PANEL" }, { type: "ORDER_SUBMIT" }, { type: "CODE_SUBMIT" }], s) === s, "mientras se crea la orden, otros eventos se ignoran (doble clic incluido)");
+  check(run([{ type: "SELECTION_CHANGED" }], s) === s, "cambiar la selección mientras se crea la orden no cambia el estado");
   const ok = run([{ type: "ORDER_OK", reference: REF }], s);
   check(ok.step === "redirecting" && ok.reference === REF, "creating-order → redirecting con la referencia");
+  check(run([{ type: "ORDER_SUBMIT" }], ok) === ok, "en redirecting un segundo clic no hace nada");
   const e1 = run([{ type: "ORDER_FAIL", error: "rate_limited" }], s);
-  check(e1.step === "error" && e1.back === "confirming" && run([{ type: "RETRY" }], e1).step === "confirming", "error de red/429 → error y reintentar vuelve al panel");
+  check(e1.step === "error" && isPanelOpen(e1) && submitBlockReason(e1, { name: "A", email: "a@b.co", acceptTerms: true }) === "error", "error → panel abierto con mensaje; pagar deshabilitado hasta reintentar");
+  check(run([{ type: "RETRY" }], e1).step === "confirming", "reintentar vuelve al panel");
   const e2 = run([{ type: "ORDER_FAIL", error: "invalid_code" }], s);
-  check(e2.step === "error" && e2.code === null && run([{ type: "RETRY" }], e2).step === "idle", "código agotado al crear la orden → se quita y vuelve a la tarjeta");
-  const e3 = run([{ type: "ORDER_FAIL", error: "checkout" }], ok);
-  check(e3.step === "error" && e3.reference === null, "checkout incoherente → error, sin redirigir");
-  check(run([{ type: "CLOSE_PANEL" }], run([{ type: "OPEN_PANEL" }])).step === "idle", "cerrar el panel vuelve a la tarjeta");
-  check(run([{ type: "SELECTION_CHANGED" }], run([{ type: "CODE_OK", code, breakdown }], run([{ type: "CODE_SUBMIT" }]))) === initialPayState, "cambiar la selección descarta el código (hay que validarlo de nuevo)");
-  check(run([{ type: "ORDER_SUBMIT" }]) === initialPayState, "no se crea orden sin pasar por el panel");
+  check(e2.step === "error" && e2.code === null && run([{ type: "RETRY" }], e2).step === "confirming", "código agotado al crear la orden → se quita y se reintenta sin él");
+  const nuevo = { ...breakdown, deposit: 300000, balance: 290000, total: 590000, amountInCents: 30000000 };
+  const e3 = run([{ type: "ORDER_FAIL", error: "amount_changed", breakdown: nuevo }], s);
+  check(e3.step === "error" && e3.breakdown.deposit === 300000, "monto distinto → error y se muestra el desglose del Worker");
+  check(run([{ type: "ORDER_FAIL", error: "checkout" }], ok).step === "error", "checkout incoherente → error, sin redirigir");
+  check(amountMatches(29500000, { breakdown }) && !amountMatches(29500100, { breakdown }), "amountMatches compara el anticipo mostrado con el de la orden");
+  // Volver desde Wompi (bfcache)
+  const back = run([{ type: "PAGE_RESTORED" }], ok);
+  check(back.step === "confirming" && back.notice === "returned" && back.reference === null, "volver desde Wompi (pageshow persisted) → panel listo para reintentar, con aviso");
+  check(run([{ type: "PAGE_RESTORED" }], initialPayState) === initialPayState, "PAGE_RESTORED sin redirección en curso no cambia nada");
+  // Cambiar la selección
+  const conCodigo = run([{ type: "OPEN_PANEL" }, { type: "CODE_SUBMIT" }, { type: "CODE_OK", code, breakdown }]);
+  const cambiado = run([{ type: "SELECTION_CHANGED" }], conCodigo);
+  check(cambiado.step === "confirming" && cambiado.code === null && cambiado.breakdown === null && cambiado.notice === "codeCleared", "cambiar la selección quita el código (con aviso) sin cerrar el panel");
+  const enVuelo = run([{ type: "SELECTION_CHANGED" }], run([{ type: "OPEN_PANEL" }, { type: "CODE_SUBMIT" }]));
+  check(enVuelo.step === "confirming" && run([{ type: "CODE_OK", code, breakdown }], enVuelo).code === null, "cambiar la selección con un código en verificación: la respuesta vieja se ignora");
+  const errVisible = run([{ type: "SELECTION_CHANGED" }], run([{ type: "ORDER_FAIL", error: "invalid_token" }], s));
+  check(errVisible.step === "error" && errVisible.error === "invalid_token" && errVisible.code === null, "si la verificación vence con el error a la vista, el mensaje se mantiene");
+  check(run([{ type: "CLOSE_PANEL" }], run([{ type: "OPEN_PANEL" }])).step === "idle", "cerrar el panel vuelve al estado inicial");
+  check(run([{ type: "ORDER_SUBMIT" }]) === initialPayState, "no se crea orden sin abrir el panel");
+
+  // Mensajes: cada error tiene texto en es.json y en.json; los de código usan un mensaje común
+  const get = (dict, key) => key.split(".").reduce((o, k) => o?.[k], dict);
+  check(ORDER_ERRORS.every((e) => typeof get(es, orderErrorKey(e)) === "string" && typeof get(en, orderErrorKey(e)) === "string"), `los ${ORDER_ERRORS.length} errores tienen mensaje ES y EN`);
+  check(codeErrorKey("invalid_code") === "quote.pay.codeInvalid" && codeErrorKey("invalid_request") === "quote.pay.codeInvalid" && codeErrorKey("rate_limited") === "quote.pay.errors.rate_limited", "código mal escrito o agotado → mismo mensaje; 429 → su mensaje");
+  const flat = (o, p = "") => Object.entries(o).flatMap(([k, v]) => (typeof v === "object" ? flat(v, `${p}${k}.`) : [`${p}${k}`]));
+  const kEs = flat(es.quote.pay).sort().join();
+  check(kEs === flat(en.quote.pay).sort().join(), "quote.pay tiene las mismas claves en es.json y en.json", kEs);
+  const vars = (dict) => flat(dict.quote.pay).map((k) => `${k}:${(get(dict.quote.pay, k).match(/\{\{\w+\}\}|<\d>/g) || []).sort().join("")}`).join();
+  check(vars(es) === vars(en), "mismas variables {{…}} y enlaces <1>/<2> en ES y EN");
+  check(en.quote.pay.consent.includes("Spanish only") && es.quote.pay.consent.includes("<1>Términos y Condiciones</1>") && es.quote.pay.consent.includes("<2>Política de Privacidad</2>"), "casilla: enlaces en ES y aviso 'solo en español' en EN");
+  check(es.quote.pay.toggle === "Me gustaría pagar ahora" && en.quote.pay.toggle === "I'd like to pay now" && es.quote.pay.submit === "Pagar anticipo" && en.quote.pay.submit === "Pay deposit", "textos del botón y del interruptor");
+  check(es.quote.pay.unverifiedNotice === "No verificaste que eres cliente de Zumia, así que este pago se hace sin descuento de cliente. Si ya contrataste, verifica tu correo antes de pagar.", "aviso de cliente sin verificar, texto exacto");
+  check(es.quote.pay.depositNotice.replace("{{amount}}", "$295.000 COP") === "Pagarás el anticipo del 50 % ($295.000 COP), no el total. El saldo restante se paga a la entrega final.", "aviso del anticipo, texto exacto");
+  const consentEs = es.quote.pay.consent.replace(/<\/?\d>/g, "");
+  check(consentEs === "He leído y acepto los Términos y Condiciones y la Política de Privacidad. Entiendo que pago en línea el anticipo del 50 % del estimado, que el saldo se cobra aparte y que el servicio se formaliza mediante un contrato.", "texto de la casilla, exacto");
 }
 
 // ---------- 5) Formulario ----------

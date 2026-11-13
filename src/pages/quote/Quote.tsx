@@ -41,8 +41,11 @@ const MAX_WHATSAPP_URL = 1800;
 const stepTitle = "font-title text-h3 font-bold text-navy-900";
 const SITE_QUESTIONS_ID = "sitio-existente";
 
-// Estado solo en memoria: nada se guarda (sin localStorage, sessionStorage, cookies ni URL).
+// Estado solo en memoria: el cotizador no guarda nada (sin localStorage, sessionStorage, cookies ni URL).
 // Esto incluye el token de verificación del cliente: si se recarga la página, vuelve a verificar.
+// Única excepción, solo con los pagos encendidos: justo antes de ir a Wompi, el paso de pago guarda la
+// referencia de la orden (ZUM-…) en sessionStorage para la página de resultado (ver pendingReference.ts).
+// Nunca nombre, correo, código ni token.
 export const Quote = () => {
   const { t, i18n } = useTranslation();
   const genericWhatsappUrl = useWhatsappUrl();
@@ -57,6 +60,8 @@ export const Quote = () => {
   const [goal, setGoal] = useState<SiteGoal>();
   // Cliente Zumia verificado con el Worker (incluye el token, solo en memoria)
   const [verified, setVerified] = useState<VerifiedClient | null>(null);
+  // El Worker de pagos dijo que el token ya no vale: se quita la verificación (vuelve a precio de lista)
+  const clearVerification = () => setVerified(null);
   const stepOneRef = useRef<HTMLHeadingElement>(null);
   const summaryRef = useRef<HTMLHeadingElement>(null);
 
@@ -374,6 +379,23 @@ export const Quote = () => {
                   </div>
                 )}
               </Card>
+
+              {/* Pago del anticipo: solo existe con VITE_PAYMENTS_ENABLED="true" (ver PAYMENTS_ENABLED) */}
+              {PaymentStep && (
+                <Suspense fallback={null}>
+                  <PaymentStep
+                    mode={mode}
+                    quote={quote}
+                    planId={planId}
+                    extras={selection}
+                    additional={additional}
+                    verified={activeVerified}
+                    discountPct={discount}
+                    money={money}
+                    onVerificationInvalid={clearVerification}
+                  />
+                </Suspense>
+              )}
             </div>
 
             {/* 4. Resumen: tarjeta fija al lado en escritorio; en móvil y tableta, al final, con la barra de abajo.
@@ -385,11 +407,6 @@ export const Quote = () => {
             >
               <div className="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:[scrollbar-color:rgb(255_255_255/0.35)_transparent] lg:[scrollbar-width:thin]">
                 <QuoteSummary ref={summaryRef} quote={quote} mode={mode} money={money} from={from} days={days} whatsappUrl={whatsappUrl} onReset={reset} />
-                {PaymentStep && (
-                  <Suspense fallback={null}>
-                    <PaymentStep />
-                  </Suspense>
-                )}
               </div>
             </aside>
           </div>
