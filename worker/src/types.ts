@@ -49,4 +49,14 @@ export interface Env {
   DEV_LOG_CODES?: string;
   /** Orígenes permitidos para CORS, separados por comas. */
   ALLOWED_ORIGINS?: string;
+  /** Ambiente de Wompi: "test" (sandbox) o "prod". Elige la URL de la API y los prefijos de llave válidos. */
+  WOMPI_ENV?: string;
+  /** Llave pública de Wompi (pub_test_… / pub_prod_…): no es secreta, va en [vars]. */
+  WOMPI_PUBLIC_KEY?: string;
+  /** Llave privada (prv_…): secret. Solo para consultar transacciones desde el servidor. */
+  WOMPI_PRIVATE_KEY?: string;
+  /** Secreto de eventos (test_events_… / prod_events_…): secret. Valida el checksum del webhook. */
+  WOMPI_EVENTS_SECRET?: string;
+  /** Secreto de integridad (test_integrity_… / prod_integrity_…): secret. Firma el Web Checkout. */
+  WOMPI_INTEGRITY_SECRET?: string;
 }
