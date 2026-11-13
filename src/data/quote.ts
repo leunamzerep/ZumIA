@@ -1,5 +1,6 @@
 // Cálculos del cotizador (/quote). Funciones puras: leen precios, días y
 // descuentos de plans.ts y extras.ts (no repiten ningún número).
+// No importar nada del front: este archivo también lo usa worker/ (precio en el servidor).
 
 import { EXTRAS, OTHER_SERVICES, type ExtraId } from "./extras";
 import { PLANS, getPlan, type Plan, type PlanId } from "./plans";
@@ -154,5 +155,60 @@ export const computeQuote = (
     total,
     deposit: Math.round(total / 2),
     days: baseDays + (surcharge ? OTHER_SERVICES.external.days : 0) + lines.reduce((sum, line) => sum + line.days, 0),
+  };
+};
+
+/** Total mínimo a pagar (COP), contado después de todos los descuentos. El anticipo mínimo es la mitad: 12.000. */
+export const MIN_TOTAL = 24_000;
+
+/** Código de descuento ya validado: porcentaje (1 a 100) o monto fijo en COP. */
+export type DiscountCode = { kind: "percent" | "amount"; value: number };
+
+export type PaymentBreakdown = {
+  /** Total del estimado, ya con el descuento del plan o el de cliente verificado (nunca los dos) */
+  subtotal: number;
+  /** Descuento que daría el código sin el piso (porcentaje redondeado hacia abajo; monto fijo sin pasar del subtotal) */
+  discountRequested: number;
+  /** Descuento del código que de verdad se aplica (puede ser menor por el piso de MIN_TOTAL) */
+  discountApplied: number;
+  /** Cuánto se redujo el descuento por el piso: discountRequested - discountApplied */
+  reducedBy: number;
+  /** true si el piso limitó el descuento del código */
+  floorApplied: boolean;
+  total: number;
+  /** Anticipo (50 %), redondeado hacia arriba a pesos enteros */
+  deposit: number;
+  /** Saldo: total - deposit (así anticipo + saldo = total siempre) */
+  balance: number;
+  /** Anticipo en centavos, como lo pide la pasarela */
+  amountInCents: number;
+};
+
+/**
+ * Desglose del pago. Orden: el subtotal ya trae el descuento del plan o de cliente verificado;
+ * luego se aplica el código sobre ese subtotal; luego el piso de MIN_TOTAL; luego el anticipo.
+ * Si el subtotal ya es menor que MIN_TOTAL sin código, no se toca (el código no descuenta nada).
+ */
+export const paymentBreakdown = (quote: Pick<Quote, "total">, code?: DiscountCode | null): PaymentBreakdown => {
+  const subtotal = quote.total;
+  const value = code ? Math.max(0, Math.floor(code.value)) : 0;
+  const discountRequested = !code
+    ? 0
+    : code.kind === "percent"
+      ? Math.floor((subtotal * Math.min(value, 100)) / 100)
+      : Math.min(value, subtotal);
+  const discountApplied = Math.max(0, Math.min(discountRequested, subtotal - MIN_TOTAL));
+  const total = subtotal - discountApplied;
+  const deposit = Math.ceil(total / 2);
+  return {
+    subtotal,
+    discountRequested,
+    discountApplied,
+    reducedBy: discountRequested - discountApplied,
+    floorApplied: discountApplied < discountRequested,
+    total,
+    deposit,
+    balance: total - deposit,
+    amountInCents: deposit * 100,
   };
 };

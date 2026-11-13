@@ -1,4 +1,5 @@
 // Herramientas extra de Zumia Solutions: única fuente de verdad (página /services).
+// No importar nada del front: este archivo también lo usa worker/ (precio en el servidor).
 // Los textos viven en es.json / en.json (extras.<id>.name y extras.<id>.desc);
 // aquí solo van el id, el precio (COP, sin IVA) y los días hábiles que suma al plan.
 
