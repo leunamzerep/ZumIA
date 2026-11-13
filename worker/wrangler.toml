@@ -14,9 +14,9 @@ MAIL_FROM_NAME = "Zumia Solutions"
 # www.zumia.dev solo se añade si, tras la mudanza del DNS (19/11), sirve el sitio en vez de redirigir al apex.
 ALLOWED_ORIGINS = "https://zumia.dev"
 
-# Limpieza diaria a las 03:17 UTC (src/cleanup.ts)
+# 03:17 UTC: limpieza diaria (DAILY_CRON en src/cleanup.ts). Cada 10 min: vencer órdenes pendientes (src/orders.ts).
 [triggers]
-crons = ["17 3 * * *"]
+crons = ["17 3 * * *", "*/10 * * * *"]
 
 # Base D1. En local no hace falta un id real (wrangler usa un SQLite en .wrangler/).
 [[d1_databases]]

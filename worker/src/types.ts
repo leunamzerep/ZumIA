@@ -61,4 +61,6 @@ export interface Env {
   WOMPI_INTEGRITY_SECRET?: string;
   /** Base del sitio para redirect-url (https://zumia.dev; http://localhost:5173 solo en staging). Sin barra final. */
   PAY_REDIRECT_BASE?: string;
+  /** Solo pruebas locales: servidor simulado de Wompi y Brevo en localhost (ver devmock.ts). Nunca en producción. */
+  DEV_MOCK_ORIGIN?: string;
 }

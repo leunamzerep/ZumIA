@@ -1,13 +1,17 @@
-// Envío del código por Brevo (API transaccional v3). Nunca lanza errores y nunca registra
-// el correo, el código ni la clave: solo el status HTTP y el código de error de Brevo.
+// Correos por Brevo (API transaccional v3): código de verificación y aviso de pago aprobado.
+// Nunca lanzan errores y nunca registran correos, nombres, códigos ni la clave: solo el status HTTP,
+// el código de error de Brevo y, en el aviso de pago, la referencia de la orden.
 
+import { devMockOrigin } from "./devmock";
 import type { Env } from "./types";
 
 const BREVO_URL = "https://api.brevo.com/v3/smtp/email";
 const TIMEOUT_MS = 8000;
 const CODE_TTL_MINUTES = 10;
 
-const buildMessage = (code: string) => {
+type Message = { subject: string; textContent: string; htmlContent: string };
+
+const buildMessage = (code: string): Message => {
   const subject = `Tu código de Zumia: ${code}`;
   const textContent = [
     `Tu código de verificación de Zumia es: ${code}`,
@@ -36,19 +40,45 @@ const brevoErrorCode = async (response: Response): Promise<string> => {
   }
 };
 
-const postToBrevo = async (apiKey: string, fromEmail: string, fromName: string, email: string, code: string): Promise<void> => {
+type BrevoConfig = { apiKey: string; fromEmail: string; fromName: string };
+
+/** Clave y remitente; null (y registra el motivo) si falta algo o la clave es SMTP. */
+const brevoConfig = (env: Env, quietIfMissing = false): BrevoConfig | null => {
+  const apiKey = env.BREVO_API_KEY;
+  if (!apiKey) {
+    if (!quietIfMissing) console.error("mail not configured");
+    return null;
+  }
+  if (apiKey.startsWith("xsmtpsib-")) {
+    console.error("BREVO_API_KEY parece una clave SMTP; se requiere API v3 (xkeysib-)");
+    return null;
+  }
+  const fromEmail = env.MAIL_FROM_EMAIL;
+  const fromName = env.MAIL_FROM_NAME;
+  if (!fromEmail || !fromName) {
+    console.error("mail not configured");
+    return null;
+  }
+  return { apiKey, fromEmail, fromName };
+};
+
+/** Envía un correo. Devuelve true si Brevo respondió 2xx. */
+const postToBrevo = async (env: Env, config: BrevoConfig, email: string, message: Message): Promise<boolean> => {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  const mock = devMockOrigin(env);
   try {
-    const response = await fetch(BREVO_URL, {
+    const response = await fetch(mock ? `${mock}/brevo/v3/smtp/email` : BREVO_URL, {
       method: "POST",
-      headers: { "api-key": apiKey, "content-type": "application/json", accept: "application/json" },
-      body: JSON.stringify({ sender: { name: fromName, email: fromEmail }, to: [{ email }], ...buildMessage(code) }),
+      headers: { "api-key": config.apiKey, "content-type": "application/json", accept: "application/json" },
+      body: JSON.stringify({ sender: { name: config.fromName, email: config.fromEmail }, to: [{ email }], ...message }),
       signal: controller.signal,
     });
     if (!response.ok) console.error(`brevo error: status=${response.status} code=${await brevoErrorCode(response)}`);
+    return response.ok;
   } catch (error) {
     console.error(error instanceof Error && error.name === "AbortError" ? "brevo error: timeout" : "brevo error: network");
+    return false;
   } finally {
     clearTimeout(timer);
   }
@@ -60,23 +90,68 @@ export const sendCode = async (env: Env, email: string, code: string): Promise<v
     // Solo en desarrollo. Nunca activar DEV_LOG_CODES en producción.
     if (devLog) console.log(`[DEV] código para ${email}: ${code}`);
 
-    const apiKey = env.BREVO_API_KEY;
-    if (!apiKey) {
-      if (!devLog) console.error("mail not configured");
-      return;
-    }
-    if (apiKey.startsWith("xsmtpsib-")) {
-      console.error("BREVO_API_KEY parece una clave SMTP; se requiere API v3 (xkeysib-)");
-      return;
-    }
-    const fromEmail = env.MAIL_FROM_EMAIL;
-    const fromName = env.MAIL_FROM_NAME;
-    if (!fromEmail || !fromName) {
-      console.error("mail not configured");
-      return;
-    }
-    await postToBrevo(apiKey, fromEmail, fromName, email, code);
+    const config = brevoConfig(env, devLog);
+    if (!config) return;
+    await postToBrevo(env, config, email, buildMessage(code));
   } catch {
     console.error("mail send failed");
+  }
+};
+
+/** Datos del aviso de pago aprobado (para Manuel, no para el cliente). */
+export type PaymentNotice = {
+  reference: string;
+  deposit: number;
+  balance: number;
+  total: number;
+  customerName: string;
+  customerEmail: string;
+  mode: string;
+  verified: boolean;
+  code: string | null;
+  /** El pago llegó con la orden ya vencida o cerrada */
+  late: boolean;
+};
+
+const escapeHtml = (text: string) =>
+  text.replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char] as string);
+
+const cop = (value: number) => `${new Intl.NumberFormat("es-CO").format(value)} COP`;
+
+/** Asunto y cuerpo del aviso. El nombre y el correo los escribió el cliente: se escapan en el HTML. */
+export const buildPaymentNotice = (notice: PaymentNotice): Message => {
+  const rows: [string, string][] = [
+    ["Referencia", notice.reference],
+    ["Anticipo pagado", cop(notice.deposit)],
+    ["Saldo pendiente", cop(notice.balance)],
+    ["Total", cop(notice.total)],
+    ["Nombre", notice.customerName],
+    ["Correo", notice.customerEmail],
+    ["Modo", notice.mode],
+    ["Cliente verificado", notice.verified ? "sí" : "no"],
+    ["Código", notice.code ?? "ninguno"],
+  ];
+  const note = notice.late ? "Ojo: el pago llegó con la orden ya vencida o cerrada; revisa el uso del código." : "";
+  return {
+    // Solo la referencia en el asunto (los asuntos se ven en notificaciones y vistas previas)
+    subject: `Pago de anticipo aprobado: ${notice.reference}`,
+    textContent: ["Se aprobó un pago de anticipo en zumia.dev.", "", ...rows.map(([k, v]) => `${k}: ${v}`), ...(note ? ["", note] : [])].join("\n"),
+    htmlContent: [
+      "<p>Se aprobó un pago de anticipo en zumia.dev.</p><table>",
+      ...rows.map(([k, v]) => `<tr><td><strong>${escapeHtml(k)}</strong></td><td>${escapeHtml(v)}</td></tr>`),
+      "</table>",
+      note ? `<p>${escapeHtml(note)}</p>` : "",
+    ].join(""),
+  };
+};
+
+/** Aviso a MAIL_FROM_EMAIL cuando se aprueba un pago. Si falla, solo se registra (el pago no se revierte). */
+export const sendPaymentNotice = async (env: Env, notice: PaymentNotice): Promise<void> => {
+  try {
+    const config = brevoConfig(env);
+    const ok = config ? await postToBrevo(env, config, config.fromEmail, buildPaymentNotice(notice)) : false;
+    if (!ok) console.error(`payment notice failed ref=${notice.reference}`);
+  } catch {
+    console.error(`payment notice failed ref=${notice.reference}`);
   }
 };

@@ -3,6 +3,7 @@
 // Nunca registra llaves, secretos, cuerpos de eventos ni datos del pagador: solo status HTTP.
 
 import { safeEqual } from "./crypto";
+import { devMockOrigin } from "./devmock";
 import type { Env } from "./types";
 
 export type WompiEnv = "test" | "prod";
@@ -48,7 +49,10 @@ export const loadWompiConfig = (env: Env): WompiConfig | null => {
   ];
   if (pairs.some(([key, prefix]) => !key.startsWith(prefix) || key.length <= prefix.length)) return null;
   if (new Set(pairs.map(([key]) => key)).size !== pairs.length) return null;
-  return { env: mode, apiBase: API_BASE[mode], publicKey, privateKey, eventsSecret, integritySecret };
+  // Solo pruebas locales (WOMPI_ENV=test y localhost): API simulada. Ver devmock.ts.
+  const mock = devMockOrigin(env);
+  const apiBase = mock ? `${mock}/wompi/v1` : API_BASE[mode];
+  return { env: mode, apiBase, publicKey, privateKey, eventsSecret, integritySecret };
 };
 
 const encoder = new TextEncoder();
@@ -207,6 +211,52 @@ export const fetchTransaction = async (
     return { status: "ok", transaction };
   } catch (error) {
     console.error(error instanceof Error && error.name === "AbortError" ? "wompi transaction lookup: timeout" : "wompi transaction lookup: network");
+    return { status: "error" };
+  } finally {
+    clearTimeout(timer);
+  }
+};
+
+export type FetchByReferenceResult = { status: "ok"; transactions: WompiTransaction[] } | { status: "error" };
+
+/**
+ * GET /v1/transactions?reference=… con la llave privada. Documentado solo en la especificación OpenAPI
+ * oficial (api.swaggerhub.com/apis/waybox/wompi/1.2.0, "Buscar transacciones", BearerPrivateKey), que no
+ * describe la respuesta: se acepta { data: [...] } o { data: {...} } y se descarta lo que no sea de esa
+ * referencia (NO VERIFICADO hasta probar en sandbox).
+ */
+export const fetchTransactionsByReference = async (
+  config: WompiConfig,
+  reference: string,
+  fetchImpl: typeof fetch = fetch,
+): Promise<FetchByReferenceResult> => {
+  if (!REFERENCE_PATTERN.test(reference)) return { status: "error" };
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+  try {
+    const response = await fetchImpl(`${config.apiBase}/transactions?reference=${encodeURIComponent(reference)}`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${config.privateKey}`, accept: "application/json" },
+      signal: controller.signal,
+    });
+    if (response.status === 404) return { status: "ok", transactions: [] };
+    if (!response.ok) {
+      console.error(`wompi reference lookup: status=${response.status}`);
+      return { status: "error" };
+    }
+    const body: unknown = await response.json().catch(() => null);
+    const data = isRecord(body) ? body.data : undefined;
+    const items: unknown[] = Array.isArray(data) ? data : data === undefined || data === null ? [] : [data];
+    if (!isRecord(body) || items.length > 100) {
+      console.error("wompi reference lookup: unexpected body");
+      return { status: "error" };
+    }
+    const transactions = items
+      .map(parseTransaction)
+      .filter((tx): tx is WompiTransaction => tx !== null && tx.reference === reference);
+    return { status: "ok", transactions };
+  } catch (error) {
+    console.error(error instanceof Error && error.name === "AbortError" ? "wompi reference lookup: timeout" : "wompi reference lookup: network");
     return { status: "error" };
   } finally {
     clearTimeout(timer);

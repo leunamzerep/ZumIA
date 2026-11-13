@@ -169,11 +169,11 @@ for (const mode of ["redesign", "external"]) {
   check(sinPlan.json?.error === "invalid_request", "orden normal sin plan → invalid_request");
 }
 {
-  // Correo con mayúsculas: se guarda en minúsculas y cuenta para el límite de pendientes (máx. 3)
+  // Correo con mayúsculas: cada orden nueva del mismo correo reemplaza a la anterior (ver scripts/pay-events.mjs)
   const mail = `Mayus${Date.now()}@Example.com`;
   const res = [];
   for (let i = 0; i < 4; i++) res.push(await order({ selection: esencial, ...cliente({ email: mail }) }));
-  check(res.slice(0, 3).every((r) => r.status === 200) && res[3].status === 429, "máx. 3 órdenes pendientes por correo (la 4ª → 429), con el correo normalizado");
+  check(res.every((r) => r.status === 200), "4 órdenes seguidas del mismo correo (con mayúsculas): todas 200, cada una reemplaza a la anterior");
 }
 {
   // Límite por IP: 10 órdenes por hora desde la misma IP

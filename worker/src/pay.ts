@@ -29,7 +29,6 @@ const MAX_BODY_BYTES = 4096;
 const CODE_IP_LIMIT = 30;
 const ORDER_IP_LIMIT = 10;
 const ORDER_EMAIL_LIMIT = 5;
-const MAX_PENDING_PER_EMAIL = 3;
 /** La orden vence a los 30 min (mismo valor que expiration-time de Wompi); entonces se libera la reserva. */
 export const ORDER_TTL_SECONDS = 30 * 60;
 const MAX_NAME_LENGTH = 120;
@@ -266,12 +265,6 @@ export const handlePayOrders = async (request: Request, env: Env): Promise<Respo
   const breakdown = paymentBreakdown(quote, row as DiscountCode | null);
   if (breakdown.total < MIN_TOTAL) return reply(BELOW_MINIMUM, 400);
 
-  // Máximo de órdenes pendientes vigentes por correo
-  const pending = await env.DB.prepare("SELECT count(*) AS n FROM orders WHERE customer_email = ? AND status = 'pending' AND expires_at > ?")
-    .bind(email, now)
-    .first<{ n: number }>();
-  if ((pending?.n ?? 0) >= MAX_PENDING_PER_EMAIL) return reply(RATE_LIMITED, 429);
-
   const reference = newReference();
   const expiresAt = now + ORDER_TTL_SECONDS;
   const selectionJson = JSON.stringify({ ...selection, projectId: verified ? verification.projectId : null });
@@ -279,8 +272,7 @@ export const handlePayOrders = async (request: Request, env: Env): Promise<Respo
     `INSERT INTO orders (reference, status, mode, verified, project_id, selection_json, subtotal, code, discount_requested,
        discount_applied, floor_applied, total, deposit, balance, amount_in_cents, currency, code_reserved, customer_name,
        customer_email, accepted_terms_at, terms_version, lang, created_at, expires_at, updated_at)
-     SELECT ?, 'pending', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'COP', ?, ?, ?, ?, ?, ?, ?, ?, ?
-     ${row ? "WHERE changes() = 1" : ""}
+     SELECT ?, ${row ? "CASE WHEN changes() = 1 THEN 'pending' END" : "'pending'"}, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'COP', ?, ?, ?, ?, ?, ?, ?, ?, ?
      RETURNING reference`,
   ).bind(
     reference,
@@ -308,28 +300,40 @@ export const handlePayOrders = async (request: Request, env: Env): Promise<Respo
     now,
   );
 
-  // 5) Con código: reserva atómica (solo si hay cupo) y orden en la misma transacción (batch).
-  //    Si la reserva no afecta filas, changes() = 0 y la orden no se crea.
-  let created: boolean;
+  // 5) Una sola transacción (batch): se cancelan las órdenes pending anteriores de este correo (pasan a
+  //    expired y liberan su reserva), se reserva el código si hay cupo y se crea la orden. Si la reserva no
+  //    afecta filas, changes() = 0, el estado queda NULL, el INSERT falla y se deshace todo el batch.
+  const statements = [
+    env.DB.prepare(
+      `UPDATE discount_codes SET reserved_count = max(0, reserved_count - (
+         SELECT count(*) FROM orders o
+         WHERE o.customer_email = ?1 AND o.status = 'pending' AND o.code_reserved = 1 AND o.code = discount_codes.code))
+       WHERE code IN (SELECT code FROM orders WHERE customer_email = ?1 AND status = 'pending' AND code_reserved = 1)`,
+    ).bind(email),
+    env.DB.prepare(
+      `UPDATE orders SET status = 'expired', code_reserved = 0, updated_at = ?2, expires_at = min(expires_at, ?2)
+       WHERE customer_email = ?1 AND status = 'pending'`,
+    ).bind(email, now),
+    ...(row
+      ? [
+          env.DB.prepare(
+            `UPDATE discount_codes SET reserved_count = reserved_count + 1
+             WHERE code = ? AND active = 1 AND (expires_at IS NULL OR expires_at > ?)
+               AND (max_uses IS NULL OR used_count + reserved_count < max_uses)`,
+          ).bind(row.code, now),
+        ]
+      : []),
+    insert,
+  ];
   try {
-    if (row) {
-      const [, inserted] = await env.DB.batch([
-        env.DB.prepare(
-          `UPDATE discount_codes SET reserved_count = reserved_count + 1
-           WHERE code = ? AND active = 1 AND (expires_at IS NULL OR expires_at > ?)
-             AND (max_uses IS NULL OR used_count + reserved_count < max_uses)`,
-        ).bind(row.code, now),
-        insert,
-      ]);
-      created = inserted.results.length === 1;
-    } else {
-      created = (await insert.all()).results.length === 1;
-    }
+    const results = await env.DB.batch(statements);
+    if (results[results.length - 1].results.length !== 1) throw new Error("not inserted");
   } catch {
+    // Si el código se agotó en el último instante (otra orden ganó el cupo), es invalid_code; si no, error del servidor.
+    if (row && !(await findUsableCode(env, row.code, verification, now))) return reply(INVALID_CODE, 400);
     console.error("order insert failed");
     return reply(SERVER_ERROR, 500);
   }
-  if (!created) return reply(INVALID_CODE, 400);
 
   // 6) Datos para el Web Checkout (sin nombre ni correo: viajarían en la URL)
   const expirationTime = new Date(expiresAt * 1000).toISOString();
