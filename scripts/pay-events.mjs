@@ -1,4 +1,4 @@
-// Prueba /pay/events (webhook), /pay/status, transiciones y cron contra `wrangler dev` con una D1 LOCAL
+// Prueba /pay/events (webhook), /pay/status (por referencia y por id de transacción), transiciones y cron contra `wrangler dev` con una D1 LOCAL
 // aislada, llaves FALSAS y Wompi/Brevo SIMULADOS (servidor en este proceso, http://127.0.0.1:8798).
 // Nada sale a internet. Uso, desde worker/:
 //   npx wrangler d1 migrations apply zumia-verificacion --local --persist-to <carpeta>
@@ -234,6 +234,68 @@ check(getS.status === 200 && getJ.status === "approved" && getS.headers.get("cac
 check(!JSON.stringify(getJ).includes("@"), "status sin datos personales");
 check((await post("/pay/status", { reference: "ZUM-" + "F".repeat(32) })).json?.error === "invalid_reference", "status de referencia inexistente → invalid_reference");
 check((await post("/pay/status", { reference: "abc" })).json?.error === "invalid_reference", "status con formato inválido → invalid_reference");
+// 12b) /pay/status con ?ref= o con el id de transacción de Wompi (?id=)
+const status = async (query, ip = `198.51.100.${(ipN++ % 250) + 1}`) => {
+  const res = await fetch(`${API}/pay/status?${query}`, { headers: { origin: "https://zumia.dev", "CF-Connecting-IP": ip } });
+  return { code: res.status, json: await res.json().catch(() => null) };
+};
+const neutral = (r) => r.code === 400 && r.json?.error === "invalid_reference";
+{
+  const [[filaA]] = db(`SELECT wompi_transaction_id AS id FROM orders WHERE reference = '${a.reference}'`);
+  check(typeof filaA.id === "string" && txById.has(filaA.id), "la orden A guarda el id de su transacción de Wompi");
+  const porRef = await status(`ref=${a.reference}`);
+  check(porRef.code === 200 && porRef.json.status === "approved", "?ref= válida → approved");
+  check((await status(`ref=${a.reference.toLowerCase()}`)).json?.status === "approved", "?ref= en minúsculas también vale (se normaliza)");
+  const porId = await status(`id=${encodeURIComponent(filaA.id)}`);
+  check(porId.code === 200 && porId.json.status === "approved", "?id= válido → approved (consulta Wompi y luego D1)");
+  check(Object.keys(porId.json).sort().join() === "expired,ok,status", "con id la respuesta es solo ok, status y expired (sin datos personales ni montos)", JSON.stringify(porId.json));
+  const postId = await post("/pay/status", { id: filaA.id });
+  check(postId.status === 200 && postId.json.status === "approved", "POST { id } también funciona");
+
+  // Wompi APPROVED pero la orden sigue pending (aún no llegó el webhook): responde pending y NO escribe
+  const e = await newOrder();
+  const txE = tx(e, "APPROVED");
+  const antes = db(`SELECT status, wompi_transaction_id, wompi_status, updated_at FROM orders WHERE reference = '${e.reference}'`)[0][0];
+  const pend = await status(`id=${txE.id}`);
+  const despues = db(`SELECT status, wompi_transaction_id, wompi_status, updated_at FROM orders WHERE reference = '${e.reference}'`)[0][0];
+  check(pend.code === 200 && pend.json.status === "pending", "Wompi APPROVED + orden pending → responde pending");
+  check(JSON.stringify(antes) === JSON.stringify(despues), "/pay/status no escribe en la orden", `${JSON.stringify(antes)} → ${JSON.stringify(despues)}`);
+
+  // Casos que deben dar la misma respuesta neutra
+  check(neutral(await status("id=99999-1700000000-99999")), "id inexistente en Wompi → respuesta neutra");
+  const ajena = { id: "77777-1700000000-00001", status: "APPROVED", reference: "PEDIDO-DE-OTRA-TIENDA", amount_in_cents: 100000, currency: "COP", payment_method_type: "CARD" };
+  txById.set(ajena.id, ajena);
+  check(neutral(await status(`id=${ajena.id}`)), "id cuya referencia no es ZUM-… → respuesta neutra");
+  const huerfana = { ...ajena, id: "77777-1700000000-00002", reference: "ZUM-" + "E".repeat(32) };
+  txById.set(huerfana.id, huerfana);
+  check(neutral(await status(`id=${huerfana.id}`)), "id con referencia ZUM-… que no existe en D1 → respuesta neutra");
+  const otroMonto = tx(e, "APPROVED", { amount_in_cents: e.cents + 100 });
+  check(neutral(await status(`id=${otroMonto.id}`)), "id de una orden nuestra con monto distinto → respuesta neutra");
+  const otraMoneda = tx(e, "APPROVED", { currency: "USD" });
+  check(neutral(await status(`id=${otraMoneda.id}`)), "id con moneda distinta → respuesta neutra");
+  for (const malo of ["id=abc%24%25", `id=${"a".repeat(65)}`, "id=", "ref=ZUM-123", `ref=XYZ-${"0".repeat(32)}`, "", "otra=1"]) {
+    check(neutral(await status(malo)), `formato inválido (${malo || "sin parámetros"}) → respuesta neutra`);
+  }
+  const ambos = await status(`ref=${a.reference}&id=99999-1700000000-99999`);
+  check(ambos.code === 200 && ambos.json.status === "approved", "con ref e id a la vez, manda la referencia");
+  const refMalaIdBueno = await status(`ref=ZUM-123&id=${encodeURIComponent(filaA.id)}`);
+  check(neutral(refMalaIdBueno), "si la ref viene mal formada no se usa el id (manda la ref)");
+
+  // Wompi caído → 503
+  wompiDown = true;
+  const caido = await status(`id=${encodeURIComponent(filaA.id)}`);
+  wompiDown = false;
+  check(caido.code === 503 && caido.json?.error === "payments_unavailable", "Wompi caído → 503 payments_unavailable");
+  check((await status(`ref=${a.reference}`)).code === 200, "con Wompi caído, la consulta por ref (solo D1) sigue funcionando");
+
+  // Límite por IP: 120 consultas por id por hora
+  const ipLimite = "198.51.100.251";
+  let codigos = [];
+  for (let i = 0; i < 121; i++) codigos.push((await status(`id=${encodeURIComponent(filaA.id)}`, ipLimite)).code);
+  check(codigos.slice(0, 120).every((c) => c === 200) && codigos[120] === 429, "límite por IP de consultas por id: la 121 → 429", codigos.slice(115).join());
+  check((await status(`ref=${a.reference}`, ipLimite)).code === 200, "el límite por id no bloquea las consultas por ref (contadores separados)");
+}
+
 
 // Estado final de D1: reservas coherentes con las órdenes pending
 const [[coherencia]] = db(

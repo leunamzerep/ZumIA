@@ -22,11 +22,18 @@ import {
 
 const EVENT_MAX_BODY_BYTES = 32 * 1024;
 const STATUS_MAX_BODY_BYTES = 512;
-const STATUS_IP_LIMIT = 60;
+/** Consultas de estado por referencia (solo D1): la página de resultado sondea cada 3 s hasta ~90 s. */
+const STATUS_IP_LIMIT = 300;
+/** Consultas por id de transacción: cada una llega hasta la API de Wompi. */
+const STATUS_ID_IP_LIMIT = 120;
 const CRON_BATCH = 50;
 /** Si Wompi no responde, el cron vuelve a intentar; pasado este margen, la orden vence igual. */
 const LOOKUP_GRACE_SECONDS = 6 * 3600;
 const REFERENCE_PATTERN = /^ZUM-[0-9A-F]{32}$/;
+/** Referencia tal como puede llegar a /pay/status (mayúsculas o minúsculas; se normaliza a mayúsculas). */
+const REFERENCE_INPUT_PATTERN = /^ZUM-[0-9A-F]{32}$/i;
+/** Id de transacción de Wompi aceptado en /pay/status. */
+const TRANSACTION_ID_INPUT_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
 
 const OK = { ok: true };
 const PAYMENTS_UNAVAILABLE = { ok: false, error: "payments_unavailable" };
@@ -222,7 +229,45 @@ export const handlePayEvents = async (request: Request, env: Env, ctx: Execution
   }
 };
 
-/** GET /pay/status?reference=… o POST /pay/status { reference }: solo el estado y si venció. */
+/** Entrada de /pay/status: referencia ZUM-… (consulta solo D1) o id de transacción de Wompi (consulta Wompi y luego D1). */
+type StatusQuery = { kind: "ref"; reference: string } | { kind: "id"; id: string };
+
+/**
+ * Lee ?ref= (o ?reference=, nombre anterior) o ?id= en GET, o { reference | ref | id } en POST.
+ * Si llegan los dos, manda la referencia. La referencia se acepta en mayúsculas o minúsculas y se normaliza.
+ * null = formato inválido o nada que consultar (se valida antes de tocar la base o Wompi).
+ */
+const readStatusQuery = async (request: Request): Promise<StatusQuery | null> => {
+  let ref: unknown;
+  let id: unknown;
+  if (request.method === "GET") {
+    const params = new URL(request.url).searchParams;
+    ref = params.get("ref") ?? params.get("reference");
+    id = params.get("id");
+  } else {
+    const body = await readJsonBody(request, STATUS_MAX_BODY_BYTES);
+    if ("error" in body || !body.data) return null;
+    ref = body.data.reference ?? body.data.ref;
+    id = body.data.id;
+  }
+  if (ref !== null && ref !== undefined) {
+    if (typeof ref !== "string" || !REFERENCE_INPUT_PATTERN.test(ref)) return null;
+    return { kind: "ref", reference: ref.toUpperCase() };
+  }
+  if (id !== null && id !== undefined) {
+    if (typeof id !== "string" || !TRANSACTION_ID_INPUT_PATTERN.test(id)) return null;
+    return { kind: "id", id };
+  }
+  return null;
+};
+
+/**
+ * GET|POST /pay/status: estado de una orden por su referencia o por el id de transacción de Wompi.
+ * Responde solo { status, expired }: ni datos personales ni montos. Nunca escribe en las órdenes (eso lo hacen
+ * el webhook y el cron): si Wompi ya aprobó pero la orden sigue pending, responde pending.
+ * Con id, solo responde si la transacción es de una orden nuestra y su moneda y monto coinciden con la orden;
+ * si no, la misma respuesta neutra que una referencia inexistente. Si Wompi falla: 503.
+ */
 export const handlePayStatus = async (request: Request, env: Env): Promise<Response> => {
   const cors = corsHeaders(request, env);
   const reply = (data: unknown, status = 200) => json(data, status, cors);
@@ -231,28 +276,44 @@ export const handlePayStatus = async (request: Request, env: Env): Promise<Respo
   if (unsafeProdConfig(env)) return reply(PAYMENTS_UNAVAILABLE, 503);
   const secrets = loadSecrets(env);
   if (!secrets) return reply(SERVER_ERROR, 500);
+
+  const query = await readStatusQuery(request);
+  if (!query) return reply(INVALID_REFERENCE, 400);
+
   const now = Math.floor(Date.now() / 1000);
   const ip = clientIp(request, env);
   if (!ip) {
     console.error("missing client ip");
     return reply(SERVER_ERROR, 500);
   }
-  if ((await hit(env, `pay-status-ip:${await hmacHex(secrets.pepper, ip)}`, now)) > STATUS_IP_LIMIT) return reply(RATE_LIMITED, 429);
+  // Límites por IP separados: la consulta por id llega hasta Wompi, así que es más estricta
+  const ipHash = await hmacHex(secrets.pepper, ip);
+  const limited =
+    query.kind === "ref"
+      ? (await hit(env, `pay-status-ip:${ipHash}`, now)) > STATUS_IP_LIMIT
+      : (await hit(env, `pay-status-id-ip:${ipHash}`, now)) > STATUS_ID_IP_LIMIT;
+  if (limited) return reply(RATE_LIMITED, 429);
 
-  let reference: unknown;
-  if (request.method === "GET") {
-    reference = new URL(request.url).searchParams.get("reference");
+  let reference: string;
+  let expected: { amountInCents: number; currency: string } | null = null;
+  if (query.kind === "ref") {
+    reference = query.reference;
   } else {
-    const body = await readJsonBody(request, STATUS_MAX_BODY_BYTES);
-    if ("error" in body) return reply(INVALID_REFERENCE, 400);
-    reference = body.data?.reference;
+    const config = loadWompiConfig(env);
+    if (!config) return reply(PAYMENTS_UNAVAILABLE, 503);
+    const found = await fetchTransaction(config, query.id);
+    if (found.status === "error") return reply(PAYMENTS_UNAVAILABLE, 503);
+    if (found.status === "not_found" || !REFERENCE_PATTERN.test(found.transaction.reference)) return reply(INVALID_REFERENCE, 400);
+    reference = found.transaction.reference;
+    expected = { amountInCents: found.transaction.amountInCents, currency: found.transaction.currency };
   }
-  if (typeof reference !== "string" || !REFERENCE_PATTERN.test(reference)) return reply(INVALID_REFERENCE, 400);
 
-  const row = await env.DB.prepare("SELECT status, expires_at FROM orders WHERE reference = ?")
+  const row = await env.DB.prepare("SELECT status, expires_at, amount_in_cents, currency FROM orders WHERE reference = ?")
     .bind(reference)
-    .first<{ status: OrderStatus; expires_at: number }>();
+    .first<{ status: OrderStatus; expires_at: number; amount_in_cents: number; currency: string }>();
   if (!row) return reply(INVALID_REFERENCE, 400);
+  // Misma comprobación que el webhook: la transacción de Wompi debe ser por el monto y la moneda de la orden
+  if (expected && (expected.amountInCents !== row.amount_in_cents || expected.currency !== row.currency)) return reply(INVALID_REFERENCE, 400);
   return reply({ ok: true, status: row.status, expired: row.status === "expired" || (row.status === "pending" && row.expires_at <= now) });
 };
 

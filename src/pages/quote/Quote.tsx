@@ -34,6 +34,9 @@ import {
 
 /** Paso de pago: con el interruptor apagado es null y su código no entra al bundle (ver PAYMENTS_ENABLED). */
 const PaymentStep = PAYMENTS_ENABLED ? lazy(() => import("@/features/payments/PaymentStep")) : null;
+/** En el prerender el paso de pago no muestra nada: ni se pide su código (así el HTML estático es el mismo con o sin pagos). */
+const isPrerender = () =>
+  typeof window !== "undefined" && (window as { __PRERENDER_INJECTED?: { prerender?: boolean } }).__PRERENDER_INJECTED?.prerender === true;
 
 /** Largo máximo del enlace de WhatsApp; si se pasa, se recorta la lista con "y N herramientas más". */
 const MAX_WHATSAPP_URL = 1800;
@@ -397,7 +400,7 @@ export const Quote = () => {
             {/* Pago del anticipo: solo existe con VITE_PAYMENTS_ENABLED="true" (ver PAYMENTS_ENABLED).
                 En móvil y tableta va después del estimado; en escritorio, al pie de la columna izquierda,
                 con el estimado fijo al lado (el resumen ocupa las dos filas de la derecha). */}
-            {PaymentStep && (
+            {PaymentStep && !isPrerender() && (
               <Suspense fallback={null}>
                 <PaymentStep
                   mode={mode}

@@ -516,5 +516,58 @@
         "ctaTitle": "Want a website for your business?",
         "ctaText": "Build your quote online or message us on WhatsApp and let's talk.",
         "ctaQuote": "Build my quote"
+    },
+    "payResult": {
+        "seoTitle": "Payment result - Zumia Solutions",
+        "seoDescription": "Status of the deposit payment.",
+        "referenceLabel": "Your payment reference",
+        "copy": "Copy reference",
+        "copied": "Reference copied.",
+        "retry": "Check again",
+        "backToQuote": "Back to the quote",
+        "home": "Go to the home page",
+        "contact": "Need help? Write to us at <1>{{email}}</1> or on WhatsApp at <2>{{phone}}</2>.",
+        "views": {
+            "checking": {
+                "title": "Checking your payment",
+                "body": "We are checking the status of your payment…"
+            },
+            "approved": {
+                "title": "Payment received",
+                "body": "Payment received. Your deposit booked your spot. We will write to the email you provided to sign the contract within 5 business days."
+            },
+            "pending": {
+                "title": "Confirming your payment",
+                "body": "We are confirming your payment…"
+            },
+            "pendingTimeout": {
+                "title": "Your payment is still being confirmed",
+                "body": "The confirmation is taking longer than usual. We will confirm it by email. If you were already charged and do not hear from us, write to {{email}} with your payment reference."
+            },
+            "declined": {
+                "title": "The payment was not approved",
+                "body": "The payment gateway did not approve this payment. You can go back to the quote and try again. If you see a charge on your account, write to {{email}} with the reference."
+            },
+            "error": {
+                "title": "The payment could not be completed",
+                "body": "The payment gateway reported a problem with this payment. You can go back to the quote and try again. If you see a charge on your account, write to {{email}} with the reference."
+            },
+            "voided": {
+                "title": "The payment was voided",
+                "body": "This payment shows as voided at the payment gateway. If you have questions or see a charge on your account, write to {{email}} with the reference."
+            },
+            "expired": {
+                "title": "The order expired",
+                "body": "The time to complete this payment ran out. Go back to the quote to create a new order."
+            },
+            "unknown": {
+                "title": "We could not identify your payment",
+                "body": "We could not identify your payment from this page. If you paid, we will confirm it by email."
+            },
+            "unavailable": {
+                "title": "We could not check your payment",
+                "body": "We could not reach the payment service right now. Check your connection and try again."
+            }
+        }
     }
 }

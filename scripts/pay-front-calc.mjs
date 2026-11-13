@@ -1,6 +1,6 @@
 // Pruebas de la capa de pago del frontend (sin navegador ni red): payApi con fetch simulado, URL del checkout,
 // estados del paso (panel, código, bfcache, cambio de selección), formulario, disponibilidad, mensajes por error
-// (ES/EN), aviso del piso (texto exacto) y referencia en sessionStorage.
+// (ES/EN), aviso del piso (texto exacto), referencia en sessionStorage y página de resultado (entradas, vistas, sondeo).
 // Uso (desde la raíz; usa el alias @/ de tsconfig.app.json y define import.meta.env):
 //   npx esbuild scripts/pay-front-calc.mjs --bundle --platform=node --format=esm --tsconfig=tsconfig.app.json
 //     "--define:import.meta.env={\"VITE_VERIFY_API_URL\":\"https://api.test\"}" --outfile=<carpeta-temporal>/pay-front-calc.mjs
@@ -24,6 +24,18 @@ import {
 } from "../src/features/payments/flow.ts";
 import { clearPendingReference, readPendingReference, savePendingReference } from "../src/features/payments/pendingReference.ts";
 import { checkCode, createOrder, getPayStatus } from "../src/lib/payApi.ts";
+import {
+  POLL_INTERVAL_MS,
+  POLL_MAX_MS,
+  RESULT_VIEWS,
+  isFinalView,
+  nextAfterPoll,
+  readResultInputs,
+  resultMessageKey,
+  statusQueryFor,
+  viewForError,
+  viewForStatus,
+} from "../src/features/payments/result.ts";
 
 let fallos = 0;
 const check = (ok, texto, extra = "") => {
@@ -95,11 +107,17 @@ const keysDeep = (v) => (v && typeof v === "object" ? Object.entries(v).flatMap(
   check(Object.keys(oc.body).sort().join() === "acceptTerms,email,lang,name,selection", "createOrder: solo las claves que acepta el Worker", Object.keys(oc.body).join());
 
   next = { status: 200, body: { ok: true, status: "approved", expired: false } };
-  const s = await getPayStatus(REF);
+  const s = await getPayStatus({ reference: REF });
   check(s.status === "ok" && s.data.status === "approved", "getPayStatus: estado tipado");
   const n = calls.length;
-  const malo = await getPayStatus("ZUM-123");
+  const malo = await getPayStatus({ reference: "ZUM-123" });
   check(malo.status === "error" && malo.error === "invalid_reference" && calls.length === n, "getPayStatus: referencia mal formada → error sin llamar a la red");
+  next = { status: 200, body: { ok: true, status: "pending", expired: false } };
+  const porId = await getPayStatus({ id: "12345-1700000000-00001" });
+  check(porId.status === "ok" && porId.data.status === "pending" && JSON.stringify(calls.at(-1).body) === '{"id":"12345-1700000000-00001"}' && !calls.at(-1).url.includes("12345"), "getPayStatus por id: POST { id } (el id no va en la URL)");
+  const n2 = calls.length;
+  const idMalo = await getPayStatus({ id: "abc$%" });
+  check(idMalo.status === "error" && idMalo.error === "invalid_reference" && calls.length === n2, "getPayStatus: id mal formado → error sin llamar a la red");
 
   const errores = [
     [{ status: 400, body: { ok: false, error: "invalid_code" } }, "invalid_code"],
@@ -234,6 +252,54 @@ const keysDeep = (v) => (v && typeof v === "object" ? Object.entries(v).flatMap(
   check(readPendingReference() === null, "ignora un valor manipulado");
   globalThis.window = { get sessionStorage() { throw new Error("bloqueado"); } };
   check(savePendingReference(REF) === false && readPendingReference() === null, "almacenamiento bloqueado: no lanza");
+}
+
+// ---------- 8) Página de resultado (/payment/result/) ----------
+{
+  const ID = "12345-1700000000-00001";
+  const inp = (search, stored) => JSON.stringify(readResultInputs(search, stored));
+  check(inp(`?id=${ID}`, REF) === JSON.stringify({ reference: REF, id: ID }), "lee ?id= y la referencia guardada");
+  check(inp("?id=abc%24%25", "ZUM-123") === JSON.stringify({ reference: null, id: null }), "descarta id y referencia con formato inválido");
+  check(inp(`?id=${"a".repeat(65)}`, null) === JSON.stringify({ reference: null, id: null }), "id de más de 64 caracteres → descartado");
+  check(inp("", null) === JSON.stringify({ reference: null, id: null }), "sin parámetros ni referencia → nada");
+  check(inp("?id=abc_DEF-1&otro=x", null) === JSON.stringify({ reference: null, id: "abc_DEF-1" }), "acepta letras, números, _ y - en el id");
+  check(JSON.stringify(statusQueryFor({ reference: REF, id: ID })) === JSON.stringify({ reference: REF }), "con referencia e id, consulta por referencia");
+  check(JSON.stringify(statusQueryFor({ reference: null, id: ID })) === JSON.stringify({ id: ID }), "sin referencia, consulta por id");
+  check(statusQueryFor({ reference: null, id: null }) === null, "sin ninguno, no consulta");
+
+  check(viewForStatus("approved") === "approved" && viewForStatus("pending") === "pending" && viewForStatus("expired") === "expired", "estado → vista");
+  check(viewForStatus("declined") === "declined" && viewForStatus("error") === "error" && viewForStatus("voided") === "voided", "rechazado, error y anulado tienen su vista");
+  check(viewForError("invalid_reference") === "unknown" && viewForError("invalid_request") === "unknown", "no encontrada o formato inválido → vista neutra 'unknown'");
+  check(viewForError("network") === "unavailable" && viewForError("unavailable") === "unavailable" && viewForError("rate_limited") === "unavailable", "red caída, 503 y 429 → 'unavailable' (reintento manual)");
+
+  check(["approved", "declined", "error", "voided", "expired"].every(isFinalView) && !["pending", "checking", "unknown", "unavailable", "pendingTimeout"].some(isFinalView), "solo los estados finales borran la referencia");
+
+  // Sondeo: cada 3 s hasta ~90 s
+  check(POLL_INTERVAL_MS === 3000 && POLL_MAX_MS === 90000, "sondeo cada 3 s, máximo 90 s");
+  let elapsed = 0;
+  let polls = 0;
+  let view = "pending";
+  while (true) {
+    const next = nextAfterPoll(view, elapsed);
+    view = next.view;
+    if (!next.poll) break;
+    polls++;
+    elapsed += POLL_INTERVAL_MS;
+  }
+  check(view === "pendingTimeout" && polls === 30 && elapsed === POLL_MAX_MS, `pending sin resolver → ${polls + 1} consultas en total y luego pendingTimeout`, `polls=${polls} elapsed=${elapsed} view=${view}`);
+  check(JSON.stringify(nextAfterPoll("approved", 1000)) === '{"view":"approved","poll":false}', "un estado final deja de sondear");
+
+  // Mensajes: cada vista tiene título y texto en ES y EN; textos exactos pedidos
+  check(RESULT_VIEWS.every((v) => ["title", "body"].every((k) => typeof es.payResult.views[v]?.[k] === "string" && typeof en.payResult.views[v]?.[k] === "string")), `las ${RESULT_VIEWS.length} vistas tienen título y texto en ES y EN`);
+  check(resultMessageKey("approved") === "payResult.views.approved", "clave del mensaje: payResult.views.<vista>");
+  check(es.payResult.views.approved.body === "Pago recibido. Tu anticipo reservó tu cupo. Te escribiremos al correo que indicaste para firmar el contrato dentro de 5 días hábiles.", "texto de aprobado, exacto");
+  check(es.payResult.views.pending.body === "Estamos confirmando tu pago…", "texto de pendiente, exacto");
+  check(es.payResult.views.unknown.body === "No pudimos identificar tu pago desde esta página. Si pagaste, lo confirmaremos por correo.", "texto de no identificado, exacto");
+  const montos = /\$|\bCOP\b|\d{2,}\.\d{3}/;
+  check(!Object.values(es.payResult.views).some((v) => montos.test(v.body)) && !Object.values(en.payResult.views).some((v) => montos.test(v.body)), "ningún mensaje de resultado muestra montos");
+  check(!/no se te cobr|not charged|no se cobró/i.test(JSON.stringify(es.payResult) + JSON.stringify(en.payResult)), "ningún mensaje afirma que no se cobró");
+  const flat = (o, p = "") => Object.entries(o).flatMap(([k, v]) => (typeof v === "object" ? flat(v, `${p}${k}.`) : [`${p}${k}`]));
+  check(flat(es.payResult).sort().join() === flat(en.payResult).sort().join(), "payResult tiene las mismas claves en ES y EN");
 }
 
 console.log(fallos ? `✗ ${fallos} pruebas fallaron` : "✓ todas las pruebas pasan");

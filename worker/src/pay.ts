@@ -345,7 +345,8 @@ export const handlePayOrders = async (request: Request, env: Env): Promise<Respo
     currency: "COP",
     expirationTime,
   });
-  const redirectUrl = `${base}${lang === "en" ? `/en${RESULT_PATH}` : RESULT_PATH}`;
+  // Misma ruta en los dos idiomas: el sitio no tiene rutas /en (el idioma va por el selector, no por la URL)
+  const redirectUrl = `${base}${RESULT_PATH}`;
 
   return reply({
     ok: true,

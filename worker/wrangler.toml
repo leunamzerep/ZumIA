@@ -21,7 +21,7 @@ ALLOWED_ORIGINS = "https://zumia.dev"
 # Ambiente de Wompi: "prod" exige llaves pub_prod_/prv_prod_/prod_events_/prod_integrity_.
 # Sin esos secretos, /pay/orders responde 503 (no se cobra) y el cron de órdenes no hace nada.
 WOMPI_ENV = "prod"
-# Origen del sitio para redirect-url (sin ruta ni barra final; el Worker añade /payment/result/ o /en/payment/result/).
+# Origen del sitio para redirect-url (sin ruta ni barra final; el Worker añade /payment/result/, igual en los dos idiomas).
 PAY_REDIRECT_BASE = "https://zumia.dev"
 # Correo que recibe el aviso de pago aprobado. Es una dirección de función (no personal): va como var, no secreto.
 PAY_NOTICE_TO = "payments@zumia.dev"

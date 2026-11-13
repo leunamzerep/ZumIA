@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import {
   RouterProvider,
@@ -15,8 +16,12 @@ import { useReveal } from "@/components/layout/useReveal";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { NotFound } from "@/pages/not-found/NotFound";
 import { createServerRoutes } from "./routes.ssr";
+import { PAYMENTS_ENABLED } from "@/config/site";
 
 import "@/styles/global.css";
+
+// Página de resultado del pago (vuelta desde Wompi): con el interruptor apagado no existe la ruta ni entra su código
+const PaymentResult = PAYMENTS_ENABLED ? lazy(() => import("@/features/payments/PaymentResult")) : null;
 
 const Layout = () => {
   // El idioma lo maneja src/i18n/config.ts (switch ES/EN, sin rutas /en)
@@ -55,6 +60,20 @@ const router = createBrowserRouter([
       // plantilla (fiscal). Volverán cuando exista la traducción real:
       // ...createServerRoutes("/en"),
       ...createServerRoutes(),
+      ...(PaymentResult
+        ? [
+            {
+              path: "/payment/result",
+              element: (
+                <PageTransition>
+                  <Suspense fallback={null}>
+                    <PaymentResult />
+                  </Suspense>
+                </PageTransition>
+              ),
+            },
+          ]
+        : []),
       {
         path: "*",
         element: (

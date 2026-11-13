@@ -20,7 +20,17 @@ Todos los comandos se ejecutan **desde esta carpeta (`worker/`)** en PowerShell.
 | `POST /pay/code` `{ code, selection, token?, projectId? }` | Valida un código de descuento y devuelve el desglose (no reserva) |
 | `POST /pay/orders` `{ selection, code?, token?, projectId?, name, email, acceptTerms, lang }` | Crea la orden y devuelve los campos del Web Checkout de Wompi |
 | `POST /pay/events` | Webhook de Wompi (lo llama Wompi, no el navegador) |
-| `GET /pay/status?reference=…` o `POST { reference }` | Solo el estado de la orden y si venció |
+| `GET /pay/status?ref=…` o `?id=…` · `POST { reference }` o `{ id }` | Solo el estado de la orden y si venció (ver abajo) |
+
+### `/pay/status` (lo usa la página `/payment/result/`)
+
+- **Entradas:** la referencia de la orden (`ref=ZUM-…`; también se acepta el nombre anterior `reference`, en mayúsculas o minúsculas) o el id de transacción de Wompi (`id=…`: solo letras, números, `_` y `-`, de 1 a 64). Si llegan las dos, manda la referencia. El formato se valida antes de tocar la base o Wompi. El front usa `POST` con cuerpo JSON para que la referencia y el id no queden en la URL ni en los logs.
+- **Con referencia:** solo lee D1.
+- **Con id:** consulta la transacción a Wompi (`GET /transactions/:id` con la llave privada), toma su referencia y busca la orden en D1. Solo responde si la orden existe y la moneda y el monto de Wompi coinciden con la orden (la misma comprobación que el webhook). Si el id no existe, la referencia no es `ZUM-…`, no hay orden o no coinciden: la **misma** respuesta neutra que una referencia inexistente (`400 invalid_reference`). Si Wompi falla o los pagos no están configurados: `503 payments_unavailable`.
+- **Respuesta:** `{ ok, status, expired }`. Ni datos personales ni montos.
+- **No escribe nada:** solo el webhook y el cron cambian estados. Si Wompi ya aprobó pero la orden sigue `pending` (aún no llegó el webhook), responde `pending`.
+- **Límites por IP y por hora:** 300 consultas por referencia y 120 por id (contadores separados; la consulta por id llega hasta Wompi). La página de resultado sondea cada 3 s durante unos 90 s (~30 consultas).
+- La guarda de producción (`WOMPI_ENV=prod` con variables solo locales → 503) también aplica.
 
 ---
 
@@ -43,7 +53,7 @@ Pruebas automáticas (desde la raíz del repo; no llaman a nada remoto). Cada sc
 | `scripts/wompi-calc.mjs` | Firma de integridad, checksum de eventos, consulta de transacciones |
 | `scripts/config-calc.mjs` | Guarda de producción, aviso a `PAY_NOTICE_TO`, cron sin llaves o sin tabla |
 | `scripts/pay-local.mjs` | `/pay/code` y `/pay/orders` contra `wrangler dev` |
-| `scripts/pay-events.mjs` | Webhook, `/pay/status`, transiciones y cron (Wompi y Brevo simulados) |
+| `scripts/pay-events.mjs` | Webhook, `/pay/status` (por referencia y por id), transiciones y cron (Wompi y Brevo simulados) |
 | `scripts/worker-config.mjs` | Cron con solo la migración 0001 y guarda de producción con `wrangler dev` real |
 | `scripts/crear-codigo-test.mjs` | Que los códigos generados pasan la migración |
 

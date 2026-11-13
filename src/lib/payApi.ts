@@ -188,10 +188,26 @@ export const createOrder = async (input: OrderInput): Promise<PayResult<OrderDat
   };
 };
 
-/** POST /pay/status: estado de una orden por su referencia. */
-export const getPayStatus = async (reference: string): Promise<PayResult<StatusData>> => {
-  if (!REFERENCE_PATTERN.test(reference)) return { status: "error", error: "invalid_reference" };
-  const response = await post("/pay/status", { reference });
+/** Id de transacción de Wompi tal como lo acepta /pay/status. */
+export const TRANSACTION_ID_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
+
+export type StatusQuery = { reference: string } | { id: string };
+
+/**
+ * POST /pay/status: estado de una orden por su referencia o por el id de transacción de Wompi (cuerpo JSON:
+ * ni la referencia ni el id viajan en la URL del Worker). Si llegan los dos, el Worker usa la referencia.
+ */
+export const getPayStatus = async (query: StatusQuery): Promise<PayResult<StatusData>> => {
+  const body =
+    "reference" in query
+      ? REFERENCE_PATTERN.test(query.reference)
+        ? { reference: query.reference }
+        : null
+      : TRANSACTION_ID_PATTERN.test(query.id)
+        ? { id: query.id }
+        : null;
+  if (!body) return { status: "error", error: "invalid_reference" };
+  const response = await post("/pay/status", body);
   if (!response || response.status !== 200) return failure(response);
   const json = response.json;
   if (!isRecord(json) || json.ok !== true || !ORDER_STATUSES.includes(json.status as OrderStatus) || typeof json.expired !== "boolean") {

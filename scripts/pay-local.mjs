@@ -116,7 +116,7 @@ const order = (body, opts) => post("/pay/orders", body, opts);
 }
 {
   const en = await order({ selection: esencial, ...cliente({ lang: "en" }) });
-  check(en.json?.checkout?.fields["redirect-url"] === "https://zumia.dev/en/payment/result/", "orden en inglés: redirect-url /en/");
+  check(en.json?.checkout?.fields["redirect-url"] === "https://zumia.dev/payment/result/", "orden en inglés: misma redirect-url /payment/result/ (el sitio no tiene rutas /en)");
   const montos = await order({ selection: esencial, ...cliente(), amountInCents: 100 });
   check(montos.json?.error === "invalid_request", "orden con monto del navegador → invalid_request (nunca se acepta)");
 }

@@ -726,5 +726,58 @@
         "ctaTitle": "¿Quieres una página para tu negocio?",
         "ctaText": "Arma tu cotización en línea o escríbenos por WhatsApp y lo conversamos.",
         "ctaQuote": "Armar mi cotización"
+    },
+    "payResult": {
+        "seoTitle": "Resultado del pago - Zumia Solutions",
+        "seoDescription": "Estado del pago del anticipo.",
+        "referenceLabel": "Referencia de tu pago",
+        "copy": "Copiar referencia",
+        "copied": "Referencia copiada.",
+        "retry": "Consultar de nuevo",
+        "backToQuote": "Volver al cotizador",
+        "home": "Ir al inicio",
+        "contact": "¿Necesitas ayuda? Escríbenos a <1>{{email}}</1> o por WhatsApp al <2>{{phone}}</2>.",
+        "views": {
+            "checking": {
+                "title": "Consultando tu pago",
+                "body": "Estamos consultando el estado de tu pago…"
+            },
+            "approved": {
+                "title": "Pago recibido",
+                "body": "Pago recibido. Tu anticipo reservó tu cupo. Te escribiremos al correo que indicaste para firmar el contrato dentro de 5 días hábiles."
+            },
+            "pending": {
+                "title": "Confirmando tu pago",
+                "body": "Estamos confirmando tu pago…"
+            },
+            "pendingTimeout": {
+                "title": "Tu pago se sigue confirmando",
+                "body": "La confirmación está tardando más de lo normal. Te lo confirmaremos por correo. Si ya te lo cobraron y no recibes nada, escríbenos a {{email}} con la referencia de tu pago."
+            },
+            "declined": {
+                "title": "El pago no fue aprobado",
+                "body": "La pasarela no aprobó este pago. Puedes volver al cotizador e intentarlo de nuevo. Si ves un cargo en tu cuenta, escríbenos a {{email}} con la referencia."
+            },
+            "error": {
+                "title": "No se pudo completar el pago",
+                "body": "La pasarela reportó un problema con este pago. Puedes volver al cotizador e intentarlo de nuevo. Si ves un cargo en tu cuenta, escríbenos a {{email}} con la referencia."
+            },
+            "voided": {
+                "title": "El pago fue anulado",
+                "body": "Este pago aparece como anulado en la pasarela. Si tienes dudas o ves un cargo en tu cuenta, escríbenos a {{email}} con la referencia."
+            },
+            "expired": {
+                "title": "La orden venció",
+                "body": "Pasó el tiempo para completar este pago. Vuelve al cotizador para crear una orden nueva."
+            },
+            "unknown": {
+                "title": "No pudimos identificar tu pago",
+                "body": "No pudimos identificar tu pago desde esta página. Si pagaste, lo confirmaremos por correo."
+            },
+            "unavailable": {
+                "title": "No pudimos consultar tu pago",
+                "body": "No pudimos conectar con el servicio de pagos en este momento. Revisa tu conexión y vuelve a intentarlo."
+            }
+        }
     }
 }
