@@ -3,6 +3,7 @@
 // consulta la transacción a Wompi y se compara con la orden. Los logs solo llevan la referencia.
 
 import { hmacHex } from "./crypto";
+import { unsafeProdConfig } from "./devmock";
 import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json, preflight } from "./http";
 import { clientIp, hit } from "./ratelimit";
 import { sendPaymentNotice, type PaymentNotice } from "./send";
@@ -28,6 +29,7 @@ const LOOKUP_GRACE_SECONDS = 6 * 3600;
 const REFERENCE_PATTERN = /^ZUM-[0-9A-F]{32}$/;
 
 const OK = { ok: true };
+const PAYMENTS_UNAVAILABLE = { ok: false, error: "payments_unavailable" };
 const INVALID_REFERENCE = { ok: false, error: "invalid_reference" };
 
 type OrderStatus = "pending" | "approved" | "declined" | "voided" | "error" | "expired";
@@ -174,6 +176,7 @@ export const applyConfirmedTransaction = async (env: Env, order: OrderRow, tx: W
 /** POST /pay/events: webhook de Wompi. Sin CORS (lo llama el servidor de Wompi). */
 export const handlePayEvents = async (request: Request, env: Env, ctx: ExecutionContext): Promise<Response> => {
   if (request.method !== "POST") return json(METHOD_NOT_ALLOWED, 405);
+  if (unsafeProdConfig(env)) return json(PAYMENTS_UNAVAILABLE, 503);
   const config = loadWompiConfig(env);
   if (!config) {
     console.error("wompi not configured");
@@ -225,6 +228,7 @@ export const handlePayStatus = async (request: Request, env: Env): Promise<Respo
   const reply = (data: unknown, status = 200) => json(data, status, cors);
   if (request.method === "OPTIONS") return preflight(cors);
   if (request.method !== "GET" && request.method !== "POST") return reply(METHOD_NOT_ALLOWED, 405);
+  if (unsafeProdConfig(env)) return reply(PAYMENTS_UNAVAILABLE, 503);
   const secrets = loadSecrets(env);
   if (!secrets) return reply(SERVER_ERROR, 500);
   const now = Math.floor(Date.now() / 1000);
@@ -271,26 +275,37 @@ const lookup = async (config: WompiConfig, order: OrderRow): Promise<WompiTransa
  * Nunca borra órdenes.
  */
 export const expireOverdueOrders = async (env: Env, now: number): Promise<void> => {
+  // Sin llaves de Wompi (pagos aún no configurados) o sin la tabla orders (migración 0002 sin aplicar):
+  // termina en silencio con una sola línea de log, sin lanzar errores.
   const config = loadWompiConfig(env);
-  const rows = await env.DB.prepare(
-    `SELECT reference, status, mode, verified, code, code_reserved, total, deposit, balance, amount_in_cents, currency,
-            customer_name, customer_email, wompi_transaction_id, expires_at
-     FROM orders WHERE status = 'pending' AND expires_at <= ? ORDER BY expires_at LIMIT ?`,
-  )
-    .bind(now, CRON_BATCH)
-    .all<OrderRow>();
+  if (!config) {
+    console.log("orders cron: skipped (wompi not configured)");
+    return;
+  }
+  let rows: { results: OrderRow[] };
+  try {
+    rows = await env.DB.prepare(
+      `SELECT reference, status, mode, verified, code, code_reserved, total, deposit, balance, amount_in_cents, currency,
+              customer_name, customer_email, wompi_transaction_id, expires_at
+       FROM orders WHERE status = 'pending' AND expires_at <= ? ORDER BY expires_at LIMIT ?`,
+    )
+      .bind(now, CRON_BATCH)
+      .all<OrderRow>();
+  } catch (error) {
+    const missing = error instanceof Error && /no such table/i.test(error.message);
+    console.log(missing ? "orders cron: skipped (orders table missing)" : "orders cron: skipped (query failed)");
+    return;
+  }
 
   for (const order of rows.results) {
     try {
-      if (config) {
-        const found = await lookup(config, order);
-        if (found === "error" && now - order.expires_at < LOOKUP_GRACE_SECONDS) continue; // se reintenta en el próximo cron
-        const tx = found === "error" ? null : pickTransaction(found);
-        if (tx) {
-          const outcome = await applyConfirmedTransaction(env, order, tx, now);
-          if (outcome.notice) await sendPaymentNotice(env, outcome.notice);
-          if (outcome.result !== "unchanged") continue;
-        }
+      const found = await lookup(config, order);
+      if (found === "error" && now - order.expires_at < LOOKUP_GRACE_SECONDS) continue; // se reintenta en el próximo cron
+      const tx = found === "error" ? null : pickTransaction(found);
+      if (tx) {
+        const outcome = await applyConfirmedTransaction(env, order, tx, now);
+        if (outcome.notice) await sendPaymentNotice(env, outcome.notice);
+        if (outcome.result !== "unchanged") continue;
       }
       await closeOrder(env, order.reference, "expired", "('pending')", now, null);
     } catch {

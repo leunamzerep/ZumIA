@@ -145,11 +145,21 @@ export const buildPaymentNotice = (notice: PaymentNotice): Message => {
   };
 };
 
-/** Aviso a MAIL_FROM_EMAIL cuando se aprueba un pago. Si falla, solo se registra (el pago no se revierte). */
+const NOTICE_TO_PATTERN = /^[^\s@]{1,64}@[^\s@.]+(\.[^\s@.]+)+$/;
+
+/**
+ * Aviso a PAY_NOTICE_TO (correo de administración) cuando se aprueba un pago. Nunca se usa MAIL_FROM_EMAIL
+ * como destino. Si falta PAY_NOTICE_TO o falla el envío, solo se registra (el pago no se revierte).
+ */
 export const sendPaymentNotice = async (env: Env, notice: PaymentNotice): Promise<void> => {
   try {
+    const to = env.PAY_NOTICE_TO?.trim().toLowerCase() ?? "";
+    if (!NOTICE_TO_PATTERN.test(to) || to.length > 254) {
+      console.error(`payment notice not configured ref=${notice.reference}`);
+      return;
+    }
     const config = brevoConfig(env);
-    const ok = config ? await postToBrevo(env, config, config.fromEmail, buildPaymentNotice(notice)) : false;
+    const ok = config ? await postToBrevo(env, config, to, buildPaymentNotice(notice)) : false;
     if (!ok) console.error(`payment notice failed ref=${notice.reference}`);
   } catch {
     console.error(`payment notice failed ref=${notice.reference}`);

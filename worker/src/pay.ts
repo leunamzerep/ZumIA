@@ -17,6 +17,7 @@ import {
   type QuoteMode,
 } from "../../src/data/quote";
 import { hmacHex } from "./crypto";
+import { unsafeProdConfig } from "./devmock";
 import { extrasDiscountFor, isPlanId } from "./discounts";
 import { INVALID_REQUEST, METHOD_NOT_ALLOWED, RATE_LIMITED, SERVER_ERROR, corsHeaders, json, preflight } from "./http";
 import { clientIp, hit } from "./ratelimit";
@@ -155,6 +156,7 @@ const begin = async (request: Request, env: Env, bucket: string, limit: number) 
   const reply = (data: unknown, status = 200) => json(data, status, cors);
   if (request.method === "OPTIONS") return { response: preflight(cors) };
   if (request.method !== "POST") return { response: reply(METHOD_NOT_ALLOWED, 405) };
+  if (unsafeProdConfig(env)) return { response: reply(PAYMENTS_UNAVAILABLE, 503) };
   const secrets = loadSecrets(env);
   if (!secrets) return { response: reply(SERVER_ERROR, 500) };
   const now = Math.floor(Date.now() / 1000);

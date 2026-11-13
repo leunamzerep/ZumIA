@@ -9,7 +9,8 @@
 //     --var WOMPI_PRIVATE_KEY:prv_test_FALSO789 --var WOMPI_EVENTS_SECRET:test_events_FALSO456
 //     --var WOMPI_INTEGRITY_SECRET:test_integrity_FALSO123 --var PAY_REDIRECT_BASE:https://zumia.dev
 //     --var ALLOWED_ORIGINS:https://zumia.dev --var DEV_MOCK_ORIGIN:http://127.0.0.1:8798
-//     --var BREVO_API_KEY:xkeysib-FALSO --var MAIL_FROM_EMAIL:avisos@example.com --var MAIL_FROM_NAME:Zumia
+//     --var BREVO_API_KEY:xkeysib-FALSO --var MAIL_FROM_EMAIL:remitente@example.com --var MAIL_FROM_NAME:Zumia
+//     --var PAY_NOTICE_TO:admin@example.com
 //   PERSIST=<carpeta> node ../scripts/pay-events.mjs
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -125,7 +126,8 @@ check(auths.at(-1) === "Bearer prv_test_FALSO789", "consulta a Wompi con la llav
 check(await waitFor(() => mails.length === 1), "aviso por Brevo enviado (1 correo)");
 const m = mails[0];
 const html = m?.htmlContent ?? "";
-check(m?.to?.[0]?.email === "avisos@example.com" && m.subject.includes(a.reference), "aviso a MAIL_FROM_EMAIL con la referencia en el asunto");
+check(m?.to?.[0]?.email === "admin@example.com" && m.subject.includes(a.reference), "aviso a PAY_NOTICE_TO (no a MAIL_FROM_EMAIL) con la referencia en el asunto");
+check(m?.sender?.email === "remitente@example.com", "el remitente sigue siendo MAIL_FROM_EMAIL");
 const copA = `${new Intl.NumberFormat("es-CO").format(a.deposit)} COP`; // 10 % de EV-UNO: 265.500
 check(html.includes(copA) && html.includes(a.email) && html.includes("&lt;b&gt;Prueba&lt;/b&gt;") && !html.includes("<b>Prueba"), "aviso con anticipo, saldo, correo y nombre escapado en HTML");
 check(m?.textContent.includes("Modo: normal") && m.textContent.includes("Cliente verificado: no") && m.textContent.includes(`Anticipo pagado: ${copA}`) && m.textContent.includes(`Saldo pendiente: ${copA}`), "aviso con modo, verificado y saldo");

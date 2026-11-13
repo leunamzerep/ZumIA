@@ -4,15 +4,27 @@ compatibility_date = "2026-11-01"
 # Primero se publica en *.workers.dev; api.zumia.dev se conecta después (ver bloque al final).
 workers_dev = true
 
-# Variables NO secretas de producción. En local, .dev.vars las sobrescribe.
-# Secretos (nunca aquí): VERIFY_PEPPER, TOKEN_SECRET, BREVO_API_KEY -> wrangler secret put.
-# NO definir aquí DEV_LOG_CODES ni ALLOW_MISSING_IP: son solo locales (.dev.vars).
+# ============================================================
+# PRODUCCIÓN (npx wrangler deploy)
+# ============================================================
+# Variables NO secretas. En local, .dev.vars las sobrescribe.
+# Secretos (nunca aquí; wrangler secret put): VERIFY_PEPPER, TOKEN_SECRET, BREVO_API_KEY,
+#   WOMPI_PUBLIC_KEY, WOMPI_PRIVATE_KEY, WOMPI_EVENTS_SECRET, WOMPI_INTEGRITY_SECRET.
+# NUNCA definir aquí DEV_LOG_CODES, ALLOW_MISSING_IP ni DEV_MOCK_ORIGIN: son solo locales (.dev.vars).
+# Con WOMPI_ENV = "prod", si alguna de esas tres existe, /pay/* responde 503.
 [vars]
 MAIL_FROM_EMAIL = "auth@zumia.dev"
 MAIL_FROM_NAME = "Zumia Solutions"
 # Orígenes exactos del sitio, separados por comas. Sin comodín.
 # www.zumia.dev solo se añade si, tras la mudanza del DNS (19/11), sirve el sitio en vez de redirigir al apex.
 ALLOWED_ORIGINS = "https://zumia.dev"
+# Ambiente de Wompi: "prod" exige llaves pub_prod_/prv_prod_/prod_events_/prod_integrity_.
+# Sin esos secretos, /pay/orders responde 503 (no se cobra) y el cron de órdenes no hace nada.
+WOMPI_ENV = "prod"
+# Origen del sitio para redirect-url (sin ruta ni barra final; el Worker añade /payment/result/ o /en/payment/result/).
+PAY_REDIRECT_BASE = "https://zumia.dev"
+# Correo que recibe el aviso de pago aprobado. Es una dirección de función (no personal): va como var, no secreto.
+PAY_NOTICE_TO = "payments@zumia.dev"
 
 # 03:17 UTC: limpieza diaria (DAILY_CRON en src/cleanup.ts). Cada 10 min: vencer órdenes pendientes (src/orders.ts).
 [triggers]
@@ -29,3 +41,31 @@ migrations_dir = "migrations"
 # [[routes]]
 # pattern = "api.zumia.dev"
 # custom_domain = true
+
+# ============================================================
+# STAGING (npx wrangler deploy --env staging) — sandbox de Wompi
+# ============================================================
+# Ojo: vars, d1_databases y triggers NO se heredan de arriba: aquí se repiten todos.
+# Secretos propios de staging: wrangler secret put <NOMBRE> --env staging (llaves de Wompi de PRUEBA).
+[env.staging]
+name = "zumia-verificacion-staging"
+workers_dev = true
+
+[env.staging.vars]
+MAIL_FROM_EMAIL = "auth@zumia.dev"
+MAIL_FROM_NAME = "Zumia Solutions (staging)"
+# El frontend de pruebas corre en local (npm run dev). http solo se acepta para localhost.
+ALLOWED_ORIGINS = "http://localhost:5173"
+WOMPI_ENV = "test"
+PAY_REDIRECT_BASE = "http://localhost:5173"
+PAY_NOTICE_TO = "payments@zumia.dev"
+
+[env.staging.triggers]
+crons = ["17 3 * * *", "*/10 * * * *"]
+
+# D1 SEPARADA de producción. Tras `npx wrangler d1 create zumia-verificacion-staging`, pega aquí el id que imprime.
+[[env.staging.d1_databases]]
+binding = "DB"
+database_name = "zumia-verificacion-staging"
+database_id = "PEGAR-AQUI-EL-ID-DE-STAGING"
+migrations_dir = "migrations"

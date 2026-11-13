@@ -1,15 +1,38 @@
-# Copia a .dev.vars (ignorado por git) y cambia los valores. Producción: wrangler secret put.
-# TOKEN_SECRET debe ser distinto de VERIFY_PEPPER.
-VERIFY_PEPPER=cambiar
-TOKEN_SECRET=cambiar
+# Copia a .dev.vars (ignorado por git) para `npm run dev` en local. TODOS estos valores son FALSOS a propósito.
+# Producción y staging: nunca .dev.vars; los secretos se cargan con `wrangler secret put` (ver README).
+# Nunca pegues aquí llaves reales de Wompi ni la clave real de Brevo si vas a compartir el archivo.
+
+# --- Verificación de clientes (secretos; deben ser distintos entre sí) ---
+VERIFY_PEPPER=FALSO-pepper-local-cambiar
+TOKEN_SECRET=FALSO-token-local-cambiar
 TOKEN_TTL_SECONDS=1800
-DEV_LOG_CODES=1
-# Solo local: en wrangler dev no hay CF-Connecting-IP; con esto se usa una IP fija. Nunca en producción.
-ALLOW_MISSING_IP=1
-ALLOWED_ORIGINS=http://localhost:5173,https://zumia.dev
-# Brevo: clave API v3 (xkeysib-…), no la clave SMTP (xsmtpsib-…). Vacía = no se envía correo.
+
+# --- Correo (Brevo) ---
+# Clave API v3 (xkeysib-…), no la SMTP (xsmtpsib-…). Vacía = no se envía ningún correo.
 BREVO_API_KEY=
-# Remitente: ya tiene valores por defecto en wrangler.toml [vars]. Descomenta solo para cambiarlo en local
-# (si los dejas vacíos, anulan el valor por defecto y no se envía correo).
+# El remitente ya tiene valor por defecto en wrangler.toml [vars]; descomenta solo para cambiarlo en local.
 # MAIL_FROM_EMAIL=auth@zumia.dev
 # MAIL_FROM_NAME=Zumia Solutions
+# Destino del aviso de pago aprobado (correo de administración). Vacío = el aviso no se envía, solo se registra.
+PAY_NOTICE_TO=admin@example.com
+
+# --- CORS ---
+ALLOWED_ORIGINS=http://localhost:5173
+
+# --- Wompi (sandbox). Con WOMPI_ENV=test las llaves DEBEN empezar por pub_test_, prv_test_, test_events_
+# y test_integrity_. Estas son falsas: sirven para probar en local, Wompi las rechazaría. ---
+WOMPI_ENV=test
+WOMPI_PUBLIC_KEY=pub_test_FALSO_NO_ES_REAL
+WOMPI_PRIVATE_KEY=prv_test_FALSO_NO_ES_REAL
+WOMPI_EVENTS_SECRET=test_events_FALSO_NO_ES_REAL
+WOMPI_INTEGRITY_SECRET=test_integrity_FALSO_NO_ES_REAL
+# Origen del sitio para redirect-url (http solo se acepta para localhost).
+PAY_REDIRECT_BASE=http://localhost:5173
+
+# --- SOLO LOCAL: jamás en producción ni en staging (con WOMPI_ENV=prod, /pay/* responde 503 si existen) ---
+# Imprime el código de verificación en la consola.
+DEV_LOG_CODES=1
+# En wrangler dev no hay CF-Connecting-IP; con esto se usa una IP fija.
+ALLOW_MISSING_IP=1
+# Manda Wompi y Brevo a un servidor simulado (solo lo usan las pruebas de scripts/pay-events.mjs).
+# DEV_MOCK_ORIGIN=http://127.0.0.1:8798
