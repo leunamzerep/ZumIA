@@ -147,11 +147,11 @@
     },
     "terms": {
         "h1": "Terms and <1>Conditions</1>",
-        "updated": "<1>Last updated:</1> November 13, 2026"
+        "updated": "<1>Last updated:</1> November 17, 2026"
     },
     "privacy": {
         "h1": "Privacy <1>Policy</1>",
-        "updated": "<1>Last updated:</1> November 13, 2026"
+        "updated": "<1>Last updated:</1> November 17, 2026"
     },
     "brand": {
         "name": "Zumia Solutions"
@@ -448,7 +448,7 @@
             "floorNotice": "The minimum deposit payment is {{minimum}}. Your discounts have been reduced by {{amount}}. To get your full discount, add one or more additional services",
             "title": "Pay the deposit online",
             "lead": "If your estimate is ready, you can book your spot by paying the deposit now with Wompi. The service is then formalized with a contract.",
-            "toggle": "I'd like to pay now",
+            "toggle": "I want to pay now",
             "blocked": {
                 "redesign": "A redesign is quoted individually, so it cannot be paid online. Write to us on WhatsApp and we will agree on it with you.",
                 "external": "Tools for a website we did not build are quoted individually, so they cannot be paid online. Write to us on WhatsApp and we will agree on it with you.",
@@ -534,7 +534,7 @@
             },
             "approved": {
                 "title": "Payment received",
-                "body": "Payment received. Your deposit booked your spot. We will write to the email you provided to sign the contract within 5 business days."
+                "body": "Payment received. Your deposit booked your spot. We will write to the email you provided to sign the contract within 5 business days. (If you only bought additional tools for a Zumia plan, you will not need to sign again; delivery will follow each tool's timeframe as stated in these Terms, §7.)"
             },
             "pending": {
                 "title": "Confirming your payment",

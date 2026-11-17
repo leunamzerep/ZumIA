@@ -16,7 +16,7 @@ import { PATHS } from "@/config/paths";
 import type { PlanId } from "@/data/plans";
 import { MIN_TOTAL, paymentBreakdown, type Additional, type ExtrasSelection, type Quote, type QuoteMode } from "@/data/quote";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
-import { checkCode, createOrder, type PaySelection, type PayVerification } from "@/lib/payApi";
+import { checkCode, createOrder, type PaySelection, type PayVerification, type ServerBreakdown } from "@/lib/payApi";
 
 import { buildCheckoutUrl } from "./checkout";
 import {
@@ -50,6 +50,10 @@ export type PaymentStepProps = {
   money: (value: number) => string;
   /** El Worker dijo que el token de verificación ya no vale: el cotizador vuelve a precio de lista */
   onVerificationInvalid: () => void;
+  /** Avisa al cotizador del código aplicado y su desglose (null al quitarlo, cambiar la selección o desmontar) */
+  onBreakdownChange?: (applied: { code: string; breakdown: ServerBreakdown } | null) => void;
+  /** Cada vez que sube este número, abre el panel de pago y baja hasta él (botón "Quiero pagar ahora" del resumen) */
+  openRequest?: number;
   /** Ubicación en la grilla del cotizador (sin contenedor extra: si no hay nada que mostrar, no ocupa espacio) */
   className?: string;
 };
@@ -72,7 +76,7 @@ const NewTabLink = ({ to, newTab, children }: { to: string; newTab: string; chil
   </Link>
 );
 
-const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discountPct, money, onVerificationInvalid, className = "" }: PaymentStepProps) => {
+const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discountPct, money, onVerificationInvalid, onBreakdownChange, openRequest = 0, className = "" }: PaymentStepProps) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language === "en" ? "en" : "es";
   const localizePath = useLocalizedPath();
@@ -137,6 +141,35 @@ const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discou
       panelHeadingRef.current?.focus();
     }
   }, [panelOpen]);
+
+  // Pedido desde fuera (botón del resumen): abre el panel y baja suave hasta él. Con prefers-reduced-motion, salto directo.
+  const lastRequest = useRef(openRequest);
+  const scrollPending = useRef(false);
+  useEffect(() => {
+    if (openRequest !== lastRequest.current) {
+      lastRequest.current = openRequest;
+      scrollPending.current = true;
+      if (!panelOpen) {
+        dispatch({ type: "OPEN_PANEL" });
+        return;
+      }
+    }
+    const heading = panelHeadingRef.current;
+    if (scrollPending.current && panelOpen && heading) {
+      scrollPending.current = false;
+      const smooth = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
+      heading.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+      heading.focus({ preventScroll: true });
+    }
+  }, [openRequest, panelOpen]);
+
+  // El resumen del cotizador muestra el código aplicado con el mismo desglose del panel
+  const appliedCode = state.code?.code ?? null;
+  const appliedBreakdown = state.breakdown;
+  useEffect(() => {
+    onBreakdownChange?.(appliedCode && appliedBreakdown ? { code: appliedCode, breakdown: appliedBreakdown } : null);
+  }, [appliedCode, appliedBreakdown, onBreakdownChange]);
+  useEffect(() => () => onBreakdownChange?.(null), [onBreakdownChange]);
 
   // Nada que pagar todavía (o HTML estático del prerender): no se muestra nada
   if (!quote || isPrerender()) return null;
@@ -254,7 +287,7 @@ const PaymentStep = ({ mode, quote, planId, extras, additional, verified, discou
 
       {panelOpen && (
         <section id={ids.panel} aria-labelledby={ids.heading} className="flex flex-col gap-6 border-t border-navy-900/10 pt-6">
-          <h3 id={ids.heading} ref={panelHeadingRef} tabIndex={-1} className="font-title text-lg font-bold text-navy-900 outline-none">
+          <h3 id={ids.heading} ref={panelHeadingRef} tabIndex={-1} className="scroll-mt-24 font-title text-lg font-bold text-navy-900 outline-none">
             {t("quote.pay.breakdownTitle")}
           </h3>
 

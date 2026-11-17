@@ -12,6 +12,7 @@ import { GeometricPattern } from "@/components/ui/GeometricPattern";
 import { Pill } from "@/components/ui/Pill";
 import { Section } from "@/components/ui/Section";
 import { PAYMENTS_ENABLED, VERIFY_API_URL } from "@/config/site";
+import { payAvailability } from "@/features/payments/flow";
 import { useWhatsappUrl, whatsappWithMessage } from "@/config/whatsapp";
 import { EXTRAS, OTHER_SERVICES, type ExtraId } from "@/data/extras";
 import { PLANS, formatPriceFor, type PlanId } from "@/data/plans";
@@ -31,6 +32,7 @@ import {
   type Quote as QuoteData,
   type SiteGoal,
 } from "@/data/quote";
+import type { ServerBreakdown } from "@/lib/payApi";
 
 /** Paso de pago: con el interruptor apagado es null y su código no entra al bundle (ver PAYMENTS_ENABLED). */
 const PaymentStep = PAYMENTS_ENABLED ? lazy(() => import("@/features/payments/PaymentStep")) : null;
@@ -65,6 +67,9 @@ export const Quote = () => {
   const [verified, setVerified] = useState<VerifiedClient | null>(null);
   // El Worker de pagos dijo que el token ya no vale: se quita la verificación (vuelve a precio de lista)
   const clearVerification = () => setVerified(null);
+  // Código de descuento aplicado en el panel de pago (lo avisa PaymentStep) y pedido de abrir ese panel
+  const [applied, setApplied] = useState<{ code: string; breakdown: ServerBreakdown } | null>(null);
+  const [payRequest, setPayRequest] = useState(0);
   const stepOneRef = useRef<HTMLHeadingElement>(null);
   const summaryRef = useRef<HTMLHeadingElement>(null);
 
@@ -76,6 +81,8 @@ export const Quote = () => {
   const activeVerified = client ? verified : null;
   const quote = computeQuote(mode, planId, selection, additional, activeVerified?.extrasDiscount);
   const discount = discountFor(mode, planId, activeVerified?.extrasDiscount);
+  // Mismas condiciones que el botón del panel de pago: función activa, no prerender y pago en línea disponible
+  const canPayNow = PaymentStep !== null && !isPrerender() && quote !== null && payAvailability(mode, activeVerified !== null, quote.total).kind === "payable";
   const money = (value: number) => t("extras.price", { price: formatPriceFor(value, i18n.language) });
   // En rediseño el precio y el plazo son "desde"
   const from = (value: number) => (mode === "redesign" ? t("quote.fromAmount", { amount: money(value) }) : money(value));
@@ -393,7 +400,18 @@ export const Quote = () => {
               className="scroll-mt-20 md:scroll-mt-24 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:sticky lg:top-24 lg:overflow-hidden lg:rounded-card lg:bg-navy-900"
             >
               <div className="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:[scrollbar-color:rgb(255_255_255/0.35)_transparent] lg:[scrollbar-width:thin]">
-                <QuoteSummary ref={summaryRef} quote={quote} mode={mode} money={money} from={from} days={days} whatsappUrl={whatsappUrl} onReset={reset} />
+                <QuoteSummary
+                  ref={summaryRef}
+                  quote={quote}
+                  mode={mode}
+                  money={money}
+                  from={from}
+                  days={days}
+                  whatsappUrl={whatsappUrl}
+                  onReset={reset}
+                  applied={applied}
+                  onPayNow={canPayNow ? () => setPayRequest((n) => n + 1) : undefined}
+                />
               </div>
             </aside>
 
@@ -412,6 +430,8 @@ export const Quote = () => {
                   discountPct={discount}
                   money={money}
                   onVerificationInvalid={clearVerification}
+                  onBreakdownChange={setApplied}
+                  openRequest={payRequest}
                   className="min-w-0 lg:col-start-1 lg:row-start-2"
                 />
               </Suspense>
@@ -421,7 +441,7 @@ export const Quote = () => {
 
         {/* Aviso educado para lectores de pantalla: solo el total y el plazo, no cada línea */}
         <p className="sr-only" aria-live="polite" aria-atomic="true">
-          {quote ? t("quote.live", { total: from(quote.total), days: days(quote.days) }) : ""}
+          {quote ? t("quote.live", { total: applied ? money(applied.breakdown.total) : from(quote.total), days: days(quote.days) }) : ""}
         </p>
 
         {/* Barra fija en móvil y tableta: se detiene al final de la página, encima del pie */}
@@ -429,7 +449,12 @@ export const Quote = () => {
           <div className="container-site flex items-center justify-between gap-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
             <p className="flex min-w-0 flex-col leading-tight">
               <span className="text-xs font-semibold text-gold-300">{t("quote.total")}</span>
-              <span className="truncate font-title text-lg font-extrabold">{quote ? from(quote.total) : summaryEmpty}</span>
+              <span className="truncate font-title text-lg font-extrabold">{quote ? (applied ? money(applied.breakdown.total) : from(quote.total)) : summaryEmpty}</span>
+              {quote && applied && (
+                <span className="truncate text-xs text-white/80">
+                  {t("quote.deposit")}: {money(applied.breakdown.deposit)}
+                </span>
+              )}
             </p>
             <button
               type="button"

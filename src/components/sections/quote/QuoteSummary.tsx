@@ -1,13 +1,14 @@
 import { forwardRef } from "react";
 import { useTranslation } from "react-i18next";
 
-import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { WhatsAppIcon } from "@/components/ui/icons";
 import { AGENDA_ID, PATHS } from "@/config/paths";
 import { BOOKING_URL } from "@/config/site";
 import type { Quote, QuoteMode } from "@/data/quote";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
+import type { ServerBreakdown } from "@/lib/payApi";
 
 export const SUMMARY_ID = "resumen";
 
@@ -23,8 +24,12 @@ export const QuoteSummary = forwardRef<
     days: (count: number) => string;
     whatsappUrl: string;
     onReset: () => void;
+    /** Código de descuento válido aplicado en el panel de pago, con el desglose del Worker; null = ninguno */
+    applied?: { code: string; breakdown: ServerBreakdown } | null;
+    /** Solo si el pago en línea aplica: abre el panel de pago y baja hasta él */
+    onPayNow?: () => void;
   }
->(({ quote, mode, money, from, days, whatsappUrl, onReset }, headingRef) => {
+>(({ quote, mode, money, from, days, whatsappUrl, onReset, applied = null, onPayNow }, headingRef) => {
   const { t } = useTranslation();
   const localizePath = useLocalizedPath();
   const row = "flex items-baseline justify-between gap-4";
@@ -85,13 +90,19 @@ export const QuoteSummary = forwardRef<
             </ul>
           )}
           <dl className="flex flex-col gap-3 border-t border-white/15 pt-5">
+            {applied && applied.breakdown.discountApplied > 0 && (
+              <div className={row}>
+                <dt className="text-sm text-white/80">{t("quote.pay.codeDiscount", { code: applied.code })}</dt>
+                <dd className="text-sm font-semibold whitespace-nowrap text-white">−{money(applied.breakdown.discountApplied)}</dd>
+              </div>
+            )}
             <div className={row}>
               <dt className="font-semibold text-gold-300">{t("quote.total")}</dt>
-              <dd className="text-right font-title text-2xl font-extrabold whitespace-nowrap text-white">{from(quote.total)}</dd>
+              <dd className="text-right font-title text-2xl font-extrabold whitespace-nowrap text-white">{applied ? money(applied.breakdown.total) : from(quote.total)}</dd>
             </div>
             <div className={row}>
               <dt className="text-sm text-white/80">{t("quote.deposit")}</dt>
-              <dd className="text-sm font-semibold whitespace-nowrap text-white">{from(quote.deposit)}</dd>
+              <dd className="text-sm font-semibold whitespace-nowrap text-white">{applied ? money(applied.breakdown.deposit) : from(quote.deposit)}</dd>
             </div>
             <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-1">
               <dt className="text-sm text-white/80">{t("quote.delivery")}</dt>
@@ -108,6 +119,11 @@ export const QuoteSummary = forwardRef<
       <p className="text-xs leading-relaxed text-white/70">{t("quote.disclaimer")}</p>
 
       <div className="flex flex-col gap-3 border-t border-white/15 pt-5">
+        {onPayNow && (
+          <Button onClick={onPayNow} className="w-full">
+            {t("quote.pay.toggle")}
+          </Button>
+        )}
         <p className="font-semibold text-white">{t("quote.doubts")}</p>
         <ButtonAnchor href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="w-full">
           <WhatsAppIcon className="size-5" />

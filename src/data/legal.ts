@@ -138,4 +138,4 @@ export const PRIVACY_SECTIONS: LegalSection[] = [
  * Cámbiala junto con terms.updated y privacy.updated (es.json / en.json). Máximo 32 caracteres.
  * No importar nada del front: este valor también lo usa worker/.
  */
-export const LEGAL_VERSION = "T2026-11-13.P2026-11-13";
+export const LEGAL_VERSION = "T2026-11-17.P2026-11-17";

@@ -211,7 +211,7 @@ const keysDeep = (v) => (v && typeof v === "object" ? Object.entries(v).flatMap(
   const vars = (dict) => flat(dict.quote.pay).map((k) => `${k}:${(get(dict.quote.pay, k).match(/\{\{\w+\}\}|<\d>/g) || []).sort().join("")}`).join();
   check(vars(es) === vars(en), "mismas variables {{…}} y enlaces <1>/<2> en ES y EN");
   check(en.quote.pay.consent.includes("Spanish only") && es.quote.pay.consent.includes("<1>Términos y Condiciones</1>") && es.quote.pay.consent.includes("<2>Política de Privacidad</2>"), "casilla: enlaces en ES y aviso 'solo en español' en EN");
-  check(es.quote.pay.toggle === "Me gustaría pagar ahora" && en.quote.pay.toggle === "I'd like to pay now" && es.quote.pay.submit === "Pagar anticipo" && en.quote.pay.submit === "Pay deposit", "textos del botón y del interruptor");
+  check(es.quote.pay.toggle === "Quiero pagar ahora" && en.quote.pay.toggle === "I want to pay now" && es.quote.pay.submit === "Pagar anticipo" && en.quote.pay.submit === "Pay deposit", "textos del botón y del interruptor");
   check(es.quote.pay.unverifiedNotice === "No verificaste que eres cliente de Zumia, así que este pago se hace sin descuento de cliente. Si ya contrataste, verifica tu correo antes de pagar.", "aviso de cliente sin verificar, texto exacto");
   check(es.quote.pay.depositNotice.replace("{{amount}}", "$295.000 COP") === "Pagarás el anticipo del 50 % ($295.000 COP), no el total. El saldo restante se paga a la entrega final.", "aviso del anticipo, texto exacto");
   const consentEs = es.quote.pay.consent.replace(/<\/?\d>/g, "");
@@ -292,7 +292,7 @@ const keysDeep = (v) => (v && typeof v === "object" ? Object.entries(v).flatMap(
   // Mensajes: cada vista tiene título y texto en ES y EN; textos exactos pedidos
   check(RESULT_VIEWS.every((v) => ["title", "body"].every((k) => typeof es.payResult.views[v]?.[k] === "string" && typeof en.payResult.views[v]?.[k] === "string")), `las ${RESULT_VIEWS.length} vistas tienen título y texto en ES y EN`);
   check(resultMessageKey("approved") === "payResult.views.approved", "clave del mensaje: payResult.views.<vista>");
-  check(es.payResult.views.approved.body === "Pago recibido. Tu anticipo reservó tu cupo. Te escribiremos al correo que indicaste para firmar el contrato dentro de 5 días hábiles.", "texto de aprobado, exacto");
+  check(es.payResult.views.approved.body === "Pago recibido. Tu anticipo reservó tu cupo. Te escribiremos al correo que indicaste para firmar el contrato dentro de 5 días hábiles. (Si solo compraste herramientas adicionales a un plan de Zumia, no deberás firmar de nuevo; la entrega se dará según los plazos de cada herramienta indicados en estos Términos, §7.)", "texto de aprobado, exacto");
   check(es.payResult.views.pending.body === "Estamos confirmando tu pago…", "texto de pendiente, exacto");
   check(es.payResult.views.unknown.body === "No pudimos identificar tu pago desde esta página. Si pagaste, lo confirmaremos por correo.", "texto de no identificado, exacto");
   const montos = /\$|\bCOP\b|\d{2,}\.\d{3}/;
