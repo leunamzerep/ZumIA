@@ -72,3 +72,9 @@ export const ArrowUpRightIcon = (props: IconProps) => (
     <path d="M7 17 17 7M8 7h9v9" />
   </svg>
 );
+
+export const ArrowRightIcon = (props: IconProps) => (
+  <svg {...base} viewBox="0 0 24 24" {...stroke} {...props}>
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
+);

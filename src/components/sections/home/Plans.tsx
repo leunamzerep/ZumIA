@@ -6,10 +6,10 @@ import { PATHS } from "@/config/paths";
 import { useLocalizedPath } from "@/i18n/useLocalizedPath";
 import { PLANS, formatPrice, type Plan } from "@/data/plans";
 import { whatsappWithMessage } from "@/config/whatsapp";
-import { ButtonAnchor } from "@/components/ui/Button";
+import { ButtonAnchor, ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { cx } from "@/components/ui/cx";
-import { WhatsAppIcon } from "@/components/ui/icons";
+import { ArrowRightIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Pill } from "@/components/ui/Pill";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -112,11 +112,12 @@ export const Plans = () => {
               </li>
             ))}
           </ul>
+          <ButtonLink to={localizePath(PATHS.quote)} size="lg" className="group cta-halo mt-3">
+            {t("plans.quoteLink")}
+            <ArrowRightIcon className="size-5 motion-safe:transition-transform motion-safe:duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1" />
+          </ButtonLink>
           <Link to={localizePath(PATHS.services)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
             {t("plans.extrasLink")}
-          </Link>
-          <Link to={localizePath(PATHS.quote)} className="rounded text-sm font-semibold text-navy-700 underline decoration-gold-500 decoration-2 underline-offset-4 hover:text-navy-900">
-            {t("plans.quoteLink")}
           </Link>
         </div>
         <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-navy-600">{t("plans.conditions")}</p>

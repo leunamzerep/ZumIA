@@ -113,6 +113,29 @@
     }
 }
 
+/* Halo suave del botón principal "Arma tu cotización" (Inicio): un anillo dorado que se expande y se
+   desvanece cada ~5 s. Va en un pseudo-elemento con box-shadow: no mueve ni cambia el tamaño del botón.
+   Solo corre si el usuario no pidió menos movimiento; si lo pidió, queda solo el estilo del botón. */
+@keyframes cta-halo {
+    0%, 65% { box-shadow: 0 0 0 0 rgba(212, 143, 64, 0.5); }
+    100% { box-shadow: 0 0 0 0.75rem rgba(212, 143, 64, 0); }
+}
+
+@utility cta-halo {
+    position: relative;
+
+    @media (prefers-reduced-motion: no-preference) {
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            animation: cta-halo 5s ease-out infinite;
+        }
+    }
+}
+
 /* Palabra en contorno para los títulos. El color del trazo se cambia con
    [--outline-color:…]; sin soporte de text-stroke, la palabra se ve rellena. */
 @utility text-outline {
